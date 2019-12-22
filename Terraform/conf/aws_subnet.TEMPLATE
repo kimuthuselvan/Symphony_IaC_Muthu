@@ -2,7 +2,7 @@ region = "$REGION_NAME"
 vpc_name = "$VPC_NAME"
 subnet_name = "$SUBNET_NAME"
 subnet_cidr = "$SUBNET_CIDR"
-subnet_az = "${REGION_NAME}a"
+subnet_az = "$SUBNET_AZ"
 
 tag_name = "$SUBNET_NAME"
 tag_project = "Symphony"
