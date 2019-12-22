@@ -47,7 +47,7 @@ Region:
       Terraform: Deploy
     - Name: AHS_Prod_Data_AZ-B
       CIDR: 10.126.192.32/27
-      AvailabilityZone: ({{Region.Name}}a)
+      AvailabilityZone: ({{Region.Name}}b)
       Deploy: false
       Terraform: Deploy
       TicketNumber: 0000
