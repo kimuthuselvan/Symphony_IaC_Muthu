@@ -47,8 +47,8 @@ def createAwsProfileFile(profile, template_file, path, region_name, resource_nam
             with open(template, "rt") as fin:
                 with open(output_template_path, "wt") as fout:
                     for line in fin:
-                        line = line.replace('$REGION', region_name)
-                        line = line.replace('$BUCKET_NAME', resource_name)
+                        line = line.replace('$REGION_NAME', region_name)
+                        line = line.replace('$S3BUCKET_NAME', resource_name)
                         fout.write(line)
                     print(output_template_path)
             break
@@ -63,8 +63,8 @@ def createAwsS3TemplateFile(resource, template_file, path, region_name, resource
             with open(template, "rt") as fin:
                 with open(output_template_path, "wt") as fout:
                     for line in fin:
-                        line = line.replace('$REGION', region_name)
-                        line = line.replace('$BUCKET_NAME', resource_name)
+                        line = line.replace('$REGION_NAME', region_name)
+                        line = line.replace('$S3BUCKET_NAME', resource_name)
                         #line = line.replace('$VPC_CIDR', cidr)
                         fout.write(line)
                     print(output_template_path)
