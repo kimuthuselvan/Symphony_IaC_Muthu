@@ -1,0 +1,15 @@
+Region:
+- Name: us-east-1
+  S3tfstate:
+  - Name: symphony-ahs-tfstate-us-east-1
+    Deploy: false
+    ScriptPath: "../scripts/Storage/S3tfstate"
+    Terraform: Deploy
+    TicketNumber: 0000
+- Name: us-west-1
+  S3tfstate:
+  - Name: symphony-ahs-tfstate-us-west-1
+    Deploy: false
+    ScriptPath: "../scripts/Storage/S3tfstate"
+    Terraform: Deploy
+    TicketNumber: 0000

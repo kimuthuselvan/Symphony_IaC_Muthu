@@ -1,0 +1,47 @@
+Region:
+- Name: us-east-1
+  VPC:
+  - Name: AHS_Prod_App_VPC
+    CIDR: 10.126.192.0/26
+    Deploy: ture
+    Terraform: Deploy
+    Subnet:
+    - Name: AHS_Prod_App_AZ-A
+      CIDR: 10.126.192.0/27
+      Deploy: ture
+      Terraform: Deploy
+    - Name: AHS_Prod_App_AZ-B
+      CIDR: 10.126.192.32/27
+      Deploy: false
+      Terraform: Deploy
+      TicketNumber: 0000
+  - Name: AHS_Prod_Data_VPC
+    CIDR: 10.126.192.0/26
+    Deploy: false
+    Terraform: Deploy
+    Subnet:
+    - Name: AHS_Prod_Data_AZ-A
+      CIDR: 10.126.192.0/27
+      Deploy: false
+      Terraform: Deploy
+    - Name: AHS_Prod_Data_AZ-B
+      CIDR: 10.126.192.32/27
+      Deploy: false
+      Terraform: Deploy
+      TicketNumber: 0000
+- Name: us-west-1
+  VPC:
+  - Name: AHS_Prod_Data_VPC
+    CIDR: 10.126.192.0/26
+    Deploy: false
+    Terraform: Deploy
+    Subnet:
+    - Name: AHS_Prod_Data_AZ-A
+      CIDR: 10.126.192.0/27
+      Deploy: false
+      Terraform: Deploy
+    - Name: AHS_Prod_Data_AZ-B
+      CIDR: 10.126.192.32/27
+      Deploy: false
+      Terraform: Deploy
+      TicketNumber: 0000

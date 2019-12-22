@@ -1,0 +1,12 @@
+region_name= "$REGION_NAME"
+vpc_name = "$VPC_NAME"
+vpc_cidr = "$VPC_CIDR"
+
+tag_name = "$VPC_NAME"
+tag_project = "Symphony"
+tag_organization = "Advantasure Inc."
+tag_clietn = "AHS"
+
+tfstate_backend = "symphony-ahs-backend-tfstate-$REGION_NAME"
+tfstate_path = "tfstate/Networking/$VPC_NAME/$VPC_NAME.tfstate"
+
