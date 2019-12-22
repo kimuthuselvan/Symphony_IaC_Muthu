@@ -43,7 +43,7 @@ do
   echo $RESOURCE_TYPE
   echo -e "\n"
   echo "$BASE_DIR/Conductor/bin/yaml2tfvars_$RESOURCE_TYPE.sh $YAML_FILE"
-  $BASE_DIR/Conductor/bin/yaml2tfvars_$RESOURCE_TYPE.sh $YAML_FILE
+  $REPO_BASE/Conductor/bin/yaml2tfvars_$RESOURCE_TYPE.sh $YAML_FILE
 done
 ###
 ###
