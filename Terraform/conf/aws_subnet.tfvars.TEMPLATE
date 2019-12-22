@@ -1,0 +1,13 @@
+region = "$REGION_NAME"
+vpc_name = "$VPC_NAME"
+subnet_name = "$SUBNET_NAME"
+subnet_cidr = "$SUBNET_CIDR"
+subnet_az = "$SUBNET_AZ"
+
+tag_name = "$SUBNET_NAME"
+tag_project = "Symphony"
+tag_organization = "Advantasure Inc."
+tag_clietn = "AHS"
+
+tfstate_backend = "symphony-ahs-backend-tfstate-$REGION_NAME"
+tfstate_path = "tfstate/Networking/$VPC_NAME/$SUBNET_NAME/$SUBNET_NAME.tfstate"
