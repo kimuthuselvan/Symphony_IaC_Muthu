@@ -12,6 +12,7 @@ import sys
 parser = argparse.ArgumentParser(description='This is a aws account validator script.')
 parser.add_argument('--buildfile', help='Build configuration for the given yaml file')
 parser.add_argument('--templatefile', help='Template file creation for the given template file')
+parser.add_argument('--outputfolder', help='Destination folder for the given template file')
 parser.add_argument('--load',help='Load the Yaml file')
 
 # Check if the given directory is already exist in the given path, if it is not exist create it.
@@ -37,23 +38,66 @@ def createNewFile(file_path):
     return file_object
 
 # Create aws profile file.
-def createAwsProfile(new_template_file, template_file, region_name, resource_name):
-    with open(template_file, "rt") as fin:
-        with open(new_template_file, "wt") as fout:
-            for line in fin:
-                line = line.replace('$REGION_NAME', region_name)
-                line = line.replace('$VPC_NAME', resource_name)
-                fout.write(line)				
+def createAwsProfileFile(profile, template_file, path, region_name, resource_name):
+    for template in template_file:
+        if profile in template:
+            output_template_file = os.path.splitext(os.path.basename(template))[0]		
+            output_template_path = path + '/' + output_template_file
+            #print(output_template_path)
+            with open(template, "rt") as fin:
+                with open(output_template_path, "wt") as fout:
+                    for line in fin:
+                        line = line.replace('$REGION_NAME', region_name)
+                        line = line.replace('$VPC_NAME', resource_name)
+                        fout.write(line)
+                    print(output_template_path)
+            break
+    fin.close()
+    fout.close()
+
+def createAwsVpcTemplateFile(resource, template_file, path, region_name, resource_name, cidr):
+    for template in template_file:
+        if resource in template:
+            output_template_file = os.path.splitext(os.path.basename(template))[0]		
+            output_template_path = path + '/' + output_template_file
+            with open(template, "rt") as fin:
+                with open(output_template_path, "wt") as fout:
+                    for line in fin:
+                        line = line.replace('$REGION_NAME', region_name)
+                        line = line.replace('$VPC_NAME', resource_name)
+                        line = line.replace('$VPC_CIDR', cidr)
+                        fout.write(line)
+                    print(output_template_path)
+            break
+    fin.close()
+    fout.close()
+
+def createAwsSubnetTemplateFile(resource, template_file, path, region_name, vpc_name, subnet_name, cidr):
+    for template in template_file:
+        if resource in template:
+            output_template_file = os.path.splitext(os.path.basename(template))[0]		
+            output_template_path = path + '/' + output_template_file
+            with open(template, "rt") as fin:
+                with open(output_template_path, "wt") as fout:
+                    for line in fin:
+                        line = line.replace('$REGION_NAME', region_name)
+                        line = line.replace('$VPC_NAME', vpc_name)
+                        line = line.replace('$SUBNET_NAME', subnet_name)
+                        line = line.replace('$SUBNET_CIDR', cidr)
+                        line = line.replace('${REGION_NAME}', region_name)
+                        fout.write(line)
+                    print(output_template_path)
+            break
     fin.close()
     fout.close()
 	
 # Create Build for configuration.
-def createBuildFile(yaml_file, template_file):
+def createBuildFile(yaml_file, template_file, output_folder):
     # Load the yaml file data into dictionary
     aws_accounts = ruamel.yaml.round_trip_load(open(yaml_file), preserve_quotes=True)
     try:  
-        baseDirPath = os.environ["WORKSPACE"]
-        #baseDirPath = 'E:\Muthu'
+        #baseDirPath = os.environ["WORKSPACE"]
+        baseDirPath = 'E:\Muthu'
     except KeyError: 
         print("Please set the environment variable WORKSPACE")
         sys.exit(1)
@@ -68,27 +112,18 @@ def createBuildFile(yaml_file, template_file):
         count = getElementCount(aws_accounts['Region'][i]['VPC'])
 		# VPC node trace
         for j in range(count):
+            resource = 'vpc'
+            profile = 'profile'
             vpcName = aws_accounts['Region'][i]['VPC'][j]['Name']
             vpcPath = regionPath + '/' + vpcName
-            vpcConfigPath = vpcPath + '/' + "vpc.tfvars"
-            vpcAwsProfilePath = vpcPath + '/' + "aws_profile"
-            if(aws_accounts['Region'][i]['VPC'][j]['Deploy'] == True):
+            vpc_cidr = str(aws_accounts['Region'][i]['VPC'][j]['CIDR'])
+            if(str(aws_accounts['Region'][i]['VPC'][j]['Deploy']).casefold() == str(True).casefold()):
                 try:            
                     createDirectory(vpcPath)
-                    fileObject1 = createNewFile(vpcConfigPath)
-                    fileObject1.write('region_name = "' + regionName + '"\n')
-                    fileObject1.write('vpc_name = "' + vpcName + '"\n')
-                    fileObject1.write('vpc_cidr = "' + str(aws_accounts['Region'][i]['VPC'][j]['CIDR']) + '"\n\n')
-                    fileObject1.write('tag_name = "' + vpcName + '"\n')
-                    fileObject1.write('tag_project = "Symphony"\n')
-                    fileObject1.write('tag_organization = "Advantasure Inc."\n')
-                    fileObject1.write('tag_clietn = "AHS"\n\n')
-                    fileObject1.write('tfstate_backend = "' + 'symphony-ahs-backend-tfstate-' + regionName + '"\n')
-                    fileObject1.write('tfstate_path = "' + 'tfstate/Networking/' + vpcName + '/vpc.tfvars' + '"\n')                
-                    fileObject1.close()
-                    createAwsProfile(vpcAwsProfilePath, template_file, regionName, vpcName)
+                    createAwsProfileFile(profile, template_file, vpcPath, regionName, vpcName)
+                    createAwsVpcTemplateFile(resource, template_file, vpcPath, regionName, vpcName, vpc_cidr)
                     print("INFO: Generating VPC: " + vpcName + " configuration ... Done")
-                    print(vpcConfigPath)
+                    #print(vpcConfigPath)
                     buildCount += 1
                 except:
                     print("ERROR: Generating VPC: " + vpcName + " configuration ... Failed")
@@ -96,28 +131,16 @@ def createBuildFile(yaml_file, template_file):
                 count = getElementCount(aws_accounts['Region'][i]['VPC'][j]['Subnet'])
 				# Subnet node trace
                 for k in range(count):
+                    resource = 'subnet'
                     subnetName = aws_accounts['Region'][i]['VPC'][j]['Subnet'][k]['Name']
                     subnetPath = vpcPath + '/' + subnetName
-                    subnetConfigPath = subnetPath + '/' + "subnet.tfvars"
-                    subnetAwsProfilePath = subnetPath + '/' + "aws_profile"
+                    subnet_cidr = str(aws_accounts['Region'][i]['VPC'][j]['Subnet'][k]['CIDR'])
                     if(str(aws_accounts['Region'][i]['VPC'][j]['Subnet'][k]['Deploy']).casefold() == str(True).casefold()):
                         try:
                             createDirectory(subnetPath)
-                            fileObject3 = createNewFile(subnetConfigPath)
-                            fileObject3.write('region_name = "' + regionName + '"\n')
-                            fileObject3.write('vpc_name = "' + vpcName + '"\n')
-                            fileObject3.write('subnet_name = "' + subnetName + '"\n')
-                            fileObject3.write('subnet_cidr = "' + str(aws_accounts['Region'][i]['VPC'][j]['Subnet'][k]['CIDR']) + '"\n\n')
-                            fileObject3.write('tag_name = "' + subnetName + '"\n')
-                            fileObject3.write('tag_project = "Symphony"\n')
-                            fileObject3.write('tag_organization = "Advantasure Inc."\n')
-                            fileObject3.write('tag_clietn = "AHS"\n\n')
-                            fileObject3.write('tfstate_backend = "' + 'symphony-ahs-backend-tfstate-' + regionName + '"\n')
-                            fileObject3.write('tfstate_path = "' + 'tfstate/Networking/' + vpcName + '/' + subnetName + '/subnet.tfvars' + '"\n')
-                            fileObject3.close()
-                            createAwsProfile(subnetAwsProfilePath, template_file, regionName, subnetName)
+                            createAwsProfileFile(profile, template_file, subnetPath, regionName, subnetName)
+                            createAwsSubnetTemplateFile(resource, template_file, subnetPath, regionName, vpcName, subnetName, subnet_cidr)
                             print("INFO: Generating Subnet: " + subnetName + " configuration ... Done")
-                            print(subnetConfigPath)
                         except:
                             print("ERROR: Generating Subnet: " + subnetName + " configuration ... Failed")
                         aws_accounts['Region'][i]['VPC'][j]['Subnet'][k]['Deploy'] = False
@@ -137,9 +160,10 @@ def main():
     if(args.buildfile and args.templatefile):
         #Build for configuration (Preparing the directory structure and terraform variable files) 
         buildfile = args.buildfile
-        templatefile = args.templatefile
+        template_file = args.templatefile.split(',')
+        output_folder = args.outputfolder
         try:
-            aws_updated = createBuildFile(buildfile, templatefile)
+            aws_updated = createBuildFile(buildfile, template_file, output_folder)
             updateYamlFile(aws_updated, buildfile)
         except IOError as e:
             print("I/O error({0}): {1}".format(e.errno, e.strerror))
@@ -157,4 +181,3 @@ def main():
 
 if __name__== "__main__":
     main()
-
