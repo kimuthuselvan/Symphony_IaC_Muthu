@@ -72,7 +72,7 @@ def createAwsVpcTemplateFile(resource, template_file, path, region_name, resourc
     fin.close()
     fout.close()
 
-def createAwsSubnetTemplateFile(resource, template_file, path, region_name, vpc_name, subnet_name, cidr):
+def createAwsSubnetTemplateFile(resource, template_file, path, region_name, vpc_name, subnet_name, cidr, subnet_az):
     for template in template_file:
         if resource in template:
             output_template_file = os.path.splitext(os.path.basename(template))[0]		
@@ -84,7 +84,7 @@ def createAwsSubnetTemplateFile(resource, template_file, path, region_name, vpc_
                         line = line.replace('$VPC_NAME', vpc_name)
                         line = line.replace('$SUBNET_NAME', subnet_name)
                         line = line.replace('$SUBNET_CIDR', cidr)
-                        line = line.replace('${REGION_NAME}', region_name)
+                        line = line.replace('$SUBNET_AZ', subnet_az)
                         fout.write(line)
                     print(output_template_path)
             break
@@ -123,7 +123,6 @@ def createBuildFile(yaml_file, template_file, output_folder):
                     createAwsProfileFile(profile, template_file, vpcPath, regionName, vpcName)
                     createAwsVpcTemplateFile(resource, template_file, vpcPath, regionName, vpcName, vpc_cidr)
                     print("INFO: Generating VPC: " + vpcName + " configuration ... Done")
-                    #print(vpcConfigPath)
                     buildCount += 1
                 except:
                     print("ERROR: Generating VPC: " + vpcName + " configuration ... Failed")
@@ -135,11 +134,14 @@ def createBuildFile(yaml_file, template_file, output_folder):
                     subnetName = aws_accounts['Region'][i]['VPC'][j]['Subnet'][k]['Name']
                     subnetPath = vpcPath + '/' + subnetName
                     subnet_cidr = str(aws_accounts['Region'][i]['VPC'][j]['Subnet'][k]['CIDR'])
+                    subnet_az = str(aws_accounts['Region'][i]['VPC'][j]['Subnet'][k]['AvailabilityZone'])
+                    subnet_az = subnet_az.replace('({{Region.Name}}', regionName)
+                    subnet_az = subnet_az.replace(')', '')
                     if(str(aws_accounts['Region'][i]['VPC'][j]['Subnet'][k]['Deploy']).casefold() == str(True).casefold()):
                         try:
                             createDirectory(subnetPath)
                             createAwsProfileFile(profile, template_file, subnetPath, regionName, subnetName)
-                            createAwsSubnetTemplateFile(resource, template_file, subnetPath, regionName, vpcName, subnetName, subnet_cidr)
+                            createAwsSubnetTemplateFile(resource, template_file, subnetPath, regionName, vpcName, subnetName, subnet_cidr, subnet_az)
                             print("INFO: Generating Subnet: " + subnetName + " configuration ... Done")
                         except:
                             print("ERROR: Generating Subnet: " + subnetName + " configuration ... Failed")
