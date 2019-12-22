@@ -36,7 +36,7 @@ do
   echo -e "\n"
   YAML_FILE_NAME=`basename $YAML_FILE`
   YAML_FILE_PATH=`dirname $YAML_FILE`
-  RESOURCE_TYPE=`echo $FILE_NAME |awk -F. '{print $1}' |awk -F_ '{print $NF}'`
+  RESOURCE_TYPE=`echo $YAML_FILE_NAME |awk -F. '{print $1}' |awk -F_ '{print $NF}'`
   echo -e "\n"
   echo $YAML_FILE_NAME
   echo $YAML_FILE_PATH
