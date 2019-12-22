@@ -8,10 +8,12 @@ Region:
     Subnet:
     - Name: AHS_Prod_App_AZ-A
       CIDR: 10.126.192.0/27
+      AvailabilityZone: ({{Region.Name}}a)
       Deploy: ture
       Terraform: Deploy
     - Name: AHS_Prod_App_AZ-B
       CIDR: 10.126.192.32/27
+      AvailabilityZone: ({{Region.Name}}b)
       Deploy: false
       Terraform: Deploy
       TicketNumber: 0000
@@ -22,10 +24,12 @@ Region:
     Subnet:
     - Name: AHS_Prod_Data_AZ-A
       CIDR: 10.126.192.0/27
+      AvailabilityZone: ({{Region.Name}}a)
       Deploy: false
       Terraform: Deploy
     - Name: AHS_Prod_Data_AZ-B
       CIDR: 10.126.192.32/27
+      AvailabilityZone: ({{Region.Name}}b)
       Deploy: false
       Terraform: Deploy
       TicketNumber: 0000
@@ -38,10 +42,12 @@ Region:
     Subnet:
     - Name: AHS_Prod_Data_AZ-A
       CIDR: 10.126.192.0/27
+      AvailabilityZone: ({{Region.Name}}a)
       Deploy: false
       Terraform: Deploy
     - Name: AHS_Prod_Data_AZ-B
       CIDR: 10.126.192.32/27
+      AvailabilityZone: ({{Region.Name}}a)
       Deploy: false
       Terraform: Deploy
       TicketNumber: 0000
