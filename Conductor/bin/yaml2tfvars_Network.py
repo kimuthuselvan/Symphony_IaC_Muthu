@@ -96,8 +96,8 @@ def createBuildFile(yaml_file, template_file, output_folder):
     # Load the yaml file data into dictionary
     aws_accounts = ruamel.yaml.round_trip_load(open(yaml_file), preserve_quotes=True)
     try:  
-        #baseDirPath = os.environ["WORKSPACE"]
-        baseDirPath = 'E:\Muthu'
+        baseDirPath = os.environ["WORKSPACE"]
+        #baseDirPath = 'E:\Muthu'
     except KeyError: 
         print("Please set the environment variable WORKSPACE")
         sys.exit(1)
