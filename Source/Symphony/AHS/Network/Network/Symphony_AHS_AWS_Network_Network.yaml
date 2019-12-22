@@ -3,13 +3,13 @@ Region:
   VPC:
   - Name: AHS_Prod_App_VPC
     CIDR: 10.126.192.0/26
-    Deploy: ture
+    Deploy: false
     Terraform: Deploy
     Subnet:
     - Name: AHS_Prod_App_AZ-A
       CIDR: 10.126.192.0/27
       AvailabilityZone: ({{Region.Name}}a)
-      Deploy: ture
+      Deploy: false
       Terraform: Deploy
     - Name: AHS_Prod_App_AZ-B
       CIDR: 10.126.192.32/27
