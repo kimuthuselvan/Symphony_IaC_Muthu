@@ -41,7 +41,7 @@ def createNewFile(file_path):
 def createAwsProfileFile(profile, template_file, path, region_name, resource_name):
     for template in template_file:
         if profile in template:
-            output_template_file = os.path.splitext(os.path.basename(template))[0]		
+            output_template_file = os.path.splitext(os.path.basename(template))[0]
             output_template_path = path + '/' + output_template_file
             #print(output_template_path)
             with open(template, "rt") as fin:
@@ -73,7 +73,6 @@ def createAwsS3TemplateFile(resource, template_file, path, region_name, resource
     fout.close()
 
 
-	
 # Create Build for configuration.
 def createBuildFile(yaml_file, template_file, output_folder):
     # Load the yaml file data into dictionary
@@ -87,22 +86,25 @@ def createBuildFile(yaml_file, template_file, output_folder):
     createDirectory(baseDirPath)
     count = getElementCount(aws_accounts['Region'])
     buildCount = 0
-	# Region node trace
+    # Region node trace
     for i in range(count):
         regionName = aws_accounts['Region'][i]['Name']
         regionPath = baseDirPath + '/' + regionName
         createDirectory(regionPath)
         count = getElementCount(aws_accounts['Region'][i]['S3tfstate'])
-		# S3tfstate node trace
+     # S3tfstate node trace
         for j in range(count):
             resource = 's3'
             profile = 'profile'
             s3Name = aws_accounts['Region'][i]['S3tfstate'][j]['Name']
+            print("info:s3name=",s3Name)
             s3Path = regionPath + '/' + s3Name
             #s3_cidr = str(aws_accounts['Region'][i]['S3tfstate'][j]['CIDR'])
+            print("info:deploy=",aws_accounts['Region'][i]['S3tfstate'][j]['Deploy'])
             if(str(aws_accounts['Region'][i]['S3tfstate'][j]['Deploy']).casefold() == str(True).casefold()):
                 try:            
                     createDirectory(s3Path)
+                    print("info:deploy=",aws_accounts['Region'][i]['S3tfstate'][j]['Deploy'])
                     createAwsProfileFile(profile, template_file, s3Path, regionName, s3Name)
                     createAwsS3TemplateFile(resource, template_file, s3Path, regionName, s3Name)
                     print("INFO: Generating S3: " + s3Name + " configuration ... Done")
@@ -112,7 +114,7 @@ def createBuildFile(yaml_file, template_file, output_folder):
                 aws_accounts['Region'][i]['S3tfstate'][j]['Deploy'] = False                        
     if(buildCount == 0):
         print('Build configurations are in "false" status')
-    return aws_accounts								
+    return aws_accounts
 
 #Update the Build flag in the Original Yaml file
 def updateYamlFile(aws_updated, file_path):
