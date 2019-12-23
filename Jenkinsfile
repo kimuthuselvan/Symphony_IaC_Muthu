@@ -13,17 +13,17 @@ pipeline {
 		sh 'Conductor/bin/conductor.sh'
       }
     }
-    stage('Git add') {
+    stage('Git-add') {
       steps {
         sh 'Conductor/bin/git-add.sh'
       }
     }
-    stage('Git Commit') {
+    stage('Git-Commit') {
       steps {
         sh 'Conductor/bin/git-commit.sh'
       }
     }
-    stage('Git Tagging') {
+    stage('Git-Tagging') {
       steps {
         sh 'Conductor/bin/git-tag.sh'
       }
@@ -36,16 +36,15 @@ pipeline {
 /*
     stage('Terraform-Deploy') {
       steps {
-        sh './Terraform/bin/terraform.sh deploy'
+        sh 'Terraform/bin/terraform.sh deploy'
       }
     }
 
     stage('Terraform-Destroy') {
       steps {
-        sh './Terraform/bin/terraform.sh destroy'
+        sh 'Terraform/bin/terraform.sh destroy'
       }
     }
-
   }
 */
 }
