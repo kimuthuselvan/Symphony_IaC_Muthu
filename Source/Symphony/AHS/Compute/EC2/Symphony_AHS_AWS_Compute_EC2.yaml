@@ -1,25 +1,25 @@
 Region:
-  - Name: us-east-1
-    EC2:
-      - Name: Linux_EC2_PROD_Symphony_Symphony_01
-        AMIID: LATEST
-        InstanceType: "t3.medium"
-        VPCName: AHS_Prod_App_VPC
-        SubnetName: AHS_Prod_App_AZ-A
-        SecurityGroupName: Linux_Basic_SG_01
-        KeyPair: {EC2.Name}
-        Deploy: True
-        Terraform: Deploy
-        TicketNumber: 0000
-  - Name: us-west-1
-    EC2:
-      - Name: Linux_EC2_PROD_Symphony_Symphony_01
-        AMIID: LATEST
-        InstanceType: "t3.medium"
-        VPCName: AHS_Prod_App_VPC
-        SubnetName: AHS_Prod_App_AZ-A
-        SecurityGroupName: Linux_Basic_SG_01
-        KeyPair: {EC2.Name}
-        Deploy: True
-        Terraform: Deploy
-        TicketNumber: 0000
+- Name: us-east-1
+  EC2:
+  - Name: Linux_EC2_PROD_Symphony_Symphony_01
+    AMIID: LATEST
+    InstanceType: "t3.medium"
+    VPCName: AHS_Prod_App_VPC
+    SubnetName: AHS_Prod_App_AZ-A
+    SecurityGroupName: Linux_Basic_SG_01
+    KeyPair: {EC2.Name: !!null ''}
+    Deploy: false
+    Terraform: Deploy
+    TicketNumber: 0000
+- Name: us-west-1
+  EC2:
+  - Name: Linux_EC2_PROD_Symphony_Symphony_01
+    AMIID: LATEST
+    InstanceType: "t3.medium"
+    VPCName: AHS_Prod_App_VPC
+    SubnetName: AHS_Prod_App_AZ-A
+    SecurityGroupName: Linux_Basic_SG_01
+    KeyPair: {EC2.Name: !!null ''}
+    Deploy: false
+    Terraform: Deploy
+    TicketNumber: 0000
