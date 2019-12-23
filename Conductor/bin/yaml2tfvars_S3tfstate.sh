@@ -34,7 +34,7 @@ do
   _exit
 done
 
-OUTPUT_FOLDER=$REPO_BASE/Terraform/work
+OUTPUT_FOLDER=$WORKSPACE
 TEMPLATE_PATH=$REPO_BASE/Terraform/conf
 $REPO_BASE/Conductor/bin/yaml2tfvars_S3tfstate.py	\
 	--buildfile $YAML_FILE	\

@@ -1,5 +1,6 @@
 #! /bin/bash
 ###
+export WORKSPACE=/Workspace/AWS
 
 _exit ()
 {
