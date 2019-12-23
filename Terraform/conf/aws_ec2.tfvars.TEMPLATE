@@ -1,9 +1,9 @@
 region_name = "$REGION_NAME"
+
 ec2_name = "$EC2_NAME"
 ami_id = "$AMI_ID"
-os_name = "$OS_NAME"
-os_version = "$OS_VERSION"
 instance_type = "$INSTANCE_TYPE"
+keypair_name = "$KEYPAIR_NAME"
 
 vpc_name = "$VPC_NAME"
 subnet_name = "$SUBNET_NAME"
