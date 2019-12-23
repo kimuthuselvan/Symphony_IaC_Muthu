@@ -1,6 +1,6 @@
 #! /bin/bash
 ###
-export TERRAFORM_WORKSPACE=$WORKSPACE/Terraform/work
+#export TERRAFORM_WORKSPACE=$WORKSPACE/Terraform/work
 
 _exit ()
 {
@@ -21,13 +21,16 @@ _check_directory ()
 #CWD=`pwd`
 #export REPO_BASE="$CWD/../.."
 #cd
-cd $WORKSPACE/$JOB_NAME
+#cd $WORKSPACE
+CWD=`pwd`
 export REPO_BASE=`pwd`
 for DIR in Conductor Packer Source Terraform
 do
   _check_directory $DIR
   _exit
 done
+
+export TERRAFORM_WORKSPACE=$CWDTerraform/work
 
 ###
 ###
