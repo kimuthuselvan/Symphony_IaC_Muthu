@@ -1,6 +1,15 @@
 pipeline {
+  agent {
+    node {
+      label 'master'
+      customWorkspace '${WORKSPACE}_${BUILD_NUMBER}'
+    }
+  }
+/*
+pipeline {
   agent any
   customWorkspace '${WORKSPACE}_${BUILD_NUMBER}'
+*/
   stages {
     stage('Checkout') {
       steps {
