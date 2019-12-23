@@ -40,5 +40,5 @@ $REPO_BASE/Conductor/bin/yaml2tfvars_S3tfstate.py	\
 	--templatefile $TEMPLATE_PATH/aws_profile.TEMPLATE,$TEMPLATE_PATH/aws_s3tfstate.tfvars.TEMPLATE	\
 	--outputfolder $TERRAFORM_WORKSPACE
 
-git commit -m "Build update yaml" $YAML_FILE
-git push
+#git commit -m "Build update yaml" $YAML_FILE
+#git push

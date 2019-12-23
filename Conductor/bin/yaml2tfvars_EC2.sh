@@ -41,5 +41,5 @@ $REPO_BASE/Conductor/bin/yaml2tfvars_EC2.py	\
 	--templatefile $TEMPLATE_PATH/aws_profile.TEMPLATE,$TEMPLATE_PATH/aws_ec2.tfvars.TEMPLATE	\
 	--outputfolder $OUTPUT_FOLDER
 
-git commit -m "Build update yaml" $YAML_FILE
-git push
+#git commit -m "Build update yaml" $YAML_FILE
+#git push
