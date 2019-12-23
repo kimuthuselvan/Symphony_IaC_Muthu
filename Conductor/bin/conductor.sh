@@ -1,6 +1,6 @@
 #! /bin/bash
 ###
-export WORKSPACE=/Workspace/AWS
+export TERRAFORM_WORKSPACE=$WORKSPACE/Terraform/work
 
 _exit ()
 {
