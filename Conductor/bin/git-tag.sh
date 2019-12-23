@@ -1,17 +1,16 @@
 #! /bin/bash
 ###
-LATEST_TAG="Dev_20191220120610_1"
-#LATEST_TAG="`git tag -l |head -1`"
-LATEST_TAG_COUNT=`echo $LATEST_TAG |awk -F_ '{print $3}'`
-echo $LATEST_TAG_COUNT
-NEW_COUNT=$(( $LATEST_TAG_COUNT + 1 ))
+#LATEST_TAG="Build_`date '+%Y%m%d%H%M%S'`_1"
+LATEST_TAG="`git tag -l |grep Jenkins_Build |sort -ur |head -1`"
+LATEST_TAG_COUNT=`echo $LATEST_TAG |awk -F_ '{print $4}'`
 
-echo $NEW_COUNT
-TAG_NAME="Dev_`date '+%Y%m%d%H%M%S'`_$NEW_COUNT"
-echo $TAG_NAME
-#TAG_NAME="Build_`date '+%Y%m%d%H%M%S'`_$COUNT"
+echo "INFO: Pervious Jenkins Build Tag: $LATEST_TAG"
+echo "INFO: Last Jenkins Build Count: $LATEST_TAG_COUNT"
+
+NEW_COUNT=$(( $LATEST_TAG_COUNT + 1 ))
+TAG_NAME="Jenkins_Build_`date '+%Y%m%d%H%M%S'`_$NEW_COUNT"
+
+echo "INFO: Applying new Tag: $TAG_NAME"
 
 #cd ${WORKSPACE}
-
 #git tag -a $TAG_NAME -m "$TAG_NAME"
-
