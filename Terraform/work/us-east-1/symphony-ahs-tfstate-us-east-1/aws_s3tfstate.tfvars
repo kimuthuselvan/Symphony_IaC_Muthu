@@ -1,0 +1,5 @@
+region_name = "us-east-1"
+s3bucket_name = "symphony-ahs-tfstate-us-east-1"
+project_name= "Symphony"
+organization_name = "Advantasure Inc."
+client_name = "AHS"
