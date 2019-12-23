@@ -15,12 +15,17 @@ pipeline {
     }
     stage('Git add') {
       steps {
-        sh 'Conductor/bin/git-commit.sh'
+        sh 'Conductor/bin/git-add.sh'
       }
     }
     stage('Git Commit') {
       steps {
         sh 'Conductor/bin/git-commit.sh'
+      }
+    }
+    stage('Git Tagging') {
+      steps {
+        sh 'Conductor/bin/git-tag.sh'
       }
     }
     stage('Staging') {
