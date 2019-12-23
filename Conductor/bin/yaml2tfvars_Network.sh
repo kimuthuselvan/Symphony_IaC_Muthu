@@ -41,3 +41,5 @@ $REPO_BASE/Conductor/bin/yaml2tfvars_Network.py	\
 	--templatefile $TEMPLATE_PATH/aws_profile.TEMPLATE,$TEMPLATE_PATH/aws_vpc.tfvars.TEMPLATE,$TEMPLATE_PATH/aws_subnet.tfvars.TEMPLATE	\
 	--outputfolder $OUTPUT_FOLDER
 
+git commit -m "Build update yaml" $YAML_FILE
+git push
