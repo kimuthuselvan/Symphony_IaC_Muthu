@@ -36,5 +36,5 @@ done
 
 OUTPUT_FOLDER=$REPO_BASE/Terraform/work
 TEMPLATE_PATH=$REPO_BASE/Terraform/conf
-yaml2tfvars_Network.py --buildfile $YAML_FILE --templatefile $TEMPLATE_PATH/aws_profile.TEMPLATE,$TEMPLATE_PATH/aws_vpc.tfvars.TEMPLATE,$TEMPLATE_PATH/aws_subnet.tfvars.TEMPLATE --outputfolder
+$REPO_BASE/Conductor/bin/yaml2tfvars_Network.py --buildfile $YAML_FILE --templatefile $TEMPLATE_PATH/aws_profile.TEMPLATE,$TEMPLATE_PATH/aws_vpc.tfvars.TEMPLATE,$TEMPLATE_PATH/aws_subnet.tfvars.TEMPLATE --outputfolder
 
