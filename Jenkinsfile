@@ -45,6 +45,6 @@ pipeline {
         sh 'Terraform/bin/terraform.sh destroy'
       }
     }
-  }
 */
+  }
 }
