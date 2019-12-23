@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 #!/usr/local/bin/python3.8
 
 import ruamel.yaml
