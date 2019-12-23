@@ -1,6 +1,6 @@
 pipeline {
   agent any
-
+  customWorkspace '${WORKSPACE}_${BUILD_NUMBER}'
   stages {
     stage('Checkout') {
       steps {
