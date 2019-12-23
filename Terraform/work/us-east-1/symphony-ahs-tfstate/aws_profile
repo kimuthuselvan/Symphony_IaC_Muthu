@@ -1,0 +1,30 @@
+PROVIDER_NAME=AWS                              # Fixed input
+REGION_NAME=us-east-1                       # From YAML
+PROJECT_NAME=Symphony                          # Fixed input
+CLIENT_NAME=AHS                                # From YAML
+SERVICE_NAME=Networking                        # From YAML
+RESOURCE_NAME=$VPC_NAME                        # From YAML
+
+export TERRAFORM_BASE=/SecOps/Terraform
+export WORK_DIR=$TERRAFORM_BASE/work
+export PROJECT_WORK_DIR=$WORK_DIR/$PROJECT_NAME
+export CLIENT_WORK_DIR=$PROJECT_WORK_DIR/$CLIENT_NAME
+export PROVIDER_WORK_DIR=$CLIENT_WORK_DIR/$PROVIDER_NAME
+export AWS_REGION_DIR=$PROVIDER_WORK_DIR/us-east-1
+export AWS_SERVICE_DIR=$AWS_REGION_DIR/$SERVICE_NAME
+export RESOURCE_PATH=$AWS_SERVICE_DIR/$RESOURCE_NAME
+
+export CONF_FILE=$RESOURCE_PATH/deploy.conf
+export TFVARS_FILE=$RESOURCE_PATH/terraform.tfvars
+
+export AWS_PROFILE=eh_adv_aws_ahs_build
+
+echo $TERRAFORM_BASE
+echo $WORK_DIR
+echo $PROJECT_WORK_DIR
+echo $CLIENT_WORK_DIR
+echo $PROVIDER_WORK_DIR
+echo $AWS_REGION_DIR
+echo $AWS_SERVICE_DIR
+echo $RESOURCE_PATH
+

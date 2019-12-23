@@ -77,7 +77,6 @@ def createAwsS3TemplateFile(resource, template_file, path, region_name, resource
 def createBuildFile(yaml_file, template_file, output_folder):
     # Load the yaml file data into dictionary
     aws_accounts = ruamel.yaml.round_trip_load(open(yaml_file), preserve_quotes=True)
-    print("awsaccounts:",aws_accounts)
     try:  
         baseDirPath = os.environ["WORKSPACE"]
         #baseDirPath = 'E:\Muthu'
@@ -90,7 +89,6 @@ def createBuildFile(yaml_file, template_file, output_folder):
     # Region node trace
     for i in range(count):
         regionName = aws_accounts['Region'][i]['Name']
-        print("r name==",regionName)
         regionPath = baseDirPath + '/' + regionName
         createDirectory(regionPath)
         count = getElementCount(aws_accounts['Region'][i]['S3tfstate'])
@@ -99,21 +97,18 @@ def createBuildFile(yaml_file, template_file, output_folder):
             resource = 's3'
             profile = 'profile'
             s3Name = aws_accounts['Region'][i]['S3tfstate'][j]['Name']
-            print("info:s3name=",s3Name)
+            s3Name = s3Name.replace("{Region.Name}", regionName)
             s3Path = regionPath + '/' + s3Name
-            #s3_cidr = str(aws_accounts['Region'][i]['S3tfstate'][j]['CIDR'])
-            print("info:deploy=",aws_accounts['Region'][i]['S3tfstate'][j]['Deploy'])
             if(str(aws_accounts['Region'][i]['S3tfstate'][j]['Deploy']).casefold() == str(True).casefold()):
                 try:            
                     createDirectory(s3Path)
-                    print("info:deploy=",aws_accounts['Region'][i]['S3tfstate'][j]['Deploy'])
                     createAwsProfileFile(profile, template_file, s3Path, regionName, s3Name)
                     createAwsS3TemplateFile(resource, template_file, s3Path, regionName, s3Name)
                     print("INFO: Generating S3: " + s3Name + " configuration ... Done")
                     buildCount += 1
                 except:
                     print("ERROR: Generating S3: " + s3Name + " configuration ... Failed")
-                aws_accounts['Region'][i]['S3tfstate'][j]['Deploy'] = False                        
+                aws_accounts['Region'][i]['S3tfstate'][j]['Deploy'] = False
     if(buildCount == 0):
         print('Build configurations are in "false" status')
     return aws_accounts
