@@ -42,6 +42,12 @@ pipeline {
         sh 'Conductor/bin/push2stage.sh'
       }
     }
+    stage('Rename-Workspace') {
+      steps {
+        sh 'cd ..'
+		sh 'mv Conductor Conductor_${BUILD_NUMBER} '
+      }
+    }	
 /*
     stage('Terraform-Deploy') {
       steps {
