@@ -45,7 +45,7 @@ pipeline {
         sh './Terraform/bin/terraform.sh destroy'
       }
     }
-*/
+
   }
   post {
     always {
@@ -69,4 +69,5 @@ pipeline {
       deleteDir()
     }
   }
+*/
 }
