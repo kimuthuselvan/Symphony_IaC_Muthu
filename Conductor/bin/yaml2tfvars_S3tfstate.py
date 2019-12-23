@@ -97,6 +97,7 @@ def createBuildFile(yaml_file, template_file, output_folder):
             resource = 's3'
             profile = 'profile'
             s3Name = aws_accounts['Region'][i]['S3tfstate'][j]['Name']
+            s3Name = s3Name.replace("{Region.Name}", regionName)
             s3Path = regionPath + '/' + s3Name
             if(str(aws_accounts['Region'][i]['S3tfstate'][j]['Deploy']).casefold() == str(True).casefold()):
                 try:            
@@ -108,8 +109,6 @@ def createBuildFile(yaml_file, template_file, output_folder):
                 except:
                     print("ERROR: Generating S3: " + s3Name + " configuration ... Failed")
                 aws_accounts['Region'][i]['S3tfstate'][j]['Deploy'] = False
-                s3Name = s3Name.replace("{Region.Name}", regionName)
-                aws_accounts['Region'][i]['S3tfstate'][j]['Name'] = s3Name
     if(buildCount == 0):
         print('Build configurations are in "false" status')
     return aws_accounts
