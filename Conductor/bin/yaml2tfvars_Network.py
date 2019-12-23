@@ -367,5 +367,4 @@ def main():
         print()
 
 if __name__== "__main__":
->>>>>>> 5b431730f214bbbed2dbddc5932e2e146a93afff
     main()
