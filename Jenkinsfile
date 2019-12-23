@@ -22,6 +22,19 @@ pipeline {
 		sh 'Conductor/bin/conductor.sh'
       }
     }
+/*
+    stage('Terraform-Deploy') {
+      steps {
+        sh 'Terraform/bin/terraform.sh deploy'
+      }
+    }
+
+    stage('Terraform-Destroy') {
+      steps {
+        sh 'Terraform/bin/terraform.sh destroy'
+      }
+    }
+*/
     stage('Git-add') {
       steps {
         sh 'Conductor/bin/git-add.sh'
@@ -42,24 +55,13 @@ pipeline {
         sh 'Conductor/bin/push2stage.sh'
       }
     }
+/*
     stage('Rename-Workspace') {
       steps {
         sh 'cd ..'
 		sh 'mv Conductor Conductor_${BUILD_NUMBER} '
       }
-    }	
-/*
-    stage('Terraform-Deploy') {
-      steps {
-        sh 'Terraform/bin/terraform.sh deploy'
-      }
     }
-
-    stage('Terraform-Destroy') {
-      steps {
-        sh 'Terraform/bin/terraform.sh destroy'
-      }
-    }
-*/
+*/	
   }
 }
