@@ -14,3 +14,4 @@ echo "INFO: Applying new Tag: $TAG_NAME"
 
 #cd ${WORKSPACE}
 #git tag -a $TAG_NAME -m "$TAG_NAME"
+#git push --tags
