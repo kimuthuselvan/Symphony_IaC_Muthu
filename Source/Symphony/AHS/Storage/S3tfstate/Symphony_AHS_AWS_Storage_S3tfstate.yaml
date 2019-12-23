@@ -2,12 +2,12 @@ Region:
 - Name: us-east-1
   S3tfstate:
   - Name: symphony-ahs-tfstate-{Region.Name}
-    Deploy: true
+    Deploy: false
     Terraform: Deploy
     TicketNumber: 0000
 - Name: us-west-1
   S3tfstate:
   - Name: symphony-ahs-tfstate-{Region.Name}
-    Deploy: true
+    Deploy: false
     Terraform: Deploy
     TicketNumber: 0000
