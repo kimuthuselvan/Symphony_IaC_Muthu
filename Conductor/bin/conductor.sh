@@ -21,7 +21,7 @@ _check_directory ()
 #CWD=`pwd`
 #export REPO_BASE="$CWD/../.."
 #cd
-cd ../..
+cd $WORKSPACE
 export REPO_BASE=`pwd`
 for DIR in Conductor Packer Source Terraform
 do
