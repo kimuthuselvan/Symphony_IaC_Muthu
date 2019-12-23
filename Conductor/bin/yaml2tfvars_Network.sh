@@ -34,12 +34,11 @@ do
   _exit
 done
 
-OUTPUT_FOLDER=$WORKSPACE
 TEMPLATE_PATH=$REPO_BASE/Terraform/conf
 $REPO_BASE/Conductor/bin/yaml2tfvars_Network.py	\
 	--buildfile $YAML_FILE	\
 	--templatefile $TEMPLATE_PATH/aws_profile.TEMPLATE,$TEMPLATE_PATH/aws_vpc.tfvars.TEMPLATE,$TEMPLATE_PATH/aws_subnet.tfvars.TEMPLATE	\
-	--outputfolder $OUTPUT_FOLDER
+	--outputfolder $TERRAFORM_WORKSPACE
 
 git commit -m "Build update yaml" $YAML_FILE
 git push
