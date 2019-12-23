@@ -3,51 +3,51 @@ Region:
   VPC:
   - Name: AHS_Prod_App_VPC
     CIDR: 10.126.192.0/26
-    Deploy: true
+    Deploy: false
     Terraform: Deploy
     Subnet:
     - Name: AHS_Prod_App_AZ-A
       CIDR: 10.126.192.0/27
       AvailabilityZone: ({{Region.Name}}a)
-      Deploy: true
+      Deploy: false
       Terraform: Deploy
     - Name: AHS_Prod_App_AZ-B
       CIDR: 10.126.192.32/27
       AvailabilityZone: ({{Region.Name}}b)
-      Deploy: true
+      Deploy: false
       Terraform: Deploy
       TicketNumber: 0000
   - Name: AHS_Prod_Data_VPC
     CIDR: 10.126.192.0/26
-    Deploy: true
+    Deploy: false
     Terraform: Deploy
     Subnet:
     - Name: AHS_Prod_Data_AZ-A
       CIDR: 10.126.192.0/27
       AvailabilityZone: ({{Region.Name}}a)
-      Deploy: true
+      Deploy: false
       Terraform: Deploy
     - Name: AHS_Prod_Data_AZ-B
       CIDR: 10.126.192.32/27
       AvailabilityZone: ({{Region.Name}}b)
-      Deploy: true
+      Deploy: false
       Terraform: Deploy
       TicketNumber: 0000
 - Name: us-west-1
   VPC:
   - Name: AHS_Prod_Data_VPC
     CIDR: 10.126.192.0/26
-    Deploy: true
+    Deploy: false
     Terraform: Deploy
     Subnet:
     - Name: AHS_Prod_Data_AZ-A
       CIDR: 10.126.192.0/27
       AvailabilityZone: ({{Region.Name}}a)
-      Deploy: true
+      Deploy: false
       Terraform: Deploy
     - Name: AHS_Prod_Data_AZ-B
       CIDR: 10.126.192.32/27
       AvailabilityZone: ({{Region.Name}}b)
-      Deploy: true
+      Deploy: false
       Terraform: Deploy
       TicketNumber: 0000
