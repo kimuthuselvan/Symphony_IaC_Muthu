@@ -37,12 +37,12 @@ do
   YAML_FILE_NAME=`basename $YAML_FILE`
   YAML_FILE_PATH=`dirname $YAML_FILE`
   RESOURCE_TYPE=`echo $YAML_FILE_NAME |awk -F. '{print $1}' |awk -F_ '{print $NF}'`
-  echo -e "\n"
-  echo $YAML_FILE_NAME
-  echo $YAML_FILE_PATH
-  echo $RESOURCE_TYPE
-  echo -e "\n"
-  echo "$BASE_DIR/Conductor/bin/yaml2tfvars_$RESOURCE_TYPE.sh $YAML_FILE"
+#  echo -e "\n"
+#  echo $YAML_FILE_NAME
+#  echo $YAML_FILE_PATH
+#  echo $RESOURCE_TYPE
+#  echo -e "\n"
+#  echo "$BASE_DIR/Conductor/bin/yaml2tfvars_$RESOURCE_TYPE.sh $YAML_FILE"
   $REPO_BASE/Conductor/bin/yaml2tfvars_$RESOURCE_TYPE.sh $YAML_FILE
 done
 ###
