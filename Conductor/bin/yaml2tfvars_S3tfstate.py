@@ -77,6 +77,7 @@ def createAwsS3TemplateFile(resource, template_file, path, region_name, resource
 def createBuildFile(yaml_file, template_file, output_folder):
     # Load the yaml file data into dictionary
     aws_accounts = ruamel.yaml.round_trip_load(open(yaml_file), preserve_quotes=True)
+    print("awsaccounts:",aws_accounts)
     try:  
         baseDirPath = os.environ["WORKSPACE"]
         #baseDirPath = 'E:\Muthu'
@@ -89,6 +90,7 @@ def createBuildFile(yaml_file, template_file, output_folder):
     # Region node trace
     for i in range(count):
         regionName = aws_accounts['Region'][i]['Name']
+        print("r name==",regionName)
         regionPath = baseDirPath + '/' + regionName
         createDirectory(regionPath)
         count = getElementCount(aws_accounts['Region'][i]['S3tfstate'])
