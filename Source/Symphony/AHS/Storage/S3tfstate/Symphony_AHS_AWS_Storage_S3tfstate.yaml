@@ -1,23 +1,13 @@
 Region:
 - Name: us-east-1
   S3tfstate:
-<<<<<<< HEAD
-  - Name: symphony-ahs-tfstate
-    Deploy: false
-=======
   - Name: symphony-ahs-tfstate-{Region.Name}
     Deploy: true
->>>>>>> 92c25faba415ecb1a34bed05c181e840fabbc3b4
     Terraform: Deploy
     TicketNumber: 0000
 - Name: us-west-1
   S3tfstate:
-<<<<<<< HEAD
-  - Name: symphony-ahs-tfstate
-    Deploy: false
-=======
   - Name: symphony-ahs-tfstate-{Region.Name}
     Deploy: true
->>>>>>> 92c25faba415ecb1a34bed05c181e840fabbc3b4
     Terraform: Deploy
     TicketNumber: 0000
