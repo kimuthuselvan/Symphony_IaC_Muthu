@@ -35,6 +35,10 @@ do
 done
 
 TEMPLATE_PATH=$REPO_BASE/Terraform/conf
+echo "$REPO_BASE/Conductor/bin/yaml2tfvars_S3tfstate.py	\
+	--buildfile $YAML_FILE	\
+	--templatefile $TEMPLATE_PATH/aws_profile.TEMPLATE,$TEMPLATE_PATH/aws_s3tfstate.tfvars.TEMPLATE	\
+	--outputfolder $TERRAFORM_WORKSPACE"
 $REPO_BASE/Conductor/bin/yaml2tfvars_S3tfstate.py	\
 	--buildfile $YAML_FILE	\
 	--templatefile $TEMPLATE_PATH/aws_profile.TEMPLATE,$TEMPLATE_PATH/aws_s3tfstate.tfvars.TEMPLATE	\
