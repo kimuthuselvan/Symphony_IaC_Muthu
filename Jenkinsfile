@@ -41,7 +41,7 @@ pipeline {
     }
     success {
       echo 'I succeeeded!'
-	  sh 'curl -X POST http://192.168.1.178:8080/job/Hello_Terraform/build --user "jenkins:Chenna!44"'
+	  sh 'curl -X POST http://192.168.1.178:8080/jenkins/job/Hello_Terraform/build --user "jenkins:Chenna!44"'
     }
     unstable {
       echo 'I am unstable :/'
