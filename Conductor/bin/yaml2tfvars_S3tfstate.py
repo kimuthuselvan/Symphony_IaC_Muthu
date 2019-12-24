@@ -38,11 +38,11 @@ def createNewFile(file_path):
     return file_object
 
 # Create aws profile file.
-def createAwsProfileFile(profile, template_file, path, region_name, resource_name):
+def createAwsProfileFile(profile, template_file, output_folder, path, region_name, resource_name):
     for template in template_file:
         if profile in template:
             output_template_file = os.path.splitext(os.path.basename(template))[0]
-            output_template_path = path + '/' + output_template_file
+            output_template_path = path + '/' + output_folder + '/' + output_template_file
             #print(output_template_path)
             with open(template, "rt") as fin:
                 with open(output_template_path, "wt") as fout:
@@ -55,11 +55,11 @@ def createAwsProfileFile(profile, template_file, path, region_name, resource_nam
     fin.close()
     fout.close()
 
-def createAwsS3TemplateFile(resource, template_file, path, region_name, resource_name):
+def createAwsS3TemplateFile(resource, template_file, output_folder, path, region_name, resource_name):
     for template in template_file:
         if resource in template:
             output_template_file = os.path.splitext(os.path.basename(template))[0]
-            output_template_path = path + '/' + output_template_file
+            output_template_path = path + '/' + output_folder + '/' + output_template_file
             with open(template, "rt") as fin:
                 with open(output_template_path, "wt") as fout:
                     for line in fin:
@@ -102,8 +102,8 @@ def createBuildFile(yaml_file, template_file, output_folder):
             if(str(aws_accounts['Region'][i]['S3tfstate'][j]['Deploy']).casefold() == str(True).casefold()):
                 try:            
                     createDirectory(s3Path)
-                    createAwsProfileFile(profile, template_file, s3Path, regionName, s3Name)
-                    createAwsS3TemplateFile(resource, template_file, s3Path, regionName, s3Name)
+                    createAwsProfileFile(profile, template_file,output_folder, s3Path, regionName, s3Name)
+                    createAwsS3TemplateFile(resource, template_file, output_folder,s3Path, regionName, s3Name)
                     print("INFO: Generating S3: " + s3Name + " configuration ... Done")
                     buildCount += 1
                 except:
