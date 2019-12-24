@@ -43,7 +43,7 @@ def createAwsProfileFile(profile, template_file, output_folder, region_name, res
         if profile in template:
             output_template_file = os.path.splitext(os.path.basename(template))[0]
             #output_template_path = path + '/' + output_folder + '/' + output_template_file
-            output_template_path = os.path + '/' + output_folder + '/' + output_template_file
+            output_template_path = output_folder + '/' + output_template_file
             print(output_template_path)
             with open(template, "rt") as fin:
                 with open(output_template_path, "wt") as fout:
@@ -60,7 +60,7 @@ def createAwsS3TemplateFile(resource, template_file, output_folder, region_name,
         if resource in template:
             output_template_file = os.path.splitext(os.path.basename(template))[0]
             #output_template_path = path + '/' + output_folder + '/' + output_template_file
-            output_template_path = os.path + '/' + output_folder + '/' + output_template_file
+            output_template_path =  output_folder + '/' + output_template_file
             print(output_template_path)
             with open(template, "rt") as fin:
                 with open(output_template_path, "wt") as fout:
