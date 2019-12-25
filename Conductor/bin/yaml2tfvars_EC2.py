@@ -38,28 +38,28 @@ def createNewFile(file_path):
     return file_object
 
 # Create aws profile file.
-def createAwsProfileFile(profile, template_file, path, region_name, resource_name):
+def createAwsProfileFile(profile, template_file, output_folder, region_name, resource_name):
     for template in template_file:
         if profile in template:
             output_template_file = os.path.splitext(os.path.basename(template))[0]
-            output_template_path = path + '/' + output_template_file
-            #print(output_template_path)
+            output_template_path = output_folder + '/' + output_template_file
+            print(output_template_path)
             with open(template, "rt") as fin:
                 with open(output_template_path, "wt") as fout:
                     for line in fin:
                         line = line.replace('$REGION_NAME', region_name)
                         line = line.replace('$EC2_NAME', resource_name)
                         fout.write(line)
-                    print(output_template_path)
             break
     fin.close()
     fout.close()
 
-def createAwsEC2TemplateFile(resource, template_file, path, region_name, resource_name,amiid,instance_type,vpcname,subnetname):
+def createAwsEC2TemplateFile(resource, template_file, output_folder, region_name, resource_name,amiid,instance_type,vpcname,subnetname):
     for template in template_file:
         if resource in template:
             output_template_file = os.path.splitext(os.path.basename(template))[0]
-            output_template_path = path + '/' + output_template_file
+            output_template_path = output_folder + '/' + output_template_file
+            print(output_template_path)
             with open(template, "rt") as fin:
                 with open(output_template_path, "wt") as fout:
                     for line in fin:
@@ -71,7 +71,6 @@ def createAwsEC2TemplateFile(resource, template_file, path, region_name, resourc
                         line = line.replace('$VPC_NAME', vpcname)
                         line = line.replace('$SUBNET_NAME', subnetname)
                         fout.write(line)
-                    print(output_template_path)
             break
     fin.close()
     fout.close()
@@ -105,12 +104,12 @@ def createBuildFile(yaml_file, template_file, output_folder):
             if(str(aws_accounts['Region'][i]['EC2'][j]['Deploy']).casefold() == str(True).casefold()):
                 try:            
                     createDirectory(ec2Path)
-                    createAwsProfileFile(profile, template_file, ec2Path, regionName, ec2Name)
+                    createAwsProfileFile(profile, template_file, output_folder, regionName, ec2Name)
                     amiid = str(aws_accounts['Region'][i]['EC2'][j]['AMIID'])
                     instance_type = str(aws_accounts['Region'][i]['EC2'][j]['InstanceType'])                    
                     vpcname = str(aws_accounts['Region'][i]['EC2'][j]['VPCName'])
                     subnetname = str(aws_accounts['Region'][i]['EC2'][j]['SubnetName'])
-                    createAwsEC2TemplateFile(resource, template_file, ec2Path, regionName, ec2Name, amiid, instance_type, vpcname, subnetname)
+                    createAwsEC2TemplateFile(resource, template_file, output_folder, regionName, ec2Name, amiid, instance_type, vpcname, subnetname)
                     print("INFO: Generating EC2: " + ec2Name + " configuration ... Done")
                     buildCount += 1
                 except:
