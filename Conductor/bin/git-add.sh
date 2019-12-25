@@ -1,7 +1,10 @@
 #! /bin/bash
 ###
+echo "INFO: Git add untracked files"
 cd ${WORKSPACE}
-git ls-files . | xargs git add
+git status --untracked-files --short
+
+#git ls-files . | xargs git add
 
 #MODIFIED_FILES_LIST=`git ls-files -m`
 #if [ ! -z $MODIFIED_FILES_LIST ]
