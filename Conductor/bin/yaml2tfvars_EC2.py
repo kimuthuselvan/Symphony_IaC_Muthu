@@ -101,7 +101,7 @@ def createBuildFile(yaml_file, template_file, output_folder):
             profile = 'profile'
             ec2Name = aws_accounts['Region'][i]['EC2'][j]['Name']
             ec2Path = regionPath + '/' + ec2Name
-            if(str(aws_accounts['Region'][i]['EC2'][j]['Deploy']).casefold() == str(True).casefold()):
+            if(str(aws_accounts['Region'][i]['EC2'][j]['Deploy']).casefold() == str(True).casefold() and str(aws_accounts['Region'][i]['EC2'][j]['Terraform']).lower() == "Deploy".lower()):
                 try:            
                     createDirectory(ec2Path)
                     createAwsProfileFile(profile, template_file, ec2Path, regionName, ec2Name)

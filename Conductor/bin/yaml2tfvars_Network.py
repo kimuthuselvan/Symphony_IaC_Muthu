@@ -116,7 +116,7 @@ def createBuildFile(yaml_file, template_file, output_folder):
             vpcName = aws_accounts['Region'][i]['VPC'][j]['Name']
             vpcPath = regionPath + '/' + vpcName
             vpc_cidr = str(aws_accounts['Region'][i]['VPC'][j]['CIDR'])
-            if(str(aws_accounts['Region'][i]['VPC'][j]['Deploy']).casefold() == str(True).casefold()):
+            if(str(aws_accounts['Region'][i]['VPC'][j]['Deploy']).casefold() == str(True).casefold() and str(aws_accounts['Region'][i]['VPC'][j]['Terraform']).lower() == "Deploy".lower()):
                 try:            
                     createDirectory(vpcPath)
                     createAwsProfileFile(profile, template_file, vpcPath, regionName, vpcName)
@@ -136,7 +136,7 @@ def createBuildFile(yaml_file, template_file, output_folder):
                     subnet_az = str(aws_accounts['Region'][i]['VPC'][j]['Subnet'][k]['AvailabilityZone'])
                     subnet_az = subnet_az.replace('({{Region.Name}}', regionName)
                     subnet_az = subnet_az.replace(')', '')
-                    if(str(aws_accounts['Region'][i]['VPC'][j]['Subnet'][k]['Deploy']).casefold() == str(True).casefold()):
+                    if(str(aws_accounts['Region'][i]['VPC'][j]['Subnet'][k]['Deploy']).casefold() == str(True).casefold() and str(aws_accounts['Region'][i]['VPC'][j]['Subnet'][k]['Terraform']).lower() == "Deploy".lower()):
                         try:
                             createDirectory(subnetPath)
                             createAwsProfileFile(profile, template_file, subnetPath, regionName, subnetName)
