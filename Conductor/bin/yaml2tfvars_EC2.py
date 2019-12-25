@@ -86,13 +86,13 @@ def createBuildFile(yaml_file, template_file, output_folder):
     except KeyError: 
         print("Please set the environment variable WORKSPACE")
         sys.exit(1)
-    createDirectory(baseDirPath)
+    createDirectory(output_folder)
     count = getElementCount(aws_accounts['Region'])
     buildCount = 0
     # Region node trace
     for i in range(count):
         regionName = aws_accounts['Region'][i]['Name']
-        regionPath = baseDirPath + '/' + regionName
+        regionPath = output_folder + '/' + regionName
         createDirectory(regionPath)
         count = getElementCount(aws_accounts['Region'][i]['EC2'])
      # EC2 node trace
