@@ -42,7 +42,7 @@ def createAwsProfileFile(profile, template_file, output_folder, vpcPath, region_
     for template in template_file:
         if profile in template:
             output_template_file = os.path.splitext(os.path.basename(template))[0]
-            output_template_path = output_folder + '/' + vpcPath + '/' + output_template_file
+            output_template_path = output_folder + '/' + region_name + '/'  + resource_name + '/' + output_template_file
             print(output_template_path)
             with open(template, "rt") as fin:
                 with open(output_template_path, "wt") as fout:
@@ -58,7 +58,7 @@ def createAwsVpcTemplateFile(resource, template_file, output_folder, vpcPath, re
     for template in template_file:
         if resource in template:
             output_template_file = os.path.splitext(os.path.basename(template))[0]
-            output_template_path = output_folder + '/' + vpcPath + '/' + output_template_file
+            output_template_path = output_folder + '/' + region_name + '/'  + resource_name + '/' + output_template_file
             print(output_template_path)
             with open(template, "rt") as fin:
                 with open(output_template_path, "wt") as fout:
@@ -75,7 +75,7 @@ def createAwsSubnetTemplateFile(resource, template_file, output_folder, subnetPa
     for template in template_file:
         if resource in template:
             output_template_file = os.path.splitext(os.path.basename(template))[0]
-            output_template_path = output_folder + '/' + subnetPath + '/' + output_template_file
+            output_template_path = output_folder + '/' + region_name + '/'  + vpc_name + '/' + subnet_name + '/' + output_template_file
             print(output_template_path)
             with open(template, "rt") as fin:
                 with open(output_template_path, "wt") as fout:
