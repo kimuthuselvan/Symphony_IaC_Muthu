@@ -38,11 +38,11 @@ def createNewFile(file_path):
     return file_object
 
 # Create aws profile file.
-def createAwsProfileFile(profile, template_file, output_folder, vpcPath, region_name, resource_name):
+def createAwsProfileFile(profile, template_file, vpcPath, region_name, resource_name):
     for template in template_file:
         if profile in template:
             output_template_file = os.path.splitext(os.path.basename(template))[0]
-            output_template_path = output_folder + '/' + region_name + '/'  + resource_name + '/' + output_template_file
+            output_template_path = vpcPath + '/' + output_template_file
             print(output_template_path)
             with open(template, "rt") as fin:
                 with open(output_template_path, "wt") as fout:
@@ -54,11 +54,11 @@ def createAwsProfileFile(profile, template_file, output_folder, vpcPath, region_
     fin.close()
     fout.close()
 
-def createAwsVpcTemplateFile(resource, template_file, output_folder, vpcPath, region_name, resource_name, cidr):
+def createAwsVpcTemplateFile(resource, template_file, vpcPath, region_name, resource_name, cidr):
     for template in template_file:
         if resource in template:
             output_template_file = os.path.splitext(os.path.basename(template))[0]
-            output_template_path = output_folder + '/' + region_name + '/'  + resource_name + '/' + output_template_file
+            output_template_path = vpcPath + '/' + output_template_file
             print(output_template_path)
             with open(template, "rt") as fin:
                 with open(output_template_path, "wt") as fout:
@@ -71,11 +71,11 @@ def createAwsVpcTemplateFile(resource, template_file, output_folder, vpcPath, re
     fin.close()
     fout.close()
 
-def createAwsSubnetTemplateFile(resource, template_file, output_folder, subnetPath, region_name, vpc_name, subnet_name, cidr, subnet_az):
+def createAwsSubnetTemplateFile(resource, template_file, subnetPath, region_name, vpc_name, subnet_name, cidr, subnet_az):
     for template in template_file:
         if resource in template:
             output_template_file = os.path.splitext(os.path.basename(template))[0]
-            output_template_path = output_folder + '/' + region_name + '/'  + vpc_name + '/' + subnet_name + '/' + output_template_file
+            output_template_path = subnetPath + '/' + output_template_file
             print(output_template_path)
             with open(template, "rt") as fin:
                 with open(output_template_path, "wt") as fout:
@@ -119,8 +119,8 @@ def createBuildFile(yaml_file, template_file, output_folder):
             if(str(aws_accounts['Region'][i]['VPC'][j]['Deploy']).casefold() == str(True).casefold()):
                 try:            
                     createDirectory(vpcPath)
-                    createAwsProfileFile(profile, template_file, output_folder, vpcPath, regionName, vpcName)
-                    createAwsVpcTemplateFile(resource, template_file, output_folder, vpcPath, regionName, vpcName, vpc_cidr)
+                    createAwsProfileFile(profile, template_file, vpcPath, regionName, vpcName)
+                    createAwsVpcTemplateFile(resource, template_file, vpcPath, regionName, vpcName, vpc_cidr)
                     print("INFO: Generating VPC: " + vpcName + " configuration ... Done")
                     buildCount += 1
                 except:
@@ -139,8 +139,8 @@ def createBuildFile(yaml_file, template_file, output_folder):
                     if(str(aws_accounts['Region'][i]['VPC'][j]['Subnet'][k]['Deploy']).casefold() == str(True).casefold()):
                         try:
                             createDirectory(subnetPath)
-                            createAwsProfileFile(profile, template_file, output_folder, subnetPath, regionName, subnetName)
-                            createAwsSubnetTemplateFile(resource, template_file, output_folder, subnetPath, regionName, vpcName, subnetName, subnet_cidr, subnet_az)
+                            createAwsProfileFile(profile, template_file, subnetPath, regionName, subnetName)
+                            createAwsSubnetTemplateFile(resource, template_file, subnetPath, regionName, vpcName, subnetName, subnet_cidr, subnet_az)
                             print("INFO: Generating Subnet: " + subnetName + " configuration ... Done")
                         except:
                             print("ERROR: Generating Subnet: " + subnetName + " configuration ... Failed")
