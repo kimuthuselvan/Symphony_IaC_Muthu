@@ -21,7 +21,7 @@ def createDirectory(path):
         if(os.path.exists(path)):
             pass
         else:
-            os.mkdirs(path)
+            os.mkdir(path)
     except OSError:
         print ("Creation of the directory %s failed" % path)
 
@@ -91,16 +91,21 @@ def createBuildFile(yaml_file, template_file, output_folder):
         print("Please set the environment variable WORKSPACE")
         sys.exit(1)
     createDirectory(output_folder)
-    prj_clint_provider = output_folder + '/' + project + '/' + client + '/' + provider
-    createDirectory(prj_clint_provider)
+    prj_path = output_folder + '/' + project
+    createDirectory(prj_path)
+    clint_path = prj + '/' + client
+    createDirectory(clint_path)
+    provider_path = clint_path + '/' + provider
+    createDirectory(provider_path)
     count = getElementCount(aws_accounts['Region'])
     buildCount = 0
     # Region node trace
     for i in range(count):
         regionName = aws_accounts['Region'][i]['Name']
-        regionPath = prj_clint_provider + '/' + regionName
+        regionPath = provider_path + '/' + regionName
         createDirectory(regionPath)
-        resource_type_path = regionPath + '/' + service + '/' + resource_type
+        service_path = regionPath + '/' + service
+        resource_type_path = service_path +  '/' + resource_type
         count = getElementCount(aws_accounts['Region'][i]['S3tfstate'])
      # S3tfstate node trace
         for j in range(count):
