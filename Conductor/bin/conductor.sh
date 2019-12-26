@@ -32,21 +32,25 @@ _status ()
 _check_dir () 
 {
   echo -e "INFO: Checking directory: $1 ... \c"
-  if [ ! -d $1 ]
+  if [ -d $1 ]
   then
-    _status
+    echo "Done."
+    return 0
   else
-    _status
+    echo "Failed."
+    return 1
   fi
 }
 
 _check_file () {
   echo -e "INFO: Checking file: $1 ... \c"
-  if [ ! -f $1 ]
+  if [ -f $1 ]
   then
-    _status
+    echo "Done."
+    return 0
   else
-    _status
+    echo "Failed."
+    return 1
   fi
 }
 
@@ -54,7 +58,7 @@ _check_file () {
 ### Validation
 ###============================================================================
 echo "Current Directory: `pwd`"
-for DIR in Conductor  Jenkins  Packer  Source  Terraform
+for DIR in Conductor Packer Source Terraform
 do
   _check_dir $DIR
   _exit
