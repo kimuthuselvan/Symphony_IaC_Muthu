@@ -76,7 +76,7 @@ def createAwsS3TemplateFile(resource, template_file, s3Path, region_name, resour
 def createBuildFile(yaml_file, template_file, output_folder):
     # Load the yaml file data into dictionary
     aws_accounts = ruamel.yaml.round_trip_load(open(yaml_file), preserve_quotes=True)
-    print("filename=",yaml_file.split("_")
+    print("filename=",yaml_file.split("_"))
     try:  
         baseDirPath = os.environ["WORKSPACE"]
         #baseDirPath = 'E:\Muthu'
