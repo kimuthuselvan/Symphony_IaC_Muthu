@@ -21,7 +21,7 @@ def createDirectory(path):
         if(os.path.exists(path)):
             pass
         else:
-            os.mkdir(path)
+            os.mkdirs(path)
     except OSError:
         print ("Creation of the directory %s failed" % path)
 
