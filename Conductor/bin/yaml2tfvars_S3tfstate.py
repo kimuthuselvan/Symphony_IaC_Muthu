@@ -76,7 +76,13 @@ def createAwsS3TemplateFile(resource, template_file, s3Path, region_name, resour
 def createBuildFile(yaml_file, template_file, output_folder):
     # Load the yaml file data into dictionary
     aws_accounts = ruamel.yaml.round_trip_load(open(yaml_file), preserve_quotes=True)
-    print("filename=",os.path.basename(yaml_file))
+    print("filename=",os.path.basename(yaml_file).split(".")[0])
+    filenamearr = os.path.basename(yaml_file).split("_")
+    project = filenamearr[0]
+    client = filenamearr[1]
+    provider = filenamearr[2]
+    service = filenamearr[3]
+    resource_type = filenamearr[4]
     print("after split filename=",yaml_file.split("_"))
     try:  
         baseDirPath = os.environ["WORKSPACE"]
@@ -85,13 +91,16 @@ def createBuildFile(yaml_file, template_file, output_folder):
         print("Please set the environment variable WORKSPACE")
         sys.exit(1)
     createDirectory(output_folder)
+    prj_clint_provider = output_folder + '/' + project + '/' + client + '/' + provider
+    createDirectory(prj_clint_provider)
     count = getElementCount(aws_accounts['Region'])
     buildCount = 0
     # Region node trace
     for i in range(count):
         regionName = aws_accounts['Region'][i]['Name']
-        regionPath = output_folder + '/' + regionName
+        regionPath = prj_clint_provider + '/' + regionName
         createDirectory(regionPath)
+        resource_type_path = regionPath + '/' + service + '/' + resource_type
         count = getElementCount(aws_accounts['Region'][i]['S3tfstate'])
      # S3tfstate node trace
         for j in range(count):
@@ -99,7 +108,7 @@ def createBuildFile(yaml_file, template_file, output_folder):
             profile = 'profile'
             s3Name = aws_accounts['Region'][i]['S3tfstate'][j]['Name']
             s3Name = s3Name.replace("{Region.Name}", regionName)
-            s3Path = regionPath + '/' + s3Name
+            s3Path = resource_type_path + '/' + s3Name
             if(str(aws_accounts['Region'][i]['S3tfstate'][j]['Deploy']).casefold() == str(True).casefold() and str(aws_accounts['Region'][i]['S3tfstate'][j]['Terraform']).lower() == "Deploy".lower()):
                 try:            
                     createDirectory(s3Path)
