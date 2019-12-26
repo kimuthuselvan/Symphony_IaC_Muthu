@@ -77,7 +77,8 @@ def createBuildFile(yaml_file, template_file, output_folder):
     # Load the yaml file data into dictionary
     aws_accounts = ruamel.yaml.round_trip_load(open(yaml_file), preserve_quotes=True)
     print("filename=",os.path.basename(yaml_file).split(".")[0])
-    filenamearr = os.path.basename(yaml_file).split("_")
+    filenamewithoutext = os.path.basename(yaml_file).split(".")[0]
+    filenamearr = filenamewithoutext.split("_")
     project = filenamearr[0]
     client = filenamearr[1]
     provider = filenamearr[2]
