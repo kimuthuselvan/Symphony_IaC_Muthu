@@ -38,6 +38,7 @@ _check_dir ()
   else
     _status
   _exit
+  fi
 }
 
 _check_file () {
