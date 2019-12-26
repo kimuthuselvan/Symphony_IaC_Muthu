@@ -29,7 +29,7 @@ export TERRAFORM_WORKSPACE=$REPO_BASE/Terraform/work
 ###
 ###
 ###
-sleep 120
+
 for YAML_FILE in `find $REPO_BASE -name "*.yaml" -print`
 do
   YAML_FILE_NAME=`basename $YAML_FILE`
