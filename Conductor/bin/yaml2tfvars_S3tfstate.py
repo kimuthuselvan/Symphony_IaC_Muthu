@@ -77,7 +77,8 @@ def createBuildFile(yaml_file, template_file, output_folder):
     # Load the yaml file data into dictionary
     aws_accounts = ruamel.yaml.round_trip_load(open(yaml_file), preserve_quotes=True)
     print("filename=",os.path.basename(yaml_file).split(".")[0])
-    filenamearr = os.path.basename(yaml_file).split("_")
+    filenamewithoutext = os.path.basename(yaml_file).split(".")[0]
+    filenamearr = filenamewithoutext.split("_")
     project = filenamearr[0]
     client = filenamearr[1]
     provider = filenamearr[2]
@@ -105,7 +106,9 @@ def createBuildFile(yaml_file, template_file, output_folder):
         regionPath = provider_path + '/' + regionName
         createDirectory(regionPath)
         service_path = regionPath + '/' + service
+        createDirectory(service_path)
         resource_type_path = service_path +  '/' + resource_type
+        createDirectory(resource_type_path)
         count = getElementCount(aws_accounts['Region'][i]['S3tfstate'])
      # S3tfstate node trace
         for j in range(count):
@@ -115,7 +118,7 @@ def createBuildFile(yaml_file, template_file, output_folder):
             s3Name = s3Name.replace("{Region.Name}", regionName)
             s3Path = resource_type_path + '/' + s3Name
             if(str(aws_accounts['Region'][i]['S3tfstate'][j]['Deploy']).casefold() == str(True).casefold() and str(aws_accounts['Region'][i]['S3tfstate'][j]['Terraform']).lower() == "Deploy".lower()):
-                try:            
+                try:
                     createDirectory(s3Path)
                     createAwsProfileFile(profile, template_file, s3Path, regionName, s3Name)
                     createAwsS3TemplateFile(resource, template_file, s3Path, regionName, s3Name)
