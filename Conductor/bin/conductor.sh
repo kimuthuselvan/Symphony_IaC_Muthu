@@ -61,6 +61,9 @@ do
   echo "OUTPUTFOLDER=$OUTPUTFOLDER"
   echo ""
   
+  mkdir -p $OUTPUTFOLDER
+  file $OUTPUTFOLDER
+  
   #RESOURCE_TYPE=`echo $YAML_FILE_NAME |awk -F. '{print $1}' |awk -F_ '{print $NF}'`
   echo -e "\nINFO: Building $AWS_RESOURCE ..."
   echo $REPO_BASE/Conductor/bin/yaml2tfvars_$AWS_RESOURCE.sh $YAML_FILE
