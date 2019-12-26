@@ -2,12 +2,12 @@ Region:
   - Name: us-east-1
     AMI:
       - Name: Linux_CentOS_7
-        Deploy: True
+        Deploy: true
         Terraform: Deploy
         TicketNumber: 0000
   - Name: us-west-1
     AMI:
       - Name: Linux_CentOS_7
-        Deploy: True
+        Deploy: true
         Terraform: Deploy
         TicketNumber: 0000

@@ -4,18 +4,18 @@ Region:
   - Name: AHS_Prod_App_VPC
     CIDR: 10.126.192.0/26
     Deploy: true
-    Terraform: Destroy
+    Terraform: deploy
     Subnet:
     - Name: AHS_Prod_App_AZ-A
       CIDR: 10.126.192.0/27
       AvailabilityZone: ({{Region.Name}}a)
       Deploy: true
-      Terraform: Destroy
+      Terraform: deploy
     - Name: AHS_Prod_App_AZ-B
       CIDR: 10.126.192.32/27
       AvailabilityZone: ({{Region.Name}}b)
       Deploy: true
-      Terraform: Destroy
+      Terraform: deploy
       TicketNumber: 0000
   - Name: AHS_Prod_Data_VPC
     CIDR: 10.126.192.0/26
