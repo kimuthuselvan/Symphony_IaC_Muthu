@@ -42,6 +42,10 @@ do
   AWS_SERVICE=`echo $YAML_FILE_PREFIX |awk -F_ '{print $4}'`
   AWS_RESOURCE=`echo $YAML_FILE_PREFIX |awk -F_ '{print $5}'`
   
+  echo "======================================="
+  echo "$YAML_FILE_PREFIX"
+  echo "======================================="
+  
   echo ""
   echo "YAML_FILE_PATH=$YAML_FILE_PATH"
   echo "YAML_FILE_NAME=$YAML_FILE_NAME"
