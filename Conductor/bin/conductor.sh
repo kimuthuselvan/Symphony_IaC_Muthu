@@ -36,11 +36,11 @@ do
   YAML_FILE_NAME=`basename $YAML_FILE`
   YAML_FILE_PREFIX=`echo $YAML_FILE_NAME |awk -F. '{print $1}'`
   
-  ADV_PROJECT=`$YAML_FILE_PREFIX |awk -F_ '{print $1}'`
-  ADV_CLIENT=`$YAML_FILE_PREFIX |awk -F_ '{print $2}'`
-  AWS_PROVIDER=`$YAML_FILE_PREFIX |awk -F_ '{print $3}'`
-  AWS_SERVICE=`$YAML_FILE_PREFIX |awk -F_ '{print $4}'`
-  AWS_RESOURCE=`$YAML_FILE_PREFIX |awk -F_ '{print $5}'`
+  ADV_PROJECT=`echo $YAML_FILE_PREFIX |awk -F_ '{print $1}'`
+  ADV_CLIENT=`echo $YAML_FILE_PREFIX |awk -F_ '{print $2}'`
+  AWS_PROVIDER=`echo $YAML_FILE_PREFIX |awk -F_ '{print $3}'`
+  AWS_SERVICE=`echo $YAML_FILE_PREFIX |awk -F_ '{print $4}'`
+  AWS_RESOURCE=`echo $YAML_FILE_PREFIX |awk -F_ '{print $5}'`
   
   echo ""
   echo "YAML_FILE_PATH=$YAML_FILE_PATH"
