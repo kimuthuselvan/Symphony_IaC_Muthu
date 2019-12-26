@@ -32,11 +32,38 @@ export TERRAFORM_WORKSPACE=$REPO_BASE/Terraform/work
 
 for YAML_FILE in `find $REPO_BASE -name "*.yaml" -print`
 do
-  YAML_FILE_NAME=`basename $YAML_FILE`
   YAML_FILE_PATH=`dirname $YAML_FILE`
-  RESOURCE_TYPE=`echo $YAML_FILE_NAME |awk -F. '{print $1}' |awk -F_ '{print $NF}'`
-  echo -e "\nINFO: Building $RESOURCE_TYPE ..."
-  $REPO_BASE/Conductor/bin/yaml2tfvars_$RESOURCE_TYPE.sh $YAML_FILE
+  YAML_FILE_NAME=`basename $YAML_FILE`
+  YAML_FILE_PREFIX=`echo $YAML_FILE_NAME |awk -F. '{print $1}'`
+  
+  ADV_PROJECT=`$YAML_FILE_PREFIX |awk -F_ '{print $1}'`
+  ADV_CLIENT=`$YAML_FILE_PREFIX |awk -F_ '{print $2}'`
+  AWS_PROVIDER=`$YAML_FILE_PREFIX |awk -F_ '{print $3}'`
+  AWS_SERVICE=`$YAML_FILE_PREFIX |awk -F_ '{print $4}'`
+  AWS_RESOURCE=`$YAML_FILE_PREFIX |awk -F_ '{print $5}'`
+  
+  echo ""
+  echo "YAML_FILE_PATH=$YAML_FILE_PATH"
+  echo "YAML_FILE_NAME=$YAML_FILE_NAME"
+  echo "YAML_FILE_PREFIX=$YAML_FILE_PREFIX"
+  echo "ADV_PROJECT=$ADV_PROJECT"
+  echo "ADV_CLIENT=$ADV_CLIENT"
+  echo "AWS_PROVIDER=$AWS_PROVIDER"
+  echo "AWS_SERVICE=$AWS_SERVICE"
+  echo "AWS_RESOURCE=$AWS_RESOURCE"
+  echo ""
+  
+  AWS_PROVIDER_PATH=$TERRAFORM_WORKSPACE/$ADV_PROJECT/$ADV_CLIENT/$AWS_PROVIDER
+  OUTPUTFOLDER=$AWS_PROVIDER_PATH
+  
+  echo ""
+  echo "AWS_PROVIDER_PATH=$AWS_PROVIDER_PATH"
+  echo "OUTPUTFOLDER=$OUTPUTFOLDER"
+  echo ""
+  
+  #RESOURCE_TYPE=`echo $YAML_FILE_NAME |awk -F. '{print $1}' |awk -F_ '{print $NF}'`
+  echo -e "\nINFO: Building $AWS_RESOURCE ..."
+  echo $REPO_BASE/Conductor/bin/yaml2tfvars_$AWS_RESOURCE.sh $YAML_FILE
 done
 ###
 ###
