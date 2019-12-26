@@ -76,7 +76,7 @@ def createAwsS3TemplateFile(resource, template_file, s3Path, region_name, resour
 def createBuildFile(yaml_file, template_file, output_folder):
     # Load the yaml file data into dictionary
     aws_accounts = ruamel.yaml.round_trip_load(open(yaml_file), preserve_quotes=True)
-    print("filename=",os.path.basename(yaml_file).split(".")[0])
+    print("INFO:filename=",os.path.basename(yaml_file).split(".")[0])
     filenamewithoutext = os.path.basename(yaml_file).split(".")[0]
     filenamearr = filenamewithoutext.split("_")
     project = filenamearr[0]
@@ -84,7 +84,6 @@ def createBuildFile(yaml_file, template_file, output_folder):
     provider = filenamearr[2]
     service = filenamearr[3]
     resource_type = filenamearr[4]
-    print("after split filename=",yaml_file.split("_"))
     try:  
         baseDirPath = os.environ["WORKSPACE"]
         #baseDirPath = 'E:\Muthu'
@@ -92,18 +91,12 @@ def createBuildFile(yaml_file, template_file, output_folder):
         print("Please set the environment variable WORKSPACE")
         sys.exit(1)
     createDirectory(output_folder)
-    prj_path = output_folder + '/' + project
-    createDirectory(prj_path)
-    clint_path = prj_path + '/' + client
-    createDirectory(clint_path)
-    provider_path = clint_path + '/' + provider
-    createDirectory(provider_path)
     count = getElementCount(aws_accounts['Region'])
     buildCount = 0
     # Region node trace
     for i in range(count):
         regionName = aws_accounts['Region'][i]['Name']
-        regionPath = provider_path + '/' + regionName
+        regionPath = output_folder + '/' + regionName
         createDirectory(regionPath)
         service_path = regionPath + '/' + service
         createDirectory(service_path)
