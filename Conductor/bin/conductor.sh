@@ -12,7 +12,9 @@
 ### Shell Functions
 ###============================================================================
 echo "Step - 1"
-_exit () { [ $? -ne 0 ] && exit 1 }
+_exit () {
+[ $? -ne 0 ] && exit 1
+}
 
 _status () {
   if [ $? -eq 0 ]
@@ -27,14 +29,22 @@ _status () {
 
 _check_dir () {
   echo -e "INFO: Checking directory: $1 ... \c"
-  [ ! -d $1 ] && _status || _status
+  if [ ! -d $1 ]
+  then
+    _status
+  else
+    _status
   _exit
 }
 
 _check_file () {
   echo -e "INFO: Checking file: $1 ... \c"
-  [ ! -f $1 ] && _status || _status
-  _exit
+  if [ ! -f $1 ]
+  then
+    _status
+  else
+    _status
+  fi
 }
 
 ###============================================================================
