@@ -81,16 +81,16 @@ do
   export AWS_PROVIDER_PATH=$TERRAFORM_WORKSPACE/$ADV_PROJECT/$ADV_CLIENT/$AWS_PROVIDER
   export OUTPUTFOLDER=$AWS_PROVIDER_PATH
   
-  echo ""
-  echo "AWS_PROVIDER_PATH=$AWS_PROVIDER_PATH"
-  echo "OUTPUTFOLDER=$OUTPUTFOLDER"
-  echo ""
+  #echo ""
+  #echo "AWS_PROVIDER_PATH=$AWS_PROVIDER_PATH"
+  #echo "OUTPUTFOLDER=$OUTPUTFOLDER"
+  #echo ""
   
   mkdir -p $OUTPUTFOLDER
   file $OUTPUTFOLDER
   
   echo -e "\nINFO: Building $AWS_RESOURCE ..."
-  echo $REPO_BASE/Conductor/bin/yaml2tfvars_$AWS_RESOURCE.sh $YAML_FILE
+  #echo $REPO_BASE/Conductor/bin/yaml2tfvars_$AWS_RESOURCE.sh $YAML_FILE
   $REPO_BASE/Conductor/bin/yaml2tfvars_$AWS_RESOURCE.sh $YAML_FILE
 done
 
@@ -100,9 +100,9 @@ AWS_RESOURCE_VPCTFSTATE=`cat $WORKSPACE/tfvars_file_list.txt |grep 'aws_vpc.tfva
 AWS_RESOURCE_SUBNETSTATE=`cat $WORKSPACE/tfvars_file_list.txt |grep 'aws_subnet.tfvars'`
 for AWSRESOURCE in $AWS_RESOURCE_S3TFSTATE $AWS_RESOURCE_VPCTFSTATE $AWS_RESOURCE_SUBNETSTATE
 do
-  if [ ! -z $AWS_RESOURCE_S3TFSTATE ]
+  if [ ! -z $AWSRESOURCE ]
   then
-    echo "Terraform Build: $AWS_RESOURCE_S3TFSTATE"
+    echo "Terraform Build: $AWSRESOURCE"
   fi
 done
 
