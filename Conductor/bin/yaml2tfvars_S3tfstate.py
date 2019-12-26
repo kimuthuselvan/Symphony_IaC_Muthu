@@ -91,12 +91,16 @@ def createBuildFile(yaml_file, template_file, output_folder):
     except KeyError: 
         print("Please set the environment variable WORKSPACE")
         sys.exit(1)
+    print(output_folder)
     createDirectory(output_folder)
     prj_path = output_folder + '/' + project
+    print(prj_path)
     createDirectory(prj_path)
     clint_path = prj_path + '/' + client
+    print(clint_path)
     createDirectory(clint_path)
     provider_path = clint_path + '/' + provider
+    print(provider_path)
     createDirectory(provider_path)
     count = getElementCount(aws_accounts['Region'])
     buildCount = 0
@@ -104,6 +108,7 @@ def createBuildFile(yaml_file, template_file, output_folder):
     for i in range(count):
         regionName = aws_accounts['Region'][i]['Name']
         regionPath = provider_path + '/' + regionName
+        print(regionPath)
         createDirectory(regionPath)
         service_path = regionPath + '/' + service
         resource_type_path = service_path +  '/' + resource_type
@@ -116,7 +121,8 @@ def createBuildFile(yaml_file, template_file, output_folder):
             s3Name = s3Name.replace("{Region.Name}", regionName)
             s3Path = resource_type_path + '/' + s3Name
             if(str(aws_accounts['Region'][i]['S3tfstate'][j]['Deploy']).casefold() == str(True).casefold() and str(aws_accounts['Region'][i]['S3tfstate'][j]['Terraform']).lower() == "Deploy".lower()):
-                try:            
+                try:
+                    print(s3Path)
                     createDirectory(s3Path)
                     createAwsProfileFile(profile, template_file, s3Path, regionName, s3Name)
                     createAwsS3TemplateFile(resource, template_file, s3Path, regionName, s3Name)
