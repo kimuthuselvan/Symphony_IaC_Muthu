@@ -34,12 +34,11 @@ do
   _exit
 done
 
-OUTPUT_FOLDER=$WORKSPACE
 TEMPLATE_PATH=$REPO_BASE/Terraform/conf
 $REPO_BASE/Conductor/bin/yaml2tfvars_EC2.py	\
 	--buildfile $YAML_FILE	\
 	--templatefile $TEMPLATE_PATH/aws_profile.TEMPLATE,$TEMPLATE_PATH/aws_ec2.tfvars.TEMPLATE	\
-	--outputfolder $OUTPUT_FOLDER
+	--outputfolder $OUTPUTFOLDER
 
 #git commit -m "Build update yaml" $YAML_FILE
 #git push
