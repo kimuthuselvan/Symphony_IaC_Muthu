@@ -93,7 +93,7 @@ def createBuildFile(yaml_file, template_file, output_folder):
     createDirectory(output_folder)
     prj_path = output_folder + '/' + project
     createDirectory(prj_path)
-    clint_path = prj + '/' + client
+    clint_path = prj_path + '/' + client
     createDirectory(clint_path)
     provider_path = clint_path + '/' + provider
     createDirectory(provider_path)
