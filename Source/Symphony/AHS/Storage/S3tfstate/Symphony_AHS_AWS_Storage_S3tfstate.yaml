@@ -3,11 +3,11 @@ Region:
   S3tfstate:
   - Name: symphony-ahs-tfstate-{Region.Name}
     Deploy: true
-    Terraform: Deploy
+    Terraform: Destroy
     TicketNumber: 0000
 - Name: us-west-1
   S3tfstate:
   - Name: symphony-ahs-tfstate-{Region.Name}
     Deploy: true
-    Terraform: Deploy
+    Terraform: Destroy
     TicketNumber: 0000
