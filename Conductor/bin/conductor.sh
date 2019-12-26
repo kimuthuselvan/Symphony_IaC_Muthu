@@ -37,7 +37,6 @@ _check_dir ()
     _status
   else
     _status
-  _exit
   fi
 }
 
@@ -54,9 +53,11 @@ _check_file () {
 ###============================================================================
 ### Validation
 ###============================================================================
+echo "Current Directory: `pwd`"
 for DIR in Conductor  Jenkins  Packer  Source  Terraform
 do
   _check_dir $DIR
+  _exit
 done
 
 ###============================================================================
