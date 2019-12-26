@@ -94,6 +94,14 @@ def createAwsSubnetTemplateFile(resource, template_file, subnetPath, region_name
 def createBuildFile(yaml_file, template_file, output_folder):
     # Load the yaml file data into dictionary
     aws_accounts = ruamel.yaml.round_trip_load(open(yaml_file), preserve_quotes=True)
+    print("INFO:filename=",os.path.basename(yaml_file).split(".")[0])
+    filenamewithoutext = os.path.basename(yaml_file).split(".")[0]
+    filenamearr = filenamewithoutext.split("_")
+    project = filenamearr[0]
+    client = filenamearr[1]
+    provider = filenamearr[2]
+    service = filenamearr[3]
+    resource_type = filenamearr[4]
     try:  
         baseDirPath = os.environ["WORKSPACE"]
         #baseDirPath = 'E:\Muthu'
@@ -108,6 +116,10 @@ def createBuildFile(yaml_file, template_file, output_folder):
         regionName = aws_accounts['Region'][i]['Name']
         regionPath = output_folder + '/' + regionName
         createDirectory(regionPath)
+        service_path = regionPath + '/' + service
+        createDirectory(service_path)
+        resource_type_path = service_path +  '/' + resource_type
+        createDirectory(resource_type_path)
         count = getElementCount(aws_accounts['Region'][i]['VPC'])
 		# VPC node trace
         for j in range(count):
