@@ -43,7 +43,7 @@ def createAwsProfileFile(profile, template_file, ec2Path, region_name, resource_
         if profile in template:
             output_template_file = os.path.splitext(os.path.basename(template))[0]
             output_template_path = ec2Path + '/' + output_template_file
-            print(output_template_path)
+            #print(output_template_path)
             with open(template, "rt") as fin:
                 with open(output_template_path, "wt") as fout:
                     for line in fin:
@@ -53,13 +53,14 @@ def createAwsProfileFile(profile, template_file, ec2Path, region_name, resource_
             break
     fin.close()
     fout.close()
+    return output_template_path
 
 def createAwsEC2TemplateFile(resource, template_file, ec2Path, region_name, resource_name,amiid,instance_type,vpcname,subnetname):
     for template in template_file:
         if resource in template:
             output_template_file = os.path.splitext(os.path.basename(template))[0]
             output_template_path = ec2Path + '/' + output_template_file
-            print(output_template_path)
+            #print(output_template_path)
             with open(template, "rt") as fin:
                 with open(output_template_path, "wt") as fout:
                     for line in fin:
@@ -74,6 +75,7 @@ def createAwsEC2TemplateFile(resource, template_file, ec2Path, region_name, reso
             break
     fin.close()
     fout.close()
+    return output_template_path
 
 
 # Create Build for configuration.
@@ -116,14 +118,17 @@ def createBuildFile(yaml_file, template_file, output_folder):
             if(str(aws_accounts['Region'][i]['EC2'][j]['Deploy']).casefold() == str(True).casefold() and str(aws_accounts['Region'][i]['EC2'][j]['Terraform']).lower() == "Deploy".lower()):
                 try:            
                     createDirectory(ec2Path)
-                    createAwsProfileFile(profile, template_file, ec2Path, regionName, ec2Name)
+                    awsprofilepath = createAwsProfileFile(profile, template_file, ec2Path, regionName, ec2Name)
                     amiid = str(aws_accounts['Region'][i]['EC2'][j]['AMIID'])
                     instance_type = str(aws_accounts['Region'][i]['EC2'][j]['InstanceType'])                    
                     vpcname = str(aws_accounts['Region'][i]['EC2'][j]['VPCName'])
                     subnetname = str(aws_accounts['Region'][i]['EC2'][j]['SubnetName'])
-                    createAwsEC2TemplateFile(resource, template_file, ec2Path, regionName, ec2Name, amiid, instance_type, vpcname, subnetname)
-                    print("INFO: Generating EC2: " + ec2Name + " configuration ... Done")
-                    buildCount += 1
+                    ec2profilepath = createAwsEC2TemplateFile(resource, template_file, ec2Path, regionName, ec2Name, amiid, instance_type, vpcname, subnetname)
+                    if(awsprofilepath !="" and ec2profilepath !=""):
+                       print("INFO: Generating EC2: " + ec2Name + " configuration ... Done")
+                       buildCount += 1
+                       print(awsprofilepath)
+                       print(ec2profilepath)
                 except:
                     print("ERROR: Generating EC2: " + ec2Name + " configuration ... Failed")
                 aws_accounts['Region'][i]['EC2'][j]['Deploy'] = False

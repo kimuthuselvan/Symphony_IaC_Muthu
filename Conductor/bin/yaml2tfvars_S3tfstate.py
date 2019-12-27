@@ -43,7 +43,7 @@ def createAwsProfileFile(profile, template_file, s3Path, region_name, resource_n
         if profile in template:
             output_template_file = os.path.splitext(os.path.basename(template))[0]
             output_template_path = s3Path + '/' + output_template_file
-            print(output_template_path)
+            #print(output_template_path)
             with open(template, "rt") as fin:
                 with open(output_template_path, "wt") as fout:
                     for line in fin:
@@ -53,13 +53,14 @@ def createAwsProfileFile(profile, template_file, s3Path, region_name, resource_n
             break
     fin.close()
     fout.close()
+    return output_template_path
 
 def createAwsS3TemplateFile(resource, template_file, s3Path, region_name, resource_name):
     for template in template_file:
         if resource in template:
             output_template_file = os.path.splitext(os.path.basename(template))[0]
             output_template_path =  s3Path + '/' + output_template_file
-            print(output_template_path)
+            #print(output_template_path)
             with open(template, "rt") as fin:
                 with open(output_template_path, "wt") as fout:
                     for line in fin:
@@ -70,6 +71,7 @@ def createAwsS3TemplateFile(resource, template_file, s3Path, region_name, resour
             break
     fin.close()
     fout.close()
+    return output_template_path
 
 
 # Create Build for configuration.
@@ -113,10 +115,13 @@ def createBuildFile(yaml_file, template_file, output_folder):
             if(str(aws_accounts['Region'][i]['S3tfstate'][j]['Deploy']).casefold() == str(True).casefold() and str(aws_accounts['Region'][i]['S3tfstate'][j]['Terraform']).lower() == "Deploy".lower()):
                 try:
                     createDirectory(s3Path)
-                    createAwsProfileFile(profile, template_file, s3Path, regionName, s3Name)
-                    createAwsS3TemplateFile(resource, template_file, s3Path, regionName, s3Name)
-                    print("INFO: Generating S3: " + s3Name + " configuration ... Done")
-                    buildCount += 1
+                    awsprofilepath = createAwsProfileFile(profile, template_file, s3Path, regionName, s3Name)
+                    s3profilepath = createAwsS3TemplateFile(resource, template_file, s3Path, regionName, s3Name)
+                    if(awsprofilepath !="" and s3profilepath !=""):
+                       print("INFO: Generating S3: " + s3Name + " configuration ... Done")
+                       buildCount += 1
+                       print(awsprofilepath)
+                       print(s3profilepath)
                 except:
                     print("ERROR: Generating S3: " + s3Name + " configuration ... Failed")
                 aws_accounts['Region'][i]['S3tfstate'][j]['Deploy'] = False
