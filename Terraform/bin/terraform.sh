@@ -9,62 +9,36 @@
 ### Reviewed by                                                Date:
 ### Approved by                                                Date:
 ###============================================================================
-export PATH=$PATH:/opt/hashicorp/terraform/bin:/opt/hashicorp/packer/bin
-export TERRAFORM_BASE=/SecOps/Terraform
-export TF_PLUGIN_CACHE_DIR="$TERRAFORM_BASE/.terraform.d/plugin-cache"
-export PATH=$PATH:$TERRAFORM_BASE/bin
-
-export AWS_BUILD_WORKSPACE=$TERRAFORM_BASE/work
-
-export TF_LOG=TRACE
-export TF_LOG_PATH=${TERRAFORM_BASE}/logs/terraform.`date +'%Y%m%d%H%M%S'`.log
-
-ACTION=$1
-
+### Shell Functions
 ###============================================================================
-### Script Functions
-###============================================================================
-_exit ()
-{
-  [ $? -ne 0 ] && exit 1
+_exit () { [ $? -ne 0 ] && exit 1 }
+
+_status () {
+  if [ $? -eq 0 ]
+  then
+    echo "Success."
+    return 0
+  else
+    echo "Failed."
+    return 1
+  fi
 }
 
-_terraform_status ()
-{
-    if [ $? -ne 0 ]; then
-        echo "Failed."
-        return 1
-    else
-        echo "Done."
-    fi
-}
-
-_check_dir ()
-{
+_check_dir () {
   echo -e "INFO: Checking directory: $1 ... \c"
-  if [ ! -d $1 ]
-  then
-    echo "Failed."
-    echo "ERROR: The directory: $1 is missing."
-    return 1
-  else
-    echo "Done."
-  fi
+  [ ! -d $1 ] && _status || _status
+  _exit
 }
 
-_check_file ()
-{
+_check_file () {
   echo -e "INFO: Checking file: $1 ... \c"
-  if [ ! -f $1 ]
-  then
-    echo "Failed."
-    echo "ERROR: The file: $1 is missing."
-    return 1
-  else
-    echo "Done."
-  fi
+  [ ! -f $1 ] && _status || _status
+  _exit
 }
 
+###============================================================================
+### Terraform Functions
+###============================================================================
 _terraform_init ()
 {
   echo -e "\eINFO: Terraform init ... "
@@ -74,7 +48,8 @@ _terraform_init ()
 _terraform_init_with_backend_s3 ()
 {
   echo -e "\eINFO: Terraform init ... "
-  terraform init -backend-config "bucket=$S3_BUCKET_NAME"	\
+  terraform init	\
+	-backend-config "bucket=$S3_BUCKET_NAME"	\
 	-backend-config "key=$S3_REMOTE_STATE_FILE"	\
 	-backend-config "region=$REGION"	\
 	-backend-config "encrypt=true"
@@ -83,14 +58,12 @@ _terraform_init_with_backend_s3 ()
 _terraform_plan ()
 {
   echo -e "\nINFO: Terraform plan ... "
-  #terraform plan -state=$TFSTATE_FILE -var-file=$TFVARS_FILE
   terraform plan -var-file=$TFVARS_FILE
 }
 
 _terraform_apply ()
 {
   echo -e "\nINFO: Terraform apply ... "
-  #terraform apply -auto-approve -state=$TFSTATE_FILE -var-file=$TFVARS_FILE
   terraform apply -auto-approve -var-file=$TFVARS_FILE
 }
 
@@ -100,6 +73,85 @@ _terraform_destroy ()
   #terraform destroy -auto-approve -state=$TFSTATE_FILE -var-file=$TFVARS_FILE
   terraform destroy -auto-approve -var-file=$TFVARS_FILE
 }
+
+###============================================================================
+### Validation
+###============================================================================
+for DIR in Conductor  Jenkins  Packer  Source  Terraform
+do
+  _check_dir $DIR
+done
+
+echo -e "INFO: Checking OUTPUTFOLDER variable ... \c"
+[ -z $OUTPUTFOLDER ] && _status
+_exit
+
+echo -e "INFO: Checking WORKSPACE variable ... \c"
+[ -z $WORKSPACE ] && _status
+_exit
+
+#export TERRAFORM_BASE=$WORKSPACE/Terraform
+
+
+
+###============================================================================
+### Terraform
+###============================================================================
+case $ACTION in
+build)
+  _terraform_init
+  #_terraform_init_with_backend_s3
+  _terraform_status
+  _exit
+  _terraform_plan
+  _terraform_status
+  _exit
+  ;;
+deploy)
+  _terraform_init
+  #_terraform_init_with_backend_s3
+  _terraform_status
+  _exit
+  _terraform_plan
+  _terraform_status
+  _exit
+  _terraform_apply
+  _terraform_status
+  _exit
+  ;;
+destroy)
+  _terraform_destroy
+  _terraform_status
+  _exit
+  ;;
+*)
+  echo -e "\nSyntax: $0 <build | deploy | destroy>\n"
+  ;;
+esac  
+
+REPO_PATH=
+export TF_LOG=TRACE
+export TF_LOG_PATH=${TERRAFORM_BASE}/logs/terraform.`date +'%Y%m%d%H%M%S'`.log
+export TF_PLUGIN_CACHE_DIR="$TERRAFORM_BASE/.terraform.d/plugin-cache"
+
+
+
+
+
+
+alias terraform=/opt/hashicorp/terraform/bin/terraform
+alias packer=/opt/hashicorp/packer/binpacker
+
+export TERRAFORM_BASE=/SecOps/Terraform
+export AWS_BUILD_WORKSPACE=$TERRAFORM_BASE/work
+
+ACTION=$1
+
+
+
+
+
+
 
 ###============================================================================
 ### Build and Deployment validation
@@ -152,37 +204,7 @@ do
   [ ! -f $FILE_NAME ] && ln -s $TFFILE $FILE_NAME
 done
 
-case $ACTION in
-build)
-  _terraform_init
-  #_terraform_init_with_backend_s3
-  _terraform_status
-  _exit
-  _terraform_plan
-  _terraform_status
-  _exit
-  ;;
-deploy)
-  _terraform_init
-  #_terraform_init_with_backend_s3
-  _terraform_status
-  _exit
-  _terraform_plan
-  _terraform_status
-  _exit
-  _terraform_apply
-  _terraform_status
-  _exit
-  ;;
-destroy)
-  _terraform_destroy
-  _terraform_status
-  _exit
-  ;;
-*)
-  echo -e "\nSyntax: $0 <build | deploy | destroy>\n"
-  ;;
-esac
+
 
 ###============================================================================
 ### End

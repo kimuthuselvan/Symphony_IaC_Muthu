@@ -53,11 +53,13 @@ _check_file () {
 
 _draw_line () {
 L="0"
+echo ""
 while [ $L -lt 80 ]
   do
     echo -e "=\c"
     L=$[$L+1]
   done
+echo -e "\n\b"
 }
 
 ###============================================================================
@@ -92,30 +94,12 @@ do
   echo "$YAML_FILE_PREFIX"
   _draw_line
   
-  #echo ""
-  #echo "YAML_FILE_PATH=$YAML_FILE_PATH"
-  #echo "YAML_FILE_NAME=$YAML_FILE_NAME"
-  #echo "YAML_FILE_PREFIX=$YAML_FILE_PREFIX"
-  #echo "ADV_PROJECT=$ADV_PROJECT"
-  #echo "ADV_CLIENT=$ADV_CLIENT"
-  #echo "AWS_PROVIDER=$AWS_PROVIDER"
-  #echo "AWS_SERVICE=$AWS_SERVICE"
-  #echo "AWS_RESOURCE=$AWS_RESOURCE"
-  #echo ""
-  
   export AWS_PROVIDER_PATH=$TERRAFORM_WORKSPACE/$ADV_PROJECT/$ADV_CLIENT/$AWS_PROVIDER
   export OUTPUTFOLDER=$AWS_PROVIDER_PATH
   
-  #echo ""
-  #echo "AWS_PROVIDER_PATH=$AWS_PROVIDER_PATH"
-  #echo "OUTPUTFOLDER=$OUTPUTFOLDER"
-  #echo ""
-  
   mkdir -p $OUTPUTFOLDER
-  #file $OUTPUTFOLDER
   
   echo -e "\nINFO: Building $AWS_RESOURCE ..."
-  #echo $REPO_BASE/Conductor/bin/yaml2tfvars_$AWS_RESOURCE.sh $YAML_FILE
   $REPO_BASE/Conductor/bin/yaml2tfvars_$AWS_RESOURCE.sh $YAML_FILE
 done
 
