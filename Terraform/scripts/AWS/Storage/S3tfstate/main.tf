@@ -1,3 +1,8 @@
+provider "aws" {
+  region = "${var.region_name}"
+  version = "~> 2.7"
+}
+
 resource "aws_s3_bucket" "main" {
   region = "${var.region_name}"
   bucket = "${var.s3bucket_name}"
