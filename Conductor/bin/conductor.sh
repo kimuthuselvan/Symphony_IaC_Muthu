@@ -12,13 +12,11 @@
 ### Shell Functions
 ###============================================================================
 echo "Step - 1"
-_exit () 
-{
+_exit () {
 [ $? -ne 0 ] && exit 1
 }
 
-_status () 
-{
+_status () {
   if [ $? -eq 0 ]
   then
     echo "Success."
@@ -29,8 +27,7 @@ _status ()
   fi
 }
 
-_check_dir () 
-{
+_check_dir () {
   echo -e "INFO: Checking directory: $1 ... \c"
   if [ -d $1 ]
   then
@@ -56,7 +53,6 @@ _check_file () {
 
 _draw_line () {
 L="0"
-echo ""
 while [ $L -lt 80 ]
   do
     echo -e "=\c"
