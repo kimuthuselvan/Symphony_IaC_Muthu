@@ -54,6 +54,17 @@ _check_file () {
   fi
 }
 
+_draw_line () {
+L="0"
+echo ""
+while [ $L -lt 80 ]
+  do
+    echo -e "=\c"
+    L=$[$L+1]
+  done
+echo ""
+}
+
 ###============================================================================
 ### Validation
 ###============================================================================
@@ -82,10 +93,9 @@ do
   AWS_SERVICE=`echo $YAML_FILE_PREFIX |awk -F_ '{print $4}'`
   AWS_RESOURCE=`echo $YAML_FILE_PREFIX |awk -F_ '{print $5}'`
   
-  echo -e "\n"
-  echo "==========================================================="
+  _draw_line
   echo "$YAML_FILE_PREFIX"
-  echo "==========================================================="
+  _draw_line
   
   #echo ""
   #echo "YAML_FILE_PATH=$YAML_FILE_PATH"
@@ -107,13 +117,16 @@ do
   #echo ""
   
   mkdir -p $OUTPUTFOLDER
-  file $OUTPUTFOLDER
+  #file $OUTPUTFOLDER
   
   echo -e "\nINFO: Building $AWS_RESOURCE ..."
   #echo $REPO_BASE/Conductor/bin/yaml2tfvars_$AWS_RESOURCE.sh $YAML_FILE
   $REPO_BASE/Conductor/bin/yaml2tfvars_$AWS_RESOURCE.sh $YAML_FILE
 done
 
+_draw_line
+echo "INFO: List of Terraform variable file(s)"
+_draw_line
 find $OUTPUTFOLDER -name "*.tfvars" -print >$WORKSPACE/tfvars_file_list.txt
 AWS_RESOURCE_S3TFSTATE=`cat $WORKSPACE/tfvars_file_list.txt |grep 'aws_s3tfstate.tfvars'`
 AWS_RESOURCE_VPCTFSTATE=`cat $WORKSPACE/tfvars_file_list.txt |grep 'aws_vpc.tfvars'`
@@ -125,6 +138,7 @@ do
     echo "Terraform Build: $AWSRESOURCE"
   fi
 done
+_draw_line
 
 ###
 ###
