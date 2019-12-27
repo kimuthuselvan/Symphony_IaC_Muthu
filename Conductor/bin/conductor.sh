@@ -52,7 +52,6 @@ _check_file () {
 
 _draw_line () {
 L="0"
-echo ""
 while [ $L -lt 80 ]
   do
     echo -e "=\c"
@@ -70,6 +69,7 @@ do
   _check_dir $DIR
   _exit
 done
+echo ""
 
 ###============================================================================
 ### Terraform preparation
@@ -98,8 +98,9 @@ do
   
   mkdir -p $OUTPUTFOLDER
   
-  echo -e "\nINFO: Building $AWS_RESOURCE ..."
+  echo "\nINFO: Building $AWS_RESOURCE:"
   $REPO_BASE/Conductor/bin/yaml2tfvars_$AWS_RESOURCE.sh $YAML_FILE
+  echo ""
 done
 
 _draw_line
