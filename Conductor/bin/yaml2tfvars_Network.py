@@ -136,7 +136,7 @@ def createBuildFile(yaml_file, template_file, output_folder):
                     createDirectory(vpcPath)
                     awsprofilepath = createAwsProfileFile(profile, template_file, vpcPath, regionName, vpcName)
                     vpcprofilepath = createAwsVpcTemplateFile(resource, template_file, vpcPath, regionName, vpcName, vpc_cidr)
-                    if(awsprofilepath !="" and vpcprofilepath !="")
+                    if(awsprofilepath !="" and vpcprofilepath !=""):
                        print("INFO: Generating VPC: " + vpcName + " configuration ... Done")
                        buildCount += 1
                        print(awsprofilepath)
@@ -159,7 +159,7 @@ def createBuildFile(yaml_file, template_file, output_folder):
                             createDirectory(subnetPath)
                             awsprofilepath = createAwsProfileFile(profile, template_file, subnetPath, regionName, subnetName)
                             subnetprofilepath = createAwsSubnetTemplateFile(resource, template_file, subnetPath, regionName, vpcName, subnetName, subnet_cidr, subnet_az)
-                            if(awsprofilepath !="" and vpcprofilepath !="")
+                            if(awsprofilepath !="" and vpcprofilepath !=""):
                                print("INFO: Generating Subnet: " + subnetName + " configuration ... Done")
                                print(awsprofilepath)
                                print(subnetprofilepath)
