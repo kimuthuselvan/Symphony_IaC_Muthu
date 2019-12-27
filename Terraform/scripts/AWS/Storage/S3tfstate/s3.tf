@@ -1,9 +1,9 @@
 resource "aws_s3_bucket" "main" {
-  region = "us-east-1"
-  bucket = "${var.bucket_name}"
+  region = "${var.region_name}"
+  bucket = "${var.s3bucket_name}"
   acl = "private"
   tags = {
-    Name = "${var.bucket_name}"
+    Name = "${var.s3bucket_name}"
     Project = "${var.project_name}"
     Organization = "${var.organization_name}"
     Client = "${var.client_name}"
