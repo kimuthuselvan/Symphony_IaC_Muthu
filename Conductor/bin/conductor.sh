@@ -98,7 +98,7 @@ do
   
   mkdir -p $OUTPUTFOLDER
   
-  echo "\nINFO: Building $AWS_RESOURCE:"
+  echo "INFO: Building $AWS_RESOURCE:"
   $REPO_BASE/Conductor/bin/yaml2tfvars_$AWS_RESOURCE.sh $YAML_FILE
   echo ""
 done
