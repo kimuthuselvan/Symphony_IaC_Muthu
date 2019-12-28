@@ -116,11 +116,11 @@ do
   else
     TEMPLATE_FILES="$TEMPLATE_PATH/aws_profile.TEMPLATE,$TEMPLATE_PATH/aws_$AWS_RESOURCE.tfvars.TEMPLATE"
   fi
-  echo "$REPO_BASE/Conductor/bin/yaml2tfvars_$AWS_RESOURCE.py \
+  echo "Conductor/bin/yaml2tfvars_$AWS_RESOURCE.py \
 	--buildfile $YAML_FILE \
 	--templatefile $TEMPLATE_FILES \
 	--outputfolder $OUTPUTFOLDER"  
-  $REPO_BASE/Conductor/bin/yaml2tfvars_$AWS_RESOURCE.py \
+  Conductor/bin/yaml2tfvars_$AWS_RESOURCE.py \
 	--buildfile $YAML_FILE \
 	--templatefile $TEMPLATE_FILES \
 	--outputfolder $OUTPUTFOLDER
