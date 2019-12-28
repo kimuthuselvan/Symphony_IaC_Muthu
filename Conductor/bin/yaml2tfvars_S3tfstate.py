@@ -39,11 +39,12 @@ def createNewFile(file_path):
 
 # Create aws profile file.
 def createAwsProfileFile(profile, template_file, s3Path, region_name, resource_name):
+    print("template_file===",template_file,"profile",profile)
     for template in template_file:
         if profile in template:
             output_template_file = os.path.splitext(os.path.basename(template))[0]
             output_template_path = s3Path + '/' + output_template_file
-            #print(output_template_path)
+            print(output_template_path)
             with open(template, "rt") as fin:
                 with open(output_template_path, "wt") as fout:
                     for line in fin:
@@ -56,11 +57,12 @@ def createAwsProfileFile(profile, template_file, s3Path, region_name, resource_n
     return output_template_path
 
 def createAwsS3TemplateFile(resource, template_file, s3Path, region_name, resource_name):
+    print("template_file===",template_file,"profile",profile)
     for template in template_file:
         if resource in template:
             output_template_file = os.path.splitext(os.path.basename(template))[0]
             output_template_path =  s3Path + '/' + output_template_file
-            #print(output_template_path)
+            print(output_template_path)
             with open(template, "rt") as fin:
                 with open(output_template_path, "wt") as fout:
                     for line in fin:
@@ -93,6 +95,7 @@ def createBuildFile(yaml_file, template_file, output_folder):
         print("Please set the environment variable WORKSPACE")
         sys.exit(1)
     createDirectory(output_folder)
+    print("output_folder==",output_folder)
     count = getElementCount(aws_accounts['Region'])
     buildCount = 0
     # Region node trace
