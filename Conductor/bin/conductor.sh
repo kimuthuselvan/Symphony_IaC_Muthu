@@ -109,9 +109,15 @@ do
   do
     _check_file $TFILE
   done
+  if [ "$$AWS_RESOURCE" == "Network" ]
+  then
+    TEMPLATE_FILES="$TEMPLATE_PATH/aws_profile.TEMPLATE,$TEMPLATE_PATH/aws_vpc.tfvars.TEMPLATE,$TEMPLATE_PATH/aws_subnet.tfvars.TEMPLATE"
+  else
+    TEMPLATE_FILES="$TEMPLATE_PATH/aws_profile.TEMPLATE,$TEMPLATE_PATH/aws_$AWS_RESOURCE.tfvars.TEMPLATE"
+  fi	
   $REPO_BASE/Conductor/bin/yaml2tfvars_$AWS_RESOURCE.py \
 	--buildfile $YAML_FILE \
-	--templatefile $TEMPLATE_PATH/aws_profile.TEMPLATE,$TEMPLATE_PATH/aws_$AWS_RESOURCE.tfvars.TEMPLATE \
+	--templatefile $TEMPLATE_FILES \
 	--outputfolder $OUTPUTFOLDER
   echo ""
 done
