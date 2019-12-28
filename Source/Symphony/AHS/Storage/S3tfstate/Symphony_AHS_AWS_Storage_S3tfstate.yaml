@@ -2,14 +2,12 @@ Region:
 - Name: us-east-1
   S3tfstate:
   - Name: symphony-backend-tfstate-{Region.Name}
-    AWSProfile: eh_adv_aws_main_build
     Deploy: true
     Terraform: Deploy
     TicketNumber: 0000
 - Name: us-west-1
   S3tfstate:
   - Name: symphony-backend-tfstate-{Region.Name}
-    AWSProfile: eh_adv_aws_main_build
     Deploy: true
     Terraform: Deploy
     TicketNumber: 0000

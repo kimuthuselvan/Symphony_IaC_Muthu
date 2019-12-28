@@ -149,7 +149,7 @@ def createBuildFile(yaml_file, template_file, output_folder):
                 for k in range(count):
                     resource = 'subnet'
                     subnetName = aws_accounts['Region'][i]['VPC'][j]['Subnet'][k]['Name']
-                    subnetPath = service_path + '/' + subnetName
+                    subnetPath = vpcPath + '/' + subnetName
                     subnet_cidr = str(aws_accounts['Region'][i]['VPC'][j]['Subnet'][k]['CIDR'])
                     subnet_az = str(aws_accounts['Region'][i]['VPC'][j]['Subnet'][k]['AvailabilityZone'])
                     subnet_az = subnet_az.replace('({{Region.Name}}', regionName)
