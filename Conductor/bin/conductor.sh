@@ -100,6 +100,13 @@ do
   
   echo "INFO: Building $AWS_RESOURCE:"
   $REPO_BASE/Conductor/bin/yaml2tfvars_$AWS_RESOURCE.sh $YAML_FILE
+  
+  TEMPLATE_PATH=$REPO_BASE/Terraform/conf
+  echo "$REPO_BASE/Conductor/bin/yaml2tfvars_S3tfstate.py	\
+	--buildfile $YAML_FILE	\
+	--templatefile $TEMPLATE_PATH/aws_profile.TEMPLATE,$TEMPLATE_PATH/aws_$AWS_RESOURCE.tfvars.TEMPLATE	\
+	--outputfolder $OUTPUTFOLDER"
+  
   echo ""
 done
 
