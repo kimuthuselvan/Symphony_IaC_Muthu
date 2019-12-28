@@ -129,7 +129,7 @@ def createBuildFile(yaml_file, template_file, output_folder):
             resource = 'vpc'
             profile = 'profile'
             vpcName = aws_accounts['Region'][i]['VPC'][j]['Name']
-            vpcPath = regionPath + '/' + vpcName
+            vpcPath = service_path + '/' + vpcName
             vpc_cidr = str(aws_accounts['Region'][i]['VPC'][j]['CIDR'])
             if(str(aws_accounts['Region'][i]['VPC'][j]['Deploy']).casefold() == str(True).casefold() and str(aws_accounts['Region'][i]['VPC'][j]['Terraform']).lower() == "Deploy".lower()):
                 try:            
@@ -149,7 +149,7 @@ def createBuildFile(yaml_file, template_file, output_folder):
                 for k in range(count):
                     resource = 'subnet'
                     subnetName = aws_accounts['Region'][i]['VPC'][j]['Subnet'][k]['Name']
-                    subnetPath = regionPath + '/' + subnetName
+                    subnetPath = service_path + '/' + subnetName
                     subnet_cidr = str(aws_accounts['Region'][i]['VPC'][j]['Subnet'][k]['CIDR'])
                     subnet_az = str(aws_accounts['Region'][i]['VPC'][j]['Subnet'][k]['AvailabilityZone'])
                     subnet_az = subnet_az.replace('({{Region.Name}}', regionName)
