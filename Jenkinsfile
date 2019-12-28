@@ -13,6 +13,11 @@ pipeline {
 		sh 'Conductor/bin/conductor.sh'
       }
     }
+    stage('Terraform-Deploy') {
+      steps {
+        sh 'Conductor/bin/git-add.sh'
+      }
+    }
     stage('Git-add') {
       steps {
         sh 'Conductor/bin/git-add.sh'
@@ -37,7 +42,7 @@ pipeline {
   post {
     always {
       echo 'One way or another, I have finished'
-      /* deleteDir()  clean up our workspace */
+      deleteDir() /*  clean up our workspace */
     }
     success {
       echo 'I succeeeded!'
