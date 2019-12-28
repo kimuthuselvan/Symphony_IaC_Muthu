@@ -42,7 +42,7 @@ def createAwsProfileFile(profile, template_file, s3Path, region_name, resource_n
     print("template_file===",template_file,"profile==",profile)
     print("s3Path==",s3Path)
     for template in template_file:
-        if profile in template:
+        if profile.lower() in template.lower():
             output_template_file = os.path.splitext(os.path.basename(template))[0]
             output_template_path = s3Path + '/' + output_template_file
             print("output_template_path==",output_template_path)
@@ -61,7 +61,7 @@ def createAwsS3TemplateFile(resource, template_file, s3Path, region_name, resour
     print("template_file===",template_file,"profile==",profile)
     print("s3Path==",s3Path)
     for template in template_file:
-        if resource in template:
+        if resource.lower() in template.lower():
             output_template_file = os.path.splitext(os.path.basename(template))[0]
             output_template_path =  s3Path + '/' + output_template_file
             print(output_template_path)
