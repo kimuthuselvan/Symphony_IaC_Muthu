@@ -70,12 +70,13 @@ do
   _exit
 done
 echo ""
-
+TEMPLATE_PATH=Terraform/conf
+TERRAFORM_WORKSPACE=Terraform/work
 ###============================================================================
 ### Terraform preparation
 ###============================================================================
 export REPO_BASE=`pwd`
-export TERRAFORM_WORKSPACE=$REPO_BASE/Terraform/work
+#export TERRAFORM_WORKSPACE=$REPO_BASE/Terraform/work
 
 for YAML_FILE in `find $REPO_BASE -name "*.yaml" -print`
 do
@@ -104,7 +105,7 @@ do
   #echo ""
   #$REPO_BASE/Conductor/bin/yaml2tfvars_$AWS_RESOURCE.sh $YAML_FILE
   #echo ""
-  TEMPLATE_PATH=$REPO_BASE/Terraform/conf
+  #TEMPLATE_PATH=$REPO_BASE/Terraform/conf
   for TFILE in "$TEMPLATE_PATH/aws_profile.TEMPLATE" "$TEMPLATE_PATH/aws_$AWS_RESOURCE.tfvars.TEMPLATE"
   do
     _check_file $TFILE
