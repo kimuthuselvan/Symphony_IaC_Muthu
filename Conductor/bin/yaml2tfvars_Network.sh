@@ -23,22 +23,36 @@ _check_file ()
   fi
 }
 
-YAML_FILE=$1
+#YAML_FILE=$1
+#_check_file $YAML_FILE
+#_exit
+#
+#cd $REPO_BASE
+#for DIR in Conductor Packer Source Terraform
+#do
+#  _check_directory $DIR
+#  _exit
+#done
+#
+#TEMPLATE_PATH=$REPO_BASE/Terraform/conf
+#$REPO_BASE/Conductor/bin/yaml2tfvars_Network.py	\#
+#	--buildfile $YAML_FILE	\
+#	--templatefile $TEMPLATE_PATH/aws_profile.TEMPLATE,$TEMPLATE_PATH/aws_vpc.tfvars.TEMPLATE,$TEMPLATE_PATH/aws_subnet.tfvars.TEMPLATE	\
+#	--outputfolder $OUTPUTFOLDER
+
+YAML_FILE=$WORKSPACE/Source/Symphony/AHS/Storage/S3tfstate/Symphony_AHS_AWS_Storage_Network.yaml
 _check_file $YAML_FILE
 _exit
 
-cd $REPO_BASE
-for DIR in Conductor Packer Source Terraform
+TEMPLATE_PATH=$WORKSPACE/Terraform/conf
+OUTPUTFOLDER=$WORKSPACE/Terraform/work
+
+TEMPLATE_FILES=$TEMPLATE_PATH/aws_profile.TEMPLATE,$TEMPLATE_PATH/aws_vpc.tfvars.TEMPLATE,$TEMPLATE_PATH/aws_subnet.tfvars.TEMPLATE
+for TFILE in `echo $TEMPLATE_FILES | sed "s/,/ /g"`
 do
-  _check_directory $DIR
+  _check_file $TFILE
   _exit
 done
 
-TEMPLATE_PATH=$REPO_BASE/Terraform/conf
-$REPO_BASE/Conductor/bin/yaml2tfvars_Network.py	\
-	--buildfile $YAML_FILE	\
-	--templatefile $TEMPLATE_PATH/aws_profile.TEMPLATE,$TEMPLATE_PATH/aws_vpc.tfvars.TEMPLATE,$TEMPLATE_PATH/aws_subnet.tfvars.TEMPLATE	\
-	--outputfolder $OUTPUTFOLDER
-
-#git commit -m "Build update yaml" $YAML_FILE
-#git push
+echo "$WORKSPACE/Conductor/bin/yaml2tfvars_Network.py --buildfile $YAML_FILE --templatefile $TEMPLATE_FILES --outputfolder $OUTPUTFOLDER"
+$WORKSPACE/Conductor/bin/yaml2tfvars_Network.py --buildfile $YAML_FILE --templatefile $TEMPLATE_FILES --outputfolder $OUTPUTFOLDER

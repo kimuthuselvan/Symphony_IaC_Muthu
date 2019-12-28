@@ -37,7 +37,7 @@ TEMPLATE_PATH=Terraform/conf
 OUTPUTFOLDER=Terraform/work
 
 TEMPLATE_FILES=$WORKSPACE/$TEMPLATE_PATH/aws_profile.TEMPLATE,$WORKSPACE/$TEMPLATE_PATH/aws_S3tfstate.tfvars.TEMPLATE
-for TFILE in $(echo $TEMPLATE_FILES | sed "s/,/ /g")
+for TFILE in `echo $TEMPLATE_FILES | sed "s/,/ /g"`
 do
   _check_file $TFILE
   _exit
