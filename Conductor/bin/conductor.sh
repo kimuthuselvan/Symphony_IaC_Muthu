@@ -94,28 +94,28 @@ do
   echo "$YAML_FILE_PREFIX"
   _draw_line
   
-  export AWS_PROVIDER_PATH=$TERRAFORM_WORKSPACE/$ADV_PROJECT/$ADV_CLIENT/$AWS_PROVIDER
-  export OUTPUTFOLDER=$AWS_PROVIDER_PATH
+  AWS_PROVIDER_PATH=$TERRAFORM_WORKSPACE/$ADV_PROJECT/$ADV_CLIENT/$AWS_PROVIDER
+  OUTPUTFOLDER=$AWS_PROVIDER_PATH
   
   mkdir -p $OUTPUTFOLDER
   
   echo "INFO: Building $AWS_RESOURCE:"
   echo ""
-  #echo $REPO_BASE/Conductor/bin/yaml2tfvars_$AWS_RESOURCE.sh $YAML_FILE
-  #echo ""
-  #$REPO_BASE/Conductor/bin/yaml2tfvars_$AWS_RESOURCE.sh $YAML_FILE
-  #echo ""
-  #TEMPLATE_PATH=$REPO_BASE/Terraform/conf
-  for TFILE in "$TEMPLATE_PATH/aws_profile.TEMPLATE" "$TEMPLATE_PATH/aws_$AWS_RESOURCE.tfvars.TEMPLATE"
-  do
-    _check_file $TFILE
-  done
+
   if [ "$AWS_RESOURCE" == "Network" ]
   then
     TEMPLATE_FILES="$TEMPLATE_PATH/aws_profile.TEMPLATE,$TEMPLATE_PATH/aws_vpc.tfvars.TEMPLATE,$TEMPLATE_PATH/aws_subnet.tfvars.TEMPLATE"
   else
     TEMPLATE_FILES="$TEMPLATE_PATH/aws_profile.TEMPLATE,$TEMPLATE_PATH/aws_$AWS_RESOURCE.tfvars.TEMPLATE"
   fi
+
+  for TFILE in $(echo $TEMPLATE_FILES | sed "s/,/ /g")
+  do
+    _check_file $TFILE
+  done
+  
+
+  
   #echo "Conductor/bin/yaml2tfvars_$AWS_RESOURCE.py --buildfile $YAML_FILE --templatefile $TEMPLATE_FILES --outputfolder $OUTPUTFOLDER"  
   Conductor/bin/yaml2tfvars_$AWS_RESOURCE.py --buildfile $YAML_FILE --templatefile $TEMPLATE_FILES --outputfolder $OUTPUTFOLDER
   echo ""
