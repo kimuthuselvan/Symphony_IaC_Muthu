@@ -104,12 +104,9 @@ do
 
   if [ "$AWS_RESOURCE" == "Network" ]
   then
-    TEMPLATE_FILES="$TEMPLATE_PATH/aws_profile.TEMPLATE,\
-	                $TEMPLATE_PATH/aws_vpc.tfvars.TEMPLATE,\
-					$TEMPLATE_PATH/aws_subnet.tfvars.TEMPLATE"
+    TEMPLATE_FILES="$TEMPLATE_PATH/aws_profile.TEMPLATE,$TEMPLATE_PATH/aws_vpc.tfvars.TEMPLATE,$TEMPLATE_PATH/aws_subnet.tfvars.TEMPLATE"
   else
-    TEMPLATE_FILES="$TEMPLATE_PATH/aws_profile.TEMPLATE,\
-	                $TEMPLATE_PATH/aws_$AWS_RESOURCE.tfvars.TEMPLATE"
+    TEMPLATE_FILES="$TEMPLATE_PATH/aws_profile.TEMPLATE,$TEMPLATE_PATH/aws_$AWS_RESOURCE.tfvars.TEMPLATE"
   fi
 
   for TFILE in $(echo $TEMPLATE_FILES | sed "s/,/ /g")
