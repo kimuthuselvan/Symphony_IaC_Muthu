@@ -109,7 +109,7 @@ do
   do
     _check_file $TFILE
   done
-  if [ "$$AWS_RESOURCE" == "Network" ]
+  if [ "$AWS_RESOURCE" == "Network" ]
   then
     TEMPLATE_FILES="$TEMPLATE_PATH/aws_profile.TEMPLATE,$TEMPLATE_PATH/aws_vpc.tfvars.TEMPLATE,$TEMPLATE_PATH/aws_subnet.tfvars.TEMPLATE"
   else
