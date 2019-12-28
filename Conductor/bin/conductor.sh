@@ -116,14 +116,8 @@ do
   else
     TEMPLATE_FILES="$TEMPLATE_PATH/aws_profile.TEMPLATE,$TEMPLATE_PATH/aws_$AWS_RESOURCE.tfvars.TEMPLATE"
   fi
-  echo "Conductor/bin/yaml2tfvars_$AWS_RESOURCE.py \
-	--buildfile $YAML_FILE \
-	--templatefile $TEMPLATE_FILES \
-	--outputfolder $OUTPUTFOLDER"  
-  Conductor/bin/yaml2tfvars_$AWS_RESOURCE.py \
-	--buildfile $YAML_FILE \
-	--templatefile $TEMPLATE_FILES \
-	--outputfolder $OUTPUTFOLDER
+  #echo "Conductor/bin/yaml2tfvars_$AWS_RESOURCE.py --buildfile $YAML_FILE --templatefile $TEMPLATE_FILES --outputfolder $OUTPUTFOLDER"  
+  Conductor/bin/yaml2tfvars_$AWS_RESOURCE.py --buildfile $YAML_FILE --templatefile $TEMPLATE_FILES --outputfolder $OUTPUTFOLDER
   echo ""
 done
 
