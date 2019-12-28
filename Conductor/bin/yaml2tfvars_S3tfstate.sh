@@ -36,6 +36,13 @@ _exit
 TEMPLATE_PATH=Terraform/conf
 OUTPUTFOLDER=Terraform/work
 
-echo "Conductor/bin/yaml2tfvars_S3tfstate.py --buildfile $YAML_FILE --templatefile $TEMPLATE_PATH/aws_profile.TEMPLATE,$TEMPLATE_PATH/aws_s3tfstate.tfvars.TEMPLATE --outputfolder $OUTPUTFOLDER"
-Conductor/bin/yaml2tfvars_S3tfstate.py --buildfile $YAML_FILE --templatefile $TEMPLATE_PATH/aws_profile.TEMPLATE,$TEMPLATE_PATH/aws_S3tfstate.tfvars.TEMPLATE --outputfolder $OUTPUTFOLDER
+TEMPLATE_FILES=$TEMPLATE_PATH/aws_profile.TEMPLATE,Terraform/conf/aws_S3tfstate.tfvars.TEMPLATE
+for TFILE in $(echo $TEMPLATE_FILES | sed "s/,/ /g")
+do
+  _check_file $TFILE
+  _exit
+done
+
+echo "Conductor/bin/yaml2tfvars_S3tfstate.py --buildfile $YAML_FILE --templatefile $TEMPLATE_FILES --outputfolder $OUTPUTFOLDER"
+Conductor/bin/yaml2tfvars_S3tfstate.py --buildfile $YAML_FILE --templatefile $TEMPLATE_FILES --outputfolder $OUTPUTFOLDER
 
