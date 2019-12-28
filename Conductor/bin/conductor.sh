@@ -100,10 +100,10 @@ do
   
   echo "INFO: Building $AWS_RESOURCE:"
   echo ""
-  echo $REPO_BASE/Conductor/bin/yaml2tfvars_$AWS_RESOURCE.sh $YAML_FILE
-  echo ""
-  $REPO_BASE/Conductor/bin/yaml2tfvars_$AWS_RESOURCE.sh $YAML_FILE
-  echo ""
+  #echo $REPO_BASE/Conductor/bin/yaml2tfvars_$AWS_RESOURCE.sh $YAML_FILE
+  #echo ""
+  #$REPO_BASE/Conductor/bin/yaml2tfvars_$AWS_RESOURCE.sh $YAML_FILE
+  #echo ""
   TEMPLATE_PATH=$REPO_BASE/Terraform/conf
   for TFILE in "$TEMPLATE_PATH/aws_profile.TEMPLATE" "$TEMPLATE_PATH/aws_$AWS_RESOURCE.tfvars.TEMPLATE"
   do
