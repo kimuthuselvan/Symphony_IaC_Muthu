@@ -114,7 +114,7 @@ def createBuildFile(yaml_file, template_file, output_folder):
             resource = 'ec2'
             profile = 'profile'
             ec2Name = aws_accounts['Region'][i]['EC2'][j]['Name']
-            ec2Path = regionPath + '/' + ec2Name
+            ec2Path = resource_type_path + '/' + ec2Name
             if(str(aws_accounts['Region'][i]['EC2'][j]['Deploy']).casefold() == str(True).casefold() and str(aws_accounts['Region'][i]['EC2'][j]['Terraform']).lower() == "Deploy".lower()):
                 try:            
                     createDirectory(ec2Path)
