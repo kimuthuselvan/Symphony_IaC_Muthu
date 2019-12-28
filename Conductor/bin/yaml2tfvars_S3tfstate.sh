@@ -23,7 +23,7 @@ _check_file ()
   fi
 }
 
-YAML_FILE=Storage/S3tfstate/Symphony_AHS_AWS_Storage_S3tfstate.yaml
+YAML_FILE=Source/Symphony/AHS/Storage/S3tfstate/Symphony_AHS_AWS_Storage_S3tfstate.yaml
 _check_file $YAML_FILE
 _exit
 
