@@ -114,7 +114,11 @@ do
     TEMPLATE_FILES="$TEMPLATE_PATH/aws_profile.TEMPLATE,$TEMPLATE_PATH/aws_vpc.tfvars.TEMPLATE,$TEMPLATE_PATH/aws_subnet.tfvars.TEMPLATE"
   else
     TEMPLATE_FILES="$TEMPLATE_PATH/aws_profile.TEMPLATE,$TEMPLATE_PATH/aws_$AWS_RESOURCE.tfvars.TEMPLATE"
-  fi	
+  fi
+  echo "$REPO_BASE/Conductor/bin/yaml2tfvars_$AWS_RESOURCE.py \
+	--buildfile $YAML_FILE \
+	--templatefile $TEMPLATE_FILES \
+	--outputfolder $OUTPUTFOLDER"  
   $REPO_BASE/Conductor/bin/yaml2tfvars_$AWS_RESOURCE.py \
 	--buildfile $YAML_FILE \
 	--templatefile $TEMPLATE_FILES \
