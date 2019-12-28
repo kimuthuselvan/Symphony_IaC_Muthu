@@ -34,6 +34,8 @@ do
 done
 
 TEMPLATE_PATH=Terraform/conf
+OUTPUTFOLDER=Terraform/work
+
 Conductor/bin/yaml2tfvars_S3tfstate.py --buildfile $YAML_FILE --templatefile $TEMPLATE_PATH/aws_profile.TEMPLATE,$TEMPLATE_PATH/aws_s3tfstate.tfvars.TEMPLATE --outputfolder $OUTPUTFOLDER
 
 #git commit -m "Build update yaml" $YAML_FILE
