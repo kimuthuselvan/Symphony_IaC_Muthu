@@ -9,10 +9,6 @@ vpc_name = "$VPC_NAME"
 subnet_name = "$SUBNET_NAME"
 
 tag_name = "$EC2_NAME"
-tag_project = "Symphony"
-tag_organization = "Advantasure Inc."
-tag_clietn = "AHS"
-
-tfstate_backend = "symphony-ahs-backend-tfstate-$REGION_NAME"
-tfstate_path = "tfstate/Compute/$EC2_NAME/$EC2_NAME.tfstate"
-
+project_name = "Symphony"
+organization_name = "Advantasure Inc."
+client_name = "AHS"

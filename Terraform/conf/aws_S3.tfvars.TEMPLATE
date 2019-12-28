@@ -1,7 +1,3 @@
-region_name= "$REGION_NAME"
-vpc_name = "$VPC_NAME"
-vpc_cidr = "$VPC_CIDR"
-
 tag_name = "$VPC_NAME"
 project_name = "Symphony"
 organization_name = "Advantasure Inc."
