@@ -40,7 +40,7 @@ def createNewFile(file_path):
 # Create aws profile file.
 def createAwsProfileFile(profile, template_file, ec2Path, region_name, resource_name):
     for template in template_file:
-        if profile in template:
+        if profile.lower() in template.lower():
             output_template_file = os.path.splitext(os.path.basename(template))[0]
             output_template_path = ec2Path + '/' + output_template_file
             #print(output_template_path)
@@ -57,7 +57,7 @@ def createAwsProfileFile(profile, template_file, ec2Path, region_name, resource_
 
 def createAwsEC2TemplateFile(resource, template_file, ec2Path, region_name, resource_name,amiid,instance_type,vpcname,subnetname):
     for template in template_file:
-        if resource in template:
+        if resource.lower() in template.lower():
             output_template_file = os.path.splitext(os.path.basename(template))[0]
             output_template_path = ec2Path + '/' + output_template_file
             #print(output_template_path)
