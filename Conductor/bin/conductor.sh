@@ -78,7 +78,7 @@ TERRAFORM_WORKSPACE=Terraform/work
 export REPO_BASE=`pwd`
 #export TERRAFORM_WORKSPACE=$REPO_BASE/Terraform/work
 
-for YAML_FILE in `find $REPO_BASE -name "*.yaml" -print`
+for YAML_FILE in `find Source/ -name "*.yaml" -print`
 do
   YAML_FILE_PATH=`dirname $YAML_FILE`
   YAML_FILE_NAME=`basename $YAML_FILE`
