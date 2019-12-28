@@ -62,9 +62,10 @@ def createAwsS3TemplateFile(resource, template_file, s3Path, region_name, resour
     print("template_file===",template_file)
     print("s3Path==",s3Path)
     for template in template_file:
-        print("template==",template)
+        print("template s3==",template)
         if resource.lower() in template.lower():
             output_template_file = os.path.splitext(os.path.basename(template))[0]
+            print("output_template_file===",output_template_file)
             output_template_path =  s3Path + '/' + output_template_file
             print(output_template_path)
             with open(template, "rt") as fin:
