@@ -39,12 +39,13 @@ def createNewFile(file_path):
 
 # Create aws profile file.
 def createAwsProfileFile(profile, template_file, s3Path, region_name, resource_name):
-    print("template_file===",template_file,"profile",profile)
+    print("template_file===",template_file,"profile==",profile)
+    print("s3Path==",s3Path)
     for template in template_file:
         if profile in template:
             output_template_file = os.path.splitext(os.path.basename(template))[0]
             output_template_path = s3Path + '/' + output_template_file
-            print(output_template_path)
+            print("output_template_path==",output_template_path)
             with open(template, "rt") as fin:
                 with open(output_template_path, "wt") as fout:
                     for line in fin:
@@ -57,7 +58,8 @@ def createAwsProfileFile(profile, template_file, s3Path, region_name, resource_n
     return output_template_path
 
 def createAwsS3TemplateFile(resource, template_file, s3Path, region_name, resource_name):
-    print("template_file===",template_file,"profile",profile)
+    print("template_file===",template_file,"profile==",profile)
+    print("s3Path==",s3Path)
     for template in template_file:
         if resource in template:
             output_template_file = os.path.splitext(os.path.basename(template))[0]
@@ -114,7 +116,7 @@ def createBuildFile(yaml_file, template_file, output_folder):
             profile = 'profile'
             s3Name = aws_accounts['Region'][i]['S3tfstate'][j]['Name']
             s3Name = s3Name.replace("{Region.Name}", regionName)
-            s3Path = resource_type_path + '/' + s3Name
+            s3Path = resource_type_path + '/' + s3Name            
             if(str(aws_accounts['Region'][i]['S3tfstate'][j]['Deploy']).casefold() == str(True).casefold() and str(aws_accounts['Region'][i]['S3tfstate'][j]['Terraform']).lower() == "Deploy".lower()):
                 try:
                     createDirectory(s3Path)
