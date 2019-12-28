@@ -63,7 +63,7 @@ echo ""
 ###============================================================================
 ### Validation
 ###============================================================================
-echo "Current Directory: `pwd`"
+echo "Current Working Directory: `pwd`"
 for DIR in Conductor Packer Source Terraform
 do
   _check_dir $DIR
