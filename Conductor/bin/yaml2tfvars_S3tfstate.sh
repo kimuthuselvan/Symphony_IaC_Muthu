@@ -43,6 +43,6 @@ do
   _exit
 done
 
-echo "Conductor/bin/yaml2tfvars_S3tfstate.py --buildfile $YAML_FILE --templatefile $TEMPLATE_FILES --outputfolder $WORKSPACE/$OUTPUTFOLDER"
-Conductor/bin/yaml2tfvars_S3tfstate.py --buildfile $YAML_FILE --templatefile $TEMPLATE_FILES --outputfolder $WORKSPACE/$OUTPUTFOLDER
+echo "Conductor/bin/yaml2tfvars_S3tfstate.py --buildfile $WORKSPACE/$YAML_FILE --templatefile $WORKSPACE/$TEMPLATE_FILES --outputfolder $WORKSPACE/$OUTPUTFOLDER"
+Conductor/bin/yaml2tfvars_S3tfstate.py --buildfile $WORKSPACE/$YAML_FILE --templatefile $WORKSPACE/$TEMPLATE_FILES --outputfolder $WORKSPACE/$OUTPUTFOLDER
 
