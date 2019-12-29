@@ -57,6 +57,7 @@ def createAwsProfileFile(profile, template_file, s3Path, region_name, resource_n
     return output_template_path
 
 def createAwsS3TemplateFile(resource, template_file, s3Path, region_name, resource_name):
+    print("template file in s3==",template_file)
     for template in template_file:
         print("template s3==",template)
         output_template_file = os.path.splitext(os.path.basename(template))[0]
