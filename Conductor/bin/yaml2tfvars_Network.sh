@@ -40,7 +40,7 @@ _check_file ()
 #	--templatefile $TEMPLATE_PATH/aws_profile.TEMPLATE,$TEMPLATE_PATH/aws_vpc.tfvars.TEMPLATE,$TEMPLATE_PATH/aws_subnet.tfvars.TEMPLATE	\
 #	--outputfolder $OUTPUTFOLDER
 
-YAML_FILE=$WORKSPACE/Source/Symphony/AHS/Storage/S3tfstate/Symphony_AHS_AWS_Storage_Network.yaml
+YAML_FILE=$WORKSPACE/Source/Symphony/AHS/Network/Network/Symphony_AHS_AWS_Network_Network.yaml
 _check_file $YAML_FILE
 _exit
 
@@ -55,4 +55,4 @@ do
 done
 
 echo "$WORKSPACE/Conductor/bin/yaml2tfvars_Network.py --buildfile $YAML_FILE --templatefile $TEMPLATE_FILES --outputfolder $OUTPUTFOLDER"
-$WORKSPACE/Conductor/bin/yaml2tfvars_Network.py --buildfile $YAML_FILE --templatefile $TEMPLATE_FILES --outputfolder $OUTPUTFOLDER
+$WORKSPACE/Conductor/bin/yaml2tfvars_Network.py --yamlfile $YAML_FILE --templatefile $TEMPLATE_FILES --outputfolder $OUTPUTFOLDER
