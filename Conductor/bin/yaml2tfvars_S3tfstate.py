@@ -70,8 +70,7 @@ def createAwsS3TemplateFile(resource, template_file, s3Path, region_name, resour
                     line = line.replace('$REGION_NAME', region_name)
                     line = line.replace('$S3BUCKET_NAME', resource_name)
                     #line = line.replace('$VPC_CIDR', cidr)
-                    fout.write(line)                    
-        break
+                    fout.write(line)
     fin.close()
     fout.close()
     return output_template_path
