@@ -55,4 +55,4 @@ do
 done
 
 echo "$WORKSPACE/Conductor/bin/yaml2tfvars_Network.py --buildfile $YAML_FILE --templatefile $TEMPLATE_FILES --outputfolder $OUTPUTFOLDER"
-$WORKSPACE/Conductor/bin/yaml2tfvars_Network.py --buildfile $YAML_FILE --templatefile $TEMPLATE_FILES --outputfolder $OUTPUTFOLDER
+$WORKSPACE/Conductor/bin/yaml2tfvars_Network.py --yamlfile $YAML_FILE --templatefile $TEMPLATE_FILES --outputfolder $OUTPUTFOLDER
