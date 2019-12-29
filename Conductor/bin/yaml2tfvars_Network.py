@@ -86,7 +86,7 @@ def createBuildFile(yaml_file, templatefiles, output_folder):
                             fout.close()
                             vpc_filenames.append(vpc_template_path)
                         fin.close()
-                    print("\nINFO: Generating VPC: " + subnetName + " configuration ... Done")
+                    print("\nINFO: Generating VPC: " + vpcName + " configuration ... Done")
                     for filename in vpc_filenames:
                         print(filename)
                 except:
