@@ -39,8 +39,6 @@ def createNewFile(file_path):
 
 # Create aws profile file.
 def createAwsProfileFile(profile, template_file, s3Path, region_name, resource_name):
-    print("template_file===",template_file)
-    print("s3Path==",s3Path)
     for template in template_file:
         print("template==",template)
         if profile.lower() in template.lower():
@@ -59,23 +57,21 @@ def createAwsProfileFile(profile, template_file, s3Path, region_name, resource_n
     return output_template_path
 
 def createAwsS3TemplateFile(resource, template_file, s3Path, region_name, resource_name):
-    print("template_file===",template_file)
-    print("s3Path==",s3Path)
     for template in template_file:
         print("template s3==",template)
-        if resource.lower() in template.lower():
-            output_template_file = os.path.splitext(os.path.basename(template))[0]
-            print("output_template_file===",output_template_file)
-            output_template_path =  s3Path + '/' + output_template_file
-            print(output_template_path)
-            with open(template, "rt") as fin:
-                with open(output_template_path, "wt") as fout:
-                    for line in fin:
-                        line = line.replace('$REGION_NAME', region_name)
-                        line = line.replace('$S3BUCKET_NAME', resource_name)
-                        #line = line.replace('$VPC_CIDR', cidr)
-                        fout.write(line)                    
-            break
+     #   if resource.lower() in template.lower():
+        output_template_file = os.path.splitext(os.path.basename(template))[0]
+        print("output_template_file===",output_template_file)
+        output_template_path =  s3Path + '/' + output_template_file
+        print(output_template_path)
+          with open(template, "rt") as fin:
+              with open(output_template_path, "wt") as fout:
+                  for line in fin:
+                      line = line.replace('$REGION_NAME', region_name)
+                      line = line.replace('$S3BUCKET_NAME', resource_name)
+                      #line = line.replace('$VPC_CIDR', cidr)
+                      fout.write(line)                    
+          break
     fin.close()
     fout.close()
     return output_template_path
