@@ -75,7 +75,6 @@ def createAwsS3TemplateFile(resource, template_file, s3Path, region_name, resour
     fout.close()
     return output_template_path
 
-
 # Create Build for configuration.
 def createBuildFile(yaml_file, template_file, output_folder):
     # Load the yaml file data into dictionary
