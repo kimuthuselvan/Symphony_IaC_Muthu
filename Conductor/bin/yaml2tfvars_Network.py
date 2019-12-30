@@ -1,4 +1,4 @@
-#!/usr/local/bin/python3.8
+#!/bin/python3
 
 import ruamel.yaml
 from string import Template
