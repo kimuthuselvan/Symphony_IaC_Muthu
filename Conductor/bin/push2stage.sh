@@ -1,7 +1,7 @@
 #! /bin/bash
 ###
 
-STAGE_PATH=/SecOps
+STAGE_PATH=/awsops/WorkSpace/GitHub/Symphony_IaC_Muthu
 if [ ! -d $STAGE_PATH ]
 then
   echo "ERROR: Stage path (/SecOps) is missing"
