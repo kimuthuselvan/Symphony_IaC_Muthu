@@ -78,7 +78,7 @@ TERRAFORM_BASE=$WORKSPACE/Terraform
 TEMPLATE_PATH=$TERRAFORM_BASE/conf
 #OUTPUTFOLDER=$TERRAFORM_BASE/work
 
-YAML_PATH="SOURCE_BASE/Symphony/AHS/Storage/S3tfstate"
+YAML_PATH="$SOURCE_BASE/Symphony/AHS/Storage/S3tfstate"
 YAML_FILE="$YAML_PATH/Symphony_AHS_AWS_Storage_S3tfstate.yaml"
 _check_file $YAML_FILE
 _exit
