@@ -15,7 +15,7 @@ pipeline {
     }
     stage('Terraform-Deploy') {
       steps {
-        sh 'echo "To be setup..."'
+        sh 'Terraform/bin/terraform_S3tfstate.sh'
       }
     }
     stage('Git-add') {

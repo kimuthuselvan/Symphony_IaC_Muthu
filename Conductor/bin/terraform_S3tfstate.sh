@@ -91,6 +91,8 @@ for TFVARS in `find $WORKSPACE -name "*.tfvars" -print`
 do
   if [ ! -z $TFVARS ]
   then
+    TF_BUILD_DIR=`dirname $TFVARS`
+	[ ! -f $TF_BUILD_DIR/aws_profile ] && exit 1
     cd $TERRAFORM_BASE/script/AWS/Storage/S3tfstate
     rm -rf '.terraform'
     echo -e "INFO: Processing terraform init ... \c"
@@ -105,6 +107,7 @@ do
     terraform apply -auto-approve -var-file=$TFVARS
     _status
     _loop_exit
+	mv terraform.tfstate $TF_BUILD_DIR/
   else
     echo "INFO: Nothing to do"
   fi
