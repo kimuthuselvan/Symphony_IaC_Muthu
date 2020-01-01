@@ -79,22 +79,31 @@ TERRAFORM_BASE=$WORKSPACE/Terraform
 
 
 TEMPLATE_PATH=$TERRAFORM_BASE/conf
-OUTPUTFOLDER=$TERRAFORM_BASE/work
+#OUTPUTFOLDER=$TERRAFORM_BASE/work
 
 YAML_PATH=$SOURCE_BASE/Symphony/AHS/Storage/S3tfstate
 YAML_FILE=$YAML_PATH/Symphony_AHS_AWS_Storage_S3tfstate.yaml
 _check_file $YAML_FILE
 _exit
 
-TEMPLATE_FILES="$TEMPLATE_PATH/aws_profile.TEMPLATE \
-                $TEMPLATE_PATH/aws_S3tfstate.tfvars.TEMPLATE"
-#for TFILE in `echo $TEMPLATE_FILES | sed "s/,/ /g"`
-#do
-#  _check_file $TFILE
-#  _exit
-#done
+YAML_FILE_PREFIX=`echo $YAML_FILE |awk -F. '{print $1}'`
+ADV_PROJECT=`echo $YAML_FILE_PREFIX |awk -F_ '{print $1}'`
+ADV_CLIENT=`echo $YAML_FILE_PREFIX |awk -F_ '{print $2}'`
+AWS_PROVIDER=`echo $YAML_FILE_PREFIX |awk -F_ '{print $3}'`
+AWS_SERVICE=`echo $YAML_FILE_PREFIX |awk -F_ '{print $4}'`
+AWS_RESOURCE=`echo $YAML_FILE_PREFIX |awk -F_ '{print $5}'`
 
-echo -e "\n$CONDUCTOR_BASE/bin/yaml2tfvars_S3tfstate.py \
+OUTPUTFOLDER=$TEMPLATE_PATH/work/$ADV_PROJECT/$ADV_CLIENT
+mkdir -p $OUTPUTFOLDER
+cp -f $SOURCE_BASE/$ADV_PROJECT/$ADV_CLIENT/aws_profile $OUTPUTFOLDER/
+  
+_draw_line
+echo "$YAML_FILE_PREFIX"
+_draw_line
+
+TEMPLATE_FILES="$TEMPLATE_PATH/aws_S3tfstate.tfvars.TEMPLATE"
+
+echo -e "\nCommand: $CONDUCTOR_BASE/bin/yaml2tfvars_S3tfstate.py \
   --yamlfile $YAML_FILE \
   --templatefile $TEMPLATE_FILES \
   --outputfolder $OUTPUTFOLDER\n"
@@ -104,6 +113,7 @@ $CONDUCTOR_BASE/bin/yaml2tfvars_S3tfstate.py \
   --templatefile $TEMPLATE_FILES \
   --outputfolder $OUTPUTFOLDER
 
+_draw_line
 find . -name "*.tfvars" -print
 
 ###============================================================================

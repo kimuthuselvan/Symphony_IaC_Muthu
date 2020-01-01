@@ -84,7 +84,6 @@ TERRAFORM_BASE=$WORKSPACE/Terraform
 
 
 TEMPLATE_PATH=$TERRAFORM_BASE/conf
-OUTPUTFOLDER=$TERRAFORM_BASE/work
 
 LOOP_STATUS=0
 for TFVARS in `find $WORKSPACE -name "*.tfvars" -print`
@@ -92,7 +91,8 @@ do
   if [ ! -z $TFVARS ]
   then
     TF_BUILD_DIR=`dirname $TFVARS`
-	[ ! -f $TF_BUILD_DIR/aws_profile ] && exit 1
+	[ ! -f ../../../../aws_profile ] && exit 1
+	source ../../../../aws_profile
     cd $TERRAFORM_BASE/script/AWS/Storage/S3tfstate
     rm -rf '.terraform'
     echo -e "INFO: Processing terraform init ... \c"
