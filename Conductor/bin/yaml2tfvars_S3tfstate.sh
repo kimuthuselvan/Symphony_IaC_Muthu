@@ -70,30 +70,28 @@ done
 ###============================================================================
 ### YAML to tfvars process
 ###============================================================================
-CONDUCTOR_BASE=$WORKSPACE/Conductor
-SOURCE_BASE=$WORKSPACE/Source
-TERRAFORM_BASE=$WORKSPACE/Terraform
-
-
+CONDUCTOR_BASE=Conductor
+SOURCE_BASE=Source
+TERRAFORM_BASE=Terraform
 TEMPLATE_PATH=$TERRAFORM_BASE/conf
-#OUTPUTFOLDER=$TERRAFORM_BASE/work
 
-YAML_PATH="$SOURCE_BASE/Symphony/AHS/Storage/S3tfstate"
-YAML_FILE="$YAML_PATH/Symphony_AHS_AWS_Storage_S3tfstate.yaml"
+
+YAML_PATH=$SOURCE_BASE/Symphony/AHS/Storage/S3tfstate
+YAML_FILE=$YAML_PATH/Symphony_AHS_AWS_Storage_S3tfstate.yaml
 _check_file $YAML_FILE
 _exit
 
-YAML_FILE_PREFIX=`echo "$YAML_FILE" |awk -F. '{print $1}'`
+YAML_FILE_PREFIX=`echo $YAML_FILE |awk -F. '{print $1}'`
 echo "YAML_FILE_PREFIX:$YAML_FILE_PREFIX"
-ADV_PROJECT=`echo "$YAML_FILE_PREFIX" |awk -F_ '{print $1}'`
+ADV_PROJECT=`echo $YAML_FILE_PREFIX |awk -F_ '{print $1}'`
 echo "ADV_PROJECT=$ADV_PROJECT"
-ADV_CLIENT=`echo "$YAML_FILE_PREFIX" |awk -F_ '{print $2}'`
+ADV_CLIENT=`echo $YAML_FILE_PREFIX |awk -F_ '{print $2}'`
 echo "ADV_CLIENT=$ADV_CLIENT"
-AWS_PROVIDER=`echo "$YAML_FILE_PREFIX" |awk -F_ '{print $3}'`
+AWS_PROVIDER=`echo $YAML_FILE_PREFIX |awk -F_ '{print $3}'`
 echo "AWS_PROVIDER=$AWS_PROVIDER"
-AWS_SERVICE=`echo "$YAML_FILE_PREFIX" |awk -F_ '{print $4}'`
+AWS_SERVICE=`echo $YAML_FILE_PREFIX |awk -F_ '{print $4}'`
 echo "AWS_SERVICE=$AWS_SERVICE"
-AWS_RESOURCE=`echo "$YAML_FILE_PREFIX" |awk -F_ '{print $5}'`
+AWS_RESOURCE=`echo $YAML_FILE_PREFIX |awk -F_ '{print $5}'`
 echo "AWS_RESOURCE=$AWS_RESOURCE"
 
 #echo "Dispaly: \n$YAML_FILE_PREFIX\n$ADV_PROJECT\n$ADV_CLIENT\$AWS_PROVIDER\n$AWS_SERVICE\n$AWS_RESOURCE"
