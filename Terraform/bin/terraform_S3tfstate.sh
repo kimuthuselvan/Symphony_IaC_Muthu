@@ -81,9 +81,10 @@ done
 CONDUCTOR_BASE=$WORKSPACE/Conductor
 SOURCE_BASE=$WORKSPACE/Source
 TERRAFORM_BASE=$WORKSPACE/Terraform
-
-
 TEMPLATE_PATH=$TERRAFORM_BASE/conf
+
+echo "INFO: CWD: `pwd`"
+find $WORKSPACE -name "*.tfvars" -print
 
 LOOP_STATUS=0
 for TFVARS in `find $WORKSPACE -name "*.tfvars" -print`
