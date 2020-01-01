@@ -12,14 +12,13 @@
 ### Shell Functions
 ###============================================================================
 _exit () {
-[ $? -ne 0 ] && exit 1
+  [ $? -ne 0 ] && exit 1
 }
 
 _status () {
   if [ $? -eq 0 ]
   then
     echo "Success."
-    return 0
   else
     echo "Failed."
     return 1
@@ -31,7 +30,6 @@ _check_dir () {
   if [ -d $1 ]
   then
     echo "Done."
-    return 0
   else
     echo "Failed."
     return 1
@@ -43,7 +41,6 @@ _check_file () {
   if [ -f $1 ]
   then
     echo "Done."
-    return 0
   else
     echo "Failed."
     return 1
