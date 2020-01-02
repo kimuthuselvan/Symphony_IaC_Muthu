@@ -79,12 +79,9 @@ CONDUCTOR_BASE=$WORKSPACE/Conductor
 SOURCE_BASE=$WORKSPACE/Source
 TERRAFORM_BASE=$WORKSPACE/Terraform
 TEMPLATE_PATH=$TERRAFORM_BASE/conf
-echo "Next"
-if [ ! -f terraform_S3tfstate.build ]
-then
-  echo "INFO: The terraform_S3tfstate.build is empty. Nothing to do"
-  exit 0
-fi
+echo "Next `pwd`"
+_check_file terraform_S3tfstate.build
+_exit
 
 LOOP_STATUS=0
 for TFVARS in `cat terraform_S3tfstate.build`
