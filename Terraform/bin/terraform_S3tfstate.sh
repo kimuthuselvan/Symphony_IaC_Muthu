@@ -86,9 +86,11 @@ _exit
 LOOP_STATUS=0
 for TFVARS in `cat terraform_S3tfstate.build`
 do
-  if [ ! -z $TFVARS ]
+  echo "TFVARS: $TFVARS"
+  if [ -n $TFVARS ]
   then
     TF_BUILD_DIR=`dirname $TFVARS`
+	echo "TF_BUILD_DIR: $TF_BUILD_DIR"
 	[ ! -f ../../../../aws_profile ] && exit 1
 	source ../../../../aws_profile
     cd $TERRAFORM_BASE/script/AWS/Storage/S3tfstate
