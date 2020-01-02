@@ -103,7 +103,7 @@ do
   
   TEMPLATE_FILES=$TEMPLATE_PATH/aws_vpc.tfvars.TEMPLATE,$TEMPLATE_PATH/aws_subnet.tfvars.TEMPLATE
   
-  echo -e "\nCommand: $CONDUCTOR_BASE/bin/yaml2tfvars_S3tfstate.py \
+  echo -e "\nCommand: $CONDUCTOR_BASE/bin/yaml2tfvars_Network.py \
     --yamlfile $YAML_FILE \
     --templatefile $TEMPLATE_FILES \
     --outputfolder $OUTPUTFOLDER\n"
@@ -114,7 +114,7 @@ do
     --outputfolder $OUTPUTFOLDER
   
   _draw_line
-  find $WORKSPACE -name "aws_S3tfstate.tfvars" -print >$WORKSPACE/${ADV_CLIENT}_Network.build
+  find $WORKSPACE -name "aws_Network.tfvars" -print >$WORKSPACE/${ADV_CLIENT}_Network.build
 done
 
 ###============================================================================
