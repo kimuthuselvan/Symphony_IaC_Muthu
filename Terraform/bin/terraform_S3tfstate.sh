@@ -71,7 +71,7 @@ do
   _check_dir $DIR
   _exit
 done
-echo "Next"
+
 ###============================================================================
 ### Terraform Deploy (or) Destroy
 ###============================================================================
@@ -79,7 +79,7 @@ CONDUCTOR_BASE=$WORKSPACE/Conductor
 SOURCE_BASE=$WORKSPACE/Source
 TERRAFORM_BASE=$WORKSPACE/Terraform
 TEMPLATE_PATH=$TERRAFORM_BASE/conf
-
+echo "Next"
 if [ ! -f terraform_S3tfstate.build ]
 then
   echo "INFO: The terraform_S3tfstate.build is empty. Nothing to do"
