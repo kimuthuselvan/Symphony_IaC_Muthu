@@ -75,52 +75,49 @@ SOURCE_BASE=Source
 TERRAFORM_BASE=Terraform
 TEMPLATE_PATH=$TERRAFORM_BASE/conf
 
-
-YAML_PATH=$SOURCE_BASE/Symphony/AHS/Storage/S3tfstate
-YAML_FILE=$YAML_PATH/Symphony_AHS_AWS_Storage_S3tfstate.yaml
-_check_file $YAML_FILE
-_exit
-
-YAML_FILE_NAME=`basename $YAML_PATH/Symphony_AHS_AWS_Storage_S3tfstate.yaml`
-
-YAML_FILE_PREFIX=`echo $YAML_FILE_NAME |awk -F. '{print $1}'`
-echo "YAML_FILE_PREFIX:$YAML_FILE_PREFIX"
-ADV_PROJECT=`echo $YAML_FILE_PREFIX |awk -F_ '{print $1}'`
-echo "ADV_PROJECT=$ADV_PROJECT"
-ADV_CLIENT=`echo $YAML_FILE_PREFIX |awk -F_ '{print $2}'`
-echo "ADV_CLIENT=$ADV_CLIENT"
-AWS_PROVIDER=`echo $YAML_FILE_PREFIX |awk -F_ '{print $3}'`
-echo "AWS_PROVIDER=$AWS_PROVIDER"
-AWS_SERVICE=`echo $YAML_FILE_PREFIX |awk -F_ '{print $4}'`
-echo "AWS_SERVICE=$AWS_SERVICE"
-AWS_RESOURCE=`echo $YAML_FILE_PREFIX |awk -F_ '{print $5}'`
-echo "AWS_RESOURCE=$AWS_RESOURCE"
-
-#echo "Dispaly: \n$YAML_FILE_PREFIX\n$ADV_PROJECT\n$ADV_CLIENT\$AWS_PROVIDER\n$AWS_SERVICE\n$AWS_RESOURCE"
-
-OUTPUTFOLDER=$TERRAFORM_BASE/work/$ADV_PROJECT/$ADV_CLIENT
-mkdir -p $OUTPUTFOLDER
-
-cp -f $SOURCE_BASE/$ADV_PROJECT/$ADV_CLIENT/aws_profile $OUTPUTFOLDER/
+for YAML_FILE in `find $SOURCE_BASE -name "*.S3tfstate.yaml" -print`
+do
+  YAML_FILE_NAME=`basename $YAML_FILE`
+  YAML_FILE_PATH=`dirname $YAML_FILE`
+  YAML_FILE_PREFIX=`echo $YAML_FILE_NAME |awk -F. '{print $1}'`
+  echo "YAML_FILE_PREFIX:$YAML_FILE_PREFIX"
+  ADV_PROJECT=`echo $YAML_FILE_PREFIX |awk -F_ '{print $1}'`
+  echo "ADV_PROJECT=$ADV_PROJECT"
+  ADV_CLIENT=`echo $YAML_FILE_PREFIX |awk -F_ '{print $2}'`
+  echo "ADV_CLIENT=$ADV_CLIENT"
+  AWS_PROVIDER=`echo $YAML_FILE_PREFIX |awk -F_ '{print $3}'`
+  echo "AWS_PROVIDER=$AWS_PROVIDER"
+  AWS_SERVICE=`echo $YAML_FILE_PREFIX |awk -F_ '{print $4}'`
+  echo "AWS_SERVICE=$AWS_SERVICE"
+  AWS_RESOURCE=`echo $YAML_FILE_PREFIX |awk -F_ '{print $5}'`
+  echo "AWS_RESOURCE=$AWS_RESOURCE"
   
-_draw_line
-echo "$YAML_FILE_PREFIX"
-_draw_line
-
-TEMPLATE_FILES="$TEMPLATE_PATH/aws_S3tfstate.tfvars.TEMPLATE"
-
-echo -e "\nCommand: $CONDUCTOR_BASE/bin/yaml2tfvars_S3tfstate.py \
-  --yamlfile $YAML_FILE \
-  --templatefile $TEMPLATE_FILES \
-  --outputfolder $OUTPUTFOLDER\n"
-
-$CONDUCTOR_BASE/bin/yaml2tfvars_S3tfstate.py \
-  --yamlfile $YAML_FILE \
-  --templatefile $TEMPLATE_FILES \
-  --outputfolder $OUTPUTFOLDER
-
-_draw_line
-find . -name "aws_S3tfstate.tfvars" -print >$WORKSPACE/terraform_S3tfstate.build
+  #echo "Dispaly: \n$YAML_FILE_PREFIX\n$ADV_PROJECT\n$ADV_CLIENT\$AWS_PROVIDER\n$AWS_SERVICE\n$AWS_RESOURCE"
+  
+  OUTPUTFOLDER=$TERRAFORM_BASE/work/$ADV_PROJECT/$ADV_CLIENT
+  mkdir -p $OUTPUTFOLDER
+  
+  cp -f $SOURCE_BASE/$ADV_PROJECT/$ADV_CLIENT/aws_profile $OUTPUTFOLDER/
+    
+  _draw_line
+  echo "$YAML_FILE_PREFIX"
+  _draw_line
+  
+  TEMPLATE_FILES="$TEMPLATE_PATH/aws_S3tfstate.tfvars.TEMPLATE"
+  
+  echo -e "\nCommand: $CONDUCTOR_BASE/bin/yaml2tfvars_S3tfstate.py \
+    --yamlfile $YAML_FILE \
+    --templatefile $TEMPLATE_FILES \
+    --outputfolder $OUTPUTFOLDER\n"
+  
+  $CONDUCTOR_BASE/bin/yaml2tfvars_S3tfstate.py \
+    --yamlfile $YAML_FILE \
+    --templatefile $TEMPLATE_FILES \
+    --outputfolder $OUTPUTFOLDER
+  
+  _draw_line
+  find . -name "aws_S3tfstate.tfvars" -print >$WORKSPACE/${ADV_PROJECT}_${ADV_CLIENT}_S3tfstate.build
+done
 
 ###============================================================================
 ### End

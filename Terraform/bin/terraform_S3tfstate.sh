@@ -79,41 +79,42 @@ CONDUCTOR_BASE=$WORKSPACE/Conductor
 SOURCE_BASE=$WORKSPACE/Source
 TERRAFORM_BASE=$WORKSPACE/Terraform
 TEMPLATE_PATH=$TERRAFORM_BASE/conf
-echo "Next `pwd`"
-_check_file terraform_S3tfstate.build
-_exit
 
-LOOP_STATUS=0
-for TFVARS in `cat terraform_S3tfstate.build`
+for BUILD_FILE in `ls *_S3tfstate.build`
 do
-  echo "TFVARS: $TFVARS"
-  if [ -n $TFVARS ]
-  then
-    TF_BUILD_DIR=`dirname $TFVARS`
-	echo "TF_BUILD_DIR: $TF_BUILD_DIR"
-	#[ ! -f ../../../../aws_profile ] && exit 1
-	source ../../../../aws_profile
-	echo "AWS Profile: $AWS_PROFILE"
-    cd $TERRAFORM_BASE/script/AWS/Storage/S3tfstate
-    rm -rf '.terraform'
-    echo -e "INFO: Processing terraform init ... \c"
-    terraform init
-    _status
-    _loop_exit
-    echo -e "INFO: Processing terraform plan ... \c"
-    terraform plan -var-file=$TFVARS
-    _status
-    _loop_exit
-    echo -e "INFO: Processing terraform apply ... \c"
-    terraform apply -auto-approve -var-file=$TFVARS
-    _status
-    _loop_exit
-	mv terraform.tfstate $TF_BUILD_DIR/
-  else
-    echo "INFO: Nothing to do"
-  fi
+  ADV_CLIENT=`echo $BUILD_FILE |awk -F_ '{print $1}'`
+  [ ! -f ./Terraform/work/Symphony/$ADV_CLIENT/aws_profile ] && exit 1
+  source ./Terraform/work/Symphony/$ADV_CLIENT/aws_profile
+  _check_file terraform_S3tfstate.build
+  _exit
+
+  for TFVARS in `cat terraform_S3tfstate.build`
+  do
+    echo "TFVARS: $TFVARS"
+    if [ -n $TFVARS ]
+    then
+      TF_BUILD_DIR=`dirname $TFVARS`
+  	echo "TF_BUILD_DIR: $TF_BUILD_DIR"
+  	#[ ! -f ../../../../aws_profile ] && exit 1
+  	source ../../../../aws_profile
+  	echo "AWS Profile: $AWS_PROFILE"
+      cd $TERRAFORM_BASE/script/AWS/Storage/S3tfstate
+      rm -rf '.terraform'
+      echo -e "INFO: Processing terraform init ... \c"
+      terraform init
+      _status
+      echo -e "INFO: Processing terraform plan ... \c"
+      terraform plan -var-file=$TFVARS
+      _status
+      echo -e "INFO: Processing terraform apply ... \c"
+      terraform apply -auto-approve -var-file=$TFVARS
+      _status
+  	  mv terraform.tfstate $TF_BUILD_DIR/
+    else
+      echo "INFO: Nothing to do"
+    fi
+  done
 done
-[ $LOOP_STATUS -eq 0 ] && exit 0 || exit 1
 
 ###============================================================================
 ### End
