@@ -114,7 +114,10 @@ do
     --outputfolder $OUTPUTFOLDER
   
   _draw_line
-  find $WORKSPACE -name "aws_Network.tfvars" -print >$WORKSPACE/${ADV_CLIENT}_Network.build
+  find $WORKSPACE -name "aws_vpc.tfvars" -print >$WORKSPACE/${ADV_CLIENT}_vpc.build
+  find $WORKSPACE -name "aws_subnet.tfvars" -print >$WORKSPACE/${ADV_CLIENT}_subnet.build
+  cat $WORKSPACE/${ADV_CLIENT}_vpc.build > $WORKSPACE/${ADV_CLIENT}_Network.build
+  cat $WORKSPACE/${ADV_CLIENT}_subnet.build >> $WORKSPACE/${ADV_CLIENT}_Network.build 
 done
 
 ###============================================================================
