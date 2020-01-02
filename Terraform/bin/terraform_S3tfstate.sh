@@ -91,7 +91,7 @@ do
   then
     TF_BUILD_DIR=`dirname $TFVARS`
 	echo "TF_BUILD_DIR: $TF_BUILD_DIR"
-	[ ! -f ../../../../aws_profile ] && exit 1
+	#[ ! -f ../../../../aws_profile ] && exit 1
 	source ../../../../aws_profile
 	echo "AWS Profile: $AWS_PROFILE"
     cd $TERRAFORM_BASE/script/AWS/Storage/S3tfstate
