@@ -71,7 +71,7 @@ def createBuildFile(yaml_file, templatefiles, output_folder):
                     buildCount += 1
                     createDirectory(s3_dirPath)
                     for s3_elem in aws_accounts['Region'][i]['S3tfstate'][j]:
-                        if(s3_elem.lower() != "subnet"):
+                        if(s3_elem.lower() != "S3tfstate"):
                             #s3_keys1 = '\"S3TFSTATE_'+s3_elem.upper()+"\":\""+ str(aws_accounts['Region'][i]['S3tfstate'][j][s3_elem])+"\","
                             s3tfstate_keys["S3TFSTATE_"+s3_elem.upper()] =  str(aws_accounts['Region'][i]['S3tfstate'][j][s3_elem])
                     s3_filenames = []
