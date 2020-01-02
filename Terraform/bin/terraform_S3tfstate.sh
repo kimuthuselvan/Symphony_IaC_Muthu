@@ -104,9 +104,9 @@ do
       $TERRAFORM_PATH/terraform plan -var-file=$TFVARS
       _status
       echo -e "INFO: Processing terraform apply ... \c"
-      #$TERRAFORM_PATH/terraform apply -auto-approve -var-file=$TFVARS
+      $TERRAFORM_PATH/terraform apply -auto-approve -var-file=$TFVARS
       _status
-  	  #mv terraform.tfstate $TF_BUILD_DIR/
+  	  mv -f terraform.tfstate $TF_BUILD_DIR/
     else
       echo "INFO: Nothing to do"
     fi
