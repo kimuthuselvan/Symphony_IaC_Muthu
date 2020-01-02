@@ -75,7 +75,7 @@ SOURCE_BASE=Source
 TERRAFORM_BASE=Terraform
 TEMPLATE_PATH=$TERRAFORM_BASE/conf
 
-for YAML_FILE in `find $SOURCE_BASE -name "*.S3tfstate.yaml" -print`
+for YAML_FILE in `find $SOURCE_BASE -name "*_S3tfstate.yaml" -print`
 do
   YAML_FILE_NAME=`basename $YAML_FILE`
   YAML_FILE_PATH=`dirname $YAML_FILE`
@@ -116,7 +116,7 @@ do
     --outputfolder $OUTPUTFOLDER
   
   _draw_line
-  find . -name "aws_S3tfstate.tfvars" -print >$WORKSPACE/${ADV_PROJECT}_${ADV_CLIENT}_S3tfstate.build
+  find . -name "aws_S3tfstate.tfvars" -print >$WORKSPACE/${ADV_CLIENT}_S3tfstate.build
 done
 
 ###============================================================================
