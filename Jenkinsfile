@@ -42,7 +42,7 @@ pipeline {
   post {
     always {
       echo 'One way or another, I have finished'
-      deleteDir() /* Clean up our workspace */
+      deleteDir() /* Clean up our workspace  */
     }
     success {
       echo 'I succeeeded!'
