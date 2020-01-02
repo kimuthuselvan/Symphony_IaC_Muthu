@@ -1,7 +1,7 @@
 #! /bin/bash
 ###
 SOURCE_PATH=${WORKSPACE}
-TARGET_PATH=/awsops/WorkSpace/GitHub/Symphony_IaC_Muthu
+TARGET_PATH=/awsops/WorkSpace/IaC_Staging
 if [ ! -d $TARGET_PATH ]
 then
   echo "ERROR: Stage path: $TARGET_PATH is missing"
