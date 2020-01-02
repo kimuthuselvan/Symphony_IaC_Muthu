@@ -87,16 +87,13 @@ do
   source ./Terraform/work/Symphony/$ADV_CLIENT/aws_profile
   _check_file terraform_S3tfstate.build
   _exit
-
-  for TFVARS in `cat terraform_S3tfstate.build`
+  for TFVARS in `cat $BUILD_FILE`
   do
     echo "TFVARS: $TFVARS"
     if [ -n $TFVARS ]
     then
       TF_BUILD_DIR=`dirname $TFVARS`
   	echo "TF_BUILD_DIR: $TF_BUILD_DIR"
-  	#[ ! -f ../../../../aws_profile ] && exit 1
-  	source ../../../../aws_profile
   	echo "AWS Profile: $AWS_PROFILE"
       cd $TERRAFORM_BASE/script/AWS/Storage/S3tfstate
       rm -rf '.terraform'
