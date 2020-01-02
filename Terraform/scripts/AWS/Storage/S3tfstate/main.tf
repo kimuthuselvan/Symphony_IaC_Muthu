@@ -1,17 +1,15 @@
 provider "aws" {
-  region = "${var.region_name}"
-  version = "~> 2.7"
+  region = var.region_name
 }
 
 resource "aws_s3_bucket" "main" {
-  region = "${var.region_name}"
-  bucket = "${var.s3bucket_name}"
+  bucket = var.s3bucket_name
   acl = "private"
   tags = {
-    Name = "${var.s3bucket_name}"
-    Project = "${var.project_name}"
-    Organization = "${var.organization_name}"
-    Client = "${var.client_name}"
+    Name = var.s3bucket_name
+    Project = var.project_name
+    Organization = var.organization_name
+    Client = var.client_name
   }
 
   lifecycle {
