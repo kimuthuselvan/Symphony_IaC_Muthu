@@ -93,6 +93,7 @@ do
 	echo "TF_BUILD_DIR: $TF_BUILD_DIR"
 	[ ! -f ../../../../aws_profile ] && exit 1
 	source ../../../../aws_profile
+	echo "AWS Profile: $AWS_PROFILE"
     cd $TERRAFORM_BASE/script/AWS/Storage/S3tfstate
     rm -rf '.terraform'
     echo -e "INFO: Processing terraform init ... \c"
