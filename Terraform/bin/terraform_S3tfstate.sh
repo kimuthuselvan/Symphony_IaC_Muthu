@@ -71,7 +71,7 @@ do
   _check_dir $DIR
   _exit
 done
-echo "Next"
+
 ###============================================================================
 ### Terraform Deploy (or) Destroy
 ###============================================================================
@@ -79,21 +79,21 @@ CONDUCTOR_BASE=$WORKSPACE/Conductor
 SOURCE_BASE=$WORKSPACE/Source
 TERRAFORM_BASE=$WORKSPACE/Terraform
 TEMPLATE_PATH=$TERRAFORM_BASE/conf
-
-if [ ! -f terraform_S3tfstate.build ]
-then
-  echo "INFO: The terraform_S3tfstate.build is empty. Nothing to do"
-  exit 0
-fi
+echo "Next `pwd`"
+_check_file terraform_S3tfstate.build
+_exit
 
 LOOP_STATUS=0
 for TFVARS in `cat terraform_S3tfstate.build`
 do
-  if [ ! -z $TFVARS ]
+  echo "TFVARS: $TFVARS"
+  if [ -n $TFVARS ]
   then
     TF_BUILD_DIR=`dirname $TFVARS`
+	echo "TF_BUILD_DIR: $TF_BUILD_DIR"
 	[ ! -f ../../../../aws_profile ] && exit 1
 	source ../../../../aws_profile
+	echo "AWS Profile: $AWS_PROFILE"
     cd $TERRAFORM_BASE/script/AWS/Storage/S3tfstate
     rm -rf '.terraform'
     echo -e "INFO: Processing terraform init ... \c"
