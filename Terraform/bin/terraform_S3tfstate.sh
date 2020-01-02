@@ -96,6 +96,7 @@ do
       TF_BUILD_DIR=`dirname $TFVARS`
       cd Terraform/scripts/AWS/Storage/S3tfstate
       rm -rf '.terraform'
+	  echo "PWD: `pwd`"
       echo -e "INFO: Processing terraform init ... \c"
       $TERRAFORM_PATH/terraform init
       _status

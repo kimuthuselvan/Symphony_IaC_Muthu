@@ -116,7 +116,7 @@ do
     --outputfolder $OUTPUTFOLDER
   
   _draw_line
-  find . -name "aws_S3tfstate.tfvars" -print >$WORKSPACE/${ADV_CLIENT}_S3tfstate.build
+  find $WORKSPACE -name "aws_S3tfstate.tfvars" -print >$WORKSPACE/${ADV_CLIENT}_S3tfstate.build
 done
 
 ###============================================================================
