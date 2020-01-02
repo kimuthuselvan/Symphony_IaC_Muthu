@@ -108,7 +108,7 @@ do
     --templatefile $TEMPLATE_FILES \
     --outputfolder $OUTPUTFOLDER\n"
   
-  $CONDUCTOR_BASE/bin/yaml2tfvars_S3tfstate.py \
+  $CONDUCTOR_BASE/bin/yaml2tfvars_Network.py \
     --yamlfile $YAML_FILE \
     --templatefile $TEMPLATE_FILES \
     --outputfolder $OUTPUTFOLDER
