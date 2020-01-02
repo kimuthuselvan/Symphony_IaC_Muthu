@@ -85,16 +85,13 @@ do
   ADV_CLIENT=`echo $BUILD_FILE |awk -F_ '{print $1}'`
   [ ! -f ./Terraform/work/Symphony/$ADV_CLIENT/aws_profile ] && exit 1
   source ./Terraform/work/Symphony/$ADV_CLIENT/aws_profile
-  _check_file terraform_S3tfstate.build
-  _exit
+  echo "AWS Profile: $AWS_PROFILE"
   for TFVARS in `cat $BUILD_FILE`
   do
     echo "TFVARS: $TFVARS"
     if [ -n $TFVARS ]
     then
       TF_BUILD_DIR=`dirname $TFVARS`
-  	echo "TF_BUILD_DIR: $TF_BUILD_DIR"
-  	echo "AWS Profile: $AWS_PROFILE"
       cd $TERRAFORM_BASE/script/AWS/Storage/S3tfstate
       rm -rf '.terraform'
       echo -e "INFO: Processing terraform init ... \c"
