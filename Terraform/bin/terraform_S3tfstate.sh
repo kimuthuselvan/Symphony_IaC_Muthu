@@ -83,11 +83,14 @@ SOURCE_BASE=$WORKSPACE/Source
 TERRAFORM_BASE=$WORKSPACE/Terraform
 TEMPLATE_PATH=$TERRAFORM_BASE/conf
 
-echo "INFO: CWD: `pwd`"
-find $WORKSPACE -name "*.tfvars" -print
+if [ ! -f terraform_S3tfstate.build ]
+then
+  echo "INFO: The terraform_S3tfstate.build is empty. Nothing to do"
+  exit 0
+fi
 
 LOOP_STATUS=0
-for TFVARS in `find $WORKSPACE -name "*.tfvars" -print`
+for TFVARS in `cat terraform_S3tfstate.build`
 do
   if [ ! -z $TFVARS ]
   then
