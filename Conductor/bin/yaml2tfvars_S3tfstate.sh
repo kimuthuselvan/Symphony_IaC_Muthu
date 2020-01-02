@@ -81,7 +81,9 @@ YAML_FILE=$YAML_PATH/Symphony_AHS_AWS_Storage_S3tfstate.yaml
 _check_file $YAML_FILE
 _exit
 
-YAML_FILE_PREFIX=`echo $YAML_FILE |awk -F. '{print $1}'`
+YAML_FILE_NAME=`basename $YAML_PATH/Symphony_AHS_AWS_Storage_S3tfstate.yaml`
+
+YAML_FILE_PREFIX=`echo $YAML_FILE_NAME |awk -F. '{print $1}'`
 echo "YAML_FILE_PREFIX:$YAML_FILE_PREFIX"
 ADV_PROJECT=`echo $YAML_FILE_PREFIX |awk -F_ '{print $1}'`
 echo "ADV_PROJECT=$ADV_PROJECT"
@@ -98,7 +100,7 @@ echo "AWS_RESOURCE=$AWS_RESOURCE"
 
 OUTPUTFOLDER=$TEMPLATE_PATH/work/$ADV_PROJECT/$ADV_CLIENT
 mkdir -p $OUTPUTFOLDER
-cp -f $ADV_PROJECT/$ADV_CLIENT/aws_profile $OUTPUTFOLDER/
+cp -f aws_profile $OUTPUTFOLDER/
   
 _draw_line
 echo "$YAML_FILE_PREFIX"
