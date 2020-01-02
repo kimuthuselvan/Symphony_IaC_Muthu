@@ -97,9 +97,9 @@ def createBuildFile(yaml_file, templatefiles, output_folder):
     					#tfvar
             else:
                 createDirectory(s3_dirPath)
-                for s3_elem in aws_accounts['Region'][i]['S3tfstate'][j]:
-                    if(s3_elem.lower().strip() == "name"):
-                        s3_keys["S3TFSTATE_"+s3_elem.upper()] =  str(aws_accounts['Region'][i]['S3tfstate'][j][s3_elem])            
+                #for s3_elem in aws_accounts['Region'][i]['S3tfstate'][j]:
+                    #if(s3_elem.lower().strip() == "name"):
+                     #   s3_keys["S3TFSTATE_"+s3_elem.upper()] =  str(aws_accounts['Region'][i]['S3tfstate'][j][s3_elem])            
     if(buildCount == 0):
         print('INFO:Build configurations are in "false" status')
     return aws_accounts
