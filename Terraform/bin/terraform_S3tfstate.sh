@@ -11,7 +11,7 @@
 ###============================================================================
 ### Shell Functions
 ###============================================================================
-alias terraform=/awsops/opt/hashicorp/terraform/bin/terraform
+TERRAFORM_PATH=/awsops/opt/hashicorp/terraform/bin
 
 _exit () {
   [ $? -ne 0 ] && exit 1
@@ -97,13 +97,13 @@ do
       cd Terraform/scripts/AWS/Storage/S3tfstate
       rm -rf '.terraform'
       echo -e "INFO: Processing terraform init ... \c"
-      terraform init
+      $TERRAFORM_PATH/terraform init
       _status
       echo -e "INFO: Processing terraform plan ... \c"
-      terraform plan -var-file=$TFVARS
+      $TERRAFORM_PATH/terraform plan -var-file=$TFVARS
       _status
       echo -e "INFO: Processing terraform apply ... \c"
-      terraform apply -auto-approve -var-file=$TFVARS
+      echo "\n$TERRAFORM_PATH/terraform apply -auto-approve -var-file=$TFVARS"
       _status
   	  mv terraform.tfstate $TF_BUILD_DIR/
     else
