@@ -3,7 +3,7 @@
 echo "INFO: Git add untracked files"
 cd ${WORKSPACE}
 #git status --untracked-files --short
-git add --dry-run
+git add --dry-run .
 #git ls-files . | xargs git add
 
 #MODIFIED_FILES_LIST=`git ls-files -m`
