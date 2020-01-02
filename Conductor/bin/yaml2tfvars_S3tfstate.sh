@@ -120,7 +120,7 @@ $CONDUCTOR_BASE/bin/yaml2tfvars_S3tfstate.py \
   --outputfolder $OUTPUTFOLDER
 
 _draw_line
-find . -name "*.tfvars" -print
+find . -name "aws_S3tfstate.tfvars" -print >$WORKSPACE/terraform_S3tfstate.build
 
 ###============================================================================
 ### End
