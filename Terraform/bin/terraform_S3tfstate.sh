@@ -11,6 +11,8 @@
 ###============================================================================
 ### Shell Functions
 ###============================================================================
+alias terraform=/awsops/opt/hashicorp/terraform/bin/terraform
+
 _exit () {
   [ $? -ne 0 ] && exit 1
 }
@@ -92,7 +94,7 @@ do
     if [ -n $TFVARS ]
     then
       TF_BUILD_DIR=`dirname $TFVARS`
-      cd $TERRAFORM_BASE/script/AWS/Storage/S3tfstate
+      cd Terraform/scripts/AWS/Storage/S3tfstate
       rm -rf '.terraform'
       echo -e "INFO: Processing terraform init ... \c"
       terraform init
