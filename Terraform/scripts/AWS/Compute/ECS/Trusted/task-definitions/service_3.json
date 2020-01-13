@@ -1,0 +1,23 @@
+[
+  {
+    "name": "${container_name}",
+    "image": "945116902499.dkr.ecr.us-east-1.amazonaws.com/elasticsearchindexer:0.1.2",
+    "memoryReservation": 128,
+    "essential": true,
+    "portMappings": [
+      {
+        "containerPort": 443,
+        "protocol": "tcp",
+        "hostPort": 0
+      }
+    ],
+    "placementConstraints": [
+      {
+        "type": "memberOf",
+        "expression": "attribute:ecs.os-type == linux"
+      }
+    ]
+  }
+
+]
+

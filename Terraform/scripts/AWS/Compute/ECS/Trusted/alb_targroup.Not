@@ -1,0 +1,48 @@
+#resource "aws_lb_listener" "front_end" {
+#  load_balancer_arn = "${aws_lb.front_end.arn}"
+#  port              = "443"
+#  protocol          = "HTTPS"
+#  #ssl_policy        = "ELBSecurityPolicy-2016-08"
+#  ssl_policy        = "ELBSecurityPolicy-TLS-1-2-2017-01"
+#  certificate_arn   = "arn:aws:acm:us-east-1:945116902499:certificate/6a9617d6-4b80-4ead-b2c6-bd397db760f2"
+#
+#  default_action {
+#    type             = "forward"
+#    target_group_arn = "${aws_lb_target_group.front_end.arn}"
+#  }
+#}
+
+resource "aws_alb_target_group" "uat-traceservice" {
+  name       = "${var.ecs_name}-TraceService"
+  port       = 443
+  protocol   = "${var.aws_alb_protocol}"
+  vpc_id     = "${var.vpc_name}"
+  depends_on = [aws_alb.aws_ecs_alb]
+
+  stickiness {
+    type            = "lb_cookie"
+    cookie_duration = 300
+  }
+
+  health_check {
+    path                = "/"
+    healthy_threshold   = 5
+    unhealthy_threshold = 2
+    timeout             = 5
+    interval            = 30
+    matcher             = "200,301,302"
+  }
+}
+
+### Linux
+#resource "aws_autoscaling_attachment" "uat-traceservice" {
+#  autoscaling_group_name = "${aws_autoscaling_group.ecs-cluster.name}"
+#  alb_target_group_arn   = "${aws_alb_target_group.uat-traceservice.arn}"
+#}
+#
+### Windows
+#resource "aws_autoscaling_attachment" "uat-webapp" {
+#  autoscaling_group_name = "${aws_autoscaling_group.ecs-cluster-2[0].name}"
+#  alb_target_group_arn   = "${aws_alb_target_group.ecs-group.arn}"
+#}
+

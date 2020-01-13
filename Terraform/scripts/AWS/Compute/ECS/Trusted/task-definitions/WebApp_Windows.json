@@ -1,0 +1,22 @@
+[
+  {
+    "name": "Kan-Sym-UAT-WebApp-Windows-service",
+    "image": "microsoft/iis",
+    "memory" : 512,
+    "essential": true,
+    "portMappings": [
+      {
+        "containerPort": 80,
+        "protocol": "tcp",
+        "hostPort": 0
+      }
+    ],
+    "placementConstraints": [
+      {
+        "type": "memberOf",
+        "expression": "attribute:ecs.os-type == windows"
+      }
+    ]
+  }
+
+]

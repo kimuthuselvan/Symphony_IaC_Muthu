@@ -1,0 +1,28 @@
+[
+  {
+    "name": "Kan-Sym-UAT-WebApp-Linux-service",
+    "image": "httpd:2.4",
+    "command": [
+            "/bin/sh -c \"echo '<html> <head> <title>uat-auditevents Sample App</title> <style>body {margin-top: 40px; background-color: #333;} </style> </head><body> <div style=color:white;text-align:center> <h1>uat-auditevents</h1> <h2>Congratulations!</h2> <p>uat-auditevents is now running on a container in Amazon ECS.</p> </div></body></html>' >  /usr/local/apache2/htdocs/index.html && httpd-foreground\""
+    ],
+    "entryPoint": [
+            "sh",
+            "-c"
+    ],
+    "memoryReservation": 128,
+    "essential": true,
+    "portMappings": [
+      {
+        "containerPort": 80,
+        "protocol": "tcp",
+        "hostPort": 0
+      }
+    ],
+    "placementConstraints": [
+      {
+        "type": "memberOf",
+        "expression": "attribute:ecs.os-type == linux"
+      }
+    ]
+  }
+]

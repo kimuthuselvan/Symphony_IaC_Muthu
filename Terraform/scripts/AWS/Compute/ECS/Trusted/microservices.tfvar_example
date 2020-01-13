@@ -1,0 +1,33 @@
+region_name = "ap-southeast-1"
+vpc_name = "vpc-dc212fbb"
+ecs_name = "microservices-ECS"
+subnet_name_az1 = "subnet-0f39da47"
+subnet_name_az2 = "subnet-8c44b7ea"
+sg_name = "sg-0da232cd9feb977b7"
+keypair_name = "mytestvm1_key"
+instance_type = "t2.micro"
+no_of_instance = "2"
+max_instance_size = "4"
+min_instance_size = "2"
+desired_capacity = "2"
+## First ASG default
+ami_id = "ami-0310a9b646b817d26"
+user_data_file = "ecs-cluster_linux.tpl"
+container_task_file = "task-definitions/microservices.json"
+running-os = "linux"
+## Second ASG on demand
+second_asg = true
+ami_id_2 = "ami-0ea911f89cb75338e"
+user_data_file_2 = "ecs-cluster_windows.tpl"
+container_task_file_2 = "task-definitions/microservices_2.json"
+running-os_2 = "windows"
+##
+container_names = [ "uatA", "uatB", "uatC", "uatD", "uatE" ]
+container_port = 443
+container_desired_count = 2
+aws_alb_protocol = "HTTPS"
+alb_list_port = 443
+alb_target_port = 443
+aws_iam_ecs_service_role = "ecs-service-role"
+aws_iam_ecs_ec2_role = "ecs-ec2-role"
+aws_iam_role_policy = "ecs-ec2-role-policy"

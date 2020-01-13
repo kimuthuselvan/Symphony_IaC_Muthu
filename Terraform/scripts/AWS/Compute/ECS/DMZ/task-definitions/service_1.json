@@ -1,0 +1,22 @@
+[
+  {
+    "name": "${container_name}",
+    "image": "945116902499.dkr.ecr.us-east-1.amazonaws.com/webapp:5.18.0.0.44",
+    "memory" : 512,
+    "essential": true,
+    "portMappings": [
+      {
+        "containerPort": 443,
+        "protocol": "tcp",
+        "hostPort": 0
+      }
+    ],
+    "placementConstraints": [
+      {
+        "type": "memberOf",
+        "expression": "attribute:ecs.os-type == windows"
+      }
+    ]
+  }
+
+]
