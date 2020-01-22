@@ -1,45 +1,7 @@
-#
-#
-/****************************************
-variable "aws_access_key_id" {}
-variable "aws_secret_access_key" {}
-variable "region_name" {}
-variable "vpc_name" {}
-variable "ecs_name" {}
-variable "subnet_name_az1" {}
-variable "subnet_name_az2" {}
-variable "sg_name" {}
-variable "keypair_name" {}
-variable "instance_type" {}
-variable "no_of_instance" {}
-variable "max_instance_size" {}
-variable "min_instance_size" {}
-variable "desired_capacity" {}
-variable "ami_id" {}
-variable "user_data_file" {}
-variable "running-os" {}
-variable "second_asg" {}
-variable "ami_id_2" {}
-variable "user_data_file_2" {}
-variable "running-os_2" {}
-variable "container_task_file" {}
-variable "container_task_file_2" {}
-variable "container_desired_count" {}
-variable "aws_alb_protocol" {}
-variable "alb_list_port" {}
-variable "aws_iam_ecs_service_role" {}
-variable "aws_iam_ecs_ec2_role" {}
-variable "aws_iam_role_policy" {}
-variable "container_names" {}
-variable "container_port" {}
-variable "alb_target_port" {}
-****************************************/
-#
-#
 provider "aws" {
  # access_key = var.aws_access_key_id
  # secret_key = var.aws_secret_access_key
-  region = var.region_name
+  region = "${var.region_name}"
 }
 #
 #
@@ -68,26 +30,39 @@ resource "aws_alb_listener" "front_end" {
   }
 }
 
+resource "aws_alb_listener_rule" "listener_rule" {
+  count      = "${length(var.container_def) - 1}"
+  listener_arn = "${aws_alb_listener.front_end.arn}"
+  
+   action {
+    type             = "forward"
+    target_group_arn = "${aws_alb_target_group.ecs-group[count.index].id}"
+  }
+
+  condition {
+    path_pattern {
+      values = ["${lookup(var.container_def[count.index], "listener_rule")}"]
+    }
+  }
+}
+
+
 resource "aws_alb_target_group" "ecs-group" {
-  count      = "${length(var.container_names)}"
-  name       = "${var.ecs_name}-${var.container_names[count.index]}"
+  count      = "${length(var.container_def)}"
+  name       = "${var.ecs_name}-${lookup(var.container_def[count.index], "name")}"
   port       = "${var.alb_target_port}"
   protocol   = "${var.aws_alb_protocol}"
   vpc_id     = "${var.vpc_name}"
   depends_on = ["aws_alb.aws_ecs_alb"]
 
-  stickiness {
-    type            = "lb_cookie"
-    cookie_duration = 300
-  }
-
   health_check {
-    path                = "/"
+    path                = "${lookup(var.container_def[count.index], "searchpath")}"
+    protocol            = "${var.aws_alb_protocol}"
     healthy_threshold   = 5
     unhealthy_threshold = 2
     timeout             = 5
     interval            = 30
-    matcher             = "200,301,302"
+    matcher             = "${lookup(var.container_def[count.index], "successcode")}"
   }
 }
 
@@ -224,42 +199,54 @@ resource "aws_iam_instance_profile" "ecs-ec2-role" {
 }
 
 resource "aws_ecs_service" "ecs_service" {
-  count           = "${length(var.container_names)}"
-  name            = "${var.ecs_name}-${var.container_names[count.index]}"
+  count           = "${length(var.container_def)}"
+  name            = "${var.ecs_name}-${lookup(var.container_def[count.index], "name")}"
   cluster         = "${aws_ecs_cluster.ecs_cluster.id}"
   task_definition = "${aws_ecs_task_definition.ecs_service[count.index].arn}"
   desired_count   = "${var.container_desired_count}"
   iam_role        = "${var.aws_iam_ecs_service_role}"
-  depends_on      = [aws_iam_role_policy_attachment.ecs-service-attach]
+  depends_on      = [aws_iam_role_policy_attachment.ecs-service-attach, aws_alb_listener.front_end, aws_alb_listener_rule.listener_rule]
 
   load_balancer {
     target_group_arn = "${aws_alb_target_group.ecs-group[count.index].id}"
-    container_name   = "${var.ecs_name}-${var.container_names[count.index]}"
+    container_name   = "${var.ecs_name}-${lookup(var.container_def[count.index], "name")}"
     container_port   = "${var.container_port}"
+  }
+
+  placement_constraints {
+    type       = "memberOf"
+    expression = "attribute:ecs.os-type==${lookup(var.container_def[count.index], "os_type")}"
   }
 }
 
 resource "aws_ecs_task_definition" "ecs_service" {
-  count           = "${length(var.container_names)}"
-  family = "${var.ecs_name}-${var.container_names[count.index]}"
+  count           = "${length(var.container_def)}"
+  family = "${var.ecs_name}-${lookup(var.container_def[count.index], "name")}"
+  cpu = "${lookup(var.container_def[count.index], "cpu")}"
+  memory = "${lookup(var.container_def[count.index], "memory")}"
+  task_role_arn = "arn:aws:iam::945116902499:role/ecsTaskExecutionRole"
+  execution_role_arn = "arn:aws:iam::945116902499:role/ecsTaskExecutionRole"
   container_definitions = "${data.template_file.ecs-tasks[count.index].rendered}"
 
 }
 
 data "template_file" "ecs-tasks" {
-  count    = "${length(var.container_names)}"
+  count    = "${length(var.container_def)}"
   template = "${file("task-definitions/service_${count.index}.json")}"
 
   vars = {
-    container_name  = "${var.ecs_name}-${var.container_names[count.index]}"
+    container_name  = "${var.ecs_name}-${lookup(var.container_def[count.index], "name")}"
+    Ecs_name = "${var.ecs_name}"
+    myregion = "${var.region_name}"
   }
 }
 
-#resource "aws_cloudwatch_log_group" "ecs_service" {
-#  name = "/${var.ecs_name}/${var.ecs_name}_logs"
-#}
+resource "aws_cloudwatch_log_group" "ecs_service" {
+  name = "/${var.ecs_name}/${var.ecs_name}_logs"
+}
 
 resource "aws_iam_role_policy_attachment" "ecs-service-attach" {
   role       = "${var.aws_iam_ecs_service_role}"
   policy_arn = "arn:aws:iam::aws:policy/service-role/AmazonEC2ContainerServiceRole"
 }
+

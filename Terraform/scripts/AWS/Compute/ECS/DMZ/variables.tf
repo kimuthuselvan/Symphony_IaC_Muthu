@@ -27,6 +27,13 @@ variable "alb_list_port" {}
 variable "aws_iam_ecs_service_role" {}
 variable "aws_iam_ecs_ec2_role" {}
 variable "aws_iam_role_policy" {}
-variable "container_names" {}
+variable "container_def" {}
 variable "container_port" {}
 variable "alb_target_port" {}
+variable "project_name" {}
+variable "client_name" {}
+variable "environment_name" {}
+variable "zone_name" {}
+variable "linux_name" {}
+variable "windows_name" {}
+#variable "container_names" {}

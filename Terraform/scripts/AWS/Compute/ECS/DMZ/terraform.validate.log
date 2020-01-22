@@ -1,0 +1,138 @@
+[33m
+[1m[33mWarning: [0m[0m[1mInterpolation-only expressions are deprecated[0m
+
+[0m  on alb_listener.tf line 20, in resource "aws_alb_listener_rule" "traceapi":
+  20:   listener_arn = [4m"${aws_alb_listener.front_end.arn}"[0m
+[0m
+Terraform 0.11 and earlier required all non-constant expressions to be
+provided via interpolation syntax, but this pattern is now deprecated. To
+silence this warning, remove the "${ sequence from the start and the }"
+sequence from the end of this expression, leaving just the inner expression.
+
+Template interpolation syntax is still used to construct strings from
+expressions when the template includes multiple interpolation sequences or a
+mixture of literal strings and interpolations. This deprecation applies only
+to templates that consist entirely of a single interpolation sequence.
+
+(and 50 more similar warnings elsewhere)
+[0m[0m
+[33m
+[1m[33mWarning: [0m[0m[1mQuoted references are deprecated[0m
+
+[0m  on ecs_alb.tf line 39, in resource "aws_alb_target_group" "ecs-group":
+  39:   depends_on = [[4m"aws_alb.aws_ecs_alb"[0m]
+[0m
+In this context, references are expected literally rather than in quotes.
+Terraform 0.11 and earlier required quotes, but quoted references are now
+deprecated and will be removed in a future version of Terraform. Remove the
+quotes surrounding this reference to silence this warning.
+[0m[0m
+[32m[1mSuccess![0m The configuration is valid, but there were some validation warnings as shown above.
+[0m
+[33m
+[1m[33mWarning: [0m[0m[1mInterpolation-only expressions are deprecated[0m
+
+[0m  on alb_listener.tf line 2, in resource "aws_lb_listener" "httptohttps":
+   2:   load_balancer_arn = [4m"${aws_alb.aws_ecs_alb.id}"[0m
+[0m
+Terraform 0.11 and earlier required all non-constant expressions to be
+provided via interpolation syntax, but this pattern is now deprecated. To
+silence this warning, remove the "${ sequence from the start and the }"
+sequence from the end of this expression, leaving just the inner expression.
+
+Template interpolation syntax is still used to construct strings from
+expressions when the template includes multiple interpolation sequences or a
+mixture of literal strings and interpolations. This deprecation applies only
+to templates that consist entirely of a single interpolation sequence.
+
+(and 51 more similar warnings elsewhere)
+[0m[0m
+[33m
+[1m[33mWarning: [0m[0m[1mQuoted references are deprecated[0m
+
+[0m  on ecs_alb.tf line 39, in resource "aws_alb_target_group" "ecs-group":
+  39:   depends_on = [[4m"aws_alb.aws_ecs_alb"[0m]
+[0m
+In this context, references are expected literally rather than in quotes.
+Terraform 0.11 and earlier required quotes, but quoted references are now
+deprecated and will be removed in a future version of Terraform. Remove the
+quotes surrounding this reference to silence this warning.
+[0m[0m
+[31m
+[1m[31mError: [0m[0m[1mUnsupported argument[0m
+
+[0m  on ecs_alb.tf line 210, in resource "aws_ecs_task_definition" "ecs_service":
+ 210:   [4mtaskRoleArn[0m = "arn:aws:iam::945116902499:role/ecsTaskExecutionRole"
+[0m
+An argument named "taskRoleArn" is not expected here.
+[0m[0m
+[31m
+[1m[31mError: [0m[0m[1mUnsupported argument[0m
+
+[0m  on ecs_alb.tf line 211, in resource "aws_ecs_task_definition" "ecs_service":
+ 211:   [4mexecutionRoleArn[0m = "arn:aws:iam::945116902499:role/ecsTaskExecutionRole"
+[0m
+An argument named "executionRoleArn" is not expected here.
+[0m[0m
+[33m
+[1m[33mWarning: [0m[0m[1mInterpolation-only expressions are deprecated[0m
+
+[0m  on alb_listener.tf line 2, in resource "aws_lb_listener" "httptohttps":
+   2:   load_balancer_arn = [4m"${aws_alb.aws_ecs_alb.id}"[0m
+[0m
+Terraform 0.11 and earlier required all non-constant expressions to be
+provided via interpolation syntax, but this pattern is now deprecated. To
+silence this warning, remove the "${ sequence from the start and the }"
+sequence from the end of this expression, leaving just the inner expression.
+
+Template interpolation syntax is still used to construct strings from
+expressions when the template includes multiple interpolation sequences or a
+mixture of literal strings and interpolations. This deprecation applies only
+to templates that consist entirely of a single interpolation sequence.
+
+(and 51 more similar warnings elsewhere)
+[0m[0m
+[33m
+[1m[33mWarning: [0m[0m[1mQuoted references are deprecated[0m
+
+[0m  on ecs_alb.tf line 39, in resource "aws_alb_target_group" "ecs-group":
+  39:   depends_on = [[4m"aws_alb.aws_ecs_alb"[0m]
+[0m
+In this context, references are expected literally rather than in quotes.
+Terraform 0.11 and earlier required quotes, but quoted references are now
+deprecated and will be removed in a future version of Terraform. Remove the
+quotes surrounding this reference to silence this warning.
+[0m[0m
+[32m[1mSuccess![0m The configuration is valid, but there were some validation warnings as shown above.
+[0m
+[33m
+[1m[33mWarning: [0m[0m[1mInterpolation-only expressions are deprecated[0m
+
+[0m  on alb_listener.tf line 2, in resource "aws_lb_listener" "httptohttps":
+   2:   load_balancer_arn = [4m"${aws_alb.aws_ecs_alb.id}"[0m
+[0m
+Terraform 0.11 and earlier required all non-constant expressions to be
+provided via interpolation syntax, but this pattern is now deprecated. To
+silence this warning, remove the "${ sequence from the start and the }"
+sequence from the end of this expression, leaving just the inner expression.
+
+Template interpolation syntax is still used to construct strings from
+expressions when the template includes multiple interpolation sequences or a
+mixture of literal strings and interpolations. This deprecation applies only
+to templates that consist entirely of a single interpolation sequence.
+
+(and 51 more similar warnings elsewhere)
+[0m[0m
+[33m
+[1m[33mWarning: [0m[0m[1mQuoted references are deprecated[0m
+
+[0m  on ecs_alb.tf line 39, in resource "aws_alb_target_group" "ecs-group":
+  39:   depends_on = [[4m"aws_alb.aws_ecs_alb"[0m]
+[0m
+In this context, references are expected literally rather than in quotes.
+Terraform 0.11 and earlier required quotes, but quoted references are now
+deprecated and will be removed in a future version of Terraform. Remove the
+quotes surrounding this reference to silence this warning.
+[0m[0m
+[32m[1mSuccess![0m The configuration is valid, but there were some validation warnings as shown above.
+[0m
