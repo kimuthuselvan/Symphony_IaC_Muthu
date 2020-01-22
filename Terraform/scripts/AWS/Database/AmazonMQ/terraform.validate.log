@@ -1,0 +1,20 @@
+[33m
+[1m[33mWarning: [0m[0m[1mInterpolation-only expressions are deprecated[0m
+
+[0m  on main.tf line 209, in resource "aws_mq_broker" "amazonmq":
+ 209:     id       = [4m"${aws_mq_configuration.amazonmq.id}"[0m
+[0m
+Terraform 0.11 and earlier required all non-constant expressions to be
+provided via interpolation syntax, but this pattern is now deprecated. To
+silence this warning, remove the "${ sequence from the start and the }"
+sequence from the end of this expression, leaving just the inner expression.
+
+Template interpolation syntax is still used to construct strings from
+expressions when the template includes multiple interpolation sequences or a
+mixture of literal strings and interpolations. This deprecation applies only
+to templates that consist entirely of a single interpolation sequence.
+
+(and one more similar warning elsewhere)
+[0m[0m
+[32m[1mSuccess![0m The configuration is valid, but there were some validation warnings as shown above.
+[0m
