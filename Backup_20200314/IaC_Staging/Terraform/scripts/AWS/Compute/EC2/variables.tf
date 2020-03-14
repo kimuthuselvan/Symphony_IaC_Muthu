@@ -1,0 +1,10 @@
+variable "region"		{ type = "string" }
+variable "ec2_name"		{ type = "string" }
+variable "bucket_name"		{ type = "string" }
+variable "vpc_tfstate_file"	{ type = "string" }
+variable "subnet_tfstate_file"	{ type = "string" }
+variable "ec2_tfstate_file"  	{ type = "string" }
+variable "project_name"		{ type = "string" }
+variable "organization_name"	{ type = "string" }
+variable "client_name"		{ type = "string" }
+variable "security_groups"	{ type = "string" }

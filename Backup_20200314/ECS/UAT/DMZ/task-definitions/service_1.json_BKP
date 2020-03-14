@@ -1,0 +1,38 @@
+[
+  {
+    "name": "${container_name}",
+    "image": "945116902499.dkr.ecr.us-east-1.amazonaws.com/webapp:5.18.0.0.51",
+    "taskRoleArn": "arn:aws:iam::945116902499:role/ecsTaskExecutionRole",
+    "executionRoleArn": "arn:aws:iam::945116902499:role/ecsTaskExecutionRole",
+    "memory": 512,
+    "essential": true,
+    "portMappings": [
+      {
+        "containerPort": 443,
+        "protocol": "tcp",
+        "hostPort": 0
+      }
+    ],
+    "environment": [
+      {
+        "name": "AppName",
+        "value": "uat"
+      },
+      {
+        "name": "ASPNETCORE_ENVIRONMENT",
+        "value": "Production"
+      },
+      {
+        "name": "ClientName",
+        "value": "kansas"
+      }
+    ],
+    "placementConstraints": [
+      {
+        "type": "memberOf",
+        "expression": "attribute:ecs.os-type==windows"
+      }
+    ]
+  }
+
+]

@@ -1,0 +1,103 @@
+[
+  {
+    "name": "uat-auditevents",
+    "image": "httpd:2.4",
+    "memoryReservation": 128,
+    "essential": true,
+    "portMappings": [
+      {
+        "containerPort": 80,
+        "protocol": "tcp",
+        "hostPort": 8001
+      }
+    ],
+    "placementConstraints": [
+      {
+        "type": "memberOf",
+        "expression": "attribute:ecs.os-type == linux"
+      }
+    ]
+  },
+
+  {
+    "name": "uat-checklistcrawler",
+    "image": "httpd:2.4",
+    "memoryReservation": 128,
+    "essential": false,
+    "portMappings": [
+      {
+        "containerPort": 80,
+        "protocol": "tcp",
+        "hostPort": 8002
+      }
+    ],
+    "placementConstraints": [
+      {
+        "type": "memberOf",
+        "expression": "attribute:ecs.os-type == linux"
+      }
+    ]
+  },
+
+  {
+    "name": "uat-dataaudit",
+    "image": "httpd:2.4",
+    "memoryReservation": 128,
+    "essential": false,
+    "portMappings": [
+      {
+        "containerPort": 80,
+        "protocol": "tcp",
+        "hostPort": 8003
+      }
+    ],
+    "placementConstraints": [
+      {
+        "type": "memberOf",
+        "expression": "attribute:ecs.os-type == linux"
+      }
+    ]
+  },
+
+  {
+    "name": "uat-elasticsearchindexer",
+    "image": "httpd:2.4",
+    "memoryReservation": 128,
+    "essential": false,
+    "portMappings": [
+      {
+        "containerPort": 80,
+        "protocol": "tcp",
+        "hostPort": 8004
+      }
+    ],
+    "placementConstraints": [
+      {
+        "type": "memberOf",
+        "expression": "attribute:ecs.os-type == linux"
+      }
+    ]
+  },
+
+  {
+    "name": "uat-jobs",
+    "image": "microsoft/iis",
+    "memory" : 512,
+    "essential": false,
+    "portMappings": [
+      {
+        "containerPort": 80,
+        "protocol": "tcp",
+        "hostPort": 8005
+      }
+    ],
+    "placementConstraints": [
+      {
+        "type": "memberOf",
+        "expression": "attribute:ecs.os-type == windows"
+      }
+    ]
+  }
+
+]
+

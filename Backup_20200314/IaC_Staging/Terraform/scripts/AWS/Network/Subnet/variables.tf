@@ -1,0 +1,11 @@
+variable "region"		{ type = "string" }
+variable "vpc_name"		{ type = "string" }
+variable "subnet_name"		{ type = "string" }
+variable "subnet_cidr"		{ type = "string" }
+variable "subnet_az"		{ type = "string" }
+variable "bucket_name"		{ type = "string" }
+variable "vpc_tfstate_file"	{ type = "string" }
+variable "subnet_tfstate_file"	{ type = "string" }
+variable "project_name"		{ type = "string" }
+variable "organization_name"	{ type = "string" }
+variable "client_name"		{ type = "string" }

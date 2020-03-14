@@ -1,0 +1,40 @@
+{
+    "variables": {
+        "build_version": "{{isotime \"2006.01.02.150405\"}}",
+        "aws_profile": aws_profile,
+        "vpc_id": vpc-0f5fec17dd6750041,
+        "subnet_id": subnet-022127b990430c13b,
+        "security_group_id": sg-07d7ad27165e3aae1
+    },
+    "builders": [
+        {
+            "type": "amazon-ebs",
+            "region": "us-west-2",
+            "profile": "{{user `aws_profile`}}",
+            "vpc_id": "{{user `vpc_id`}}",
+            "subnet_id": "{{user `subnet_id`}}",
+            "security_group_id": "{{user `security_group_id`}}",
+            "source_ami_filter": {
+                "filters": {
+                    "name": "Windows_Server-2016-English-Full-Base-*",
+                    "root-device-type": "ebs",
+                    "virtualization-type": "hvm"
+                },
+                "most_recent": true,
+                "owners": [
+                    "801119661308"
+                ]
+            },
+            "ami_name": "WIN2016-CUSTOM-{{user `build_version`}}",
+            "instance_type": "t3.xlarge",
+            "user_data_file": "userdata.ps1",
+            "associate_public_ip_address": true,
+            "communicator": "winrm",
+            "winrm_username": "Administrator",
+            "winrm_port": 5986,
+            "winrm_timeout": "15m",
+            "winrm_use_ssl": true,
+            "winrm_insecure": true
+        }
+    ]
+}

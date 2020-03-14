@@ -1,0 +1,11 @@
+variable "region_name" {}
+variable "queue_name" {}
+variable "delay_seconds" {}
+variable "max_message_size" {}
+variable "message_retention_seconds" {}
+variable "receive_wait_time_seconds" {}
+variable "tag_name" {}
+variable "project_name" {}
+variable "client_name" {}
+variable "environment_name" {}
+variable "network_zone" {}
