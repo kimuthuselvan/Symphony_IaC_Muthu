@@ -1,0 +1,14 @@
+region_name = "$REGION_NAME"
+
+ec2_name = "$EC2_NAME"
+ami_id = "$AMI_ID"
+instance_type = "$INSTANCE_TYPE"
+keypair_name = "$KEYPAIR_NAME"
+
+vpc_name = "$VPC_NAME"
+subnet_name = "$SUBNET_NAME"
+
+tag_name = "$EC2_NAME"
+project_name = "Symphony"
+organization_name = "Advantasure Inc."
+client_name = "AHS"

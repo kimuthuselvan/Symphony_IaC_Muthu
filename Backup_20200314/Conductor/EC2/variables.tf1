@@ -1,0 +1,9 @@
+variable "region_name" {}
+variable "subnet_id" {}
+variable "key_name" {}
+variable "sg_id" {}
+variable "owners" {}
+variable "filter_image_owner_alias" {}
+variable "filter_image_location" {}
+variable "instance_type" {}
+variable "ec2_name" {}

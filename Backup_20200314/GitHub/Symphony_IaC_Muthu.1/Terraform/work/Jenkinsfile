@@ -1,0 +1,10 @@
+pipeline {
+  agent any
+  
+    stage('terraform') {
+      steps {
+        sh 'echo Build Count: $BUILD_NUMBER'
+		sh 'echo Hello Terraform'
+      }
+    }
+}

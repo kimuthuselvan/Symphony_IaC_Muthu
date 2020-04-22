@@ -1,0 +1,13 @@
+Region:
+- Name: us-east-1
+  S3:
+  - Name: symphony-ahs-tfstate-({{Region.Name}})
+    Deploy: true
+    Terraform: Deploy
+    TicketNumber: 0000
+- Name: us-west-1
+  S3:
+  - Name: symphony-ahs-tfstate-({{Region.Name}})
+    Deploy: true
+    Terraform: Deploy
+    TicketNumber: 0000

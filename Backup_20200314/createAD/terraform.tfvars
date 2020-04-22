@@ -1,0 +1,15 @@
+domain_name        = "symphonymain.local"
+short_name         = "symphonymain"
+AD_size            = "Small"
+admin_password     = "_W3lC0m3_"
+vpc_id             = "vpc-0b2eba5d72c599770"
+subnet_ids         = ["subnet-0c2bbd3fc6aa29e0d", "subnet-0b89a4615bf0fc2b7"]
+region_name        = "us-east-1"
+iam_prefix         = "samba-domain"
+vm_instance_type   = "t2.micro"
+#vm_ami_id          = "ami-042d0d60c5d93a987"  # Microsoft Windows Server 2019 Base
+vm_ami_id          = "ami-00cb4c0d60b9476f4"
+vm_disk_size       = 30
+key_name           = "symphony_main_domain_local"
+security_group     = "sg-04b4c593629f2e84c"
+user_data_file     = "userdata.tpl"

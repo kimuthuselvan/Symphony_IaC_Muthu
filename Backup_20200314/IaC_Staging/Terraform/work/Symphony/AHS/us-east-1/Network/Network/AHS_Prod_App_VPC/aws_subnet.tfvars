@@ -1,0 +1,10 @@
+region = "us-east-1"
+vpc_name = "AHS_Prod_App_VPC"
+subnet_name = "$SUBNET_NAME"
+subnet_cidr = "$SUBNET_CIDR"
+subnet_az = "$SUBNET_AZ"
+
+tag_name = "$SUBNET_NAME"
+project_name = "Symphony"
+organization_name = "Advantasure Inc."
+client_name = "AHS"

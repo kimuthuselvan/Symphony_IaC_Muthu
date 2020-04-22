@@ -1,0 +1,35 @@
+Region:
+  - Name: us-east-1
+    SecurityGroup:
+      - Name: Linux_Basic_SG_01
+        VPCName: AHS_Prod_App_VPC
+        Ingress:
+          FromPort: "0"
+          ToPort: "22, 23, 80, 443"
+          Protocol = "tcp"
+          CIDRBlock = ["0.0.0.0/0"]
+        Egress:
+          FromPort: "0"
+          ToPort: "22, 23, 80, 443"
+          Protocol = "tcp"
+          CIDRBlock = ["0.0.0.0/0"]
+        Deploy: true
+        Terraform: Deploy
+        TicketNumber: 0000
+  - Name: us-west-1
+    SecurityGroup:
+      - Name: Linux_Basic_SG_01
+        VPCName: AHS_Prod_App_VPC
+        Ingress:
+          FromPort: "0"
+          ToPort: "22, 23, 80, 443"
+          Protocol = "tcp"
+          CIDRBlock = ["0.0.0.0/0"]
+        Egress:
+          FromPort: "0"
+          ToPort: "0"
+          Protocol = "-1"
+          CIDRBlock = ["0.0.0.0/0"]
+        Deploy: true
+        Terraform: Deploy
+        TicketNumber: 0000

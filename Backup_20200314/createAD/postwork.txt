@@ -1,0 +1,17 @@
+
+
+Login to windows using AD account
+
+merasite.com\Administrator
+passwd from variable file
+
+add Windows feature “Active Directory Domain Services” using Windows Server Manager
+
+Start -> server manager -> local server -> wait for the page to refresh
+in ROLE and FEATURE section -> select task "add role and feature"
+--> select "Active Directory Domain Services" during wizard
+
+once installed
+open user group manager : 
+
+Start -> Administrative Tools -> Active Directory users and computers
