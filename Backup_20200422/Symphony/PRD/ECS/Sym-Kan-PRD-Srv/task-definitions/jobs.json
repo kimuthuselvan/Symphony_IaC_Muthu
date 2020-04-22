@@ -1,0 +1,37 @@
+[
+  {
+    "name": "${container_name}",
+    "image": "945116902499.dkr.ecr.us-east-1.amazonaws.com/jobs:5.18.1.0.3",
+    "essential": true,
+    "portMappings": [
+      {
+        "containerPort": 443,
+        "protocol": "tcp",
+        "hostPort": 0
+      }
+    ],
+    "environment": [
+      {
+        "name": "AppName",
+        "value": "uat"
+      },
+      {
+        "name": "ASPNETCORE_ENVIRONMENT",
+        "value": "Production"
+      },
+      {
+        "name": "ClientName",
+        "value": "kansas"
+      }
+    ],
+    "logConfiguration": {
+      "logDriver": "awslogs",
+        "options": {
+          "awslogs-group": "/${project_name}/${client_name}/${Ecs_name}",
+          "awslogs-region": "${myregion}",
+          "awslogs-stream-prefix": "ecs"
+        }
+    }
+  }
+
+]

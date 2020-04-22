@@ -1,0 +1,15 @@
+region_name = "us-east-1"
+vpc_id = "vpc-0f8dffb441db4a3b7" # Kansas_Prod_Data_VPC
+subnet_ids = ["subnet-0f4e8b039336531a1", "subnet-01990fdba952e6896"] # Kansas_Prod_Data_AZ-A, Kansas_Prod_Data_AZ-B
+cluster_id = "symkanecprd"
+engine_name = "redis"
+engine_version = "5.0.0"
+node_type = "cache.r5.large"
+num_cache_nodes = "2"
+#num_node_groups = "3"
+parameter_group_name = "default.redis5.0"
+port = "6379"
+project_name = "Symphony"
+client_name = "Kansas"
+environment_name = "Production"
+zone_name = "Trusted"

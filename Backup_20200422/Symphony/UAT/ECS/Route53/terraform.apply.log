@@ -1,0 +1,29 @@
+[0m[1mdata.aws_route53_zone.my_hosted_zone: Refreshing state...[0m
+[0m[1mdata.aws_alb.maintenance_alb: Refreshing state...[0m
+[0m[1mdata.aws_lb.my_nlb: Refreshing state...[0m
+[0m[1maws_route53_health_check.albhealthcheck: Creating...[0m[0m
+[0m[1maws_route53_health_check.maintenancepagehealthcheck: Creating...[0m[0m
+[0m[1maws_route53_health_check.maintenancepagehealthcheck: Creation complete after 1s [id=4d7ea711-b51d-4207-8d14-fdb666c488a1][0m[0m
+[0m[1maws_route53_record.main-standby: Creating...[0m[0m
+[0m[1maws_route53_record.f5-main-standby: Creating...[0m[0m
+[0m[1maws_route53_health_check.albhealthcheck: Creation complete after 1s [id=f6dc32af-25c9-4929-a147-016ea9aa7f4c][0m[0m
+[0m[1maws_route53_record.f5_main[0]: Creating...[0m[0m
+[0m[1maws_route53_record.main[0]: Creating...[0m[0m
+[0m[1maws_route53_record.main-standby: Still creating... [10s elapsed][0m[0m
+[0m[1maws_route53_record.f5-main-standby: Still creating... [10s elapsed][0m[0m
+[0m[1maws_route53_record.f5_main[0]: Still creating... [10s elapsed][0m[0m
+[0m[1maws_route53_record.main[0]: Still creating... [10s elapsed][0m[0m
+[0m[1maws_route53_record.main-standby: Still creating... [20s elapsed][0m[0m
+[0m[1maws_route53_record.f5-main-standby: Still creating... [20s elapsed][0m[0m
+[0m[1maws_route53_record.f5_main[0]: Still creating... [20s elapsed][0m[0m
+[0m[1maws_route53_record.main[0]: Still creating... [20s elapsed][0m[0m
+[0m[1maws_route53_record.main-standby: Still creating... [30s elapsed][0m[0m
+[0m[1maws_route53_record.f5-main-standby: Still creating... [30s elapsed][0m[0m
+[0m[1maws_route53_record.f5_main[0]: Still creating... [30s elapsed][0m[0m
+[0m[1maws_route53_record.main[0]: Still creating... [30s elapsed][0m[0m
+[0m[1maws_route53_record.main-standby: Creation complete after 36s [id=Z1H753EIYLU71_bcbsks-uat_A_bcbsks-uat-Secondary][0m[0m
+[0m[1maws_route53_record.f5-main-standby: Creation complete after 37s [id=Z1H753EIYLU71_f5-bcbsks-uat_A_f5-bcbsks-uat-Secondary][0m[0m
+[0m[1maws_route53_record.f5_main[0]: Creation complete after 37s [id=Z1H753EIYLU71_f5-bcbsks-uat_A_f5-bcbsks-uat-Primary][0m[0m
+[0m[1maws_route53_record.main[0]: Creation complete after 37s [id=Z1H753EIYLU71_bcbsks-uat_A_bcbsks-uat-Primary][0m[0m
+[0m[1m[32m
+Apply complete! Resources: 6 added, 0 changed, 0 destroyed.[0m

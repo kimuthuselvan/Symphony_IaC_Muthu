@@ -1,0 +1,15 @@
+variable "region_name" {}
+variable "vpc_name" {}
+variable "subnet_names" {}
+variable "key_name" {}
+variable "instance_type" {}
+variable "min_instance_size" {}
+variable "desired_capacity" {}
+variable "max_instance_size" {}
+variable "user_data_file" {}
+variable "default_tags" {}
+variable "alb_list_port" {}
+variable "aws_alb_protocol" {}
+variable "alb_target_port" {}
+variable "domain_name" {}
+variable "alb_target_protocol" {}

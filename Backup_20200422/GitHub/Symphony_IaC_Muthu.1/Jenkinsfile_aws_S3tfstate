@@ -1,0 +1,60 @@
+pipeline {
+  agent { label 'master' }
+  
+  stages {
+    stage('Checkout') {
+      steps {
+        sh 'git checkout master'
+      }
+    }
+    stage('yaml2tfvar') {
+      steps {
+        sh 'echo Build Count: $BUILD_NUMBER'
+	sh 'Conductor/bin/yaml2tfvars_S3tfstate.sh'
+      }
+    }
+    stage('Terraform-Deploy') {
+      steps {
+        sh 'Terraform/bin/terraform_S3tfstate.sh'
+      }
+    }
+    stage('Git-add') {
+      steps {
+        sh 'Conductor/bin/git-add.sh'
+      }
+    }
+    stage('Git-Commit') {
+      steps {
+        sh 'Conductor/bin/git-commit.sh'
+      }
+    }
+    stage('Git-Tagging') {
+      steps {
+        sh 'Conductor/bin/git-tag.sh'
+      }
+    }
+    stage('Staging') {
+      steps {
+        sh 'Conductor/bin/push2stage.sh'
+      }
+    }
+  }
+  post {
+    always {
+      echo 'One way or another, I have finished'
+      /* deleteDir()   clean up our workspace */
+    }
+    success {
+      echo 'I succeeeded!'
+    }
+    unstable {
+      echo 'I am unstable :/'
+    }
+    failure {
+      echo 'I failed :('
+    }
+    changed {
+      echo 'Things were different before...'
+    }
+  }	
+}

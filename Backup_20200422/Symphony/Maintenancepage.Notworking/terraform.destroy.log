@@ -1,0 +1,45 @@
+[33m
+[1m[33mWarning: [0m[0m[1mInterpolation-only expressions are deprecated[0m
+
+[0m  on create_NLB_lambda.tf line 44, in resource "aws_lb" "app_public":
+  44:     subnet_id    = [4m"${element(tolist(data.aws_subnet_ids.subnet_ids.ids), 0)}"[0m
+[0m
+Terraform 0.11 and earlier required all non-constant expressions to be
+provided via interpolation syntax, but this pattern is now deprecated. To
+silence this warning, remove the "${ sequence from the start and the }"
+sequence from the end of this expression, leaving just the inner expression.
+
+Template interpolation syntax is still used to construct strings from
+expressions when the template includes multiple interpolation sequences or a
+mixture of literal strings and interpolations. This deprecation applies only
+to templates that consist entirely of a single interpolation sequence.
+
+(and 3 more similar warnings elsewhere)
+[0m[0m
+[31m
+[1m[31mError: [0m[0m[1mCould not satisfy plugin requirements[0m
+
+[0m
+Plugin reinitialization required. Please run "terraform init".
+
+Plugins are external binaries that Terraform uses to access and manipulate
+resources. The configuration provided requires plugins which can't be located,
+don't satisfy the version constraints, or are otherwise incompatible.
+
+Terraform automatically discovers provider requirements from your
+configuration, including providers used in child modules. To see the
+requirements and constraints from each module, run "terraform providers".
+
+[0m[0m
+[31m
+[1m[31mError: [0m[0m[1mprovider.template: no suitable version installed
+  version requirements: "(any version)"
+  versions installed: none[0m
+
+[0m[0m[0m
+[31m
+[1m[31mError: [0m[0m[1mprovider.aws: no suitable version installed
+  version requirements: "(any version)"
+  versions installed: none[0m
+
+[0m[0m[0m

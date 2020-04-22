@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<ServerStorage xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <ServerList>
+    <ArrayOfString>
+      <string>https://trapsdmz.ikasystems.com:2125/</string>
+    </ArrayOfString>
+  </ServerList>
+  <PrimaryServer />
+</ServerStorage>

@@ -1,0 +1,50 @@
+[0m[1maws_lb_target_group.app_public_80: Refreshing state... [id=arn:aws:elasticloadbalancing:us-east-1:660751646273:targetgroup/Sym-Kan-PRD-DMZ-WebApp-TCP80/f17dde14813cd922][0m
+[0m[1maws_lb.app_public: Refreshing state... [id=arn:aws:elasticloadbalancing:us-east-1:660751646273:loadbalancer/net/Sym-Kan-PRD-DMZ-WebApp-NLB/c5394af62e0f2591][0m
+[0m[1maws_lb_target_group.app_public_443: Refreshing state... [id=arn:aws:elasticloadbalancing:us-east-1:660751646273:targetgroup/Sym-Kan-PRD-DMZ-WebApp-TCP443/b4b71e0baa636bec][0m
+[0m[1maws_lambda_function.static_lb_updater_80: Refreshing state... [id=Sym-Kan-PRD-DMZ-WebApp-Populate-NLB-with-ALB-HTTP][0m
+[0m[1maws_lambda_function.static_lb_updater_443: Refreshing state... [id=Sym-Kan-PRD-DMZ-WebApp-Populate-NLB-with-ALB-HTTPS][0m
+[0m[1maws_lb_listener.app_public_80: Refreshing state... [id=arn:aws:elasticloadbalancing:us-east-1:660751646273:listener/net/Sym-Kan-PRD-DMZ-WebApp-NLB/c5394af62e0f2591/d4e7caec2dcffd8d][0m
+[0m[1maws_lb_listener.app_public_443: Refreshing state... [id=arn:aws:elasticloadbalancing:us-east-1:660751646273:listener/net/Sym-Kan-PRD-DMZ-WebApp-NLB/c5394af62e0f2591/3e5e355124df5a84][0m
+[0m[1maws_lambda_permission.allow_cloudwatch_80: Refreshing state... [id=AllowExecutionFromCloudWatch][0m
+[0m[1maws_cloudwatch_event_target.static_lb_updater_80: Refreshing state... [id=cron-minute-lambda-Sym-Kan-PRD-DMZ-WebApp-port80][0m
+[0m[1maws_lambda_permission.allow_cloudwatch_443: Refreshing state... [id=AllowExecutionFromCloudWatch][0m
+[0m[1maws_cloudwatch_event_target.static_lb_updater_443: Refreshing state... [id=cron-minute-lambda-Sym-Kan-PRD-DMZ-WebApp-port443][0m
+[0m[1maws_lambda_permission.allow_cloudwatch_80: Destroying... [id=AllowExecutionFromCloudWatch][0m[0m
+[0m[1maws_lambda_permission.allow_cloudwatch_443: Destroying... [id=AllowExecutionFromCloudWatch][0m[0m
+[0m[1maws_cloudwatch_event_target.static_lb_updater_443: Destroying... [id=cron-minute-lambda-Sym-Kan-PRD-DMZ-WebApp-port443][0m[0m
+[0m[1maws_lb_listener.app_public_443: Destroying... [id=arn:aws:elasticloadbalancing:us-east-1:660751646273:listener/net/Sym-Kan-PRD-DMZ-WebApp-NLB/c5394af62e0f2591/3e5e355124df5a84][0m[0m
+[0m[1maws_lb_listener.app_public_80: Destroying... [id=arn:aws:elasticloadbalancing:us-east-1:660751646273:listener/net/Sym-Kan-PRD-DMZ-WebApp-NLB/c5394af62e0f2591/d4e7caec2dcffd8d][0m[0m
+[0m[1maws_cloudwatch_event_target.static_lb_updater_80: Destroying... [id=cron-minute-lambda-Sym-Kan-PRD-DMZ-WebApp-port80][0m[0m
+[0m[1maws_cloudwatch_event_target.static_lb_updater_443: Destruction complete after 0s[0m[0m
+[0m[1maws_cloudwatch_event_target.static_lb_updater_80: Destruction complete after 0s[0m[0m
+[0m[1maws_lb_listener.app_public_443: Destruction complete after 0s[0m[0m
+[0m[1maws_lb_listener.app_public_80: Destruction complete after 0s[0m[0m
+[0m[1maws_lb.app_public: Destroying... [id=arn:aws:elasticloadbalancing:us-east-1:660751646273:loadbalancer/net/Sym-Kan-PRD-DMZ-WebApp-NLB/c5394af62e0f2591][0m[0m
+[0m[1maws_lambda_permission.allow_cloudwatch_443: Destruction complete after 0s[0m[0m
+[0m[1maws_lambda_permission.allow_cloudwatch_80: Destruction complete after 0s[0m[0m
+[0m[1maws_lambda_function.static_lb_updater_443: Destroying... [id=Sym-Kan-PRD-DMZ-WebApp-Populate-NLB-with-ALB-HTTPS][0m[0m
+[0m[1maws_lambda_function.static_lb_updater_80: Destroying... [id=Sym-Kan-PRD-DMZ-WebApp-Populate-NLB-with-ALB-HTTP][0m[0m
+[0m[1maws_lambda_function.static_lb_updater_80: Destruction complete after 0s[0m[0m
+[0m[1maws_lb_target_group.app_public_80: Destroying... [id=arn:aws:elasticloadbalancing:us-east-1:660751646273:targetgroup/Sym-Kan-PRD-DMZ-WebApp-TCP80/f17dde14813cd922][0m[0m
+[0m[1maws_lambda_function.static_lb_updater_443: Destruction complete after 0s[0m[0m
+[0m[1maws_lb_target_group.app_public_443: Destroying... [id=arn:aws:elasticloadbalancing:us-east-1:660751646273:targetgroup/Sym-Kan-PRD-DMZ-WebApp-TCP443/b4b71e0baa636bec][0m[0m
+[0m[1maws_lb_target_group.app_public_80: Destruction complete after 0s[0m[0m
+[0m[1maws_lb_target_group.app_public_443: Destruction complete after 0s[0m[0m
+[0m[1maws_lb.app_public: Still destroying... [id=arn:aws:elasticloadbalancing:us-east-1:...an-PRD-DMZ-WebApp-NLB/c5394af62e0f2591, 10s elapsed][0m[0m
+[0m[1maws_lb.app_public: Still destroying... [id=arn:aws:elasticloadbalancing:us-east-1:...an-PRD-DMZ-WebApp-NLB/c5394af62e0f2591, 20s elapsed][0m[0m
+[0m[1maws_lb.app_public: Still destroying... [id=arn:aws:elasticloadbalancing:us-east-1:...an-PRD-DMZ-WebApp-NLB/c5394af62e0f2591, 30s elapsed][0m[0m
+[0m[1maws_lb.app_public: Still destroying... [id=arn:aws:elasticloadbalancing:us-east-1:...an-PRD-DMZ-WebApp-NLB/c5394af62e0f2591, 40s elapsed][0m[0m
+[0m[1maws_lb.app_public: Still destroying... [id=arn:aws:elasticloadbalancing:us-east-1:...an-PRD-DMZ-WebApp-NLB/c5394af62e0f2591, 50s elapsed][0m[0m
+[0m[1maws_lb.app_public: Still destroying... [id=arn:aws:elasticloadbalancing:us-east-1:...an-PRD-DMZ-WebApp-NLB/c5394af62e0f2591, 1m0s elapsed][0m[0m
+[0m[1maws_lb.app_public: Still destroying... [id=arn:aws:elasticloadbalancing:us-east-1:...an-PRD-DMZ-WebApp-NLB/c5394af62e0f2591, 1m10s elapsed][0m[0m
+[0m[1maws_lb.app_public: Still destroying... [id=arn:aws:elasticloadbalancing:us-east-1:...an-PRD-DMZ-WebApp-NLB/c5394af62e0f2591, 1m20s elapsed][0m[0m
+[0m[1maws_lb.app_public: Still destroying... [id=arn:aws:elasticloadbalancing:us-east-1:...an-PRD-DMZ-WebApp-NLB/c5394af62e0f2591, 1m30s elapsed][0m[0m
+[0m[1maws_lb.app_public: Still destroying... [id=arn:aws:elasticloadbalancing:us-east-1:...an-PRD-DMZ-WebApp-NLB/c5394af62e0f2591, 1m40s elapsed][0m[0m
+[0m[1maws_lb.app_public: Still destroying... [id=arn:aws:elasticloadbalancing:us-east-1:...an-PRD-DMZ-WebApp-NLB/c5394af62e0f2591, 1m50s elapsed][0m[0m
+[0m[1maws_lb.app_public: Still destroying... [id=arn:aws:elasticloadbalancing:us-east-1:...an-PRD-DMZ-WebApp-NLB/c5394af62e0f2591, 2m0s elapsed][0m[0m
+[0m[1maws_lb.app_public: Still destroying... [id=arn:aws:elasticloadbalancing:us-east-1:...an-PRD-DMZ-WebApp-NLB/c5394af62e0f2591, 2m10s elapsed][0m[0m
+[0m[1maws_lb.app_public: Still destroying... [id=arn:aws:elasticloadbalancing:us-east-1:...an-PRD-DMZ-WebApp-NLB/c5394af62e0f2591, 2m20s elapsed][0m[0m
+[0m[1maws_lb.app_public: Still destroying... [id=arn:aws:elasticloadbalancing:us-east-1:...an-PRD-DMZ-WebApp-NLB/c5394af62e0f2591, 2m30s elapsed][0m[0m
+[0m[1maws_lb.app_public: Destruction complete after 2m39s[0m[0m
+[0m[1m[32m
+Destroy complete! Resources: 11 destroyed.[0m

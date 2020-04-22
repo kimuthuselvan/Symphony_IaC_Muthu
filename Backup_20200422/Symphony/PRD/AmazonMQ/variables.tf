@@ -1,0 +1,16 @@
+variable "region_name" {}
+variable "config_description" {}
+variable "broker_name" {}
+variable "aws_mq_config_name" {}
+variable "subnet_ids" {}
+variable "security_groups" {}
+variable "engine_type" {}
+variable "engine_version" {}
+variable "instance_type" {}
+variable "tag_name" {}
+variable "project_name" {}
+variable "client_name" {}
+variable "environment_name" {}
+variable "zone_name" {}
+variable "username" {}
+variable "password" {}

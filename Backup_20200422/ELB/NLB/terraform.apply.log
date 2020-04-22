@@ -1,0 +1,43 @@
+[0m[1maws_lb_target_group.app_public_80: Creating...[0m[0m
+[0m[1maws_lb_target_group.app_public_443: Creating...[0m[0m
+[0m[1maws_lb.app_public: Creating...[0m[0m
+[0m[1maws_lb_target_group.app_public_80: Creation complete after 0s [id=arn:aws:elasticloadbalancing:us-east-1:660751646273:targetgroup/Kan-Sym-PRD-DMZ-WebApp-TCP80/cd5d696717f2fe6a][0m[0m
+[0m[1maws_lambda_function.static_lb_updater_80: Creating...[0m[0m
+[0m[1maws_lb_target_group.app_public_443: Creation complete after 0s [id=arn:aws:elasticloadbalancing:us-east-1:660751646273:targetgroup/Kan-Sym-PRD-DMZ-WebApp-TCP443/f3ac5039a4e8f82a][0m[0m
+[0m[1maws_lambda_function.static_lb_updater_443: Creating...[0m[0m
+[0m[1maws_lambda_function.static_lb_updater_80: Creation complete after 6s [id=Kan-Sym-PRD-DMZ-WebApp-Populate-NLB-with-ALB-HTTP][0m[0m
+[0m[1maws_lambda_permission.allow_cloudwatch_80: Creating...[0m[0m
+[0m[1maws_cloudwatch_event_target.static_lb_updater_80: Creating...[0m[0m
+[0m[1maws_lambda_permission.allow_cloudwatch_80: Creation complete after 0s [id=AllowExecutionFromCloudWatch][0m[0m
+[0m[1maws_cloudwatch_event_target.static_lb_updater_80: Creation complete after 0s [id=cron-minute-lambda-Kan-Sym-PRD-DMZ-WebApp-port80][0m[0m
+[0m[1maws_lb.app_public: Still creating... [10s elapsed][0m[0m
+[0m[1maws_lambda_function.static_lb_updater_443: Still creating... [10s elapsed][0m[0m
+[0m[1maws_lambda_function.static_lb_updater_443: Creation complete after 12s [id=Kan-Sym-PRD-DMZ-WebApp-Populate-NLB-with-ALB-HTTPS][0m[0m
+[0m[1maws_lambda_permission.allow_cloudwatch_443: Creating...[0m[0m
+[0m[1maws_cloudwatch_event_target.static_lb_updater_443: Creating...[0m[0m
+[0m[1maws_lambda_permission.allow_cloudwatch_443: Creation complete after 0s [id=AllowExecutionFromCloudWatch][0m[0m
+[0m[1maws_cloudwatch_event_target.static_lb_updater_443: Creation complete after 0s [id=cron-minute-lambda-Kan-Sym-PRD-DMZ-WebApp-port443][0m[0m
+[0m[1maws_lb.app_public: Still creating... [20s elapsed][0m[0m
+[0m[1maws_lb.app_public: Still creating... [30s elapsed][0m[0m
+[0m[1maws_lb.app_public: Still creating... [40s elapsed][0m[0m
+[0m[1maws_lb.app_public: Still creating... [50s elapsed][0m[0m
+[0m[1maws_lb.app_public: Still creating... [1m0s elapsed][0m[0m
+[0m[1maws_lb.app_public: Still creating... [1m10s elapsed][0m[0m
+[0m[1maws_lb.app_public: Still creating... [1m20s elapsed][0m[0m
+[0m[1maws_lb.app_public: Still creating... [1m30s elapsed][0m[0m
+[0m[1maws_lb.app_public: Still creating... [1m40s elapsed][0m[0m
+[0m[1maws_lb.app_public: Still creating... [1m50s elapsed][0m[0m
+[0m[1maws_lb.app_public: Still creating... [2m0s elapsed][0m[0m
+[0m[1maws_lb.app_public: Still creating... [2m10s elapsed][0m[0m
+[0m[1maws_lb.app_public: Still creating... [2m20s elapsed][0m[0m
+[0m[1maws_lb.app_public: Still creating... [2m30s elapsed][0m[0m
+[0m[1maws_lb.app_public: Still creating... [2m40s elapsed][0m[0m
+[0m[1maws_lb.app_public: Still creating... [2m50s elapsed][0m[0m
+[0m[1maws_lb.app_public: Still creating... [3m0s elapsed][0m[0m
+[0m[1maws_lb.app_public: Creation complete after 3m1s [id=arn:aws:elasticloadbalancing:us-east-1:660751646273:loadbalancer/net/Kan-Sym-PRD-DMZ-WebApp-NLB/70fe243fb62ffa6d][0m[0m
+[0m[1maws_lb_listener.app_public_80: Creating...[0m[0m
+[0m[1maws_lb_listener.app_public_443: Creating...[0m[0m
+[0m[1maws_lb_listener.app_public_80: Creation complete after 1s [id=arn:aws:elasticloadbalancing:us-east-1:660751646273:listener/net/Kan-Sym-PRD-DMZ-WebApp-NLB/70fe243fb62ffa6d/f658319506771000][0m[0m
+[0m[1maws_lb_listener.app_public_443: Creation complete after 1s [id=arn:aws:elasticloadbalancing:us-east-1:660751646273:listener/net/Kan-Sym-PRD-DMZ-WebApp-NLB/70fe243fb62ffa6d/0a7bd4ef55c70f74][0m[0m
+[0m[1m[32m
+Apply complete! Resources: 11 added, 0 changed, 0 destroyed.[0m

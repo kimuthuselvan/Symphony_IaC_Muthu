@@ -1,0 +1,72 @@
+[33m
+[1m[33mWarning: [0m[0m[1mInterpolation-only expressions are deprecated[0m
+
+[0m  on linux_ec2.tf line 45, in resource "aws_autoscaling_group" "windowsservers":
+  45:   count                     = [4m"${var.require_ASG == true ? length(var.subnet_id) : 0}"[0m
+[0m
+Terraform 0.11 and earlier required all non-constant expressions to be
+provided via interpolation syntax, but this pattern is now deprecated. To
+silence this warning, remove the "${ sequence from the start and the }"
+sequence from the end of this expression, leaving just the inner expression.
+
+Template interpolation syntax is still used to construct strings from
+expressions when the template includes multiple interpolation sequences or a
+mixture of literal strings and interpolations. This deprecation applies only
+to templates that consist entirely of a single interpolation sequence.
+
+(and 3 more similar warnings elsewhere)
+[0m[0m
+[31m
+[1m[31mError: [0m[0m[1mReference to undeclared input variable[0m
+
+[0m  on linux_ec2.tf line 90, in resource "aws_launch_configuration" "launchwindows":
+  90:   count                        = "${[4mvar.require_ASG[0m == true ? 1 : 0}"
+[0m
+An input variable with the name "require_ASG" has not been declared. This
+variable can be declared with a variable "require_ASG" {} block.
+[0m[0m
+[31m
+[1m[31mError: [0m[0m[1mReference to undeclared resource[0m
+
+[0m  on linux_ec2.tf line 95, in resource "aws_launch_configuration" "launchwindows":
+  95:   image_id                    = [4mdata.aws_ami.windows-2019[0m.id
+[0m
+A data resource "aws_ami" "windows-2019" has not been declared in the root
+module.
+[0m[0m
+[31m
+[1m[31mError: [0m[0m[1mReference to undeclared resource[0m
+
+[0m  on linux_ec2.tf line 97, in resource "aws_launch_configuration" "launchwindows":
+  97:   user_data                   = [4mdata.template_file.userdata[0m.rendered
+[0m
+A data resource "template_file" "userdata" has not been declared in the root
+module.
+[0m[0m
+[31m
+[1m[31mError: [0m[0m[1mReference to undeclared input variable[0m
+
+[0m  on linux_ec2.tf line 107, in resource "aws_instance" "dou_proxy":
+ 107:   count           = "${[4mvar.require_ASG[0m == true ? 0 : length(var.subnet_id) }"
+[0m
+An input variable with the name "require_ASG" has not been declared. This
+variable can be declared with a variable "require_ASG" {} block.
+[0m[0m
+[31m
+[1m[31mError: [0m[0m[1mReference to undeclared resource[0m
+
+[0m  on linux_ec2.tf line 108, in resource "aws_instance" "dou_proxy":
+ 108:   ami             = [4mdata.aws_ami.windows-2019[0m.id
+[0m
+A data resource "aws_ami" "windows-2019" has not been declared in the root
+module.
+[0m[0m
+[31m
+[1m[31mError: [0m[0m[1mReference to undeclared resource[0m
+
+[0m  on linux_ec2.tf line 115, in resource "aws_instance" "dou_proxy":
+ 115:   user_data       = [4mdata.template_file.userdata[0m.rendered
+[0m
+A data resource "template_file" "userdata" has not been declared in the root
+module.
+[0m[0m

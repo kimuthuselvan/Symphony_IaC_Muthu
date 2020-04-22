@@ -1,0 +1,39 @@
+[0m[1maws_cloudwatch_event_rule.cron_minute: Refreshing state... [id=cron-minute-lambda][0m
+[0m[1maws_s3_bucket.static_lb: Refreshing state... [id=sym-kan-nlb-us-east-1][0m
+[0m[1maws_cloudwatch_event_rule.cron_minute: Destroying... [id=cron-minute-lambda][0m[0m
+[0m[1maws_s3_bucket.static_lb: Destroying... [id=sym-kan-nlb-us-east-1][0m[0m
+[0m[1maws_s3_bucket.static_lb: Destruction complete after 0s[0m[0m
+[0m[1maws_cloudwatch_event_rule.cron_minute: Still destroying... [id=cron-minute-lambda, 10s elapsed][0m[0m
+[0m[1maws_cloudwatch_event_rule.cron_minute: Still destroying... [id=cron-minute-lambda, 20s elapsed][0m[0m
+[0m[1maws_cloudwatch_event_rule.cron_minute: Still destroying... [id=cron-minute-lambda, 30s elapsed][0m[0m
+[0m[1maws_cloudwatch_event_rule.cron_minute: Still destroying... [id=cron-minute-lambda, 40s elapsed][0m[0m
+[0m[1maws_cloudwatch_event_rule.cron_minute: Still destroying... [id=cron-minute-lambda, 50s elapsed][0m[0m
+[0m[1maws_cloudwatch_event_rule.cron_minute: Still destroying... [id=cron-minute-lambda, 1m0s elapsed][0m[0m
+[0m[1maws_cloudwatch_event_rule.cron_minute: Still destroying... [id=cron-minute-lambda, 1m10s elapsed][0m[0m
+[0m[1maws_cloudwatch_event_rule.cron_minute: Still destroying... [id=cron-minute-lambda, 1m20s elapsed][0m[0m
+[0m[1maws_cloudwatch_event_rule.cron_minute: Still destroying... [id=cron-minute-lambda, 1m30s elapsed][0m[0m
+[0m[1maws_cloudwatch_event_rule.cron_minute: Still destroying... [id=cron-minute-lambda, 1m40s elapsed][0m[0m
+[0m[1maws_cloudwatch_event_rule.cron_minute: Still destroying... [id=cron-minute-lambda, 1m50s elapsed][0m[0m
+[0m[1maws_cloudwatch_event_rule.cron_minute: Still destroying... [id=cron-minute-lambda, 2m0s elapsed][0m[0m
+[0m[1maws_cloudwatch_event_rule.cron_minute: Still destroying... [id=cron-minute-lambda, 2m10s elapsed][0m[0m
+[0m[1maws_cloudwatch_event_rule.cron_minute: Still destroying... [id=cron-minute-lambda, 2m20s elapsed][0m[0m
+[0m[1maws_cloudwatch_event_rule.cron_minute: Still destroying... [id=cron-minute-lambda, 2m30s elapsed][0m[0m
+[0m[1maws_cloudwatch_event_rule.cron_minute: Still destroying... [id=cron-minute-lambda, 2m40s elapsed][0m[0m
+[0m[1maws_cloudwatch_event_rule.cron_minute: Still destroying... [id=cron-minute-lambda, 2m50s elapsed][0m[0m
+[0m[1maws_cloudwatch_event_rule.cron_minute: Still destroying... [id=cron-minute-lambda, 3m0s elapsed][0m[0m
+[0m[1maws_cloudwatch_event_rule.cron_minute: Still destroying... [id=cron-minute-lambda, 3m10s elapsed][0m[0m
+[0m[1maws_cloudwatch_event_rule.cron_minute: Still destroying... [id=cron-minute-lambda, 3m20s elapsed][0m[0m
+[0m[1maws_cloudwatch_event_rule.cron_minute: Still destroying... [id=cron-minute-lambda, 3m30s elapsed][0m[0m
+[0m[1maws_cloudwatch_event_rule.cron_minute: Still destroying... [id=cron-minute-lambda, 3m40s elapsed][0m[0m
+[0m[1maws_cloudwatch_event_rule.cron_minute: Still destroying... [id=cron-minute-lambda, 3m50s elapsed][0m[0m
+[0m[1maws_cloudwatch_event_rule.cron_minute: Still destroying... [id=cron-minute-lambda, 4m0s elapsed][0m[0m
+[0m[1maws_cloudwatch_event_rule.cron_minute: Still destroying... [id=cron-minute-lambda, 4m10s elapsed][0m[0m
+[0m[1maws_cloudwatch_event_rule.cron_minute: Still destroying... [id=cron-minute-lambda, 4m20s elapsed][0m[0m
+[0m[1maws_cloudwatch_event_rule.cron_minute: Still destroying... [id=cron-minute-lambda, 4m30s elapsed][0m[0m
+[0m[1maws_cloudwatch_event_rule.cron_minute: Still destroying... [id=cron-minute-lambda, 4m40s elapsed][0m[0m
+[0m[1maws_cloudwatch_event_rule.cron_minute: Still destroying... [id=cron-minute-lambda, 4m50s elapsed][0m[0m
+[31m
+[1m[31mError: [0m[0m[1merror deleting CloudWatch Event Rule (cron-minute-lambda): ValidationException: Rule can't be deleted since it has targets.
+	status code: 400, request id: 4292f532-1d50-4aaa-8157-471e4d6bdf09[0m
+
+[0m[0m[0m

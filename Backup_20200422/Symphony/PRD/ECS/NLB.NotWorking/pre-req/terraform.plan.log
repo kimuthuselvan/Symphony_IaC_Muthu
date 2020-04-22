@@ -1,0 +1,289 @@
+[0m[1mRefreshing Terraform state in-memory prior to plan...[0m
+The refreshed state will be used to calculate this plan, but will not be
+persisted to local or remote state storage.
+[0m
+[0m[1maws_iam_role.static_lb_lambda: Refreshing state... [id=lambdaFunction-NLB-to-ALB-role][0m
+[0m[1mdata.aws_iam_policy_document.site_policy: Refreshing state...[0m
+[0m[1maws_security_group.security_group: Refreshing state... [id=sg-067189046c19fbd4f][0m
+[0m[1mdata.aws_ami.amazon-linux-2: Refreshing state...[0m
+[0m[1maws_s3_bucket.contentbucket: Refreshing state... [id=symphony-shared-dmz][0m
+[0m[1maws_iam_role_policy.static_lb_lambda: Refreshing state... [id=lambdaFunction-NLB-to-ALB-role:lambdaFunction-NLB-to-ALB-policy][0m
+[0m[1mdata.template_file.userdata: Refreshing state...[0m
+[0m[1maws_s3_bucket_object.uploadfiles["index.html"]: Refreshing state... [id=index.html][0m
+[0m[1maws_launch_configuration.launchlinux: Refreshing state... [id=Symphony_Shared_DMZ_Linux_LC][0m
+
+------------------------------------------------------------------------
+
+An execution plan has been generated and is shown below.
+Resource actions are indicated with the following symbols:
+  [32m+[0m create
+[0m
+Terraform will perform the following actions:
+
+[1m  # aws_alb.aws_security_alb[0m will be created[0m[0m
+[0m  [32m+[0m[0m resource "aws_alb" "aws_security_alb" {
+      [32m+[0m [0m[1m[0marn[0m[0m                        = (known after apply)
+      [32m+[0m [0m[1m[0marn_suffix[0m[0m                 = (known after apply)
+      [32m+[0m [0m[1m[0mdns_name[0m[0m                   = (known after apply)
+      [32m+[0m [0m[1m[0mdrop_invalid_header_fields[0m[0m = false
+      [32m+[0m [0m[1m[0menable_deletion_protection[0m[0m = false
+      [32m+[0m [0m[1m[0menable_http2[0m[0m               = true
+      [32m+[0m [0m[1m[0mid[0m[0m                         = (known after apply)
+      [32m+[0m [0m[1m[0midle_timeout[0m[0m               = 600
+      [32m+[0m [0m[1m[0minternal[0m[0m                   = true
+      [32m+[0m [0m[1m[0mip_address_type[0m[0m            = (known after apply)
+      [32m+[0m [0m[1m[0mload_balancer_type[0m[0m         = "application"
+      [32m+[0m [0m[1m[0mname[0m[0m                       = "Symphony-Shared-DMZ-ALB"
+      [32m+[0m [0m[1m[0msecurity_groups[0m[0m            = [
+          [32m+[0m [0m"sg-067189046c19fbd4f",
+        ]
+      [32m+[0m [0m[1m[0msubnets[0m[0m                    = [
+          [32m+[0m [0m"subnet-0512fabde0e25b0db",
+          [32m+[0m [0m"subnet-09ee0d6653ec34099",
+        ]
+      [32m+[0m [0m[1m[0mtags[0m[0m                       = {
+          [32m+[0m [0m"app_version"      = "1.0"
+          [32m+[0m [0m"backup_frequency" = "Never"
+          [32m+[0m [0m"backup_vault"     = "-N/A-"
+          [32m+[0m [0m"billing_type"     = "Client"
+          [32m+[0m [0m"client_name"      = "Shared"
+          [32m+[0m [0m"environment_name" = "Production"
+          [32m+[0m [0m"os_name"          = "Amazon Linux 2"
+          [32m+[0m [0m"os_type"          = "Linux"
+          [32m+[0m [0m"project_name"     = "Symphony"
+          [32m+[0m [0m"security_zone"    = "DMZ"
+          [32m+[0m [0m"service_name"     = "EC2"
+          [32m+[0m [0m"service_role"     = "MaintenancePage"
+        }
+      [32m+[0m [0m[1m[0mvpc_id[0m[0m                     = (known after apply)
+      [32m+[0m [0m[1m[0mzone_id[0m[0m                    = (known after apply)
+
+      [32m+[0m [0msubnet_mapping {
+          [32m+[0m [0m[1m[0mallocation_id[0m[0m = (known after apply)
+          [32m+[0m [0m[1m[0msubnet_id[0m[0m     = (known after apply)
+        }
+    }
+
+[1m  # aws_alb_listener.front_end[0m will be created[0m[0m
+[0m  [32m+[0m[0m resource "aws_alb_listener" "front_end" {
+      [32m+[0m [0m[1m[0marn[0m[0m               = (known after apply)
+      [32m+[0m [0m[1m[0mcertificate_arn[0m[0m   = "arn:aws:acm:us-east-1:660751646273:certificate/e05473e0-e99b-4abf-bc4c-18317026c094"
+      [32m+[0m [0m[1m[0mid[0m[0m                = (known after apply)
+      [32m+[0m [0m[1m[0mload_balancer_arn[0m[0m = (known after apply)
+      [32m+[0m [0m[1m[0mport[0m[0m              = 443
+      [32m+[0m [0m[1m[0mprotocol[0m[0m          = "HTTPS"
+      [32m+[0m [0m[1m[0mssl_policy[0m[0m        = (known after apply)
+
+      [32m+[0m [0mdefault_action {
+          [32m+[0m [0m[1m[0morder[0m[0m            = (known after apply)
+          [32m+[0m [0m[1m[0mtarget_group_arn[0m[0m = (known after apply)
+          [32m+[0m [0m[1m[0mtype[0m[0m             = "forward"
+        }
+    }
+
+[1m  # aws_alb_target_group.security-group[0m will be created[0m[0m
+[0m  [32m+[0m[0m resource "aws_alb_target_group" "security-group" {
+      [32m+[0m [0m[1m[0marn[0m[0m                                = (known after apply)
+      [32m+[0m [0m[1m[0marn_suffix[0m[0m                         = (known after apply)
+      [32m+[0m [0m[1m[0mderegistration_delay[0m[0m               = 300
+      [32m+[0m [0m[1m[0mid[0m[0m                                 = (known after apply)
+      [32m+[0m [0m[1m[0mlambda_multi_value_headers_enabled[0m[0m = false
+      [32m+[0m [0m[1m[0mload_balancing_algorithm_type[0m[0m      = (known after apply)
+      [32m+[0m [0m[1m[0mname[0m[0m                               = "Symphony-Shared-DMZ-TargetGroup"
+      [32m+[0m [0m[1m[0mport[0m[0m                               = 443
+      [32m+[0m [0m[1m[0mprotocol[0m[0m                           = "HTTPS"
+      [32m+[0m [0m[1m[0mproxy_protocol_v2[0m[0m                  = false
+      [32m+[0m [0m[1m[0mslow_start[0m[0m                         = 0
+      [32m+[0m [0m[1m[0mtarget_type[0m[0m                        = "instance"
+      [32m+[0m [0m[1m[0mvpc_id[0m[0m                             = "vpc-075b5264a3b4c3462"
+
+      [32m+[0m [0mhealth_check {
+          [32m+[0m [0m[1m[0menabled[0m[0m             = true
+          [32m+[0m [0m[1m[0mhealthy_threshold[0m[0m   = 5
+          [32m+[0m [0m[1m[0minterval[0m[0m            = 30
+          [32m+[0m [0m[1m[0mmatcher[0m[0m             = "200"
+          [32m+[0m [0m[1m[0mpath[0m[0m                = "/"
+          [32m+[0m [0m[1m[0mport[0m[0m                = "traffic-port"
+          [32m+[0m [0m[1m[0mprotocol[0m[0m            = "HTTPS"
+          [32m+[0m [0m[1m[0mtimeout[0m[0m             = 5
+          [32m+[0m [0m[1m[0munhealthy_threshold[0m[0m = 2
+        }
+
+      [32m+[0m [0mstickiness {
+          [32m+[0m [0m[1m[0mcookie_duration[0m[0m = 300
+          [32m+[0m [0m[1m[0menabled[0m[0m         = true
+          [32m+[0m [0m[1m[0mtype[0m[0m            = "lb_cookie"
+        }
+    }
+
+[1m  # aws_autoscaling_attachment.asg_attachment_alb[0m will be created[0m[0m
+[0m  [32m+[0m[0m resource "aws_autoscaling_attachment" "asg_attachment_alb" {
+      [32m+[0m [0m[1m[0malb_target_group_arn[0m[0m   = (known after apply)
+      [32m+[0m [0m[1m[0mautoscaling_group_name[0m[0m = (known after apply)
+      [32m+[0m [0m[1m[0mid[0m[0m                     = (known after apply)
+    }
+
+[1m  # aws_autoscaling_group.linuxservers[0m will be created[0m[0m
+[0m  [32m+[0m[0m resource "aws_autoscaling_group" "linuxservers" {
+      [32m+[0m [0m[1m[0marn[0m[0m                       = (known after apply)
+      [32m+[0m [0m[1m[0mavailability_zones[0m[0m        = (known after apply)
+      [32m+[0m [0m[1m[0mdefault_cooldown[0m[0m          = 30
+      [32m+[0m [0m[1m[0mdesired_capacity[0m[0m          = 2
+      [32m+[0m [0m[1m[0mforce_delete[0m[0m              = false
+      [32m+[0m [0m[1m[0mhealth_check_grace_period[0m[0m = 120
+      [32m+[0m [0m[1m[0mhealth_check_type[0m[0m         = (known after apply)
+      [32m+[0m [0m[1m[0mid[0m[0m                        = (known after apply)
+      [32m+[0m [0m[1m[0mlaunch_configuration[0m[0m      = "Symphony_Shared_DMZ_Linux_LC"
+      [32m+[0m [0m[1m[0mload_balancers[0m[0m            = (known after apply)
+      [32m+[0m [0m[1m[0mmax_size[0m[0m                  = 3
+      [32m+[0m [0m[1m[0mmetrics_granularity[0m[0m       = "1Minute"
+      [32m+[0m [0m[1m[0mmin_size[0m[0m                  = 2
+      [32m+[0m [0m[1m[0mname[0m[0m                      = "Symphony_Shared_DMZ_Linux_ASG"
+      [32m+[0m [0m[1m[0mprotect_from_scale_in[0m[0m     = false
+      [32m+[0m [0m[1m[0mservice_linked_role_arn[0m[0m   = (known after apply)
+      [32m+[0m [0m[1m[0mtarget_group_arns[0m[0m         = (known after apply)
+      [32m+[0m [0m[1m[0mtermination_policies[0m[0m      = [
+          [32m+[0m [0m"OldestInstance",
+        ]
+      [32m+[0m [0m[1m[0mvpc_zone_identifier[0m[0m       = [
+          [32m+[0m [0m"subnet-0512fabde0e25b0db",
+          [32m+[0m [0m"subnet-09ee0d6653ec34099",
+        ]
+      [32m+[0m [0m[1m[0mwait_for_capacity_timeout[0m[0m = "10m"
+
+      [32m+[0m [0mtag {
+          [32m+[0m [0m[1m[0mkey[0m[0m                 = "Name"
+          [32m+[0m [0m[1m[0mpropagate_at_launch[0m[0m = true
+          [32m+[0m [0m[1m[0mvalue[0m[0m               = "Symphony_Shared_DMZ_Linux"
+        }
+      [32m+[0m [0mtag {
+          [32m+[0m [0m[1m[0mkey[0m[0m                 = "app_version"
+          [32m+[0m [0m[1m[0mpropagate_at_launch[0m[0m = true
+          [32m+[0m [0m[1m[0mvalue[0m[0m               = "1.0"
+        }
+      [32m+[0m [0mtag {
+          [32m+[0m [0m[1m[0mkey[0m[0m                 = "backup_frequency"
+          [32m+[0m [0m[1m[0mpropagate_at_launch[0m[0m = true
+          [32m+[0m [0m[1m[0mvalue[0m[0m               = "Never"
+        }
+      [32m+[0m [0mtag {
+          [32m+[0m [0m[1m[0mkey[0m[0m                 = "backup_vault"
+          [32m+[0m [0m[1m[0mpropagate_at_launch[0m[0m = true
+          [32m+[0m [0m[1m[0mvalue[0m[0m               = "-N/A-"
+        }
+      [32m+[0m [0mtag {
+          [32m+[0m [0m[1m[0mkey[0m[0m                 = "billing_type"
+          [32m+[0m [0m[1m[0mpropagate_at_launch[0m[0m = true
+          [32m+[0m [0m[1m[0mvalue[0m[0m               = "Client"
+        }
+      [32m+[0m [0mtag {
+          [32m+[0m [0m[1m[0mkey[0m[0m                 = "client_name"
+          [32m+[0m [0m[1m[0mpropagate_at_launch[0m[0m = true
+          [32m+[0m [0m[1m[0mvalue[0m[0m               = "Shared"
+        }
+      [32m+[0m [0mtag {
+          [32m+[0m [0m[1m[0mkey[0m[0m                 = "environment_name"
+          [32m+[0m [0m[1m[0mpropagate_at_launch[0m[0m = true
+          [32m+[0m [0m[1m[0mvalue[0m[0m               = "Production"
+        }
+      [32m+[0m [0mtag {
+          [32m+[0m [0m[1m[0mkey[0m[0m                 = "os_name"
+          [32m+[0m [0m[1m[0mpropagate_at_launch[0m[0m = true
+          [32m+[0m [0m[1m[0mvalue[0m[0m               = "Amazon Linux 2"
+        }
+      [32m+[0m [0mtag {
+          [32m+[0m [0m[1m[0mkey[0m[0m                 = "os_type"
+          [32m+[0m [0m[1m[0mpropagate_at_launch[0m[0m = true
+          [32m+[0m [0m[1m[0mvalue[0m[0m               = "Linux"
+        }
+      [32m+[0m [0mtag {
+          [32m+[0m [0m[1m[0mkey[0m[0m                 = "project_name"
+          [32m+[0m [0m[1m[0mpropagate_at_launch[0m[0m = true
+          [32m+[0m [0m[1m[0mvalue[0m[0m               = "Symphony"
+        }
+      [32m+[0m [0mtag {
+          [32m+[0m [0m[1m[0mkey[0m[0m                 = "security_zone"
+          [32m+[0m [0m[1m[0mpropagate_at_launch[0m[0m = true
+          [32m+[0m [0m[1m[0mvalue[0m[0m               = "DMZ"
+        }
+      [32m+[0m [0mtag {
+          [32m+[0m [0m[1m[0mkey[0m[0m                 = "service_name"
+          [32m+[0m [0m[1m[0mpropagate_at_launch[0m[0m = true
+          [32m+[0m [0m[1m[0mvalue[0m[0m               = "EC2"
+        }
+      [32m+[0m [0mtag {
+          [32m+[0m [0m[1m[0mkey[0m[0m                 = "service_role"
+          [32m+[0m [0m[1m[0mpropagate_at_launch[0m[0m = true
+          [32m+[0m [0m[1m[0mvalue[0m[0m               = "MaintenancePage"
+        }
+    }
+
+[1m  # aws_autoscaling_policy.linuxautopolicy[0m will be created[0m[0m
+[0m  [32m+[0m[0m resource "aws_autoscaling_policy" "linuxautopolicy" {
+      [32m+[0m [0m[1m[0madjustment_type[0m[0m           = "ChangeInCapacity"
+      [32m+[0m [0m[1m[0marn[0m[0m                       = (known after apply)
+      [32m+[0m [0m[1m[0mautoscaling_group_name[0m[0m    = "Symphony_Shared_DMZ_Linux_ASG"
+      [32m+[0m [0m[1m[0mestimated_instance_warmup[0m[0m = 90
+      [32m+[0m [0m[1m[0mid[0m[0m                        = (known after apply)
+      [32m+[0m [0m[1m[0mmetric_aggregation_type[0m[0m   = (known after apply)
+      [32m+[0m [0m[1m[0mname[0m[0m                      = "Symphony_Shared_DMZ_Linux_ASGPolicy"
+      [32m+[0m [0m[1m[0mpolicy_type[0m[0m               = "TargetTrackingScaling"
+
+      [32m+[0m [0mtarget_tracking_configuration {
+          [32m+[0m [0m[1m[0mdisable_scale_in[0m[0m = false
+          [32m+[0m [0m[1m[0mtarget_value[0m[0m     = 70
+
+          [32m+[0m [0mpredefined_metric_specification {
+              [32m+[0m [0m[1m[0mpredefined_metric_type[0m[0m = "ASGAverageCPUUtilization"
+            }
+        }
+    }
+
+[1m  # aws_lb_listener.httptohttps[0m will be created[0m[0m
+[0m  [32m+[0m[0m resource "aws_lb_listener" "httptohttps" {
+      [32m+[0m [0m[1m[0marn[0m[0m               = (known after apply)
+      [32m+[0m [0m[1m[0mid[0m[0m                = (known after apply)
+      [32m+[0m [0m[1m[0mload_balancer_arn[0m[0m = (known after apply)
+      [32m+[0m [0m[1m[0mport[0m[0m              = 80
+      [32m+[0m [0m[1m[0mprotocol[0m[0m          = "HTTP"
+      [32m+[0m [0m[1m[0mssl_policy[0m[0m        = (known after apply)
+
+      [32m+[0m [0mdefault_action {
+          [32m+[0m [0m[1m[0morder[0m[0m = (known after apply)
+          [32m+[0m [0m[1m[0mtype[0m[0m  = "redirect"
+
+          [32m+[0m [0mredirect {
+              [32m+[0m [0m[1m[0mhost[0m[0m        = "#{host}"
+              [32m+[0m [0m[1m[0mpath[0m[0m        = "/#{path}"
+              [32m+[0m [0m[1m[0mport[0m[0m        = "443"
+              [32m+[0m [0m[1m[0mprotocol[0m[0m    = "HTTPS"
+              [32m+[0m [0m[1m[0mquery[0m[0m       = "#{query}"
+              [32m+[0m [0m[1m[0mstatus_code[0m[0m = "HTTP_301"
+            }
+        }
+    }
+
+[0m[1mPlan:[0m 7 to add, 0 to change, 0 to destroy.[0m
+[33m
+[1m[33mWarning: [0m[0m[1mValue for undeclared variable[0m
+
+[0m  on terraform.tfvars line 4:
+   4: subnet_name = [4m[ "Security_DMZ_AZ-A", "Security_DMZ_AZ-B" ][0m
+[0m
+The root module does not declare a variable named "subnet_name". To use this
+value, add a "variable" block to the configuration.
+
+Using a variables file to set an undeclared variable is deprecated and will
+become an error in a future release. If you wish to provide certain "global"
+settings to all configurations in your organization, use TF_VAR_...
+environment variables to set these instead.
+
+(and one more similar warning elsewhere)
+[0m[0m
+
+------------------------------------------------------------------------
+
+Note: You didn't specify an "-out" parameter to save this plan, so Terraform
+can't guarantee that exactly these actions will be performed if
+"terraform apply" is subsequently run.
+

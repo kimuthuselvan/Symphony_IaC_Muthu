@@ -1,0 +1,775 @@
+[0m[1mRefreshing Terraform state in-memory prior to plan...[0m
+The refreshed state will be used to calculate this plan, but will not be
+persisted to local or remote state storage.
+[0m
+[0m[1mdata.template_file.ecs-tasks-noalb[0]: Refreshing state...[0m
+[0m[1mdata.template_file.ecs-tasks[1]: Refreshing state...[0m
+[0m[1mdata.template_file.ecs-tasks[0]: Refreshing state...[0m
+
+------------------------------------------------------------------------
+
+An execution plan has been generated and is shown below.
+Resource actions are indicated with the following symbols:
+  [32m+[0m create
+ [36m<=[0m read (data resources)
+[0m
+Terraform will perform the following actions:
+
+[1m  # data.template_file.ecs-cluster[0m will be read during apply
+  # (config refers to values not yet known)[0m[0m
+[0m [36m<=[0m[0m data "template_file" "ecs-cluster"  {
+      [32m+[0m [0m[1m[0mid[0m[0m       = (known after apply)
+      [32m+[0m [0m[1m[0mrendered[0m[0m = (known after apply)
+      [32m+[0m [0m[1m[0mtemplate[0m[0m = <<~EOT
+            #!/bin/bash
+            sudo mkdir -p /etc/ecs
+            echo ECS_CLUSTER=${ecs_cluster} >> /etc/ecs/ecs.config
+            
+            sudo yum install -y wget unzip zip
+            
+            echo -e "INFO: Downloading RedCloak Agent ... \c"
+            sudo wget -q http://jenkins-awsops-prod.sym-adv.com:8000/redcloak-1.2.8.0-0.x86_64.rpm
+            [ $? -ne 0 ] && echo "Failed." || echo "Success."
+            
+            echo -e "INFO: Installing RedCloak Agent ... \c"
+            sudo yum localinstall -y redcloak-1.2.8.0-0.x86_64.rpm >/tmp/redcloak-1.2.8.0-0.x86_64.log 2>&1
+            [ $? -ne 0 ] && echo "Failed." || echo "Success."
+            sudo cat /tmp/redcloak-1.2.8.0-0.x86_64.log
+            
+            sudo service redcloak status
+            sudo /var/opt/secureworks/redcloak/bin/redcloak --check
+            
+        EOT
+      [32m+[0m [0m[1m[0mvars[0m[0m     = {
+          [32m+[0m [0m"ecs_cluster" = "Kan-Sym-PRD-WebApp"
+        }
+    }
+
+[1m  # data.template_file.ecs-cluster-2[0m will be read during apply
+  # (config refers to values not yet known)[0m[0m
+[0m [36m<=[0m[0m data "template_file" "ecs-cluster-2"  {
+      [32m+[0m [0m[1m[0mid[0m[0m       = (known after apply)
+      [32m+[0m [0m[1m[0mrendered[0m[0m = (known after apply)
+      [32m+[0m [0m[1m[0mtemplate[0m[0m = <<~EOT
+            <powershell>
+            [Environment]::SetEnvironmentVariable("ECS_ENABLE_CPU_UNBOUNDED_WINDOWS_WORKAROUND", "true", "Machine")
+            [Environment]::SetEnvironmentVariable("ECS_DISABLE_METRICS", "false", "Machine")
+            Import-Module ECSTools
+            Initialize-ECSAgent -Cluster ${ecs_cluster}  -EnableTaskIAMRole
+            
+            Set-ExecutionPolicy Bypass -Force;
+            iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'));
+            choco install python3 -y;
+            
+            $url = "http://jenkins-awsops-prod.sym-adv.com:8000/redcloak.msi"
+            $output = "C:\Windows\Temp\redcloak.msi"
+            
+            Invoke-WebRequest -Uri $url -OutFile $output
+            
+            msiexec /i C:\Windows\Temp\redcloak.msi /quiet /qn
+            
+            refreshenv
+            
+            </powershell>
+        EOT
+      [32m+[0m [0m[1m[0mvars[0m[0m     = {
+          [32m+[0m [0m"ecs_cluster" = "Kan-Sym-PRD-WebApp"
+        }
+    }
+
+[1m  # aws_alb.aws_ecs_alb[0m will be created[0m[0m
+[0m  [32m+[0m[0m resource "aws_alb" "aws_ecs_alb" {
+      [32m+[0m [0m[1m[0marn[0m[0m                        = (known after apply)
+      [32m+[0m [0m[1m[0marn_suffix[0m[0m                 = (known after apply)
+      [32m+[0m [0m[1m[0mdns_name[0m[0m                   = (known after apply)
+      [32m+[0m [0m[1m[0menable_deletion_protection[0m[0m = false
+      [32m+[0m [0m[1m[0menable_http2[0m[0m               = true
+      [32m+[0m [0m[1m[0mid[0m[0m                         = (known after apply)
+      [32m+[0m [0m[1m[0midle_timeout[0m[0m               = 600
+      [32m+[0m [0m[1m[0minternal[0m[0m                   = true
+      [32m+[0m [0m[1m[0mip_address_type[0m[0m            = (known after apply)
+      [32m+[0m [0m[1m[0mload_balancer_type[0m[0m         = "application"
+      [32m+[0m [0m[1m[0mname[0m[0m                       = "Kan-Sym-PRD-WebApp-ELB"
+      [32m+[0m [0m[1m[0msecurity_groups[0m[0m            = [
+          [32m+[0m [0m"sg-07c8f0478fc628959",
+        ]
+      [32m+[0m [0m[1m[0msubnets[0m[0m                    = [
+          [32m+[0m [0m"subnet-002070de1ac1134d5",
+          [32m+[0m [0m"subnet-03248a90e3e0be171",
+        ]
+      [32m+[0m [0m[1m[0mvpc_id[0m[0m                     = (known after apply)
+      [32m+[0m [0m[1m[0mzone_id[0m[0m                    = (known after apply)
+
+      [32m+[0m [0msubnet_mapping {
+          [32m+[0m [0m[1m[0mallocation_id[0m[0m = (known after apply)
+          [32m+[0m [0m[1m[0msubnet_id[0m[0m     = (known after apply)
+        }
+    }
+
+[1m  # aws_alb_listener.front_end[0m will be created[0m[0m
+[0m  [32m+[0m[0m resource "aws_alb_listener" "front_end" {
+      [32m+[0m [0m[1m[0marn[0m[0m               = (known after apply)
+      [32m+[0m [0m[1m[0mcertificate_arn[0m[0m   = "arn:aws:acm:us-east-1:945116902499:certificate/6a9617d6-4b80-4ead-b2c6-bd397db760f2"
+      [32m+[0m [0m[1m[0mid[0m[0m                = (known after apply)
+      [32m+[0m [0m[1m[0mload_balancer_arn[0m[0m = (known after apply)
+      [32m+[0m [0m[1m[0mport[0m[0m              = 443
+      [32m+[0m [0m[1m[0mprotocol[0m[0m          = "HTTPS"
+      [32m+[0m [0m[1m[0mssl_policy[0m[0m        = (known after apply)
+
+      [32m+[0m [0mdefault_action {
+          [32m+[0m [0m[1m[0morder[0m[0m            = (known after apply)
+          [32m+[0m [0m[1m[0mtarget_group_arn[0m[0m = (known after apply)
+          [32m+[0m [0m[1m[0mtype[0m[0m             = "forward"
+        }
+    }
+
+[1m  # aws_alb_listener_rule.listener_rule[0][0m will be created[0m[0m
+[0m  [32m+[0m[0m resource "aws_alb_listener_rule" "listener_rule" {
+      [32m+[0m [0m[1m[0marn[0m[0m          = (known after apply)
+      [32m+[0m [0m[1m[0mid[0m[0m           = (known after apply)
+      [32m+[0m [0m[1m[0mlistener_arn[0m[0m = (known after apply)
+      [32m+[0m [0m[1m[0mpriority[0m[0m     = (known after apply)
+
+      [32m+[0m [0maction {
+          [32m+[0m [0m[1m[0morder[0m[0m            = (known after apply)
+          [32m+[0m [0m[1m[0mtarget_group_arn[0m[0m = (known after apply)
+          [32m+[0m [0m[1m[0mtype[0m[0m             = "forward"
+        }
+
+      [32m+[0m [0mcondition {
+          [32m+[0m [0m[1m[0mfield[0m[0m  = (known after apply)
+          [32m+[0m [0m[1m[0mvalues[0m[0m = (known after apply)
+
+          [32m+[0m [0mhost_header {
+              [32m+[0m [0m[1m[0mvalues[0m[0m = (known after apply)
+            }
+
+          [32m+[0m [0mpath_pattern {
+              [32m+[0m [0m[1m[0mvalues[0m[0m = [
+                  [32m+[0m [0m"/traceapi*",
+                ]
+            }
+        }
+    }
+
+[1m  # aws_alb_target_group.ecs-group[0][0m will be created[0m[0m
+[0m  [32m+[0m[0m resource "aws_alb_target_group" "ecs-group" {
+      [32m+[0m [0m[1m[0marn[0m[0m                                = (known after apply)
+      [32m+[0m [0m[1m[0marn_suffix[0m[0m                         = (known after apply)
+      [32m+[0m [0m[1m[0mderegistration_delay[0m[0m               = 300
+      [32m+[0m [0m[1m[0mid[0m[0m                                 = (known after apply)
+      [32m+[0m [0m[1m[0mlambda_multi_value_headers_enabled[0m[0m = false
+      [32m+[0m [0m[1m[0mname[0m[0m                               = "Kan-Sym-PRD-WebApp-trace"
+      [32m+[0m [0m[1m[0mport[0m[0m                               = 443
+      [32m+[0m [0m[1m[0mprotocol[0m[0m                           = "HTTPS"
+      [32m+[0m [0m[1m[0mproxy_protocol_v2[0m[0m                  = false
+      [32m+[0m [0m[1m[0mslow_start[0m[0m                         = 0
+      [32m+[0m [0m[1m[0mtarget_type[0m[0m                        = "instance"
+      [32m+[0m [0m[1m[0mvpc_id[0m[0m                             = "vpc-07d6e088e8c0ac938"
+
+      [32m+[0m [0mhealth_check {
+          [32m+[0m [0m[1m[0menabled[0m[0m             = true
+          [32m+[0m [0m[1m[0mhealthy_threshold[0m[0m   = 5
+          [32m+[0m [0m[1m[0minterval[0m[0m            = 30
+          [32m+[0m [0m[1m[0mmatcher[0m[0m             = "200"
+          [32m+[0m [0m[1m[0mpath[0m[0m                = "/traceapi/healthz"
+          [32m+[0m [0m[1m[0mport[0m[0m                = "traffic-port"
+          [32m+[0m [0m[1m[0mprotocol[0m[0m            = "HTTPS"
+          [32m+[0m [0m[1m[0mtimeout[0m[0m             = 5
+          [32m+[0m [0m[1m[0munhealthy_threshold[0m[0m = 2
+        }
+
+      [32m+[0m [0mstickiness {
+          [32m+[0m [0m[1m[0mcookie_duration[0m[0m = (known after apply)
+          [32m+[0m [0m[1m[0menabled[0m[0m         = (known after apply)
+          [32m+[0m [0m[1m[0mtype[0m[0m            = (known after apply)
+        }
+    }
+
+[1m  # aws_alb_target_group.ecs-group[1][0m will be created[0m[0m
+[0m  [32m+[0m[0m resource "aws_alb_target_group" "ecs-group" {
+      [32m+[0m [0m[1m[0marn[0m[0m                                = (known after apply)
+      [32m+[0m [0m[1m[0marn_suffix[0m[0m                         = (known after apply)
+      [32m+[0m [0m[1m[0mderegistration_delay[0m[0m               = 300
+      [32m+[0m [0m[1m[0mid[0m[0m                                 = (known after apply)
+      [32m+[0m [0m[1m[0mlambda_multi_value_headers_enabled[0m[0m = false
+      [32m+[0m [0m[1m[0mname[0m[0m                               = "Kan-Sym-PRD-WebApp-webapp"
+      [32m+[0m [0m[1m[0mport[0m[0m                               = 443
+      [32m+[0m [0m[1m[0mprotocol[0m[0m                           = "HTTPS"
+      [32m+[0m [0m[1m[0mproxy_protocol_v2[0m[0m                  = false
+      [32m+[0m [0m[1m[0mslow_start[0m[0m                         = 0
+      [32m+[0m [0m[1m[0mtarget_type[0m[0m                        = "instance"
+      [32m+[0m [0m[1m[0mvpc_id[0m[0m                             = "vpc-07d6e088e8c0ac938"
+
+      [32m+[0m [0mhealth_check {
+          [32m+[0m [0m[1m[0menabled[0m[0m             = true
+          [32m+[0m [0m[1m[0mhealthy_threshold[0m[0m   = 5
+          [32m+[0m [0m[1m[0minterval[0m[0m            = 30
+          [32m+[0m [0m[1m[0mmatcher[0m[0m             = "302"
+          [32m+[0m [0m[1m[0mpath[0m[0m                = "/"
+          [32m+[0m [0m[1m[0mport[0m[0m                = "traffic-port"
+          [32m+[0m [0m[1m[0mprotocol[0m[0m            = "HTTPS"
+          [32m+[0m [0m[1m[0mtimeout[0m[0m             = 5
+          [32m+[0m [0m[1m[0munhealthy_threshold[0m[0m = 2
+        }
+
+      [32m+[0m [0mstickiness {
+          [32m+[0m [0m[1m[0mcookie_duration[0m[0m = (known after apply)
+          [32m+[0m [0m[1m[0menabled[0m[0m         = (known after apply)
+          [32m+[0m [0m[1m[0mtype[0m[0m            = (known after apply)
+        }
+    }
+
+[1m  # aws_autoscaling_group.ecs-cluster[0m will be created[0m[0m
+[0m  [32m+[0m[0m resource "aws_autoscaling_group" "ecs-cluster" {
+      [32m+[0m [0m[1m[0marn[0m[0m                       = (known after apply)
+      [32m+[0m [0m[1m[0mavailability_zones[0m[0m        = (known after apply)
+      [32m+[0m [0m[1m[0mdefault_cooldown[0m[0m          = 30
+      [32m+[0m [0m[1m[0mdesired_capacity[0m[0m          = 2
+      [32m+[0m [0m[1m[0mforce_delete[0m[0m              = false
+      [32m+[0m [0m[1m[0mhealth_check_grace_period[0m[0m = 120
+      [32m+[0m [0m[1m[0mhealth_check_type[0m[0m         = (known after apply)
+      [32m+[0m [0m[1m[0mid[0m[0m                        = (known after apply)
+      [32m+[0m [0m[1m[0mlaunch_configuration[0m[0m      = (known after apply)
+      [32m+[0m [0m[1m[0mload_balancers[0m[0m            = (known after apply)
+      [32m+[0m [0m[1m[0mmax_size[0m[0m                  = 4
+      [32m+[0m [0m[1m[0mmetrics_granularity[0m[0m       = "1Minute"
+      [32m+[0m [0m[1m[0mmin_size[0m[0m                  = 2
+      [32m+[0m [0m[1m[0mname[0m[0m                      = "Kan-Sym-PRD-WebApp_asg_Linux"
+      [32m+[0m [0m[1m[0mprotect_from_scale_in[0m[0m     = false
+      [32m+[0m [0m[1m[0mservice_linked_role_arn[0m[0m   = (known after apply)
+      [32m+[0m [0m[1m[0mtarget_group_arns[0m[0m         = (known after apply)
+      [32m+[0m [0m[1m[0mtermination_policies[0m[0m      = [
+          [32m+[0m [0m"OldestInstance",
+        ]
+      [32m+[0m [0m[1m[0mvpc_zone_identifier[0m[0m       = [
+          [32m+[0m [0m"subnet-002070de1ac1134d5",
+          [32m+[0m [0m"subnet-03248a90e3e0be171",
+        ]
+      [32m+[0m [0m[1m[0mwait_for_capacity_timeout[0m[0m = "10m"
+
+      [32m+[0m [0mtag {
+          [32m+[0m [0m[1m[0mkey[0m[0m                 = "Name"
+          [32m+[0m [0m[1m[0mpropagate_at_launch[0m[0m = true
+          [32m+[0m [0m[1m[0mvalue[0m[0m               = "Kan-Sym-PRD-WebApp_asg_Linux"
+        }
+    }
+
+[1m  # aws_autoscaling_group.ecs-cluster-2[0][0m will be created[0m[0m
+[0m  [32m+[0m[0m resource "aws_autoscaling_group" "ecs-cluster-2" {
+      [32m+[0m [0m[1m[0marn[0m[0m                       = (known after apply)
+      [32m+[0m [0m[1m[0mavailability_zones[0m[0m        = (known after apply)
+      [32m+[0m [0m[1m[0mdefault_cooldown[0m[0m          = 30
+      [32m+[0m [0m[1m[0mdesired_capacity[0m[0m          = 2
+      [32m+[0m [0m[1m[0mforce_delete[0m[0m              = false
+      [32m+[0m [0m[1m[0mhealth_check_grace_period[0m[0m = 120
+      [32m+[0m [0m[1m[0mhealth_check_type[0m[0m         = (known after apply)
+      [32m+[0m [0m[1m[0mid[0m[0m                        = (known after apply)
+      [32m+[0m [0m[1m[0mlaunch_configuration[0m[0m      = (known after apply)
+      [32m+[0m [0m[1m[0mload_balancers[0m[0m            = (known after apply)
+      [32m+[0m [0m[1m[0mmax_size[0m[0m                  = 4
+      [32m+[0m [0m[1m[0mmetrics_granularity[0m[0m       = "1Minute"
+      [32m+[0m [0m[1m[0mmin_size[0m[0m                  = 2
+      [32m+[0m [0m[1m[0mname[0m[0m                      = "Kan-Sym-PRD-WebApp_asg_Windows"
+      [32m+[0m [0m[1m[0mprotect_from_scale_in[0m[0m     = false
+      [32m+[0m [0m[1m[0mservice_linked_role_arn[0m[0m   = (known after apply)
+      [32m+[0m [0m[1m[0mtarget_group_arns[0m[0m         = (known after apply)
+      [32m+[0m [0m[1m[0mtermination_policies[0m[0m      = [
+          [32m+[0m [0m"OldestInstance",
+        ]
+      [32m+[0m [0m[1m[0mvpc_zone_identifier[0m[0m       = [
+          [32m+[0m [0m"subnet-002070de1ac1134d5",
+          [32m+[0m [0m"subnet-03248a90e3e0be171",
+        ]
+      [32m+[0m [0m[1m[0mwait_for_capacity_timeout[0m[0m = "10m"
+
+      [32m+[0m [0mtag {
+          [32m+[0m [0m[1m[0mkey[0m[0m                 = "Name"
+          [32m+[0m [0m[1m[0mpropagate_at_launch[0m[0m = true
+          [32m+[0m [0m[1m[0mvalue[0m[0m               = "Kan-Sym-PRD-WebApp_asg_Windows"
+        }
+    }
+
+[1m  # aws_autoscaling_policy.ecs-cluster[0m will be created[0m[0m
+[0m  [32m+[0m[0m resource "aws_autoscaling_policy" "ecs-cluster" {
+      [32m+[0m [0m[1m[0madjustment_type[0m[0m           = "ChangeInCapacity"
+      [32m+[0m [0m[1m[0marn[0m[0m                       = (known after apply)
+      [32m+[0m [0m[1m[0mautoscaling_group_name[0m[0m    = "Kan-Sym-PRD-WebApp_asg_Linux"
+      [32m+[0m [0m[1m[0mestimated_instance_warmup[0m[0m = 90
+      [32m+[0m [0m[1m[0mid[0m[0m                        = (known after apply)
+      [32m+[0m [0m[1m[0mmetric_aggregation_type[0m[0m   = (known after apply)
+      [32m+[0m [0m[1m[0mname[0m[0m                      = "Kan-Sym-PRD-WebApp_autoscaling_Linux"
+      [32m+[0m [0m[1m[0mpolicy_type[0m[0m               = "TargetTrackingScaling"
+
+      [32m+[0m [0mtarget_tracking_configuration {
+          [32m+[0m [0m[1m[0mdisable_scale_in[0m[0m = false
+          [32m+[0m [0m[1m[0mtarget_value[0m[0m     = 70
+
+          [32m+[0m [0mpredefined_metric_specification {
+              [32m+[0m [0m[1m[0mpredefined_metric_type[0m[0m = "ASGAverageCPUUtilization"
+            }
+        }
+    }
+
+[1m  # aws_autoscaling_policy.ecs-cluster-2[0][0m will be created[0m[0m
+[0m  [32m+[0m[0m resource "aws_autoscaling_policy" "ecs-cluster-2" {
+      [32m+[0m [0m[1m[0madjustment_type[0m[0m           = "ChangeInCapacity"
+      [32m+[0m [0m[1m[0marn[0m[0m                       = (known after apply)
+      [32m+[0m [0m[1m[0mautoscaling_group_name[0m[0m    = "Kan-Sym-PRD-WebApp_asg_Windows"
+      [32m+[0m [0m[1m[0mestimated_instance_warmup[0m[0m = 90
+      [32m+[0m [0m[1m[0mid[0m[0m                        = (known after apply)
+      [32m+[0m [0m[1m[0mmetric_aggregation_type[0m[0m   = (known after apply)
+      [32m+[0m [0m[1m[0mname[0m[0m                      = "Kan-Sym-PRD-WebApp_autoscaling_Windows"
+      [32m+[0m [0m[1m[0mpolicy_type[0m[0m               = "TargetTrackingScaling"
+
+      [32m+[0m [0mtarget_tracking_configuration {
+          [32m+[0m [0m[1m[0mdisable_scale_in[0m[0m = false
+          [32m+[0m [0m[1m[0mtarget_value[0m[0m     = 70
+
+          [32m+[0m [0mpredefined_metric_specification {
+              [32m+[0m [0m[1m[0mpredefined_metric_type[0m[0m = "ASGAverageCPUUtilization"
+            }
+        }
+    }
+
+[1m  # aws_cloudwatch_log_group.ecs_service[0m will be created[0m[0m
+[0m  [32m+[0m[0m resource "aws_cloudwatch_log_group" "ecs_service" {
+      [32m+[0m [0m[1m[0marn[0m[0m               = (known after apply)
+      [32m+[0m [0m[1m[0mid[0m[0m                = (known after apply)
+      [32m+[0m [0m[1m[0mname[0m[0m              = "/Kan-Sym-PRD-WebApp/Kan-Sym-PRD-WebApp_logs"
+      [32m+[0m [0m[1m[0mretention_in_days[0m[0m = 0
+    }
+
+[1m  # aws_ecs_cluster.ecs_cluster[0m will be created[0m[0m
+[0m  [32m+[0m[0m resource "aws_ecs_cluster" "ecs_cluster" {
+      [32m+[0m [0m[1m[0marn[0m[0m  = (known after apply)
+      [32m+[0m [0m[1m[0mid[0m[0m   = (known after apply)
+      [32m+[0m [0m[1m[0mname[0m[0m = "Kan-Sym-PRD-WebApp"
+
+      [32m+[0m [0msetting {
+          [32m+[0m [0m[1m[0mname[0m[0m  = (known after apply)
+          [32m+[0m [0m[1m[0mvalue[0m[0m = (known after apply)
+        }
+    }
+
+[1m  # aws_ecs_service.ecs_service[0][0m will be created[0m[0m
+[0m  [32m+[0m[0m resource "aws_ecs_service" "ecs_service" {
+      [32m+[0m [0m[1m[0mcluster[0m[0m                            = (known after apply)
+      [32m+[0m [0m[1m[0mdeployment_maximum_percent[0m[0m         = 200
+      [32m+[0m [0m[1m[0mdeployment_minimum_healthy_percent[0m[0m = 100
+      [32m+[0m [0m[1m[0mdesired_count[0m[0m                      = 2
+      [32m+[0m [0m[1m[0menable_ecs_managed_tags[0m[0m            = false
+      [32m+[0m [0m[1m[0miam_role[0m[0m                           = "ecs-service-role"
+      [32m+[0m [0m[1m[0mid[0m[0m                                 = (known after apply)
+      [32m+[0m [0m[1m[0mlaunch_type[0m[0m                        = (known after apply)
+      [32m+[0m [0m[1m[0mname[0m[0m                               = "Kan-Sym-PRD-WebApp-trace"
+      [32m+[0m [0m[1m[0mplatform_version[0m[0m                   = (known after apply)
+      [32m+[0m [0m[1m[0mscheduling_strategy[0m[0m                = "REPLICA"
+      [32m+[0m [0m[1m[0mtask_definition[0m[0m                    = (known after apply)
+
+      [32m+[0m [0mload_balancer {
+          [32m+[0m [0m[1m[0mcontainer_name[0m[0m   = "Kan-Sym-PRD-WebApp-trace"
+          [32m+[0m [0m[1m[0mcontainer_port[0m[0m   = 443
+          [32m+[0m [0m[1m[0mtarget_group_arn[0m[0m = (known after apply)
+        }
+
+      [32m+[0m [0mplacement_constraints {
+          [32m+[0m [0m[1m[0mexpression[0m[0m = "attribute:ecs.os-type==linux"
+          [32m+[0m [0m[1m[0mtype[0m[0m       = "memberOf"
+        }
+
+      [32m+[0m [0mplacement_strategy {
+          [32m+[0m [0m[1m[0mfield[0m[0m = (known after apply)
+          [32m+[0m [0m[1m[0mtype[0m[0m  = (known after apply)
+        }
+    }
+
+[1m  # aws_ecs_service.ecs_service[1][0m will be created[0m[0m
+[0m  [32m+[0m[0m resource "aws_ecs_service" "ecs_service" {
+      [32m+[0m [0m[1m[0mcluster[0m[0m                            = (known after apply)
+      [32m+[0m [0m[1m[0mdeployment_maximum_percent[0m[0m         = 200
+      [32m+[0m [0m[1m[0mdeployment_minimum_healthy_percent[0m[0m = 100
+      [32m+[0m [0m[1m[0mdesired_count[0m[0m                      = 2
+      [32m+[0m [0m[1m[0menable_ecs_managed_tags[0m[0m            = false
+      [32m+[0m [0m[1m[0miam_role[0m[0m                           = "ecs-service-role"
+      [32m+[0m [0m[1m[0mid[0m[0m                                 = (known after apply)
+      [32m+[0m [0m[1m[0mlaunch_type[0m[0m                        = (known after apply)
+      [32m+[0m [0m[1m[0mname[0m[0m                               = "Kan-Sym-PRD-WebApp-webapp"
+      [32m+[0m [0m[1m[0mplatform_version[0m[0m                   = (known after apply)
+      [32m+[0m [0m[1m[0mscheduling_strategy[0m[0m                = "REPLICA"
+      [32m+[0m [0m[1m[0mtask_definition[0m[0m                    = (known after apply)
+
+      [32m+[0m [0mload_balancer {
+          [32m+[0m [0m[1m[0mcontainer_name[0m[0m   = "Kan-Sym-PRD-WebApp-webapp"
+          [32m+[0m [0m[1m[0mcontainer_port[0m[0m   = 443
+          [32m+[0m [0m[1m[0mtarget_group_arn[0m[0m = (known after apply)
+        }
+
+      [32m+[0m [0mplacement_constraints {
+          [32m+[0m [0m[1m[0mexpression[0m[0m = "attribute:ecs.os-type==windows"
+          [32m+[0m [0m[1m[0mtype[0m[0m       = "memberOf"
+        }
+
+      [32m+[0m [0mplacement_strategy {
+          [32m+[0m [0m[1m[0mfield[0m[0m = (known after apply)
+          [32m+[0m [0m[1m[0mtype[0m[0m  = (known after apply)
+        }
+    }
+
+[1m  # aws_ecs_task_definition.ecs_service[0][0m will be created[0m[0m
+[0m  [32m+[0m[0m resource "aws_ecs_task_definition" "ecs_service" {
+      [32m+[0m [0m[1m[0marn[0m[0m                   = (known after apply)
+      [32m+[0m [0m[1m[0mcontainer_definitions[0m[0m = jsonencode(
+            [
+              [32m+[0m [0m{
+                  [32m+[0m [0menvironment      = [
+                      [32m+[0m [0m{
+                          [32m+[0m [0mname  = "AppName"
+                          [32m+[0m [0mvalue = "prd"
+                        },
+                      [32m+[0m [0m{
+                          [32m+[0m [0mname  = "ASPNETCORE_ENVIRONMENT"
+                          [32m+[0m [0mvalue = "Production"
+                        },
+                      [32m+[0m [0m{
+                          [32m+[0m [0mname  = "ASPNETCORE_HTTPS_PORT"
+                          [32m+[0m [0mvalue = "443"
+                        },
+                      [32m+[0m [0m{
+                          [32m+[0m [0mname  = "ASPNETCORE_URLS"
+                          [32m+[0m [0mvalue = "https://+"
+                        },
+                      [32m+[0m [0m{
+                          [32m+[0m [0mname  = "ClientName"
+                          [32m+[0m [0mvalue = "kansas"
+                        },
+                    ]
+                  [32m+[0m [0messential        = true
+                  [32m+[0m [0mimage            = "945116902499.dkr.ecr.us-east-1.amazonaws.com/trace:1.1.1"
+                  [32m+[0m [0mlogConfiguration = {
+                      [32m+[0m [0mlogDriver = "awslogs"
+                      [32m+[0m [0moptions   = {
+                          [32m+[0m [0mawslogs-group         = "/Kan-Sym-PRD-WebApp/Kan-Sym-PRD-WebApp_logs"
+                          [32m+[0m [0mawslogs-region        = "us-east-1"
+                          [32m+[0m [0mawslogs-stream-prefix = "ecs"
+                        }
+                    }
+                  [32m+[0m [0mname             = "Kan-Sym-PRD-WebApp-trace"
+                  [32m+[0m [0mportMappings     = [
+                      [32m+[0m [0m{
+                          [32m+[0m [0mcontainerPort = 443
+                          [32m+[0m [0mhostPort      = 0
+                          [32m+[0m [0mprotocol      = "tcp"
+                        },
+                    ]
+                },
+            ]
+        )
+      [32m+[0m [0m[1m[0mcpu[0m[0m                   = "512"
+      [32m+[0m [0m[1m[0mexecution_role_arn[0m[0m    = "arn:aws:iam::945116902499:role/ecsTaskExecutionRole"
+      [32m+[0m [0m[1m[0mfamily[0m[0m                = "Kan-Sym-PRD-WebApp-trace"
+      [32m+[0m [0m[1m[0mid[0m[0m                    = (known after apply)
+      [32m+[0m [0m[1m[0mmemory[0m[0m                = "1025"
+      [32m+[0m [0m[1m[0mnetwork_mode[0m[0m          = (known after apply)
+      [32m+[0m [0m[1m[0mrevision[0m[0m              = (known after apply)
+      [32m+[0m [0m[1m[0mtask_role_arn[0m[0m         = "arn:aws:iam::945116902499:role/ecsTaskExecutionRole"
+
+      [32m+[0m [0mplacement_constraints {
+          [32m+[0m [0m[1m[0mexpression[0m[0m = "attribute:ecs.os-type==linux"
+          [32m+[0m [0m[1m[0mtype[0m[0m       = "memberOf"
+        }
+    }
+
+[1m  # aws_ecs_task_definition.ecs_service[1][0m will be created[0m[0m
+[0m  [32m+[0m[0m resource "aws_ecs_task_definition" "ecs_service" {
+      [32m+[0m [0m[1m[0marn[0m[0m                   = (known after apply)
+      [32m+[0m [0m[1m[0mcontainer_definitions[0m[0m = jsonencode(
+            [
+              [32m+[0m [0m{
+                  [32m+[0m [0menvironment          = [
+                      [32m+[0m [0m{
+                          [32m+[0m [0mname  = "AppName"
+                          [32m+[0m [0mvalue = "prd"
+                        },
+                      [32m+[0m [0m{
+                          [32m+[0m [0mname  = "ASPNETCORE_ENVIRONMENT"
+                          [32m+[0m [0mvalue = "Production"
+                        },
+                      [32m+[0m [0m{
+                          [32m+[0m [0mname  = "ClientName"
+                          [32m+[0m [0mvalue = "kansas"
+                        },
+                    ]
+                  [32m+[0m [0messential            = true
+                  [32m+[0m [0mimage                = "945116902499.dkr.ecr.us-east-1.amazonaws.com/webapp:5.18.1.0.5"
+                  [32m+[0m [0mname                 = "Kan-Sym-PRD-WebApp-webapp"
+                  [32m+[0m [0mplacementConstraints = [
+                      [32m+[0m [0m{
+                          [32m+[0m [0mexpression = "attribute:ecs.os-type==windows"
+                          [32m+[0m [0mtype       = "memberOf"
+                        },
+                    ]
+                  [32m+[0m [0mportMappings         = [
+                      [32m+[0m [0m{
+                          [32m+[0m [0mcontainerPort = 443
+                          [32m+[0m [0mhostPort      = 0
+                          [32m+[0m [0mprotocol      = "tcp"
+                        },
+                    ]
+                },
+            ]
+        )
+      [32m+[0m [0m[1m[0mcpu[0m[0m                   = "1024"
+      [32m+[0m [0m[1m[0mexecution_role_arn[0m[0m    = "arn:aws:iam::945116902499:role/ecsTaskExecutionRole"
+      [32m+[0m [0m[1m[0mfamily[0m[0m                = "Kan-Sym-PRD-WebApp-webapp"
+      [32m+[0m [0m[1m[0mid[0m[0m                    = (known after apply)
+      [32m+[0m [0m[1m[0mmemory[0m[0m                = "2048"
+      [32m+[0m [0m[1m[0mnetwork_mode[0m[0m          = (known after apply)
+      [32m+[0m [0m[1m[0mrevision[0m[0m              = (known after apply)
+      [32m+[0m [0m[1m[0mtask_role_arn[0m[0m         = "arn:aws:iam::945116902499:role/ecsTaskExecutionRole"
+
+      [32m+[0m [0mplacement_constraints {
+          [32m+[0m [0m[1m[0mexpression[0m[0m = "attribute:ecs.os-type==windows"
+          [32m+[0m [0m[1m[0mtype[0m[0m       = "memberOf"
+        }
+    }
+
+[1m  # aws_ecs_task_definition.ecs_service_noalb[0][0m will be created[0m[0m
+[0m  [32m+[0m[0m resource "aws_ecs_task_definition" "ecs_service_noalb" {
+      [32m+[0m [0m[1m[0marn[0m[0m                   = (known after apply)
+      [32m+[0m [0m[1m[0mcontainer_definitions[0m[0m = jsonencode(
+            [
+              [32m+[0m [0m{
+                  [32m+[0m [0mcommand              = [
+                      [32m+[0m [0m"c:\\sqlexecutor\\PCS.SmartOrders.SQLExecutorRunner.exe",
+                    ]
+                  [32m+[0m [0menvironment          = [
+                      [32m+[0m [0m{
+                          [32m+[0m [0mname  = "AppName"
+                          [32m+[0m [0mvalue = "prd"
+                        },
+                      [32m+[0m [0m{
+                          [32m+[0m [0mname  = "ASPNETCORE_ENVIRONMENT"
+                          [32m+[0m [0mvalue = "Production"
+                        },
+                      [32m+[0m [0m{
+                          [32m+[0m [0mname  = "AWS_REGION"
+                          [32m+[0m [0mvalue = "us-east-1"
+                        },
+                      [32m+[0m [0m{
+                          [32m+[0m [0mname  = "ClientName"
+                          [32m+[0m [0mvalue = "kansas"
+                        },
+                      [32m+[0m [0m{
+                          [32m+[0m [0mname  = "Customer"
+                          [32m+[0m [0mvalue = "kansas"
+                        },
+                      [32m+[0m [0m{
+                          [32m+[0m [0mname  = "SQLScriptsFolder"
+                          [32m+[0m [0mvalue = "c:\\changescripts"
+                        },
+                    ]
+                  [32m+[0m [0messential            = true
+                  [32m+[0m [0mimage                = "945116902499.dkr.ecr.us-east-1.amazonaws.com/sqlexecutor:5.18.1.0.7"
+                  [32m+[0m [0mname                 = "Kan-Sym-PRD-WebApp-sqlexecutor"
+                  [32m+[0m [0mplacementConstraints = [
+                      [32m+[0m [0m{
+                          [32m+[0m [0mexpression = "attribute:ecs.os-type==windows"
+                          [32m+[0m [0mtype       = "memberOf"
+                        },
+                    ]
+                  [32m+[0m [0mportMappings         = []
+                  [32m+[0m [0mrequiresAttributes   = [
+                      [32m+[0m [0m{
+                          [32m+[0m [0mname       = "com.amazonaws.ecs.capability.ecr-auth"
+                          [32m+[0m [0mtargetId   = [90mnull[0m[0m
+                          [32m+[0m [0mtargetType = [90mnull[0m[0m
+                          [32m+[0m [0mvalue      = [90mnull[0m[0m
+                        },
+                      [32m+[0m [0m{
+                          [32m+[0m [0mname       = "com.amazonaws.ecs.capability.task-iam-role"
+                          [32m+[0m [0mtargetId   = [90mnull[0m[0m
+                          [32m+[0m [0mtargetType = [90mnull[0m[0m
+                          [32m+[0m [0mvalue      = [90mnull[0m[0m
+                        },
+                      [32m+[0m [0m{
+                          [32m+[0m [0mname       = "ecs.capability.execution-role-ecr-pull"
+                          [32m+[0m [0mtargetId   = [90mnull[0m[0m
+                          [32m+[0m [0mtargetType = [90mnull[0m[0m
+                          [32m+[0m [0mvalue      = [90mnull[0m[0m
+                        },
+                    ]
+                },
+            ]
+        )
+      [32m+[0m [0m[1m[0mcpu[0m[0m                   = "1024"
+      [32m+[0m [0m[1m[0mexecution_role_arn[0m[0m    = "arn:aws:iam::945116902499:role/ecsTaskExecutionRole"
+      [32m+[0m [0m[1m[0mfamily[0m[0m                = "Kan-Sym-PRD-WebApp-sqlexecutor"
+      [32m+[0m [0m[1m[0mid[0m[0m                    = (known after apply)
+      [32m+[0m [0m[1m[0mmemory[0m[0m                = "1024"
+      [32m+[0m [0m[1m[0mnetwork_mode[0m[0m          = (known after apply)
+      [32m+[0m [0m[1m[0mrevision[0m[0m              = (known after apply)
+      [32m+[0m [0m[1m[0mtask_role_arn[0m[0m         = "arn:aws:iam::945116902499:role/ecsTaskExecutionRole"
+
+      [32m+[0m [0mplacement_constraints {
+          [32m+[0m [0m[1m[0mexpression[0m[0m = "attribute:ecs.os-type==windows"
+          [32m+[0m [0m[1m[0mtype[0m[0m       = "memberOf"
+        }
+    }
+
+[1m  # aws_iam_instance_profile.ecs-ec2-role[0m will be created[0m[0m
+[0m  [32m+[0m[0m resource "aws_iam_instance_profile" "ecs-ec2-role" {
+      [32m+[0m [0m[1m[0marn[0m[0m         = (known after apply)
+      [32m+[0m [0m[1m[0mcreate_date[0m[0m = (known after apply)
+      [32m+[0m [0m[1m[0mid[0m[0m          = (known after apply)
+      [32m+[0m [0m[1m[0mname[0m[0m        = "Kan-Sym-PRD-WebApp-iam-instance-profile"
+      [32m+[0m [0m[1m[0mpath[0m[0m        = "/"
+      [32m+[0m [0m[1m[0mrole[0m[0m        = "ecs-ec2-role"
+      [32m+[0m [0m[1m[0mroles[0m[0m       = (known after apply)
+      [32m+[0m [0m[1m[0munique_id[0m[0m   = (known after apply)
+    }
+
+[1m  # aws_iam_role_policy_attachment.ecs-service-attach[0m will be created[0m[0m
+[0m  [32m+[0m[0m resource "aws_iam_role_policy_attachment" "ecs-service-attach" {
+      [32m+[0m [0m[1m[0mid[0m[0m         = (known after apply)
+      [32m+[0m [0m[1m[0mpolicy_arn[0m[0m = "arn:aws:iam::aws:policy/service-role/AmazonEC2ContainerServiceRole"
+      [32m+[0m [0m[1m[0mrole[0m[0m       = "ecs-service-role"
+    }
+
+[1m  # aws_launch_configuration.ecs-cluster-lc[0m will be created[0m[0m
+[0m  [32m+[0m[0m resource "aws_launch_configuration" "ecs-cluster-lc" {
+      [32m+[0m [0m[1m[0marn[0m[0m                         = (known after apply)
+      [32m+[0m [0m[1m[0massociate_public_ip_address[0m[0m = false
+      [32m+[0m [0m[1m[0mebs_optimized[0m[0m               = (known after apply)
+      [32m+[0m [0m[1m[0menable_monitoring[0m[0m           = true
+      [32m+[0m [0m[1m[0miam_instance_profile[0m[0m        = (known after apply)
+      [32m+[0m [0m[1m[0mid[0m[0m                          = (known after apply)
+      [32m+[0m [0m[1m[0mimage_id[0m[0m                    = "ami-00afc256a955c31b5"
+      [32m+[0m [0m[1m[0minstance_type[0m[0m               = "t3.medium"
+      [32m+[0m [0m[1m[0mkey_name[0m[0m                    = "Kansas-PRD-ECS-Key"
+      [32m+[0m [0m[1m[0mname[0m[0m                        = (known after apply)
+      [32m+[0m [0m[1m[0mname_prefix[0m[0m                 = "Kan-Sym-PRD-WebApp-lc-Linux"
+      [32m+[0m [0m[1m[0msecurity_groups[0m[0m             = [
+          [32m+[0m [0m"sg-07c8f0478fc628959",
+        ]
+      [32m+[0m [0m[1m[0muser_data[0m[0m                   = (known after apply)
+
+      [32m+[0m [0mebs_block_device {
+          [32m+[0m [0m[1m[0mdelete_on_termination[0m[0m = (known after apply)
+          [32m+[0m [0m[1m[0mdevice_name[0m[0m           = (known after apply)
+          [32m+[0m [0m[1m[0mencrypted[0m[0m             = (known after apply)
+          [32m+[0m [0m[1m[0miops[0m[0m                  = (known after apply)
+          [32m+[0m [0m[1m[0mno_device[0m[0m             = (known after apply)
+          [32m+[0m [0m[1m[0msnapshot_id[0m[0m           = (known after apply)
+          [32m+[0m [0m[1m[0mvolume_size[0m[0m           = (known after apply)
+          [32m+[0m [0m[1m[0mvolume_type[0m[0m           = (known after apply)
+        }
+
+      [32m+[0m [0mroot_block_device {
+          [32m+[0m [0m[1m[0mdelete_on_termination[0m[0m = (known after apply)
+          [32m+[0m [0m[1m[0mencrypted[0m[0m             = (known after apply)
+          [32m+[0m [0m[1m[0miops[0m[0m                  = (known after apply)
+          [32m+[0m [0m[1m[0mvolume_size[0m[0m           = (known after apply)
+          [32m+[0m [0m[1m[0mvolume_type[0m[0m           = (known after apply)
+        }
+    }
+
+[1m  # aws_launch_configuration.ecs-cluster-lc-2[0][0m will be created[0m[0m
+[0m  [32m+[0m[0m resource "aws_launch_configuration" "ecs-cluster-lc-2" {
+      [32m+[0m [0m[1m[0marn[0m[0m                         = (known after apply)
+      [32m+[0m [0m[1m[0massociate_public_ip_address[0m[0m = false
+      [32m+[0m [0m[1m[0mebs_optimized[0m[0m               = (known after apply)
+      [32m+[0m [0m[1m[0menable_monitoring[0m[0m           = true
+      [32m+[0m [0m[1m[0miam_instance_profile[0m[0m        = (known after apply)
+      [32m+[0m [0m[1m[0mid[0m[0m                          = (known after apply)
+      [32m+[0m [0m[1m[0mimage_id[0m[0m                    = "ami-0eb7093437bbdc227"
+      [32m+[0m [0m[1m[0minstance_type[0m[0m               = "t3.medium"
+      [32m+[0m [0m[1m[0mkey_name[0m[0m                    = "Kansas-PRD-ECS-Key"
+      [32m+[0m [0m[1m[0mname[0m[0m                        = (known after apply)
+      [32m+[0m [0m[1m[0mname_prefix[0m[0m                 = "Kan-Sym-PRD-WebApp-lc-Windows"
+      [32m+[0m [0m[1m[0msecurity_groups[0m[0m             = [
+          [32m+[0m [0m"sg-07c8f0478fc628959",
+        ]
+      [32m+[0m [0m[1m[0muser_data[0m[0m                   = (known after apply)
+
+      [32m+[0m [0mebs_block_device {
+          [32m+[0m [0m[1m[0mdelete_on_termination[0m[0m = (known after apply)
+          [32m+[0m [0m[1m[0mdevice_name[0m[0m           = (known after apply)
+          [32m+[0m [0m[1m[0mencrypted[0m[0m             = (known after apply)
+          [32m+[0m [0m[1m[0miops[0m[0m                  = (known after apply)
+          [32m+[0m [0m[1m[0mno_device[0m[0m             = (known after apply)
+          [32m+[0m [0m[1m[0msnapshot_id[0m[0m           = (known after apply)
+          [32m+[0m [0m[1m[0mvolume_size[0m[0m           = (known after apply)
+          [32m+[0m [0m[1m[0mvolume_type[0m[0m           = (known after apply)
+        }
+
+      [32m+[0m [0mroot_block_device {
+          [32m+[0m [0m[1m[0mdelete_on_termination[0m[0m = (known after apply)
+          [32m+[0m [0m[1m[0mencrypted[0m[0m             = (known after apply)
+          [32m+[0m [0m[1m[0miops[0m[0m                  = (known after apply)
+          [32m+[0m [0m[1m[0mvolume_size[0m[0m           = (known after apply)
+          [32m+[0m [0m[1m[0mvolume_type[0m[0m           = (known after apply)
+        }
+    }
+
+[1m  # aws_lb_listener.httptohttps[0m will be created[0m[0m
+[0m  [32m+[0m[0m resource "aws_lb_listener" "httptohttps" {
+      [32m+[0m [0m[1m[0marn[0m[0m               = (known after apply)
+      [32m+[0m [0m[1m[0mid[0m[0m                = (known after apply)
+      [32m+[0m [0m[1m[0mload_balancer_arn[0m[0m = (known after apply)
+      [32m+[0m [0m[1m[0mport[0m[0m              = 80
+      [32m+[0m [0m[1m[0mprotocol[0m[0m          = "HTTP"
+      [32m+[0m [0m[1m[0mssl_policy[0m[0m        = (known after apply)
+
+      [32m+[0m [0mdefault_action {
+          [32m+[0m [0m[1m[0morder[0m[0m = (known after apply)
+          [32m+[0m [0m[1m[0mtype[0m[0m  = "redirect"
+
+          [32m+[0m [0mredirect {
+              [32m+[0m [0m[1m[0mhost[0m[0m        = "#{host}"
+              [32m+[0m [0m[1m[0mpath[0m[0m        = "/#{path}"
+              [32m+[0m [0m[1m[0mport[0m[0m        = "443"
+              [32m+[0m [0m[1m[0mprotocol[0m[0m    = "HTTPS"
+              [32m+[0m [0m[1m[0mquery[0m[0m       = "#{query}"
+              [32m+[0m [0m[1m[0mstatus_code[0m[0m = "HTTP_301"
+            }
+        }
+    }
+
+[0m[1mPlan:[0m 21 to add, 0 to change, 0 to destroy.[0m
+[33m
+[1m[33mWarning: [0m[0m[1mInterpolation-only expressions are deprecated[0m
+
+[0m  on alb_listener.tf line 2, in resource "aws_lb_listener" "httptohttps":
+   2:   load_balancer_arn = [4m"${aws_alb.aws_ecs_alb.id}"[0m
+[0m
+Terraform 0.11 and earlier required all non-constant expressions to be
+provided via interpolation syntax, but this pattern is now deprecated. To
+silence this warning, remove the "${ sequence from the start and the }"
+sequence from the end of this expression, leaving just the inner expression.
+
+Template interpolation syntax is still used to construct strings from
+expressions when the template includes multiple interpolation sequences or a
+mixture of literal strings and interpolations. This deprecation applies only
+to templates that consist entirely of a single interpolation sequence.
+
+(and 56 more similar warnings elsewhere)
+[0m[0m
+[33m
+[1m[33mWarning: [0m[0m[1mQuoted references are deprecated[0m
+
+[0m  on ecs_alb.tf line 56, in resource "aws_alb_target_group" "ecs-group":
+  56:   depends_on = [[4m"aws_alb.aws_ecs_alb"[0m]
+[0m
+In this context, references are expected literally rather than in quotes.
+Terraform 0.11 and earlier required quotes, but quoted references are now
+deprecated and will be removed in a future version of Terraform. Remove the
+quotes surrounding this reference to silence this warning.
+[0m[0m
+
+------------------------------------------------------------------------
+
+Note: You didn't specify an "-out" parameter to save this plan, so Terraform
+can't guarantee that exactly these actions will be performed if
+"terraform apply" is subsequently run.
+

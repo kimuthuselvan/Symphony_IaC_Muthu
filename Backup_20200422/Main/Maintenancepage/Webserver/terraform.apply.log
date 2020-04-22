@@ -1,0 +1,67 @@
+[0m[1mdata.aws_acm_certificate.clientdomain: Refreshing state...[0m
+[0m[1mdata.aws_ami.amazon-linux-2: Refreshing state...[0m
+[0m[1mdata.aws_vpc.vpc_id: Refreshing state...[0m
+[0m[1mdata.aws_iam_policy_document.site_policy: Refreshing state...[0m
+[0m[1mdata.aws_subnet_ids.subnet_ids: Refreshing state...[0m
+[0m[1maws_security_group.security_group: Creating...[0m[0m
+[0m[1maws_s3_bucket.contentbucket: Creating...[0m[0m
+[0m[1maws_security_group.security_group: Creation complete after 2s [id=sg-0c4c166f67b24894d][0m[0m
+[0m[1maws_alb.aws_security_alb: Creating...[0m[0m
+[0m[1maws_s3_bucket.contentbucket: Creation complete after 4s [id=symphony-shared-maintenancepage][0m[0m
+[0m[1mdata.template_file.userdata: Refreshing state...[0m
+[0m[1maws_s3_bucket_object.uploadfiles["images/login-img.jpg"]: Creating...[0m[0m
+[0m[1maws_s3_bucket_object.uploadfiles["images/logo.png"]: Creating...[0m[0m
+[0m[1maws_s3_bucket_object.uploadfiles["maintenance.html"]: Creating...[0m[0m
+[0m[1maws_s3_bucket_object.uploadfiles["images/screwdriverblack.png"]: Creating...[0m[0m
+[0m[1maws_s3_bucket_object.uploadfiles["css/default.css"]: Creating...[0m[0m
+[0m[1maws_s3_bucket_object.uploadfiles["images/screwdriverblack128.png"]: Creating...[0m[0m
+[0m[1maws_launch_configuration.launchlinux: Creating...[0m[0m
+[0m[1maws_s3_bucket_object.uploadfiles["maintenance.html"]: Creation complete after 0s [id=maintenance.html][0m[0m
+[0m[1maws_s3_bucket_object.uploadfiles["images/logo.png"]: Creation complete after 0s [id=images/logo.png][0m[0m
+[0m[1maws_s3_bucket_object.uploadfiles["images/screwdriverblack128.png"]: Creation complete after 0s [id=images/screwdriverblack128.png][0m[0m
+[0m[1maws_s3_bucket_object.uploadfiles["images/screwdriverblack.png"]: Creation complete after 0s [id=images/screwdriverblack.png][0m[0m
+[0m[1maws_s3_bucket_object.uploadfiles["css/default.css"]: Creation complete after 0s [id=css/default.css][0m[0m
+[0m[1maws_s3_bucket_object.uploadfiles["images/login-img.jpg"]: Creation complete after 0s [id=images/login-img.jpg][0m[0m
+[0m[1maws_launch_configuration.launchlinux: Creation complete after 0s [id=Symphony_MaintenancePage_Linux_LC][0m[0m
+[0m[1maws_alb.aws_security_alb: Still creating... [10s elapsed][0m[0m
+[0m[1maws_alb.aws_security_alb: Still creating... [20s elapsed][0m[0m
+[0m[1maws_alb.aws_security_alb: Still creating... [30s elapsed][0m[0m
+[0m[1maws_alb.aws_security_alb: Still creating... [40s elapsed][0m[0m
+[0m[1maws_alb.aws_security_alb: Still creating... [50s elapsed][0m[0m
+[0m[1maws_alb.aws_security_alb: Still creating... [1m0s elapsed][0m[0m
+[0m[1maws_alb.aws_security_alb: Still creating... [1m10s elapsed][0m[0m
+[0m[1maws_alb.aws_security_alb: Still creating... [1m20s elapsed][0m[0m
+[0m[1maws_alb.aws_security_alb: Still creating... [1m30s elapsed][0m[0m
+[0m[1maws_alb.aws_security_alb: Still creating... [1m40s elapsed][0m[0m
+[0m[1maws_alb.aws_security_alb: Still creating... [1m50s elapsed][0m[0m
+[0m[1maws_alb.aws_security_alb: Still creating... [2m0s elapsed][0m[0m
+[0m[1maws_alb.aws_security_alb: Still creating... [2m10s elapsed][0m[0m
+[0m[1maws_alb.aws_security_alb: Still creating... [2m20s elapsed][0m[0m
+[0m[1maws_alb.aws_security_alb: Still creating... [2m30s elapsed][0m[0m
+[0m[1maws_alb.aws_security_alb: Still creating... [2m40s elapsed][0m[0m
+[0m[1maws_alb.aws_security_alb: Still creating... [2m50s elapsed][0m[0m
+[0m[1maws_alb.aws_security_alb: Still creating... [3m0s elapsed][0m[0m
+[0m[1maws_alb.aws_security_alb: Still creating... [3m10s elapsed][0m[0m
+[0m[1maws_alb.aws_security_alb: Still creating... [3m20s elapsed][0m[0m
+[0m[1maws_alb.aws_security_alb: Creation complete after 3m23s [id=arn:aws:elasticloadbalancing:us-east-1:022705868532:loadbalancer/app/Symphony-MaintenancePage-ALB/c7d362c989ead765][0m[0m
+[0m[1maws_alb_target_group.security-group: Creating...[0m[0m
+[0m[1maws_alb_listener.httptohttps: Creating...[0m[0m
+[0m[1maws_alb_listener.httptohttps: Creation complete after 0s [id=arn:aws:elasticloadbalancing:us-east-1:022705868532:listener/app/Symphony-MaintenancePage-ALB/c7d362c989ead765/6c2f5f900c89d3d0][0m[0m
+[0m[1maws_alb_target_group.security-group: Creation complete after 1s [id=arn:aws:elasticloadbalancing:us-east-1:022705868532:targetgroup/Symphony-MaintenancePage-TG/ce0d0b09dd454158][0m[0m
+[0m[1maws_alb_listener.front_end: Creating...[0m[0m
+[0m[1maws_autoscaling_group.linuxservers: Creating...[0m[0m
+[0m[1maws_alb_listener.front_end: Creation complete after 0s [id=arn:aws:elasticloadbalancing:us-east-1:022705868532:listener/app/Symphony-MaintenancePage-ALB/c7d362c989ead765/1817697e9ccb66c5][0m[0m
+[0m[1maws_autoscaling_group.linuxservers: Still creating... [10s elapsed][0m[0m
+[0m[1maws_autoscaling_group.linuxservers: Still creating... [20s elapsed][0m[0m
+[0m[1maws_autoscaling_group.linuxservers: Still creating... [30s elapsed][0m[0m
+[0m[1maws_autoscaling_group.linuxservers: Creation complete after 37s [id=Symphony_MaintenancePage_Linux_ASG][0m[0m
+[0m[1maws_autoscaling_attachment.asg_attachment_alb: Creating...[0m[0m
+[0m[1maws_autoscaling_policy.linuxautopolicy: Creating...[0m[0m
+[0m[1maws_autoscaling_attachment.asg_attachment_alb: Creation complete after 0s [id=Symphony_MaintenancePage_Linux_ASG-20200420214922222900000001][0m[0m
+[0m[1maws_autoscaling_policy.linuxautopolicy: Creation complete after 1s [id=Symphony_MaintenancePage_Linux_ASGP][0m[0m
+[0m[1m[32m
+Apply complete! Resources: 16 added, 0 changed, 0 destroyed.[0m
+[0m[1m[32m
+Outputs:
+
+alb_dns_name = aws_alb.aws_security_alb.dns_name[0m

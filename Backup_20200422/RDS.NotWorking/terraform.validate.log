@@ -1,0 +1,8 @@
+[31m
+[1m[31mError: [0m[0m[1mUnsupported argument[0m
+
+[0m  on aws_rds.tf line 6, in resource "aws_db_instance" "eft_rds":
+   6:   [4mvpc_id[0m = "vpc-0b2eba5d72c599770"
+[0m
+An argument named "vpc_id" is not expected here.
+[0m[0m

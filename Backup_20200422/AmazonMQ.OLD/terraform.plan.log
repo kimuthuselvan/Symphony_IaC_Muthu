@@ -1,0 +1,330 @@
+[0m[1mRefreshing Terraform state in-memory prior to plan...[0m
+The refreshed state will be used to calculate this plan, but will not be
+persisted to local or remote state storage.
+[0m
+[0m[1maws_mq_configuration.amazonmq: Refreshing state... [id=c-07e453a3-e2c9-4755-b4e4-f32229db8cea][0m
+[0m[1maws_mq_broker.amazonmq: Refreshing state... [id=b-4d05bc39-6030-4fb6-81bc-1cf148a19a1d][0m
+
+------------------------------------------------------------------------
+
+An execution plan has been generated and is shown below.
+Resource actions are indicated with the following symbols:
+  [33m~[0m update in-place
+[0m
+Terraform will perform the following actions:
+
+[1m  # aws_mq_broker.amazonmq[0m will be updated in-place[0m[0m
+[0m  [33m~[0m[0m resource "aws_mq_broker" "amazonmq" {
+        [1m[0mapply_immediately[0m[0m          = false
+        [1m[0marn[0m[0m                        = "arn:aws:mq:us-east-1:945116902499:broker:Symphony-Kansas-UAT:b-4d05bc39-6030-4fb6-81bc-1cf148a19a1d"
+        [1m[0mauto_minor_version_upgrade[0m[0m = false
+        [1m[0mbroker_name[0m[0m                = "Symphony-Kansas-UAT"
+        [1m[0mdeployment_mode[0m[0m            = "ACTIVE_STANDBY_MULTI_AZ"
+        [1m[0mengine_type[0m[0m                = "ActiveMQ"
+        [1m[0mengine_version[0m[0m             = "5.15.9"
+        [1m[0mhost_instance_type[0m[0m         = "mq.t2.micro"
+        [1m[0mid[0m[0m                         = "b-4d05bc39-6030-4fb6-81bc-1cf148a19a1d"
+        [1m[0minstances[0m[0m                  = [
+            {
+                console_url = "https://b-4d05bc39-6030-4fb6-81bc-1cf148a19a1d-1.mq.us-east-1.amazonaws.com:8162"
+                endpoints   = [
+                    "ssl://b-4d05bc39-6030-4fb6-81bc-1cf148a19a1d-1.mq.us-east-1.amazonaws.com:61617",
+                    "amqp+ssl://b-4d05bc39-6030-4fb6-81bc-1cf148a19a1d-1.mq.us-east-1.amazonaws.com:5671",
+                    "stomp+ssl://b-4d05bc39-6030-4fb6-81bc-1cf148a19a1d-1.mq.us-east-1.amazonaws.com:61614",
+                    "mqtt+ssl://b-4d05bc39-6030-4fb6-81bc-1cf148a19a1d-1.mq.us-east-1.amazonaws.com:8883",
+                    "wss://b-4d05bc39-6030-4fb6-81bc-1cf148a19a1d-1.mq.us-east-1.amazonaws.com:61619",
+                ]
+                ip_address  = "10.126.132.227"
+            },
+            {
+                console_url = "https://b-4d05bc39-6030-4fb6-81bc-1cf148a19a1d-2.mq.us-east-1.amazonaws.com:8162"
+                endpoints   = [
+                    "ssl://b-4d05bc39-6030-4fb6-81bc-1cf148a19a1d-2.mq.us-east-1.amazonaws.com:61617",
+                    "amqp+ssl://b-4d05bc39-6030-4fb6-81bc-1cf148a19a1d-2.mq.us-east-1.amazonaws.com:5671",
+                    "stomp+ssl://b-4d05bc39-6030-4fb6-81bc-1cf148a19a1d-2.mq.us-east-1.amazonaws.com:61614",
+                    "mqtt+ssl://b-4d05bc39-6030-4fb6-81bc-1cf148a19a1d-2.mq.us-east-1.amazonaws.com:8883",
+                    "wss://b-4d05bc39-6030-4fb6-81bc-1cf148a19a1d-2.mq.us-east-1.amazonaws.com:61619",
+                ]
+                ip_address  = "10.126.132.148"
+            },
+        ]
+        [1m[0mpublicly_accessible[0m[0m        = false
+        [1m[0msecurity_groups[0m[0m            = [
+            "sg-09a4c12052a8fa6c6",
+        ]
+        [1m[0msubnet_ids[0m[0m                 = [
+            "subnet-045f15dc2d848718a",
+            "subnet-0c4816f7842153167",
+        ]
+      [33m~[0m [0m[1m[0mtags[0m[0m                       = {
+            "Client"      = "Kansas"
+          [33m~[0m [0m"Environment" = "UAT-DMZ" [33m->[0m [0m"UAT"
+            "Name"        = "Symphony-Kansas-UAT"
+            "Project"     = "Symphony"
+          [32m+[0m [0m"Zone"        = "DMZ"
+        }
+
+      [33m~[0m [0mconfiguration {
+            [1m[0mid[0m[0m       = "c-07e453a3-e2c9-4755-b4e4-f32229db8cea"
+          [33m~[0m [0m[1m[0mrevision[0m[0m = 2 [33m->[0m [0m(known after apply)
+        }
+
+        encryption_options {
+            [1m[0muse_aws_owned_key[0m[0m = true
+        }
+
+        logs {
+            [1m[0maudit[0m[0m   = false
+            [1m[0mgeneral[0m[0m = false
+        }
+
+        maintenance_window_start_time {
+            [1m[0mday_of_week[0m[0m = "WEDNESDAY"
+            [1m[0mtime_of_day[0m[0m = "19:00"
+            [1m[0mtime_zone[0m[0m   = "UTC"
+        }
+
+        user {
+            [1m[0mconsole_access[0m[0m = false
+            [1m[0mgroups[0m[0m         = []
+            [1m[0mpassword[0m[0m       = (sensitive value)
+            [1m[0musername[0m[0m       = "amazonmquat"
+        }
+      [31m-[0m [0muser {
+          [31m-[0m [0m[1m[0mconsole_access[0m[0m = true [90m->[0m [0m[90mnull[0m[0m
+          [31m-[0m [0m[1m[0mgroups[0m[0m         = [] [90m->[0m [0m[90mnull[0m[0m
+          [31m-[0m [0m[1m[0musername[0m[0m       = "uatuser" [90m->[0m [0m[90mnull[0m[0m
+        }
+    }
+
+[1m  # aws_mq_configuration.amazonmq[0m will be updated in-place[0m[0m
+[0m  [33m~[0m[0m resource "aws_mq_configuration" "amazonmq" {
+        [1m[0marn[0m[0m             = "arn:aws:mq:us-east-1:945116902499:configuration:c-07e453a3-e2c9-4755-b4e4-f32229db8cea"
+      [33m~[0m [0m[1m[0mdata[0m[0m            = <<~EOT
+            <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+          [31m-[0m [0m<broker schedulePeriodForDestinationPurge="10000" xmlns="http://activemq.apache.org/schema/core">
+          [32m+[0m [0m<broker xmlns="http://activemq.apache.org/schema/core" schedulePeriodForDestinationPurge="10000">
+              <!--
+              A configuration contains all of the settings for your ActiveMQ broker, in XML format (similar to ActiveMQ's activemq.xml file).
+              You can create a configuration before creating any brokers. You can then apply the configuration to one or more brokers.
+            
+              You can use additional attributes for the broker element above. These attributes allow you to configure broker-wide settings.
+            
+              For more information, see Configuration and Amazon MQ Broker Configuration Parameters in the Amazon MQ Developer Guide:
+              https://docs.aws.amazon.com/amazon-mq/latest/developer-guide/amazon-mq-broker-configuration-parameters.html
+              -->
+              <!--
+              Mirrored queues let you send a copy of each message to a topic with a similar name automatically.
+              For more information, see http://activemq.apache.org/mirrored-queues.html
+            
+              Virtual destinations let you configure advanced routing of messages between destinations.
+              For more information, see http://activemq.apache.org/virtual-destinations.html
+              -->
+              <!--
+              <destinationInterceptors>
+                <mirroredQueue copyMessage="true" postfix=".qmirror" prefix=""/>
+                <virtualDestinationInterceptor>
+                  <virtualDestinations>
+                    <virtualTopic name="&gt;" prefix="VirtualTopicConsumers.*." selectorAware="false"/>
+                    <compositeQueue name="MY.QUEUE">
+                      <forwardTo>
+                        <queue physicalName="FOO"/>
+                        <topic physicalName="BAR"/>
+                      </forwardTo>
+                    </compositeQueue>
+                  </virtualDestinations>
+                </virtualDestinationInterceptor>
+              </destinationInterceptors>
+              -->
+              <!--
+              By default, Amazon MQ optimizes for queues with fast consumers:
+              Consumers are considered fast if they are able to keep up with the rate of messages generated by producers.
+              Consumers are considered slow if a queue builds up a backlog of unacknowledged messages, potentially causing a decrease in producer throughput.
+              To instruct Amazon MQ to optimize for queues with slow consumers, set the concurrentStoreAndDispatchQueues attribute to false.
+              For more information, see https://docs.aws.amazon.com/amazon-mq/latest/developer-guide/ensuring-effective-amazon-mq-performance.html
+              -->
+              <!--
+              <persistenceAdapter>
+                <kahaDB  concurrentStoreAndDispatchQueues="false"/>
+              </persistenceAdapter>
+              -->
+              <destinationPolicy>
+                <policyMap>
+                  <policyEntries>
+                    <!--
+                    gcInactiveDestinations is used to automatically purge inactive destinations
+                    preventing them from unnecessarily using broker resources.
+            
+                    An 'inactive' destination is one that has no messages pending and no consumers connected.
+            
+                    For more information, see: http://activemq.apache.org/delete-inactive-destinations.html
+                    -->
+          [31m-[0m [0m        <policyEntry gcInactiveDestinations="true" inactiveTimoutBeforeGC="600000" topic="&gt;">
+          [32m+[0m [0m        <policyEntry topic="&gt;" gcInactiveDestinations="true" inactiveTimoutBeforeGC="600000">
+                      <!--
+                      The constantPendingMessageLimitStrategy is used to prevent
+                      slow topic consumers to block producers and affect other consumers
+                      by limiting the number of messages that are retained
+            
+                      For more information, see: http://activemq.apache.org/slow-consumer-handling.html
+                      -->
+                      <pendingMessageLimitStrategy>
+                        <constantPendingMessageLimitStrategy limit="1000"/>
+                      </pendingMessageLimitStrategy>
+                    </policyEntry>
+          [31m-[0m [0m        <policyEntry gcInactiveDestinations="true" inactiveTimoutBeforeGC="600000" queue="&gt;"/>
+          [32m+[0m [0m        <policyEntry queue="&gt;" gcInactiveDestinations="true" inactiveTimoutBeforeGC="600000" />
+                    <!--
+                    Destination policies let you configure a rich set of behaviors for your queues and topics.
+                    For more information, see http://activemq.apache.org/per-destination-policies.html
+                    -->
+                    <!--
+                    <policyEntry topic="FOO.&gt;">
+                      <dispatchPolicy>
+                        <roundRobinDispatchPolicy/>
+                      </dispatchPolicy>
+                      <subscriptionRecoveryPolicy>
+                        <lastImageSubscriptionRecoveryPolicy/>
+                      </subscriptionRecoveryPolicy>
+                    </policyEntry>
+                    <policyEntry advisoryForConsumed="true" tempTopic="true"/>
+                    <policyEntry advisoryForConsumed="true" tempQueue="true"/>
+                    -->
+                  </policyEntries>
+                </policyMap>
+              </destinationPolicy>
+              <!--
+              Typically, destinations are created automatically when they are used. Amazon MQ lets you create destinations when the broker is started.
+              For more information, see http://activemq.apache.org/configure-startup-destinations.html
+              -->
+              <!--
+              <destinations>
+                <queue physicalName="FOO.BAR"/>
+                <topic physicalName="SOME.TOPIC"/>
+              </destinations>
+              -->
+              <!--
+              You can control advanced ActiveMQ features using plugins.
+              -->
+              <plugins>
+                <!--
+                The Authorization plugin allows you to control the groups of users that are allowed to perform certain operations on your destinations.
+                For more information, see http://activemq.apache.org/security.html
+                -->
+                <!--
+                <authorizationPlugin>
+                  <map>
+                    <authorizationMap>
+                      <authorizationEntries>
+                        <authorizationEntry admin="guests,users" queue="GUEST.&gt;" read="guests" write="guests,users"/>
+                        <authorizationEntry admin="guests,users" read="guests,users" topic="ActiveMQ.Advisory.&gt;" write="guests,users"/>
+                      </authorizationEntries>
+                      <tempDestinationAuthorizationEntry>
+                        <tempDestinationAuthorizationEntry admin="tempDestinationAdmins" read="tempDestinationAdmins" write="tempDestinationAdmins"/>
+                      </tempDestinationAuthorizationEntry>
+                    </authorizationMap>
+                  </map>
+                </authorizationPlugin>
+                -->
+                <!--
+                The Discarding DLQ plugin simplifies the configuration of your global dead-letter queue strategy.
+                You can take advantage of a more granular per-destination control by using destination policies.
+                For more information, see http://activemq.apache.org/message-redelivery-and-dlq-handling.html
+                -->
+                <!--
+                <discardingDLQBrokerPlugin dropAll="true" dropTemporaryQueues="true" dropTemporaryTopics="true"/>
+                -->
+                <!--
+                The Force Persistency Mode plugin can override the persistency mode set on messages.
+                -->
+                <!--
+                <forcePersistencyModeBrokerPlugin persistenceFlag="true"/>
+                -->
+                <!--
+                The Redelivery plugin extends the capabilities of destination policies with respect to message redelivery.
+                For more information, see http://activemq.apache.org/message-redelivery-and-dlq-handling.html
+                -->
+                <!--
+                <redeliveryPlugin fallbackToDeadLetter="true" sendToDlqIfMaxRetriesExceeded="true">
+                  <redeliveryPolicyMap>
+                    <redeliveryPolicyMap>
+                      <redeliveryPolicyEntries>
+                        <redeliveryPolicy maximumRedeliveries="4" queue="SpecialQueue" redeliveryDelay="10000"/>
+                      </redeliveryPolicyEntries>
+                      <defaultEntry>
+                        <redeliveryPolicy initialRedeliveryDelay="5000" maximumRedeliveries="4" redeliveryDelay="10000"/>
+                      </defaultEntry>
+                    </redeliveryPolicyMap>
+                  </redeliveryPolicyMap>
+                </redeliveryPlugin>
+                -->
+                <!--
+                The Statistics plugin lets you query broker or destination statistics by sending messages to the broker.
+                For more information, see http://activemq.apache.org/statisticsplugin.html
+                -->
+                <!--
+                <statisticsBrokerPlugin/>
+                -->
+                <!--
+                The Timestamping plugin lets the broker use server-side time instead of client-provided time for messages.
+                For more information, see http://activemq.apache.org/timestampplugin.html
+                -->
+                <!--
+                <timeStampingBrokerPlugin ttlCeiling="86400000" zeroExpirationOverride="86400000"/>
+                -->
+              </plugins>
+              <!--
+              Network connectors let you connect brokers into networks of brokers.
+              For more information, see Creating and Configuring an Amazon MQ Network of Brokers
+              (https://docs.aws.amazon.com/amazon-mq/latest/developer-guide/amazon-mq-creating-configuring-network-of-brokers.html)
+              in the Amazon MQ Developer Guide and also Networks of Brokers
+              (http://activemq.apache.org/networks-of-brokers.html) in the ActiveMQ documentation.
+              -->
+              <!--
+              <networkConnectors>
+                <networkConnector name="myNetworkConnector" userName="commonUser" uri="masterslave:(ssl://b-1a2b3c4d-1.mq.region.amazonaws.com:61617,ssl://b-1a2b3c4d-2.mq.region.amazonaws.com:61617)"/>
+              </networkConnectors>
+              -->
+            </broker>
+        EOT
+        [1m[0mdescription[0m[0m     = "Symphony-Kansas-UAT-Configuration"
+        [1m[0mengine_type[0m[0m     = "ActiveMQ"
+        [1m[0mengine_version[0m[0m  = "5.15.9"
+        [1m[0mid[0m[0m              = "c-07e453a3-e2c9-4755-b4e4-f32229db8cea"
+      [33m~[0m [0m[1m[0mlatest_revision[0m[0m = 2 [33m->[0m [0m(known after apply)
+        [1m[0mname[0m[0m            = "amazonmq"
+      [33m~[0m [0m[1m[0mtags[0m[0m            = {
+            "Client"      = "Kansas"
+          [33m~[0m [0m"Environment" = "UAT-DMZ" [33m->[0m [0m"UAT"
+            "Name"        = "Symphony-Kansas-UAT"
+            "Project"     = "Symphony"
+          [32m+[0m [0m"Zone"        = "DMZ"
+        }
+    }
+
+[0m[1mPlan:[0m 0 to add, 2 to change, 0 to destroy.[0m
+[33m
+[1m[33mWarning: [0m[0m[1mInterpolation-only expressions are deprecated[0m
+
+[0m  on main.tf line 209, in resource "aws_mq_broker" "amazonmq":
+ 209:     id       = [4m"${aws_mq_configuration.amazonmq.id}"[0m
+[0m
+Terraform 0.11 and earlier required all non-constant expressions to be
+provided via interpolation syntax, but this pattern is now deprecated. To
+silence this warning, remove the "${ sequence from the start and the }"
+sequence from the end of this expression, leaving just the inner expression.
+
+Template interpolation syntax is still used to construct strings from
+expressions when the template includes multiple interpolation sequences or a
+mixture of literal strings and interpolations. This deprecation applies only
+to templates that consist entirely of a single interpolation sequence.
+
+(and one more similar warning elsewhere)
+[0m[0m
+
+------------------------------------------------------------------------
+
+Note: You didn't specify an "-out" parameter to save this plan, so Terraform
+can't guarantee that exactly these actions will be performed if
+"terraform apply" is subsequently run.
+

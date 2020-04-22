@@ -1,0 +1,50 @@
+[
+  {
+    "name": "${container_name}",
+    "image": "945116902499.dkr.ecr.us-east-1.amazonaws.com/dataaudit:1.1.3",
+    "essential": true,
+    "portMappings": [
+      {
+        "containerPort": 443,
+        "protocol": "tcp",
+        "hostPort": 0
+      }
+    ],
+    "environment": [
+      {
+        "name": "AppName",
+        "value": "uat"
+      },
+      {
+        "name": "ASPNETCORE_ENVIRONMENT",
+        "value": "Production"
+      },
+      {
+        "name": "ASPNETCORE_HTTPS_PORT",
+        "value": "443"
+      },
+      {
+         "name": "ASPNETCORE_URLS",
+         "value": "https://+"
+      },
+      {
+        "name": "ClientName",
+        "value": "kansas"
+      }
+    ],
+    "logConfiguration": {
+      "logDriver": "awslogs",
+        "options": {
+          "awslogs-group": "/${Ecs_name}/${Ecs_name}_logs",
+          "awslogs-region": "us-east-1",
+          "awslogs-stream-prefix": "ecs"
+        }
+    },
+    "placementConstraints": [
+      {
+        "type": "memberOf",
+        "expression": "attribute:ecs.os-type==linux"
+      }
+    ]
+  }
+]

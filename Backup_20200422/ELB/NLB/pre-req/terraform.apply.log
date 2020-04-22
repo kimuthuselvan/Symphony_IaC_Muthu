@@ -1,0 +1,8 @@
+[0m[1maws_iam_role.static_lb_lambda: Refreshing state... [id=lambdaFunction-NLB-to-ALB-role][0m
+[0m[1maws_cloudwatch_event_rule.cron_minute: Refreshing state... [id=cron-minute-lambda][0m
+[0m[1maws_s3_bucket.static_lb: Refreshing state... [id=kan-sym-nlb][0m
+[0m[1maws_iam_role_policy.static_lb_lambda: Refreshing state... [id=lambdaFunction-NLB-to-ALB-role:lambdaFunction-NLB-to-ALB-policy][0m
+[0m[1maws_iam_role_policy.static_lb_lambda: Modifying... [id=lambdaFunction-NLB-to-ALB-role:lambdaFunction-NLB-to-ALB-policy][0m[0m
+[0m[1maws_iam_role_policy.static_lb_lambda: Modifications complete after 1s [id=lambdaFunction-NLB-to-ALB-role:lambdaFunction-NLB-to-ALB-policy][0m[0m
+[0m[1m[32m
+Apply complete! Resources: 0 added, 1 changed, 0 destroyed.[0m

@@ -1,0 +1,27 @@
+[33m
+[1m[33mWarning: [0m[0m[1mInterpolation-only expressions are deprecated[0m
+
+[0m  on aws_network.tf line 17, in resource "aws_default_security_group" "default":
+  17:   vpc_id = [4m"${aws_vpc.main.id}"[0m
+[0m
+Terraform 0.11 and earlier required all non-constant expressions to be
+provided via interpolation syntax, but this pattern is now deprecated. To
+silence this warning, remove the "${ sequence from the start and the }"
+sequence from the end of this expression, leaving just the inner expression.
+
+Template interpolation syntax is still used to construct strings from
+expressions when the template includes multiple interpolation sequences or a
+mixture of literal strings and interpolations. This deprecation applies only
+to templates that consist entirely of a single interpolation sequence.
+
+(and 4 more similar warnings elsewhere)
+[0m[0m
+[31m
+[1m[31mError: [0m[0m[1mReference to undeclared resource[0m
+
+[0m  on aws_network.tf line 58, in resource "aws_flow_log" "vpc_flow_log":
+  58:   iam_role_arn    = "${[4maws_iam_role.vpc_flow_log[0m.arn}"
+[0m
+A managed resource "aws_iam_role" "vpc_flow_log" has not been declared in the
+root module.
+[0m[0m

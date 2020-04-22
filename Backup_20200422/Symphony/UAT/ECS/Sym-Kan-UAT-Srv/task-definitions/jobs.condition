@@ -1,0 +1,7 @@
+name = "jobs"
+searchpath = "/Account/Login?ReturnUrl=%2Fjobs"
+successcode = 200
+listener_rule = "default"
+os_type = "windows"
+cpu = 1024
+memory = 1024

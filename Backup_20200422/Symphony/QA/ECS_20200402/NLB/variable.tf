@@ -1,0 +1,12 @@
+variable  "ecs_name" {}
+variable  "alb_dns_name" {}
+variable  "region_name" {}
+variable  "vpc_name" {}
+variable  "cron_arn" {}
+#variable  "iam_role_name" {}
+variable  "iam_role_arn" {}
+variable  "subnet_name_az1" {}
+variable  "subnet_name_az2" {}
+variable  "s3_bucket_name" {}
+variable  "subnet_cidr_az1" {}
+variable  "subnet_cidr_az2" {}

@@ -1,0 +1,82 @@
+[0m[1maws_db_subnet_group.kansas_prd_sqlserver: Refreshing state... [id=symphony-sqlserver-prd-subnet-group][0m
+[0m[1maws_security_group.kansas_prd_sqlserver: Refreshing state... [id=sg-084a8c17037db492f][0m
+[0m[1maws_db_option_group.kansas_prd_sqlserver: Refreshing state... [id=test-symphony-db-prd-option-group][0m
+[0m[1maws_db_parameter_group.kansas_prd_sqlserver: Refreshing state... [id=test-symphony-db-prd-parameter-group][0m
+[0m[1maws_db_instance.kansas_prd_sqlserver: Refreshing state... [id=testsymkanprddb][0m
+[0m[1maws_db_parameter_group.kansas_prd_sqlserver: Destroying... [id=test-symphony-db-prd-parameter-group][0m[0m
+[0m[1maws_db_option_group.kansas_prd_sqlserver: Destroying... [id=test-symphony-db-prd-option-group][0m[0m
+[0m[1maws_db_instance.kansas_prd_sqlserver: Destroying... [id=testsymkanprddb][0m[0m
+[0m[1maws_db_option_group.kansas_prd_sqlserver: Destruction complete after 0s[0m[0m
+[0m[1maws_db_parameter_group.kansas_prd_sqlserver: Destruction complete after 0s[0m[0m
+[0m[1maws_db_instance.kansas_prd_sqlserver: Still destroying... [id=testsymkanprddb, 10s elapsed][0m[0m
+[0m[1maws_db_instance.kansas_prd_sqlserver: Still destroying... [id=testsymkanprddb, 20s elapsed][0m[0m
+[0m[1maws_db_instance.kansas_prd_sqlserver: Still destroying... [id=testsymkanprddb, 30s elapsed][0m[0m
+[0m[1maws_db_instance.kansas_prd_sqlserver: Still destroying... [id=testsymkanprddb, 40s elapsed][0m[0m
+[0m[1maws_db_instance.kansas_prd_sqlserver: Still destroying... [id=testsymkanprddb, 50s elapsed][0m[0m
+[0m[1maws_db_instance.kansas_prd_sqlserver: Still destroying... [id=testsymkanprddb, 1m0s elapsed][0m[0m
+[0m[1maws_db_instance.kansas_prd_sqlserver: Still destroying... [id=testsymkanprddb, 1m10s elapsed][0m[0m
+[0m[1maws_db_instance.kansas_prd_sqlserver: Still destroying... [id=testsymkanprddb, 1m20s elapsed][0m[0m
+[0m[1maws_db_instance.kansas_prd_sqlserver: Still destroying... [id=testsymkanprddb, 1m30s elapsed][0m[0m
+[0m[1maws_db_instance.kansas_prd_sqlserver: Still destroying... [id=testsymkanprddb, 1m40s elapsed][0m[0m
+[0m[1maws_db_instance.kansas_prd_sqlserver: Still destroying... [id=testsymkanprddb, 1m50s elapsed][0m[0m
+[0m[1maws_db_instance.kansas_prd_sqlserver: Still destroying... [id=testsymkanprddb, 2m0s elapsed][0m[0m
+[0m[1maws_db_instance.kansas_prd_sqlserver: Still destroying... [id=testsymkanprddb, 2m10s elapsed][0m[0m
+[0m[1maws_db_instance.kansas_prd_sqlserver: Still destroying... [id=testsymkanprddb, 2m20s elapsed][0m[0m
+[0m[1maws_db_instance.kansas_prd_sqlserver: Still destroying... [id=testsymkanprddb, 2m30s elapsed][0m[0m
+[0m[1maws_db_instance.kansas_prd_sqlserver: Still destroying... [id=testsymkanprddb, 2m40s elapsed][0m[0m
+[0m[1maws_db_instance.kansas_prd_sqlserver: Still destroying... [id=testsymkanprddb, 2m50s elapsed][0m[0m
+[0m[1maws_db_instance.kansas_prd_sqlserver: Still destroying... [id=testsymkanprddb, 3m0s elapsed][0m[0m
+[0m[1maws_db_instance.kansas_prd_sqlserver: Still destroying... [id=testsymkanprddb, 3m10s elapsed][0m[0m
+[0m[1maws_db_instance.kansas_prd_sqlserver: Still destroying... [id=testsymkanprddb, 3m20s elapsed][0m[0m
+[0m[1maws_db_instance.kansas_prd_sqlserver: Still destroying... [id=testsymkanprddb, 3m30s elapsed][0m[0m
+[0m[1maws_db_instance.kansas_prd_sqlserver: Still destroying... [id=testsymkanprddb, 3m40s elapsed][0m[0m
+[0m[1maws_db_instance.kansas_prd_sqlserver: Still destroying... [id=testsymkanprddb, 3m50s elapsed][0m[0m
+[0m[1maws_db_instance.kansas_prd_sqlserver: Still destroying... [id=testsymkanprddb, 4m0s elapsed][0m[0m
+[0m[1maws_db_instance.kansas_prd_sqlserver: Still destroying... [id=testsymkanprddb, 4m10s elapsed][0m[0m
+[0m[1maws_db_instance.kansas_prd_sqlserver: Still destroying... [id=testsymkanprddb, 4m20s elapsed][0m[0m
+[0m[1maws_db_instance.kansas_prd_sqlserver: Still destroying... [id=testsymkanprddb, 4m30s elapsed][0m[0m
+[0m[1maws_db_instance.kansas_prd_sqlserver: Still destroying... [id=testsymkanprddb, 4m40s elapsed][0m[0m
+[0m[1maws_db_instance.kansas_prd_sqlserver: Still destroying... [id=testsymkanprddb, 4m50s elapsed][0m[0m
+[0m[1maws_db_instance.kansas_prd_sqlserver: Still destroying... [id=testsymkanprddb, 5m0s elapsed][0m[0m
+[0m[1maws_db_instance.kansas_prd_sqlserver: Still destroying... [id=testsymkanprddb, 5m10s elapsed][0m[0m
+[0m[1maws_db_instance.kansas_prd_sqlserver: Still destroying... [id=testsymkanprddb, 5m20s elapsed][0m[0m
+[0m[1maws_db_instance.kansas_prd_sqlserver: Still destroying... [id=testsymkanprddb, 5m30s elapsed][0m[0m
+[0m[1maws_db_instance.kansas_prd_sqlserver: Still destroying... [id=testsymkanprddb, 5m40s elapsed][0m[0m
+[0m[1maws_db_instance.kansas_prd_sqlserver: Still destroying... [id=testsymkanprddb, 5m50s elapsed][0m[0m
+[0m[1maws_db_instance.kansas_prd_sqlserver: Still destroying... [id=testsymkanprddb, 6m0s elapsed][0m[0m
+[0m[1maws_db_instance.kansas_prd_sqlserver: Still destroying... [id=testsymkanprddb, 6m10s elapsed][0m[0m
+[0m[1maws_db_instance.kansas_prd_sqlserver: Still destroying... [id=testsymkanprddb, 6m20s elapsed][0m[0m
+[0m[1maws_db_instance.kansas_prd_sqlserver: Still destroying... [id=testsymkanprddb, 6m30s elapsed][0m[0m
+[0m[1maws_db_instance.kansas_prd_sqlserver: Still destroying... [id=testsymkanprddb, 6m40s elapsed][0m[0m
+[0m[1maws_db_instance.kansas_prd_sqlserver: Still destroying... [id=testsymkanprddb, 6m50s elapsed][0m[0m
+[0m[1maws_db_instance.kansas_prd_sqlserver: Still destroying... [id=testsymkanprddb, 7m0s elapsed][0m[0m
+[0m[1maws_db_instance.kansas_prd_sqlserver: Still destroying... [id=testsymkanprddb, 7m10s elapsed][0m[0m
+[0m[1maws_db_instance.kansas_prd_sqlserver: Still destroying... [id=testsymkanprddb, 7m20s elapsed][0m[0m
+[0m[1maws_db_instance.kansas_prd_sqlserver: Still destroying... [id=testsymkanprddb, 7m30s elapsed][0m[0m
+[0m[1maws_db_instance.kansas_prd_sqlserver: Still destroying... [id=testsymkanprddb, 7m40s elapsed][0m[0m
+[0m[1maws_db_instance.kansas_prd_sqlserver: Still destroying... [id=testsymkanprddb, 7m50s elapsed][0m[0m
+[0m[1maws_db_instance.kansas_prd_sqlserver: Still destroying... [id=testsymkanprddb, 8m0s elapsed][0m[0m
+[0m[1maws_db_instance.kansas_prd_sqlserver: Still destroying... [id=testsymkanprddb, 8m10s elapsed][0m[0m
+[0m[1maws_db_instance.kansas_prd_sqlserver: Destruction complete after 8m19s[0m[0m
+[0m[1maws_db_subnet_group.kansas_prd_sqlserver: Destroying... [id=symphony-sqlserver-prd-subnet-group][0m[0m
+[0m[1maws_security_group.kansas_prd_sqlserver: Destroying... [id=sg-084a8c17037db492f][0m[0m
+[0m[1maws_db_subnet_group.kansas_prd_sqlserver: Destruction complete after 0s[0m[0m
+[0m[1maws_security_group.kansas_prd_sqlserver: Destruction complete after 0s[0m[0m
+[33m
+[1m[33mWarning: [0m[0m[1mInterpolation-only expressions are deprecated[0m
+
+[0m  on rds-mssql.tf line 53, in resource "aws_db_instance" "kansas_prd_sqlserver":
+  53:   db_subnet_group_name      = [4m"${aws_db_subnet_group.kansas_prd_sqlserver.id}"[0m
+[0m
+Terraform 0.11 and earlier required all non-constant expressions to be
+provided via interpolation syntax, but this pattern is now deprecated. To
+silence this warning, remove the "${ sequence from the start and the }"
+sequence from the end of this expression, leaving just the inner expression.
+
+Template interpolation syntax is still used to construct strings from
+expressions when the template includes multiple interpolation sequences or a
+mixture of literal strings and interpolations. This deprecation applies only
+to templates that consist entirely of a single interpolation sequence.
+[0m[0m
+[0m[1m[32m
+Destroy complete! Resources: 5 destroyed.[0m

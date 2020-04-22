@@ -1,0 +1,28 @@
+{
+    "variables" : {
+        "region" : "us-east-1"
+    },
+    "builders" : [
+        {
+            "type" : "amazon-ebs",
+            "profile" : "default",
+            "region" : "{{user `region`}}",
+            "instance_type" : "t3.medium",
+            "source_ami" : "ami-1853ac65",
+            "ssh_username" : "ec2-user",
+            "ami_name" : "docker-17.12.1-ce",
+            "ami_description" : "Amazon Linux Image with Docker-CE",
+            "run_tags" : {
+                "Name" : "packer-builder-docker",
+                "Tool" : "Packer",
+                "Author" : "mlabouardy"
+            }
+        }
+    ],
+    "provisioners" : [
+        {
+            "type" : "shell",
+            "script" : "./setup.sh"
+        }
+    ]
+}

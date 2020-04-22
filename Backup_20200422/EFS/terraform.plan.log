@@ -1,0 +1,84 @@
+[0m[1mRefreshing Terraform state in-memory prior to plan...[0m
+The refreshed state will be used to calculate this plan, but will not be
+persisted to local or remote state storage.
+[0m
+
+------------------------------------------------------------------------
+
+An execution plan has been generated and is shown below.
+Resource actions are indicated with the following symbols:
+  [32m+[0m create
+[0m
+Terraform will perform the following actions:
+
+[1m  # aws_efs_file_system.eft_efs[0m will be created[0m[0m
+[0m  [32m+[0m[0m resource "aws_efs_file_system" "eft_efs" {
+      [32m+[0m [0m[1m[0marn[0m[0m              = (known after apply)
+      [32m+[0m [0m[1m[0mcreation_token[0m[0m   = "symphony_eft_prod_efs"
+      [32m+[0m [0m[1m[0mdns_name[0m[0m         = (known after apply)
+      [32m+[0m [0m[1m[0mencrypted[0m[0m        = true
+      [32m+[0m [0m[1m[0mid[0m[0m               = (known after apply)
+      [32m+[0m [0m[1m[0mkms_key_id[0m[0m       = (known after apply)
+      [32m+[0m [0m[1m[0mperformance_mode[0m[0m = "generalPurpose"
+      [32m+[0m [0m[1m[0mreference_name[0m[0m   = (known after apply)
+      [32m+[0m [0m[1m[0mtags[0m[0m             = {
+          [32m+[0m [0m"Application" = "EFT"
+          [32m+[0m [0m"Client"      = "Shared"
+          [32m+[0m [0m"Environment" = "Production"
+          [32m+[0m [0m"Name"        = "symphony_eft_prod_efs"
+          [32m+[0m [0m"Project"     = "Symphony"
+        }
+      [32m+[0m [0m[1m[0mthroughput_mode[0m[0m  = "bursting"
+    }
+
+[1m  # aws_efs_mount_target.eft-efs-mt[0][0m will be created[0m[0m
+[0m  [32m+[0m[0m resource "aws_efs_mount_target" "eft-efs-mt" {
+      [32m+[0m [0m[1m[0mdns_name[0m[0m             = (known after apply)
+      [32m+[0m [0m[1m[0mfile_system_arn[0m[0m      = (known after apply)
+      [32m+[0m [0m[1m[0mfile_system_id[0m[0m       = (known after apply)
+      [32m+[0m [0m[1m[0mid[0m[0m                   = (known after apply)
+      [32m+[0m [0m[1m[0mip_address[0m[0m           = (known after apply)
+      [32m+[0m [0m[1m[0mnetwork_interface_id[0m[0m = (known after apply)
+      [32m+[0m [0m[1m[0msecurity_groups[0m[0m      = [
+          [32m+[0m [0m"sg-04b4c593629f2e84c",
+        ]
+      [32m+[0m [0m[1m[0msubnet_id[0m[0m            = "subnet-0c2bbd3fc6aa29e0d"
+    }
+
+[1m  # aws_efs_mount_target.eft-efs-mt[1][0m will be created[0m[0m
+[0m  [32m+[0m[0m resource "aws_efs_mount_target" "eft-efs-mt" {
+      [32m+[0m [0m[1m[0mdns_name[0m[0m             = (known after apply)
+      [32m+[0m [0m[1m[0mfile_system_arn[0m[0m      = (known after apply)
+      [32m+[0m [0m[1m[0mfile_system_id[0m[0m       = (known after apply)
+      [32m+[0m [0m[1m[0mid[0m[0m                   = (known after apply)
+      [32m+[0m [0m[1m[0mip_address[0m[0m           = (known after apply)
+      [32m+[0m [0m[1m[0mnetwork_interface_id[0m[0m = (known after apply)
+      [32m+[0m [0m[1m[0msecurity_groups[0m[0m      = [
+          [32m+[0m [0m"sg-04b4c593629f2e84c",
+        ]
+      [32m+[0m [0m[1m[0msubnet_id[0m[0m            = "subnet-0b89a4615bf0fc2b7"
+    }
+
+[0m[1mPlan:[0m 3 to add, 0 to change, 0 to destroy.[0m
+
+------------------------------------------------------------------------
+
+Note: You didn't specify an "-out" parameter to save this plan, so Terraform
+can't guarantee that exactly these actions will be performed if
+"terraform apply" is subsequently run.
+
+[0m[1mRefreshing Terraform state in-memory prior to plan...[0m
+The refreshed state will be used to calculate this plan, but will not be
+persisted to local or remote state storage.
+[0m
+[0m[1maws_efs_file_system.eft_efs: Refreshing state... [id=fs-3f64a7bf][0m
+[0m[1maws_efs_mount_target.eft-efs-mt[0]: Refreshing state... [id=fsmt-da5b325b][0m
+[0m[1maws_efs_mount_target.eft-efs-mt[1]: Refreshing state... [id=fsmt-d85b3259][0m
+
+------------------------------------------------------------------------
+
+[0m[1m[32mNo changes. Infrastructure is up-to-date.[0m[32m
+
+This means that Terraform did not detect any differences between your
+configuration and real physical resources that exist. As a result, no
+actions need to be performed.[0m

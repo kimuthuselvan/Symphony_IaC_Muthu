@@ -1,0 +1,70 @@
+[0m[1maws_security_group.security_group: Refreshing state... [id=sg-067189046c19fbd4f][0m
+[0m[1mdata.aws_iam_policy_document.site_policy: Refreshing state...[0m
+[0m[1maws_iam_role.static_lb_lambda: Refreshing state... [id=lambdaFunction-NLB-to-ALB-role][0m
+[0m[1mdata.aws_ami.amazon-linux-2: Refreshing state...[0m
+[0m[1maws_s3_bucket.contentbucket: Refreshing state... [id=symphony-shared-dmz][0m
+[0m[1maws_iam_role_policy.static_lb_lambda: Refreshing state... [id=lambdaFunction-NLB-to-ALB-role:lambdaFunction-NLB-to-ALB-policy][0m
+[0m[1mdata.template_file.userdata: Refreshing state...[0m
+[0m[1maws_s3_bucket_object.uploadfiles["index.html"]: Refreshing state... [id=index.html][0m
+[0m[1maws_launch_configuration.launchlinux: Refreshing state... [id=Symphony_Shared_DMZ_Linux_LC][0m
+[0m[1maws_alb.aws_security_alb: Creating...[0m[0m
+[0m[1maws_alb.aws_security_alb: Still creating... [10s elapsed][0m[0m
+[0m[1maws_alb.aws_security_alb: Still creating... [20s elapsed][0m[0m
+[0m[1maws_alb.aws_security_alb: Still creating... [30s elapsed][0m[0m
+[0m[1maws_alb.aws_security_alb: Still creating... [40s elapsed][0m[0m
+[0m[1maws_alb.aws_security_alb: Still creating... [50s elapsed][0m[0m
+[0m[1maws_alb.aws_security_alb: Still creating... [1m0s elapsed][0m[0m
+[0m[1maws_alb.aws_security_alb: Still creating... [1m10s elapsed][0m[0m
+[0m[1maws_alb.aws_security_alb: Still creating... [1m20s elapsed][0m[0m
+[0m[1maws_alb.aws_security_alb: Still creating... [1m30s elapsed][0m[0m
+[0m[1maws_alb.aws_security_alb: Still creating... [1m40s elapsed][0m[0m
+[0m[1maws_alb.aws_security_alb: Still creating... [1m50s elapsed][0m[0m
+[0m[1maws_alb.aws_security_alb: Still creating... [2m0s elapsed][0m[0m
+[0m[1maws_alb.aws_security_alb: Still creating... [2m10s elapsed][0m[0m
+[0m[1maws_alb.aws_security_alb: Still creating... [2m20s elapsed][0m[0m
+[0m[1maws_alb.aws_security_alb: Still creating... [2m30s elapsed][0m[0m
+[0m[1maws_alb.aws_security_alb: Still creating... [2m40s elapsed][0m[0m
+[0m[1maws_alb.aws_security_alb: Still creating... [2m50s elapsed][0m[0m
+[0m[1maws_alb.aws_security_alb: Still creating... [3m0s elapsed][0m[0m
+[0m[1maws_alb.aws_security_alb: Still creating... [3m10s elapsed][0m[0m
+[0m[1maws_alb.aws_security_alb: Still creating... [3m20s elapsed][0m[0m
+[0m[1maws_alb.aws_security_alb: Still creating... [3m30s elapsed][0m[0m
+[0m[1maws_alb.aws_security_alb: Creation complete after 3m33s [id=arn:aws:elasticloadbalancing:us-east-1:660751646273:loadbalancer/app/Symphony-Shared-DMZ-ALB/bb72a2e006ae5bc7][0m[0m
+[0m[1maws_alb_target_group.security-group: Creating...[0m[0m
+[0m[1maws_lb_listener.httptohttps: Creating...[0m[0m
+[0m[1maws_lb_listener.httptohttps: Creation complete after 0s [id=arn:aws:elasticloadbalancing:us-east-1:660751646273:listener/app/Symphony-Shared-DMZ-ALB/bb72a2e006ae5bc7/8043ab38972b6750][0m[0m
+[0m[1maws_alb_target_group.security-group: Creation complete after 1s [id=arn:aws:elasticloadbalancing:us-east-1:660751646273:targetgroup/Symphony-Shared-DMZ-TargetGroup/dcdb39286e393c85][0m[0m
+[0m[1maws_alb_listener.front_end: Creating...[0m[0m
+[0m[1maws_autoscaling_group.linuxservers: Creating...[0m[0m
+[0m[1maws_alb_listener.front_end: Creation complete after 0s [id=arn:aws:elasticloadbalancing:us-east-1:660751646273:listener/app/Symphony-Shared-DMZ-ALB/bb72a2e006ae5bc7/95f4864839d67d06][0m[0m
+[0m[1maws_autoscaling_group.linuxservers: Still creating... [10s elapsed][0m[0m
+[0m[1maws_autoscaling_group.linuxservers: Still creating... [20s elapsed][0m[0m
+[0m[1maws_autoscaling_group.linuxservers: Still creating... [30s elapsed][0m[0m
+[0m[1maws_autoscaling_group.linuxservers: Still creating... [40s elapsed][0m[0m
+[0m[1maws_autoscaling_group.linuxservers: Creation complete after 47s [id=Symphony_Shared_DMZ_Linux_ASG][0m[0m
+[0m[1maws_autoscaling_attachment.asg_attachment_alb: Creating...[0m[0m
+[0m[1maws_autoscaling_policy.linuxautopolicy: Creating...[0m[0m
+[0m[1maws_autoscaling_attachment.asg_attachment_alb: Creation complete after 1s [id=Symphony_Shared_DMZ_Linux_ASG-20200402165645490100000001][0m[0m
+[0m[1maws_autoscaling_policy.linuxautopolicy: Creation complete after 1s [id=Symphony_Shared_DMZ_Linux_ASGPolicy][0m[0m
+[33m
+[1m[33mWarning: [0m[0m[1mValue for undeclared variable[0m
+
+[0m  on terraform.tfvars line 4:
+   4: subnet_name = [4m[ "Security_DMZ_AZ-A", "Security_DMZ_AZ-B" ][0m
+[0m
+The root module does not declare a variable named "subnet_name". To use this
+value, add a "variable" block to the configuration.
+
+Using a variables file to set an undeclared variable is deprecated and will
+become an error in a future release. If you wish to provide certain "global"
+settings to all configurations in your organization, use TF_VAR_...
+environment variables to set these instead.
+
+(and one more similar warning elsewhere)
+[0m[0m
+[0m[1m[32m
+Apply complete! Resources: 7 added, 0 changed, 0 destroyed.[0m
+[0m[1m[32m
+Outputs:
+
+alb_output = Symphony-Shared-DMZ-ALB[0m

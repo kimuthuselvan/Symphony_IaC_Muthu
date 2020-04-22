@@ -1,0 +1,147 @@
+[0m[1mvar.certificate_arn[0m
+  [1mEnter a value:[0m [0m
+[0m[1mdata.template_file.ecs-tasks[0]: Refreshing state...[0m
+[0m[1mdata.template_file.ecs-tasks-noalb[0]: Refreshing state...[0m
+[0m[1mdata.template_file.ecs-tasks[1]: Refreshing state...[0m
+[0m[1mdata.aws_vpc.vpc_id: Refreshing state...[0m
+[0m[1mdata.aws_subnet_ids.subnet_ids: Refreshing state...[0m
+[0m[1maws_iam_instance_profile.ecs-ec2-role: Creating...[0m[0m
+[0m[1maws_ecs_cluster.ecs_cluster: Creating...[0m[0m
+[0m[1maws_ecs_task_definition.ecs_service[0]: Creating...[0m[0m
+[0m[1maws_sns_topic.usage_notifications: Creating...[0m[0m
+[0m[1maws_security_group.security_group: Creating...[0m[0m
+[0m[1maws_ecs_task_definition.ecs_service_noalb[0]: Creating...[0m[0m
+[0m[1maws_iam_role_policy_attachment.ecs-service-attach: Creating...[0m[0m
+[0m[1maws_cloudwatch_log_group.ecs_service: Creating...[0m[0m
+[0m[1maws_ecs_task_definition.ecs_service[1]: Creating...[0m[0m
+[0m[1maws_cloudwatch_log_group.ecs_service: Creation complete after 0s [id=/Sym-Kan-Dev-WebApp/Sym-Kan-Dev-WebApp_logs][0m[0m
+[0m[1maws_sns_topic.usage_notifications: Creation complete after 0s [id=arn:aws:sns:us-east-1:022705868532:usage-notifications][0m[0m
+[0m[1mnull_resource.sns_subscribe[1]: Creating...[0m[0m
+[0m[1mnull_resource.sns_subscribe[2]: Creating...[0m[0m
+[0m[1mnull_resource.sns_subscribe[3]: Creating...[0m[0m
+[0m[1mnull_resource.sns_subscribe[0]: Creating...[0m[0m
+[0m[1maws_cloudwatch_metric_alarm.cpu_utilization[0]: Creating...[0m[0m
+[0m[1mnull_resource.sns_subscribe[0]: Provisioning with 'local-exec'...[0m[0m
+[0m[1mnull_resource.sns_subscribe[2]: Provisioning with 'local-exec'...[0m[0m
+[0m[1mnull_resource.sns_subscribe[3]: Provisioning with 'local-exec'...[0m[0m
+[0m[1mnull_resource.sns_subscribe[1]: Provisioning with 'local-exec'...[0m[0m
+[0m[0mnull_resource.sns_subscribe[1] (local-exec): Executing: ["/bin/sh" "-c" "aws sns subscribe --topic-arn arn:aws:sns:us-east-1:022705868532:usage-notifications --protocol email --notification-endpoint michael.lindskov@emergentholdingsinc.com"]
+[0m[0mnull_resource.sns_subscribe[3] (local-exec): Executing: ["/bin/sh" "-c" "aws sns subscribe --topic-arn arn:aws:sns:us-east-1:022705868532:usage-notifications --protocol email --notification-endpoint symphony-error-notify-qa@advantasure.com"]
+[0m[0mnull_resource.sns_subscribe[0] (local-exec): Executing: ["/bin/sh" "-c" "aws sns subscribe --topic-arn arn:aws:sns:us-east-1:022705868532:usage-notifications --protocol email --notification-endpoint EHIAWSSUPPORT@hcl.com"]
+[0m[0mnull_resource.sns_subscribe[2] (local-exec): Executing: ["/bin/sh" "-c" "aws sns subscribe --topic-arn arn:aws:sns:us-east-1:022705868532:usage-notifications --protocol email --notification-endpoint Michael.Barron@advantasure.com"]
+[0m[1maws_cloudwatch_metric_alarm.cpu_utilization[0]: Creation complete after 1s [id=Kansas-CPUmetrix][0m[0m
+[0m[0mnull_resource.sns_subscribe[0] (local-exec): {
+[0m[0mnull_resource.sns_subscribe[0] (local-exec):     "SubscriptionArn": "pending confirmation"
+[0m[0mnull_resource.sns_subscribe[0] (local-exec): }
+[0m[0mnull_resource.sns_subscribe[1] (local-exec): {
+[0m[0mnull_resource.sns_subscribe[1] (local-exec):     "SubscriptionArn": "pending confirmation"
+[0m[0mnull_resource.sns_subscribe[1] (local-exec): }
+[0m[0mnull_resource.sns_subscribe[2] (local-exec): {
+[0m[0mnull_resource.sns_subscribe[2] (local-exec):     "SubscriptionArn": "pending confirmation"
+[0m[0mnull_resource.sns_subscribe[2] (local-exec): }
+[0m[0mnull_resource.sns_subscribe[3] (local-exec): {
+[0m[0mnull_resource.sns_subscribe[3] (local-exec):     "SubscriptionArn": "pending confirmation"
+[0m[0mnull_resource.sns_subscribe[3] (local-exec): }
+[0m[1mnull_resource.sns_subscribe[0]: Creation complete after 1s [id=6298333301493697312][0m[0m
+[0m[1mnull_resource.sns_subscribe[2]: Creation complete after 1s [id=946150648360130476][0m[0m
+[0m[1mnull_resource.sns_subscribe[1]: Creation complete after 1s [id=1563671516063768724][0m[0m
+[0m[1mnull_resource.sns_subscribe[3]: Creation complete after 1s [id=8751554051740347698][0m[0m
+[0m[1maws_security_group.security_group: Creation complete after 2s [id=sg-06b75e52a1e1d3449][0m[0m
+[0m[1maws_alb.aws_ecs_alb: Creating...[0m[0m
+[0m[1maws_iam_instance_profile.ecs-ec2-role: Still creating... [10s elapsed][0m[0m
+[0m[1maws_ecs_cluster.ecs_cluster: Still creating... [10s elapsed][0m[0m
+[0m[1maws_ecs_cluster.ecs_cluster: Creation complete after 10s [id=arn:aws:ecs:us-east-1:022705868532:cluster/Sym-Kan-Dev-WebApp][0m[0m
+[0m[1mdata.template_file.ecs-cluster-2: Refreshing state...[0m
+[0m[1mdata.template_file.ecs-cluster: Refreshing state...[0m
+[0m[1maws_alb.aws_ecs_alb: Still creating... [10s elapsed][0m[0m
+[0m[1maws_iam_instance_profile.ecs-ec2-role: Still creating... [20s elapsed][0m[0m
+[0m[1maws_alb.aws_ecs_alb: Still creating... [20s elapsed][0m[0m
+[0m[1maws_iam_instance_profile.ecs-ec2-role: Still creating... [30s elapsed][0m[0m
+[0m[1maws_alb.aws_ecs_alb: Still creating... [30s elapsed][0m[0m
+[0m[1maws_alb.aws_ecs_alb: Still creating... [40s elapsed][0m[0m
+[0m[1maws_alb.aws_ecs_alb: Still creating... [50s elapsed][0m[0m
+[0m[1maws_alb.aws_ecs_alb: Still creating... [1m0s elapsed][0m[0m
+[0m[1maws_alb.aws_ecs_alb: Still creating... [1m10s elapsed][0m[0m
+[0m[1maws_alb.aws_ecs_alb: Still creating... [1m20s elapsed][0m[0m
+[0m[1maws_alb.aws_ecs_alb: Still creating... [1m30s elapsed][0m[0m
+[0m[1maws_alb.aws_ecs_alb: Still creating... [1m40s elapsed][0m[0m
+[0m[1maws_alb.aws_ecs_alb: Still creating... [1m50s elapsed][0m[0m
+[0m[1maws_alb.aws_ecs_alb: Still creating... [2m0s elapsed][0m[0m
+[0m[1maws_alb.aws_ecs_alb: Still creating... [2m10s elapsed][0m[0m
+[0m[1maws_alb.aws_ecs_alb: Still creating... [2m20s elapsed][0m[0m
+[0m[1maws_alb.aws_ecs_alb: Still creating... [2m30s elapsed][0m[0m
+[0m[1maws_alb.aws_ecs_alb: Still creating... [2m40s elapsed][0m[0m
+[0m[1maws_alb.aws_ecs_alb: Still creating... [2m50s elapsed][0m[0m
+[0m[1maws_alb.aws_ecs_alb: Still creating... [3m0s elapsed][0m[0m
+[0m[1maws_alb.aws_ecs_alb: Still creating... [3m10s elapsed][0m[0m
+[0m[1maws_alb.aws_ecs_alb: Creation complete after 3m12s [id=arn:aws:elasticloadbalancing:us-east-1:022705868532:loadbalancer/app/Sym-Kan-Dev-WebApp-ELB/6b477ab58685ed00][0m[0m
+[0m[1maws_lb_listener.httptohttps: Creating...[0m[0m
+[0m[1maws_alb_target_group.ecs-group[1]: Creating...[0m[0m
+[0m[1maws_alb_target_group.ecs-group[0]: Creating...[0m[0m
+[0m[1maws_lb_listener.httptohttps: Creation complete after 0s [id=arn:aws:elasticloadbalancing:us-east-1:022705868532:listener/app/Sym-Kan-Dev-WebApp-ELB/6b477ab58685ed00/43fdd9cccc5be16a][0m[0m
+[0m[1maws_alb_target_group.ecs-group[0]: Creation complete after 1s [id=arn:aws:elasticloadbalancing:us-east-1:022705868532:targetgroup/Sym-Kan-Dev-WebApp-trace/9f669611989b5145][0m[0m
+[0m[1maws_alb_target_group.ecs-group[1]: Creation complete after 1s [id=arn:aws:elasticloadbalancing:us-east-1:022705868532:targetgroup/Sym-Kan-Dev-WebApp-webapp/2c0b05a3de02cd6d][0m[0m
+[0m[1maws_alb_listener.front_end: Creating...[0m[0m
+[33m
+[1m[33mWarning: [0m[0m[1mInterpolation-only expressions are deprecated[0m
+
+[0m  on asg_alaram.tf line 14, in resource "aws_autoscaling_notification" "ecs_notification":
+  14:   topic_arn = [4m"${aws_sns_topic.usage_notifications.arn}"[0m
+[0m
+Terraform 0.11 and earlier required all non-constant expressions to be
+provided via interpolation syntax, but this pattern is now deprecated. To
+silence this warning, remove the "${ sequence from the start and the }"
+sequence from the end of this expression, leaving just the inner expression.
+
+Template interpolation syntax is still used to construct strings from
+expressions when the template includes multiple interpolation sequences or a
+mixture of literal strings and interpolations. This deprecation applies only
+to templates that consist entirely of a single interpolation sequence.
+
+(and 54 more similar warnings elsewhere)
+[0m[0m
+[31m
+[1m[31mError: [0m[0m[1mError adding role ecs-ec2-role to IAM instance profile Sym-Kan-Dev-WebApp-iam-instance-profile: Error adding IAM Role ecs-ec2-role to Instance Profile Sym-Kan-Dev-WebApp-iam-instance-profile: NoSuchEntity: The role with name ecs-ec2-role cannot be found.
+	status code: 404, request id: 1075f1fe-8e1b-455f-9447-1bb4548cb97f[0m
+
+[0m  on ec2_asg.tf line 187, in resource "aws_iam_instance_profile" "ecs-ec2-role":
+ 187: resource "aws_iam_instance_profile" "ecs-ec2-role" [4m{[0m
+[0m
+[0m[0m
+[31m
+[1m[31mError: [0m[0m[1mClientException: Role is not valid[0m
+
+[0m  on ecs_cluster.tf line 44, in resource "aws_ecs_task_definition" "ecs_service":
+  44: resource "aws_ecs_task_definition" "ecs_service" [4m{[0m
+[0m
+[0m[0m
+[31m
+[1m[31mError: [0m[0m[1mClientException: Role is not valid[0m
+
+[0m  on ecs_cluster.tf line 44, in resource "aws_ecs_task_definition" "ecs_service":
+  44: resource "aws_ecs_task_definition" "ecs_service" [4m{[0m
+[0m
+[0m[0m
+[31m
+[1m[31mError: [0m[0m[1mClientException: Role is not valid[0m
+
+[0m  on ecs_cluster.tf line 68, in resource "aws_ecs_task_definition" "ecs_service_noalb":
+  68: resource "aws_ecs_task_definition" "ecs_service_noalb" [4m{[0m
+[0m
+[0m[0m
+[31m
+[1m[31mError: [0m[0m[1mError attaching policy arn:aws:iam::aws:policy/service-role/AmazonEC2ContainerServiceRole to IAM Role ecs-service-role: NoSuchEntity: The role with name ecs-service-role cannot be found.
+	status code: 404, request id: 87c5c7bb-719d-4073-bcef-2774c57fd92e[0m
+
+[0m  on ecs_cluster.tf line 116, in resource "aws_iam_role_policy_attachment" "ecs-service-attach":
+ 116: resource "aws_iam_role_policy_attachment" "ecs-service-attach" [4m{[0m
+[0m
+[0m[0m
+[31m
+[1m[31mError: [0m[0m[1mError creating LB Listener: ValidationError: A certificate must be specified for HTTPS listeners
+	status code: 400, request id: 43edefc0-133e-4a22-8317-3543068e1596[0m
+
+[0m  on loadbalancer.tf line 17, in resource "aws_alb_listener" "front_end":
+  17: resource "aws_alb_listener" "front_end" [4m{[0m
+[0m
+[0m[0m

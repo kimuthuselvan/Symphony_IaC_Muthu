@@ -1,0 +1,37 @@
+[0m[1maws_efs_file_system.eft_efs: Creating...[0m[0m
+[0m[1maws_efs_file_system.eft_efs: Creation complete after 6s [id=fs-3f64a7bf][0m[0m
+[0m[1maws_efs_mount_target.eft-efs-mt[1]: Creating...[0m[0m
+[0m[1maws_efs_mount_target.eft-efs-mt[0]: Creating...[0m[0m
+[0m[1maws_efs_mount_target.eft-efs-mt[0]: Still creating... [10s elapsed][0m[0m
+[0m[1maws_efs_mount_target.eft-efs-mt[1]: Still creating... [10s elapsed][0m[0m
+[0m[1maws_efs_mount_target.eft-efs-mt[0]: Still creating... [20s elapsed][0m[0m
+[0m[1maws_efs_mount_target.eft-efs-mt[1]: Still creating... [20s elapsed][0m[0m
+[0m[1maws_efs_mount_target.eft-efs-mt[0]: Still creating... [30s elapsed][0m[0m
+[0m[1maws_efs_mount_target.eft-efs-mt[1]: Still creating... [30s elapsed][0m[0m
+[0m[1maws_efs_mount_target.eft-efs-mt[1]: Still creating... [40s elapsed][0m[0m
+[0m[1maws_efs_mount_target.eft-efs-mt[0]: Still creating... [40s elapsed][0m[0m
+[0m[1maws_efs_mount_target.eft-efs-mt[0]: Still creating... [50s elapsed][0m[0m
+[0m[1maws_efs_mount_target.eft-efs-mt[1]: Still creating... [50s elapsed][0m[0m
+[0m[1maws_efs_mount_target.eft-efs-mt[1]: Still creating... [1m0s elapsed][0m[0m
+[0m[1maws_efs_mount_target.eft-efs-mt[0]: Still creating... [1m0s elapsed][0m[0m
+[0m[1maws_efs_mount_target.eft-efs-mt[1]: Still creating... [1m10s elapsed][0m[0m
+[0m[1maws_efs_mount_target.eft-efs-mt[0]: Still creating... [1m10s elapsed][0m[0m
+[0m[1maws_efs_mount_target.eft-efs-mt[0]: Still creating... [1m20s elapsed][0m[0m
+[0m[1maws_efs_mount_target.eft-efs-mt[1]: Still creating... [1m20s elapsed][0m[0m
+[0m[1maws_efs_mount_target.eft-efs-mt[0]: Creation complete after 1m23s [id=fsmt-da5b325b][0m[0m
+[0m[1maws_efs_mount_target.eft-efs-mt[1]: Creation complete after 1m24s [id=fsmt-d85b3259][0m[0m
+[0m[1m[32m
+Apply complete! Resources: 3 added, 0 changed, 0 destroyed.[0m
+[0m[1maws_efs_file_system.eft_efs: Refreshing state... [id=fs-3f64a7bf][0m
+[0m[1maws_efs_mount_target.eft-efs-mt[1]: Refreshing state... [id=fsmt-d85b3259][0m
+[0m[1maws_efs_mount_target.eft-efs-mt[0]: Refreshing state... [id=fsmt-da5b325b][0m
+[0m[1m[32m
+Apply complete! Resources: 0 added, 0 changed, 0 destroyed.[0m
+[0m[1m[32m
+Outputs:
+
+efs_dns_name = fs-3f64a7bf.efs.us-east-1.amazonaws.com
+efs_private_ip = [
+  "10.126.64.91",
+  "10.126.65.9",
+][0m

@@ -1,0 +1,7 @@
+name = "trace"
+searchpath = "/traceapi/healthz"
+successcode = 200
+listener_rule = "/traceapi*"
+os_type = "linux"
+cpu = 512
+memory = 1025

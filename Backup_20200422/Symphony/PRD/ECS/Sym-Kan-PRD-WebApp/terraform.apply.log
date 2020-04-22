@@ -1,0 +1,113 @@
+[0m[1mdata.template_file.ecs-tasks[0]: Refreshing state...[0m
+[0m[1mdata.template_file.ecs-tasks[1]: Refreshing state...[0m
+[0m[1mdata.template_file.ecs-tasks-noalb[0]: Refreshing state...[0m
+[0m[1mdata.aws_vpc.vpc_id: Refreshing state...[0m
+[0m[1mdata.aws_sns_topic.notification: Refreshing state...[0m
+[0m[1mdata.aws_acm_certificate.clientdomain: Refreshing state...[0m
+[0m[1mdata.aws_subnet_ids.subnet_ids: Refreshing state...[0m
+[0m[1maws_ecs_cluster.ecs_cluster: Creating...[0m[0m
+[0m[1maws_ecs_task_definition.ecs_service[0]: Creating...[0m[0m
+[0m[1maws_iam_role_policy_attachment.ecs-service-attach: Creating...[0m[0m
+[0m[1maws_ecs_task_definition.ecs_service[1]: Creating...[0m[0m
+[0m[1maws_iam_instance_profile.ecs-ec2-role: Creating...[0m[0m
+[0m[1maws_cloudwatch_metric_alarm.cpu_utilization[0]: Creating...[0m[0m
+[0m[1maws_ecs_task_definition.ecs_service_noalb[0]: Creating...[0m[0m
+[0m[1maws_cloudwatch_log_group.ecs_service: Creating...[0m[0m
+[0m[1maws_security_group.security_group: Creating...[0m[0m
+[0m[1maws_iam_role_policy_attachment.ecs-service-attach: Creation complete after 0s [id=ecs-service-role-20200421134409962300000001][0m[0m
+[0m[1maws_ecs_task_definition.ecs_service_noalb[0]: Creation complete after 0s [id=Sym-Kan-PRD-WebApp-sqlexecutor][0m[0m
+[0m[1maws_ecs_task_definition.ecs_service[0]: Creation complete after 0s [id=Sym-Kan-PRD-WebApp-trace][0m[0m
+[0m[1maws_ecs_task_definition.ecs_service[1]: Creation complete after 0s [id=Sym-Kan-PRD-WebApp-webapp][0m[0m
+[0m[1maws_iam_instance_profile.ecs-ec2-role: Creation complete after 0s [id=Sym-Kan-PRD-WebApp-iam-instance-profile][0m[0m
+[0m[1maws_cloudwatch_log_group.ecs_service: Creation complete after 0s [id=/Symphony/Kansas/Sym-Kan-PRD-WebApp][0m[0m
+[0m[1maws_cloudwatch_metric_alarm.cpu_utilization[0]: Creation complete after 0s [id=Kansas-CPUmetrix][0m[0m
+[0m[1maws_security_group.security_group: Creation complete after 1s [id=sg-071c550b09f70af4a][0m[0m
+[0m[1maws_alb.aws_ecs_alb: Creating...[0m[0m
+[0m[1maws_ecs_cluster.ecs_cluster: Still creating... [10s elapsed][0m[0m
+[0m[1maws_ecs_cluster.ecs_cluster: Creation complete after 10s [id=arn:aws:ecs:us-east-1:945116902499:cluster/Sym-Kan-PRD-WebApp][0m[0m
+[0m[1mdata.template_file.ecs-cluster: Refreshing state...[0m
+[0m[1mdata.template_file.ecs-cluster-2: Refreshing state...[0m
+[0m[1maws_launch_template.ecs-cluster-lt: Creating...[0m[0m
+[0m[1maws_launch_template.ecs-cluster-lt-2[0]: Creating...[0m[0m
+[0m[1maws_launch_template.ecs-cluster-lt: Creation complete after 1s [id=lt-0a8c743329569f0f7][0m[0m
+[0m[1maws_launch_template.ecs-cluster-lt-2[0]: Creation complete after 1s [id=lt-0c6c8e3aff739ad8a][0m[0m
+[0m[1maws_autoscaling_group.ecs-cluster: Creating...[0m[0m
+[0m[1maws_autoscaling_group.ecs-cluster-2[0]: Creating...[0m[0m
+[0m[1maws_alb.aws_ecs_alb: Still creating... [10s elapsed][0m[0m
+[0m[1maws_autoscaling_group.ecs-cluster: Still creating... [10s elapsed][0m[0m
+[0m[1maws_autoscaling_group.ecs-cluster-2[0]: Still creating... [10s elapsed][0m[0m
+[0m[1maws_alb.aws_ecs_alb: Still creating... [20s elapsed][0m[0m
+[0m[1maws_autoscaling_group.ecs-cluster: Still creating... [20s elapsed][0m[0m
+[0m[1maws_autoscaling_group.ecs-cluster-2[0]: Still creating... [20s elapsed][0m[0m
+[0m[1maws_alb.aws_ecs_alb: Still creating... [30s elapsed][0m[0m
+[0m[1maws_autoscaling_group.ecs-cluster: Still creating... [30s elapsed][0m[0m
+[0m[1maws_autoscaling_group.ecs-cluster-2[0]: Still creating... [30s elapsed][0m[0m
+[0m[1maws_alb.aws_ecs_alb: Still creating... [40s elapsed][0m[0m
+[0m[1maws_autoscaling_group.ecs-cluster: Still creating... [40s elapsed][0m[0m
+[0m[1maws_autoscaling_group.ecs-cluster-2[0]: Still creating... [40s elapsed][0m[0m
+[0m[1maws_alb.aws_ecs_alb: Still creating... [50s elapsed][0m[0m
+[0m[1maws_autoscaling_group.ecs-cluster: Creation complete after 48s [id=Sym-Kan-PRD-WebApp_ASG_Linux][0m[0m
+[0m[1maws_autoscaling_notification.ecs_notification: Creating...[0m[0m
+[0m[1maws_autoscaling_policy.ecs-cluster: Creating...[0m[0m
+[0m[1maws_autoscaling_group.ecs-cluster-2[0]: Creation complete after 48s [id=Sym-Kan-PRD-WebApp_ASG_Windows][0m[0m
+[0m[1maws_autoscaling_notification.ecs_notification-2[0]: Creating...[0m[0m
+[0m[1maws_autoscaling_policy.ecs-cluster-2[0]: Creating...[0m[0m
+[0m[1maws_autoscaling_notification.ecs_notification: Creation complete after 1s [id=arn:aws:sns:us-east-1:945116902499:usage-notifications-symphony][0m[0m
+[0m[1maws_autoscaling_policy.ecs-cluster-2[0]: Creation complete after 1s [id=Sym-Kan-PRD-WebApp_autoscaling_Windows][0m[0m
+[0m[1maws_autoscaling_policy.ecs-cluster: Creation complete after 1s [id=Sym-Kan-PRD-WebApp_autoscaling_Linux][0m[0m
+[0m[1maws_autoscaling_notification.ecs_notification-2[0]: Creation complete after 2s [id=arn:aws:sns:us-east-1:945116902499:usage-notifications-symphony][0m[0m
+[0m[1maws_alb.aws_ecs_alb: Still creating... [1m0s elapsed][0m[0m
+[0m[1maws_alb.aws_ecs_alb: Still creating... [1m10s elapsed][0m[0m
+[0m[1maws_alb.aws_ecs_alb: Still creating... [1m20s elapsed][0m[0m
+[0m[1maws_alb.aws_ecs_alb: Still creating... [1m30s elapsed][0m[0m
+[0m[1maws_alb.aws_ecs_alb: Still creating... [1m40s elapsed][0m[0m
+[0m[1maws_alb.aws_ecs_alb: Still creating... [1m50s elapsed][0m[0m
+[0m[1maws_alb.aws_ecs_alb: Still creating... [2m0s elapsed][0m[0m
+[0m[1maws_alb.aws_ecs_alb: Still creating... [2m10s elapsed][0m[0m
+[0m[1maws_alb.aws_ecs_alb: Still creating... [2m20s elapsed][0m[0m
+[0m[1maws_alb.aws_ecs_alb: Still creating... [2m30s elapsed][0m[0m
+[0m[1maws_alb.aws_ecs_alb: Still creating... [2m40s elapsed][0m[0m
+[0m[1maws_alb.aws_ecs_alb: Still creating... [2m50s elapsed][0m[0m
+[0m[1maws_alb.aws_ecs_alb: Still creating... [3m0s elapsed][0m[0m
+[0m[1maws_alb.aws_ecs_alb: Still creating... [3m10s elapsed][0m[0m
+[0m[1maws_alb.aws_ecs_alb: Still creating... [3m20s elapsed][0m[0m
+[0m[1maws_alb.aws_ecs_alb: Still creating... [3m30s elapsed][0m[0m
+[0m[1maws_alb.aws_ecs_alb: Creation complete after 3m33s [id=arn:aws:elasticloadbalancing:us-east-1:945116902499:loadbalancer/app/Sym-Kan-PRD-WebApp-ALB/d207826e1b8cca0f][0m[0m
+[0m[1maws_alb_target_group.ecs-group[1]: Creating...[0m[0m
+[0m[1maws_alb_target_group.ecs-group[0]: Creating...[0m[0m
+[0m[1maws_lb_listener.httptohttps: Creating...[0m[0m
+[0m[1maws_lb_listener.httptohttps: Creation complete after 0s [id=arn:aws:elasticloadbalancing:us-east-1:945116902499:listener/app/Sym-Kan-PRD-WebApp-ALB/d207826e1b8cca0f/6774f844bd4c92d6][0m[0m
+[0m[1maws_alb_target_group.ecs-group[0]: Creation complete after 1s [id=arn:aws:elasticloadbalancing:us-east-1:945116902499:targetgroup/Sym-Kan-PRD-WebApp-trace/8eca43bbf1b2a477][0m[0m
+[0m[1maws_alb_target_group.ecs-group[1]: Creation complete after 1s [id=arn:aws:elasticloadbalancing:us-east-1:945116902499:targetgroup/Sym-Kan-PRD-WebApp-webapp/a40f6c3d6ea5eddc][0m[0m
+[0m[1maws_alb_listener.front_end: Creating...[0m[0m
+[0m[1maws_alb_listener.front_end: Creation complete after 0s [id=arn:aws:elasticloadbalancing:us-east-1:945116902499:listener/app/Sym-Kan-PRD-WebApp-ALB/d207826e1b8cca0f/53fc843c6f19260e][0m[0m
+[0m[1maws_alb_listener_rule.listener_rule[0]: Creating...[0m[0m
+[0m[1maws_alb_listener_rule.listener_rule[0]: Creation complete after 1s [id=arn:aws:elasticloadbalancing:us-east-1:945116902499:listener-rule/app/Sym-Kan-PRD-WebApp-ALB/d207826e1b8cca0f/53fc843c6f19260e/4e41399abf759c74][0m[0m
+[0m[1maws_ecs_service.ecs_service[1]: Creating...[0m[0m
+[0m[1maws_ecs_service.ecs_service[0]: Creating...[0m[0m
+[0m[1maws_ecs_service.ecs_service[0]: Creation complete after 0s [id=arn:aws:ecs:us-east-1:945116902499:service/Sym-Kan-PRD-WebApp-trace][0m[0m
+[0m[1maws_ecs_service.ecs_service[1]: Creation complete after 0s [id=arn:aws:ecs:us-east-1:945116902499:service/Sym-Kan-PRD-WebApp-webapp][0m[0m
+[33m
+[1m[33mWarning: [0m[0m[1mInterpolation-only expressions are deprecated[0m
+
+[0m  on ec2_asg.tf line 73, in resource "aws_autoscaling_group" "ecs-cluster-2":
+  73:   count                     = [4m"${var.second_asg ? 1 : 0}"[0m
+[0m
+Terraform 0.11 and earlier required all non-constant expressions to be
+provided via interpolation syntax, but this pattern is now deprecated. To
+silence this warning, remove the "${ sequence from the start and the }"
+sequence from the end of this expression, leaving just the inner expression.
+
+Template interpolation syntax is still used to construct strings from
+expressions when the template includes multiple interpolation sequences or a
+mixture of literal strings and interpolations. This deprecation applies only
+to templates that consist entirely of a single interpolation sequence.
+
+(and 41 more similar warnings elsewhere)
+[0m[0m
+[0m[1m[32m
+Apply complete! Resources: 25 added, 0 changed, 0 destroyed.[0m
+[0m[1m[32m
+Outputs:
+
+alb_output = internal-Sym-Kan-PRD-WebApp-ALB-270060.us-east-1.elb.amazonaws.com[0m

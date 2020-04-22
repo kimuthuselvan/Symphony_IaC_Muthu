@@ -1,0 +1,14 @@
+[0m[1mdata.aws_route53_zone.my_hosted_zone: Refreshing state...[0m
+[0m[1mdata.aws_alb.maintenance_alb: Refreshing state...[0m
+[0m[1mdata.aws_lb.my_nlb: Refreshing state...[0m
+[0m[1maws_route53_health_check.maintenancepagehealthcheck: Refreshing state... [id=4d7ea711-b51d-4207-8d14-fdb666c488a1][0m
+[0m[1maws_route53_record.f5-main-standby: Refreshing state... [id=Z1H753EIYLU71_f5-bcbsks-uat_A_f5-bcbsks-uat-Secondary][0m
+[0m[1maws_route53_record.main-standby: Refreshing state... [id=Z1H753EIYLU71_bcbsks-uat_A_bcbsks-uat-Secondary][0m
+[31m
+[1m[31mError: [0m[0m[1mError retrieving LB: LoadBalancerNotFound: Load balancers '[Sym-Kan-UAT-WebApp-NLB]' not found
+	status code: 400, request id: 9b514c16-fd13-434d-b4cb-dff951190f65[0m
+
+[0m  on create_dns_record.tf line 10, in data "aws_lb" "my_nlb":
+  10: data "aws_lb" "my_nlb" [4m{[0m
+[0m
+[0m[0m

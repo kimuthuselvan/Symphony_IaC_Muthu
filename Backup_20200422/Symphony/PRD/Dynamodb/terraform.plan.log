@@ -1,0 +1,115 @@
+[0m[1mRefreshing Terraform state in-memory prior to plan...[0m
+The refreshed state will be used to calculate this plan, but will not be
+persisted to local or remote state storage.
+[0m
+
+------------------------------------------------------------------------
+
+An execution plan has been generated and is shown below.
+Resource actions are indicated with the following symbols:
+  [32m+[0m create
+[0m
+Terraform will perform the following actions:
+
+[1m  # aws_dynamodb_table.basic-dynamodb-table[0m will be created[0m[0m
+[0m  [32m+[0m[0m resource "aws_dynamodb_table" "basic-dynamodb-table" {
+      [32m+[0m [0m[1m[0marn[0m[0m              = (known after apply)
+      [32m+[0m [0m[1m[0mbilling_mode[0m[0m     = "PROVISIONED"
+      [32m+[0m [0m[1m[0mhash_key[0m[0m         = "ChecklistId"
+      [32m+[0m [0m[1m[0mid[0m[0m               = (known after apply)
+      [32m+[0m [0m[1m[0mname[0m[0m             = "symkandynamodbprd"
+      [32m+[0m [0m[1m[0mread_capacity[0m[0m    = 20
+      [32m+[0m [0m[1m[0mstream_arn[0m[0m       = (known after apply)
+      [32m+[0m [0m[1m[0mstream_label[0m[0m     = (known after apply)
+      [32m+[0m [0m[1m[0mstream_view_type[0m[0m = (known after apply)
+      [32m+[0m [0m[1m[0mtags[0m[0m             = {
+          [32m+[0m [0m"Client"      = "Kansas"
+          [32m+[0m [0m"Environment" = "Production"
+          [32m+[0m [0m"Name"        = "symkandynamodbprd"
+          [32m+[0m [0m"Project"     = "Symphony"
+          [32m+[0m [0m"Zone"        = "Trusted"
+        }
+      [32m+[0m [0m[1m[0mwrite_capacity[0m[0m   = 20
+
+      [32m+[0m [0mattribute {
+          [32m+[0m [0m[1m[0mname[0m[0m = "ChecklistId"
+          [32m+[0m [0m[1m[0mtype[0m[0m = "N"
+        }
+
+      [32m+[0m [0mpoint_in_time_recovery {
+          [32m+[0m [0m[1m[0menabled[0m[0m = (known after apply)
+        }
+
+      [32m+[0m [0mserver_side_encryption {
+          [32m+[0m [0m[1m[0menabled[0m[0m     = true
+          [32m+[0m [0m[1m[0mkms_key_arn[0m[0m = (known after apply)
+        }
+    }
+
+[0m[1mPlan:[0m 1 to add, 0 to change, 0 to destroy.[0m
+
+------------------------------------------------------------------------
+
+Note: You didn't specify an "-out" parameter to save this plan, so Terraform
+can't guarantee that exactly these actions will be performed if
+"terraform apply" is subsequently run.
+
+[0m[1mRefreshing Terraform state in-memory prior to plan...[0m
+The refreshed state will be used to calculate this plan, but will not be
+persisted to local or remote state storage.
+[0m
+[0m[1maws_dynamodb_table.basic-dynamodb-table: Refreshing state... [id=symkandynamodbprd][0m
+
+------------------------------------------------------------------------
+
+An execution plan has been generated and is shown below.
+Resource actions are indicated with the following symbols:
+  [33m~[0m update in-place
+[0m
+Terraform will perform the following actions:
+
+[1m  # aws_dynamodb_table.basic-dynamodb-table[0m will be updated in-place[0m[0m
+[0m  [33m~[0m[0m resource "aws_dynamodb_table" "basic-dynamodb-table" {
+        [1m[0marn[0m[0m            = "arn:aws:dynamodb:us-east-1:945116902499:table/symkandynamodbprd"
+        [1m[0mbilling_mode[0m[0m   = "PROVISIONED"
+        [1m[0mhash_key[0m[0m       = "ChecklistId"
+        [1m[0mid[0m[0m             = "symkandynamodbprd"
+        [1m[0mname[0m[0m           = "symkandynamodbprd"
+      [33m~[0m [0m[1m[0mread_capacity[0m[0m  = 20 [33m->[0m [0m5
+        [1m[0mstream_enabled[0m[0m = false
+        [1m[0mtags[0m[0m           = {
+            "Client"      = "Kansas"
+            "Environment" = "Production"
+            "Name"        = "symkandynamodbprd"
+            "Project"     = "Symphony"
+            "Zone"        = "Trusted"
+        }
+      [33m~[0m [0m[1m[0mwrite_capacity[0m[0m = 20 [33m->[0m [0m5
+
+        attribute {
+            [1m[0mname[0m[0m = "ChecklistId"
+            [1m[0mtype[0m[0m = "N"
+        }
+
+        point_in_time_recovery {
+            [1m[0menabled[0m[0m = false
+        }
+
+        server_side_encryption {
+            [1m[0menabled[0m[0m     = true
+            [1m[0mkms_key_arn[0m[0m = "arn:aws:kms:us-east-1:945116902499:key/6d8cc353-ba49-4c1f-9599-6663661a3da4"
+        }
+
+        ttl {
+            [1m[0menabled[0m[0m = false
+        }
+    }
+
+[0m[1mPlan:[0m 0 to add, 1 to change, 0 to destroy.[0m
+
+------------------------------------------------------------------------
+
+Note: You didn't specify an "-out" parameter to save this plan, so Terraform
+can't guarantee that exactly these actions will be performed if
+"terraform apply" is subsequently run.
+

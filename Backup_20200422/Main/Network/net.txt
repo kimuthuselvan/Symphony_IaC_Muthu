@@ -1,0 +1,14 @@
+Main_DMZ _Prod_VPC - 10.126.4.0/24
+Main_DMZ_Prod_AZ-A - 10.126.4.0/25
+Main_DMZ_Prod_AZ-B - 10.126.4.128/25
+
+Main_DMZ_Demo_VPC - 10.126.5.0/24
+Main_DMZ_Demo_AZ-A - 10.126.5.0/25
+
+Main_DMZ_QA_VPC - 10.126.6.0/24
+Main_DMZ_QA_AZ-A - 10.126.6.0/25
+
+Main_DMZ_Dev_VPC - 10.126.7.0/24
+Main_DMZ_Dev_AZ-A - 10.126.7.0/25
+
+

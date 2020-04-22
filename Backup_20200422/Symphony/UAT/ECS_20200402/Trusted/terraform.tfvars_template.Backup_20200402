@@ -1,0 +1,65 @@
+region_name = "us-east-1"
+
+ecs_name = "Sym-Kan-UAT-Srv"
+
+vpc_name        = "vpc-07d6e088e8c0ac938"    ## Kansas_Prod_DMZ_VPC 
+subnet_name_az1 = "subnet-002070de1ac1134d5" ## Kansas_Prod_DMZ_AZ-A
+subnet_name_az2 = "subnet-03248a90e3e0be171" ## Kansas_Prod_DMZ_AZ-B 
+sg_name         = "sg-07c8f0478fc628959"     ## Kansas_Prod_DMZ_VPC_All_Open_SG
+
+keypair_name = "Sym-Kan-UAT-Srv-Key"
+instance_type = "t3.medium"
+no_of_instance = "1"
+max_instance_size = "4"
+min_instance_size = "2"
+desired_capacity = "2"
+
+## First ASG default
+ami_id = "ami-00afc256a955c31b5" ## Amazon Linux 2 AMI for ECS
+user_data_file = "ecs-cluster_linux.tpl"
+running-os = "Linux"
+#container_task_file = "task-definitions/TraceService_Linux.json"
+
+## Second ASG on demand
+second_asg = true
+ami_id_2 = "ami-0eefaa2ef616b28bf" ## Windows 2019 AMI for ECS
+user_data_file_2 = "ecs-cluster_windows.tpl"
+running-os_2 = "Windows"
+#container_task_file_2 = "task-definitions/WebApp_Windows.json"
+
+## Container definitions here
+container_def = [
+
+]
+
+container_noALB_def = [
+
+]
+
+container_port = 443
+container_desired_count = 2
+aws_alb_protocol = "HTTPS"
+alb_list_port = 443
+alb_target_port = 443
+
+aws_iam_ecs_service_role = "ecs-service-role"
+aws_iam_ecs_ec2_role = "ecs-ec2-role"
+aws_iam_role_policy = "ecs-ec2-role-policy"
+
+# Tags
+client_name = "Kansas"
+project_name = "Symphony"
+service_name = "EC2"
+service_role = "ECS"
+environment_name = "Production"
+backup_frequency = "Never"
+billing_type = "Client"
+security_zone = "Trusted"
+app_version = "3.4.0"
+backup_vault = "-N/A-"
+
+# Enable and Disable monitoring for services
+# 1 - enable, 0 - disable
+ec2_enable_monitoring = 1
+cpu_threshold = 70
+emails = [ "EHIAWSSUPPORT@hcl.com", "michael.lindskov@emergentholdingsinc.com", "Michael.Barron@advantasure.com", "symphony-error-notify-qa@advantasure.com" ]

@@ -1,0 +1,34 @@
+region_name    = "us-east-1"
+
+vpc_name       = [ "Security_Ext_FW_Internet_VPC" ]
+subnets_name   = [ "Security_Ext_FW_Internet_AZ-A ", "Security_Ext_FW_Internet_AZ-B" ]
+
+#alb_vpc_name        = [ "Kansas_Prod_DMZ_VPC" ]
+#alb_subnet_names    = [ "Kansas_Prod_DMZ_AZ-A", "Kansas_Prod_DMZ_AZ-B" ]
+#alb_subnets_cidr     = [ "10.126.132.0/26", "10.126.132.64/26" ]
+subnet_cidr_az1 = "10.126.132.0/26"
+subnet_cidr_az2 = "10.126.132.64/26"
+
+ecs_name       = "Sym-Kan-PRD-WebApp"
+## To be input from Sym-Kan-PRD-WebApp ALB DNS Name ##
+alb_dns_name   = "internal-Sym-Kan-PRD-WebApp-ALB-1090190854.us-east-1.elb.amazonaws.com"
+
+cron_name      = "cron-minute-lambda"
+cron_arn       = "arn:aws:events:us-east-1:660751646273:rule/cron-minute-lambda"
+
+iam_role_arn   = "arn:aws:iam::660751646273:role/lambdaFunction-NLB-to-ALB-role"
+
+
+#ecs_name       = "Sym-Kan-PRD-WebApp"
+## To be input from Sym-Kan-PRD-WebApp ALB DNS Name ##
+#alb_dns_name   = "internal-Sym-Kan-PRD-WebApp-ALB-983242028.us-east-1.elb.amazonaws.com"
+#region_name    = "us-east-1"  
+#vpc_name       = "vpc-0b91f680b7588b87f" ## Security_Ext_FW_Internet_VPC
+#cron_name      = "cron-minute-lambda"
+#cron_arn       = "arn:aws:events:us-east-1:660751646273:rule/cron-minute-lambda"
+#iam_role_arn = "arn:aws:iam::660751646273:role/lambdaFunction-NLB-to-ALB-role"
+#subnet_name_az1 = "subnet-0f14641bf3d02ce57" ## Security_Ext_FW_Internet_AZ-A
+#subnet_name_az2 = "subnet-0a7893a240ead65f7" ## Security_Ext_FW_Internet_AZ-B
+#subnet_cidr_az1 = "10.126.132.0/26"
+#subnet_cidr_az2 = "10.126.132.64/26"
+

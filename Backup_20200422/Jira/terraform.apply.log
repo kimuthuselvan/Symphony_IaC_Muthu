@@ -1,0 +1,19 @@
+[0m[1mdata.template_file.userdata: Refreshing state...[0m
+[0m[1mdata.aws_ami.amazon-linux-2: Refreshing state...[0m
+[0m[1mdata.aws_vpc.vpc_id: Refreshing state...[0m
+[0m[1mdata.aws_subnet.subnet_id: Refreshing state...[0m
+[0m[1maws_security_group.security_group: Creating...[0m[0m
+[0m[1maws_security_group.security_group: Creation complete after 2s [id=sg-079ee1c1cbae86f99][0m[0m
+[0m[1maws_instance.jira: Creating...[0m[0m
+[0m[1maws_instance.jira: Still creating... [10s elapsed][0m[0m
+[0m[1maws_instance.jira: Still creating... [20s elapsed][0m[0m
+[0m[1maws_instance.jira: Still creating... [30s elapsed][0m[0m
+[0m[1maws_instance.jira: Creation complete after 33s [id=i-048b5f0ea3914dc8e][0m[0m
+[0m[1m[32m
+Apply complete! Resources: 2 added, 0 changed, 0 destroyed.[0m
+[0m[1m[32m
+Outputs:
+
+instance_dns_name = ip-10-126-64-56.ec2.internal
+instance_id = i-048b5f0ea3914dc8e
+instance_private_ip = 10.126.64.56[0m

@@ -1,0 +1,14 @@
+variable domain_name {}
+variable short_name {}
+variable AD_size {}
+variable admin_password {}
+variable vpc_id {}
+variable subnet_ids {}
+variable region_name {}
+variable iam_prefix {}
+variable vm_instance_type {}
+variable vm_ami_id {}
+variable vm_disk_size {}
+variable key_name {}
+variable security_group {}
+variable user_data_file {}

@@ -1,0 +1,7 @@
+name = "sqlexecutor"
+searchpath = "NA"
+successcode = "NA"
+listener_rule = "NONE"
+os_type = "windows"
+cpu = 1024
+memory = 1024

@@ -1,0 +1,7 @@
+region_name = "us-east-1"
+dynamodb_name = "symkandynamodbprd"
+hash_key = "ChecklistId"
+project_name = "Symphony"
+client_name = "Kansas"
+environment_name = "Production"
+zone_name = "Trusted"

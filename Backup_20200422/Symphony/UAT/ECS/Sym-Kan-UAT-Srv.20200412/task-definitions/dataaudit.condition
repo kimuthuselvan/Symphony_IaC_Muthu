@@ -1,0 +1,7 @@
+name = "dataaudit"
+searchpath = "/api/dataaudit/healthz"
+successcode = 200
+listener_rule = "/api/dataaudit*"
+os_type = "linux"
+cpu = 512
+memory = 512

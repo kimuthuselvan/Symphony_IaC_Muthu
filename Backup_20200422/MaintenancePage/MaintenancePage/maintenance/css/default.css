@@ -1,0 +1,25 @@
+body, html, pre, ul, li, a, img, textarea, select, table, th, tr, td, tbody, thead, textarea, area, br, caption, iframe, embed, font, frame, head, hr, i, label, legend, link, menu, option, p, pre, ol, strong, sub, tt, title {margin:0; padding:0;}
+body, html, pre{font-family:calibri, arial, helvetica; font-size:14px; color:#343434;}
+h1,h2,h3,h4,h5,h6{font-weight:normal; margin:0; padding:0;}
+a{ text-decoration:none;}
+a, a:active, a:focus{outline:0 none;}
+a img{outline:0 none; border:0;}
+.fL{float:left;}
+.fR{float:right;}
+.clr{ clear:both;}
+
+/* LAYOUT STYLE 
+=============================================================== */
+#header{ background:#1672c6; height:70px; color:#bde6ff; position:fixed; width:100%; left:0; top:0; z-index:99;}
+.logo{ background:url(../images/logo.png) no-repeat 0 0; width:350px; height:47px; display:block; text-indent:-999em; margin:12px 0 0 17px; direction: ltr;}
+
+.maintenanceForm{ width:390px; height: 405px; margin-left:20px; float:left; display: flex; justify-content: center; align-items: center;}
+.maintenanceForm .header2{ font-size:24px; font-weight:bold; color:#2281bb; margin-bottom:5px;}
+.maintenanceForm .header4{ color:#99a3b1; font-size:16px; margin-bottom:15px;}
+.maintenanceForm .maintenanceContent{ text-align: center;}
+
+/* Login */
+.loginHeading{ color:#141d25; font-size:38px; text-align:center; margin-top:110px; margin-bottom:29px;}
+.loginWrapp{ background:#f6f6f6; border:1px solid #d8dde4; border-radius:5px; width:1020px; margin:0 auto; overflow:hidden;}
+.loginWrappLeftSect{ width:608px; height:405px; float:left; background:url(../images/login-img.jpg);}
+.copyright{ color:#768082; font-size:16px; margin-top:30px;}

@@ -1,0 +1,103 @@
+[0m[1maws_mq_configuration.amazonmq: Creating...[0m[0m
+[0m[1maws_mq_configuration.amazonmq: Creation complete after 2s [id=c-f7d35b0c-efb4-4664-ae79-c90ccd7b8d35][0m[0m
+[0m[1maws_mq_broker.amazonmq: Creating...[0m[0m
+[0m[1maws_mq_broker.amazonmq: Still creating... [10s elapsed][0m[0m
+[0m[1maws_mq_broker.amazonmq: Still creating... [20s elapsed][0m[0m
+[0m[1maws_mq_broker.amazonmq: Still creating... [30s elapsed][0m[0m
+[0m[1maws_mq_broker.amazonmq: Still creating... [40s elapsed][0m[0m
+[0m[1maws_mq_broker.amazonmq: Still creating... [50s elapsed][0m[0m
+[0m[1maws_mq_broker.amazonmq: Still creating... [1m0s elapsed][0m[0m
+[0m[1maws_mq_broker.amazonmq: Still creating... [1m10s elapsed][0m[0m
+[0m[1maws_mq_broker.amazonmq: Still creating... [1m20s elapsed][0m[0m
+[0m[1maws_mq_broker.amazonmq: Still creating... [1m30s elapsed][0m[0m
+[0m[1maws_mq_broker.amazonmq: Still creating... [1m40s elapsed][0m[0m
+[0m[1maws_mq_broker.amazonmq: Still creating... [1m50s elapsed][0m[0m
+[0m[1maws_mq_broker.amazonmq: Still creating... [2m0s elapsed][0m[0m
+[0m[1maws_mq_broker.amazonmq: Still creating... [2m10s elapsed][0m[0m
+[0m[1maws_mq_broker.amazonmq: Still creating... [2m20s elapsed][0m[0m
+[0m[1maws_mq_broker.amazonmq: Still creating... [2m30s elapsed][0m[0m
+[0m[1maws_mq_broker.amazonmq: Still creating... [2m40s elapsed][0m[0m
+[0m[1maws_mq_broker.amazonmq: Still creating... [2m50s elapsed][0m[0m
+[0m[1maws_mq_broker.amazonmq: Still creating... [3m0s elapsed][0m[0m
+[0m[1maws_mq_broker.amazonmq: Still creating... [3m10s elapsed][0m[0m
+[0m[1maws_mq_broker.amazonmq: Still creating... [3m20s elapsed][0m[0m
+[0m[1maws_mq_broker.amazonmq: Still creating... [3m30s elapsed][0m[0m
+[0m[1maws_mq_broker.amazonmq: Still creating... [3m40s elapsed][0m[0m
+[0m[1maws_mq_broker.amazonmq: Still creating... [3m50s elapsed][0m[0m
+[0m[1maws_mq_broker.amazonmq: Still creating... [4m0s elapsed][0m[0m
+[0m[1maws_mq_broker.amazonmq: Still creating... [4m10s elapsed][0m[0m
+[0m[1maws_mq_broker.amazonmq: Still creating... [4m20s elapsed][0m[0m
+[0m[1maws_mq_broker.amazonmq: Still creating... [4m30s elapsed][0m[0m
+[0m[1maws_mq_broker.amazonmq: Still creating... [4m40s elapsed][0m[0m
+[0m[1maws_mq_broker.amazonmq: Still creating... [4m50s elapsed][0m[0m
+[0m[1maws_mq_broker.amazonmq: Still creating... [5m0s elapsed][0m[0m
+[0m[1maws_mq_broker.amazonmq: Still creating... [5m10s elapsed][0m[0m
+[0m[1maws_mq_broker.amazonmq: Still creating... [5m20s elapsed][0m[0m
+[0m[1maws_mq_broker.amazonmq: Still creating... [5m30s elapsed][0m[0m
+[0m[1maws_mq_broker.amazonmq: Still creating... [5m40s elapsed][0m[0m
+[0m[1maws_mq_broker.amazonmq: Still creating... [5m50s elapsed][0m[0m
+[0m[1maws_mq_broker.amazonmq: Still creating... [6m0s elapsed][0m[0m
+[0m[1maws_mq_broker.amazonmq: Still creating... [6m10s elapsed][0m[0m
+[0m[1maws_mq_broker.amazonmq: Still creating... [6m20s elapsed][0m[0m
+[0m[1maws_mq_broker.amazonmq: Still creating... [6m30s elapsed][0m[0m
+[0m[1maws_mq_broker.amazonmq: Still creating... [6m40s elapsed][0m[0m
+[0m[1maws_mq_broker.amazonmq: Still creating... [6m50s elapsed][0m[0m
+[0m[1maws_mq_broker.amazonmq: Still creating... [7m0s elapsed][0m[0m
+[0m[1maws_mq_broker.amazonmq: Still creating... [7m10s elapsed][0m[0m
+[0m[1maws_mq_broker.amazonmq: Still creating... [7m20s elapsed][0m[0m
+[0m[1maws_mq_broker.amazonmq: Still creating... [7m30s elapsed][0m[0m
+[0m[1maws_mq_broker.amazonmq: Still creating... [7m40s elapsed][0m[0m
+[0m[1maws_mq_broker.amazonmq: Still creating... [7m50s elapsed][0m[0m
+[0m[1maws_mq_broker.amazonmq: Still creating... [8m0s elapsed][0m[0m
+[0m[1maws_mq_broker.amazonmq: Still creating... [8m10s elapsed][0m[0m
+[0m[1maws_mq_broker.amazonmq: Still creating... [8m20s elapsed][0m[0m
+[0m[1maws_mq_broker.amazonmq: Still creating... [8m30s elapsed][0m[0m
+[0m[1maws_mq_broker.amazonmq: Still creating... [8m40s elapsed][0m[0m
+[0m[1maws_mq_broker.amazonmq: Still creating... [8m50s elapsed][0m[0m
+[0m[1maws_mq_broker.amazonmq: Still creating... [9m0s elapsed][0m[0m
+[0m[1maws_mq_broker.amazonmq: Still creating... [9m10s elapsed][0m[0m
+[0m[1maws_mq_broker.amazonmq: Still creating... [9m20s elapsed][0m[0m
+[0m[1maws_mq_broker.amazonmq: Still creating... [9m30s elapsed][0m[0m
+[0m[1maws_mq_broker.amazonmq: Still creating... [9m40s elapsed][0m[0m
+[0m[1maws_mq_broker.amazonmq: Still creating... [9m50s elapsed][0m[0m
+[0m[1maws_mq_broker.amazonmq: Still creating... [10m0s elapsed][0m[0m
+[0m[1maws_mq_broker.amazonmq: Still creating... [10m10s elapsed][0m[0m
+[0m[1maws_mq_broker.amazonmq: Still creating... [10m20s elapsed][0m[0m
+[0m[1maws_mq_broker.amazonmq: Still creating... [10m30s elapsed][0m[0m
+[0m[1maws_mq_broker.amazonmq: Still creating... [10m40s elapsed][0m[0m
+[0m[1maws_mq_broker.amazonmq: Still creating... [10m50s elapsed][0m[0m
+[0m[1maws_mq_broker.amazonmq: Still creating... [11m0s elapsed][0m[0m
+[0m[1maws_mq_broker.amazonmq: Still creating... [11m10s elapsed][0m[0m
+[0m[1maws_mq_broker.amazonmq: Still creating... [11m20s elapsed][0m[0m
+[0m[1maws_mq_broker.amazonmq: Still creating... [11m30s elapsed][0m[0m
+[0m[1maws_mq_broker.amazonmq: Still creating... [11m40s elapsed][0m[0m
+[0m[1maws_mq_broker.amazonmq: Still creating... [11m50s elapsed][0m[0m
+[0m[1maws_mq_broker.amazonmq: Still creating... [12m0s elapsed][0m[0m
+[0m[1maws_mq_broker.amazonmq: Still creating... [12m10s elapsed][0m[0m
+[0m[1maws_mq_broker.amazonmq: Still creating... [12m20s elapsed][0m[0m
+[0m[1maws_mq_broker.amazonmq: Still creating... [12m30s elapsed][0m[0m
+[0m[1maws_mq_broker.amazonmq: Still creating... [12m40s elapsed][0m[0m
+[0m[1maws_mq_broker.amazonmq: Still creating... [12m50s elapsed][0m[0m
+[0m[1maws_mq_broker.amazonmq: Still creating... [13m0s elapsed][0m[0m
+[0m[1maws_mq_broker.amazonmq: Still creating... [13m10s elapsed][0m[0m
+[0m[1maws_mq_broker.amazonmq: Creation complete after 13m14s [id=b-4b110a99-a8f4-4dd7-b9bc-f138f1fd5b97][0m[0m
+[33m
+[1m[33mWarning: [0m[0m[1mInterpolation-only expressions are deprecated[0m
+
+[0m  on amazonmq.tf line 209, in resource "aws_mq_broker" "amazonmq":
+ 209:     id       = [4m"${aws_mq_configuration.amazonmq.id}"[0m
+[0m
+Terraform 0.11 and earlier required all non-constant expressions to be
+provided via interpolation syntax, but this pattern is now deprecated. To
+silence this warning, remove the "${ sequence from the start and the }"
+sequence from the end of this expression, leaving just the inner expression.
+
+Template interpolation syntax is still used to construct strings from
+expressions when the template includes multiple interpolation sequences or a
+mixture of literal strings and interpolations. This deprecation applies only
+to templates that consist entirely of a single interpolation sequence.
+
+(and one more similar warning elsewhere)
+[0m[0m
+[0m[1m[32m
+Apply complete! Resources: 2 added, 0 changed, 0 destroyed.[0m

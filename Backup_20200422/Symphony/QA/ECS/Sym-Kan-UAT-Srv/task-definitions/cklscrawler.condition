@@ -1,0 +1,7 @@
+name = "cklscrawler"
+searchpath = "/api/checklistcrawler/healthz"
+successcode = 200
+listener_rule = "/api/checklistcrawler*"
+os_type = "linux"
+cpu = 512
+memory = 512

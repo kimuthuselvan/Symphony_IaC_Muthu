@@ -1,0 +1,12 @@
+[31m
+[1m[31mError: [0m[0m[1mMissing resource instance key[0m
+
+[0m  on windows_ec2.tf line 52, in resource "aws_instance" "eft_windows":
+  52:     Host_Name   = "${[4maws_instance.eft_windows[0m.private_dns}"
+[0m
+Because aws_instance.eft_windows has "count" set, its attributes must be
+accessed on specific instances.
+
+For example, to correlate with indices of a referring resource, use:
+    aws_instance.eft_windows[count.index]
+[0m[0m

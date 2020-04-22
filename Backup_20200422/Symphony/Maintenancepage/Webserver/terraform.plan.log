@@ -1,0 +1,547 @@
+[0m[1mRefreshing Terraform state in-memory prior to plan...[0m
+The refreshed state will be used to calculate this plan, but will not be
+persisted to local or remote state storage.
+[0m
+[0m[1mdata.aws_ami.amazon-linux-2: Refreshing state...[0m
+[0m[1mdata.aws_vpc.vpc_id: Refreshing state...[0m
+[0m[1mdata.aws_acm_certificate.clientdomain: Refreshing state...[0m
+[0m[1mdata.aws_iam_policy_document.site_policy: Refreshing state...[0m
+[0m[1mdata.aws_subnet_ids.subnet_ids: Refreshing state...[0m
+
+------------------------------------------------------------------------
+
+An execution plan has been generated and is shown below.
+Resource actions are indicated with the following symbols:
+  [32m+[0m create
+ [36m<=[0m read (data resources)
+[0m
+Terraform will perform the following actions:
+
+[1m  # data.template_file.userdata[0m will be read during apply
+  # (config refers to values not yet known)[0m[0m
+[0m [36m<=[0m[0m data "template_file" "userdata"  {
+      [32m+[0m [0m[1m[0mid[0m[0m       = (known after apply)
+      [32m+[0m [0m[1m[0mrendered[0m[0m = (known after apply)
+      [32m+[0m [0m[1m[0mtemplate[0m[0m = <<~EOT
+            #!/bin/bash
+            sed -i 's|SELINUX=enforcing|SELINUX=disabled|g' /etc/selinux/config
+            setenforce 0
+            
+            cd /tmp
+            sudo yum install httpd wget -y
+            wget -r -l 5  -P /tmp/mysite http://${bucket_url}/
+            
+            sudo cp -pR /tmp/mysite/${bucket_url}/* /var/www/html/
+            sudo systemctl restart httpd
+            sudo systemctl enable httpd
+            
+        EOT
+      [32m+[0m [0m[1m[0mvars[0m[0m     = {
+          [32m+[0m [0m"bucket_url" = "symphony-kansas-maintenancepage.s3-website-us-east-1.amazonaws.com"
+        }
+    }
+
+[1m  # aws_alb.aws_security_alb[0m will be created[0m[0m
+[0m  [32m+[0m[0m resource "aws_alb" "aws_security_alb" {
+      [32m+[0m [0m[1m[0marn[0m[0m                        = (known after apply)
+      [32m+[0m [0m[1m[0marn_suffix[0m[0m                 = (known after apply)
+      [32m+[0m [0m[1m[0mdns_name[0m[0m                   = (known after apply)
+      [32m+[0m [0m[1m[0mdrop_invalid_header_fields[0m[0m = false
+      [32m+[0m [0m[1m[0menable_deletion_protection[0m[0m = false
+      [32m+[0m [0m[1m[0menable_http2[0m[0m               = true
+      [32m+[0m [0m[1m[0mid[0m[0m                         = (known after apply)
+      [32m+[0m [0m[1m[0midle_timeout[0m[0m               = 600
+      [32m+[0m [0m[1m[0minternal[0m[0m                   = true
+      [32m+[0m [0m[1m[0mip_address_type[0m[0m            = (known after apply)
+      [32m+[0m [0m[1m[0mload_balancer_type[0m[0m         = "application"
+      [32m+[0m [0m[1m[0mname[0m[0m                       = "Symphony-MaintenancePage-ALB"
+      [32m+[0m [0m[1m[0msecurity_groups[0m[0m            = (known after apply)
+      [32m+[0m [0m[1m[0msubnets[0m[0m                    = [
+          [32m+[0m [0m"subnet-045f15dc2d848718a",
+          [32m+[0m [0m"subnet-0c4816f7842153167",
+        ]
+      [32m+[0m [0m[1m[0mtags[0m[0m                       = {
+          [32m+[0m [0m"app_version"      = "1.0"
+          [32m+[0m [0m"backup_frequency" = "Never"
+          [32m+[0m [0m"backup_vault"     = "-N/A-"
+          [32m+[0m [0m"billing_type"     = "Client"
+          [32m+[0m [0m"client_name"      = "Kansas"
+          [32m+[0m [0m"environment_name" = "Production"
+          [32m+[0m [0m"os_name"          = "Amazon Linux 2"
+          [32m+[0m [0m"os_type"          = "Linux"
+          [32m+[0m [0m"project_name"     = "Symphony"
+          [32m+[0m [0m"security_zone"    = "DMZ"
+          [32m+[0m [0m"service_name"     = "EC2"
+          [32m+[0m [0m"service_role"     = "MaintenancePage"
+        }
+      [32m+[0m [0m[1m[0mvpc_id[0m[0m                     = (known after apply)
+      [32m+[0m [0m[1m[0mzone_id[0m[0m                    = (known after apply)
+
+      [32m+[0m [0msubnet_mapping {
+          [32m+[0m [0m[1m[0mallocation_id[0m[0m = (known after apply)
+          [32m+[0m [0m[1m[0msubnet_id[0m[0m     = (known after apply)
+        }
+    }
+
+[1m  # aws_alb_listener.front_end[0m will be created[0m[0m
+[0m  [32m+[0m[0m resource "aws_alb_listener" "front_end" {
+      [32m+[0m [0m[1m[0marn[0m[0m               = (known after apply)
+      [32m+[0m [0m[1m[0mcertificate_arn[0m[0m   = "arn:aws:acm:us-east-1:945116902499:certificate/981b7fa0-3b04-4995-bbb1-8b56446801a3"
+      [32m+[0m [0m[1m[0mid[0m[0m                = (known after apply)
+      [32m+[0m [0m[1m[0mload_balancer_arn[0m[0m = (known after apply)
+      [32m+[0m [0m[1m[0mport[0m[0m              = 443
+      [32m+[0m [0m[1m[0mprotocol[0m[0m          = "HTTPS"
+      [32m+[0m [0m[1m[0mssl_policy[0m[0m        = (known after apply)
+
+      [32m+[0m [0mdefault_action {
+          [32m+[0m [0m[1m[0morder[0m[0m            = (known after apply)
+          [32m+[0m [0m[1m[0mtarget_group_arn[0m[0m = (known after apply)
+          [32m+[0m [0m[1m[0mtype[0m[0m             = "forward"
+        }
+    }
+
+[1m  # aws_alb_listener.httptohttps[0m will be created[0m[0m
+[0m  [32m+[0m[0m resource "aws_alb_listener" "httptohttps" {
+      [32m+[0m [0m[1m[0marn[0m[0m               = (known after apply)
+      [32m+[0m [0m[1m[0mid[0m[0m                = (known after apply)
+      [32m+[0m [0m[1m[0mload_balancer_arn[0m[0m = (known after apply)
+      [32m+[0m [0m[1m[0mport[0m[0m              = 80
+      [32m+[0m [0m[1m[0mprotocol[0m[0m          = "HTTP"
+      [32m+[0m [0m[1m[0mssl_policy[0m[0m        = (known after apply)
+
+      [32m+[0m [0mdefault_action {
+          [32m+[0m [0m[1m[0morder[0m[0m = (known after apply)
+          [32m+[0m [0m[1m[0mtype[0m[0m  = "redirect"
+
+          [32m+[0m [0mredirect {
+              [32m+[0m [0m[1m[0mhost[0m[0m        = "#{host}"
+              [32m+[0m [0m[1m[0mpath[0m[0m        = "/#{path}"
+              [32m+[0m [0m[1m[0mport[0m[0m        = "443"
+              [32m+[0m [0m[1m[0mprotocol[0m[0m    = "HTTPS"
+              [32m+[0m [0m[1m[0mquery[0m[0m       = "#{query}"
+              [32m+[0m [0m[1m[0mstatus_code[0m[0m = "HTTP_301"
+            }
+        }
+    }
+
+[1m  # aws_alb_target_group.security-group[0m will be created[0m[0m
+[0m  [32m+[0m[0m resource "aws_alb_target_group" "security-group" {
+      [32m+[0m [0m[1m[0marn[0m[0m                                = (known after apply)
+      [32m+[0m [0m[1m[0marn_suffix[0m[0m                         = (known after apply)
+      [32m+[0m [0m[1m[0mderegistration_delay[0m[0m               = 300
+      [32m+[0m [0m[1m[0mid[0m[0m                                 = (known after apply)
+      [32m+[0m [0m[1m[0mlambda_multi_value_headers_enabled[0m[0m = false
+      [32m+[0m [0m[1m[0mload_balancing_algorithm_type[0m[0m      = (known after apply)
+      [32m+[0m [0m[1m[0mname[0m[0m                               = "Symphony-MaintenancePage-TG"
+      [32m+[0m [0m[1m[0mport[0m[0m                               = 80
+      [32m+[0m [0m[1m[0mprotocol[0m[0m                           = "HTTP"
+      [32m+[0m [0m[1m[0mproxy_protocol_v2[0m[0m                  = false
+      [32m+[0m [0m[1m[0mslow_start[0m[0m                         = 0
+      [32m+[0m [0m[1m[0mtarget_type[0m[0m                        = "instance"
+      [32m+[0m [0m[1m[0mvpc_id[0m[0m                             = "vpc-069d202f6c6abf29a"
+
+      [32m+[0m [0mhealth_check {
+          [32m+[0m [0m[1m[0menabled[0m[0m             = true
+          [32m+[0m [0m[1m[0mhealthy_threshold[0m[0m   = 5
+          [32m+[0m [0m[1m[0minterval[0m[0m            = 30
+          [32m+[0m [0m[1m[0mmatcher[0m[0m             = "200"
+          [32m+[0m [0m[1m[0mpath[0m[0m                = "/"
+          [32m+[0m [0m[1m[0mport[0m[0m                = "traffic-port"
+          [32m+[0m [0m[1m[0mprotocol[0m[0m            = "HTTP"
+          [32m+[0m [0m[1m[0mtimeout[0m[0m             = 5
+          [32m+[0m [0m[1m[0munhealthy_threshold[0m[0m = 2
+        }
+
+      [32m+[0m [0mstickiness {
+          [32m+[0m [0m[1m[0mcookie_duration[0m[0m = 300
+          [32m+[0m [0m[1m[0menabled[0m[0m         = true
+          [32m+[0m [0m[1m[0mtype[0m[0m            = "lb_cookie"
+        }
+    }
+
+[1m  # aws_autoscaling_attachment.asg_attachment_alb[0m will be created[0m[0m
+[0m  [32m+[0m[0m resource "aws_autoscaling_attachment" "asg_attachment_alb" {
+      [32m+[0m [0m[1m[0malb_target_group_arn[0m[0m   = (known after apply)
+      [32m+[0m [0m[1m[0mautoscaling_group_name[0m[0m = (known after apply)
+      [32m+[0m [0m[1m[0mid[0m[0m                     = (known after apply)
+    }
+
+[1m  # aws_autoscaling_group.linuxservers[0m will be created[0m[0m
+[0m  [32m+[0m[0m resource "aws_autoscaling_group" "linuxservers" {
+      [32m+[0m [0m[1m[0marn[0m[0m                       = (known after apply)
+      [32m+[0m [0m[1m[0mavailability_zones[0m[0m        = (known after apply)
+      [32m+[0m [0m[1m[0mdefault_cooldown[0m[0m          = 30
+      [32m+[0m [0m[1m[0mdesired_capacity[0m[0m          = 2
+      [32m+[0m [0m[1m[0mforce_delete[0m[0m              = false
+      [32m+[0m [0m[1m[0mhealth_check_grace_period[0m[0m = 120
+      [32m+[0m [0m[1m[0mhealth_check_type[0m[0m         = (known after apply)
+      [32m+[0m [0m[1m[0mid[0m[0m                        = (known after apply)
+      [32m+[0m [0m[1m[0mlaunch_configuration[0m[0m      = "Symphony_MaintenancePage_Linux_LC"
+      [32m+[0m [0m[1m[0mload_balancers[0m[0m            = (known after apply)
+      [32m+[0m [0m[1m[0mmax_size[0m[0m                  = 3
+      [32m+[0m [0m[1m[0mmetrics_granularity[0m[0m       = "1Minute"
+      [32m+[0m [0m[1m[0mmin_size[0m[0m                  = 2
+      [32m+[0m [0m[1m[0mname[0m[0m                      = "Symphony_MaintenancePage_Linux_ASG"
+      [32m+[0m [0m[1m[0mprotect_from_scale_in[0m[0m     = false
+      [32m+[0m [0m[1m[0mservice_linked_role_arn[0m[0m   = (known after apply)
+      [32m+[0m [0m[1m[0mtarget_group_arns[0m[0m         = (known after apply)
+      [32m+[0m [0m[1m[0mtermination_policies[0m[0m      = [
+          [32m+[0m [0m"OldestInstance",
+        ]
+      [32m+[0m [0m[1m[0mvpc_zone_identifier[0m[0m       = [
+          [32m+[0m [0m"subnet-045f15dc2d848718a",
+          [32m+[0m [0m"subnet-0c4816f7842153167",
+        ]
+      [32m+[0m [0m[1m[0mwait_for_capacity_timeout[0m[0m = "10m"
+
+      [32m+[0m [0mtag {
+          [32m+[0m [0m[1m[0mkey[0m[0m                 = "Name"
+          [32m+[0m [0m[1m[0mpropagate_at_launch[0m[0m = true
+          [32m+[0m [0m[1m[0mvalue[0m[0m               = "Symphony_MaintenancePage_Linux_ASG"
+        }
+      [32m+[0m [0mtag {
+          [32m+[0m [0m[1m[0mkey[0m[0m                 = "app_version"
+          [32m+[0m [0m[1m[0mpropagate_at_launch[0m[0m = true
+          [32m+[0m [0m[1m[0mvalue[0m[0m               = "1.0"
+        }
+      [32m+[0m [0mtag {
+          [32m+[0m [0m[1m[0mkey[0m[0m                 = "backup_frequency"
+          [32m+[0m [0m[1m[0mpropagate_at_launch[0m[0m = true
+          [32m+[0m [0m[1m[0mvalue[0m[0m               = "Never"
+        }
+      [32m+[0m [0mtag {
+          [32m+[0m [0m[1m[0mkey[0m[0m                 = "backup_vault"
+          [32m+[0m [0m[1m[0mpropagate_at_launch[0m[0m = true
+          [32m+[0m [0m[1m[0mvalue[0m[0m               = "-N/A-"
+        }
+      [32m+[0m [0mtag {
+          [32m+[0m [0m[1m[0mkey[0m[0m                 = "billing_type"
+          [32m+[0m [0m[1m[0mpropagate_at_launch[0m[0m = true
+          [32m+[0m [0m[1m[0mvalue[0m[0m               = "Client"
+        }
+      [32m+[0m [0mtag {
+          [32m+[0m [0m[1m[0mkey[0m[0m                 = "client_name"
+          [32m+[0m [0m[1m[0mpropagate_at_launch[0m[0m = true
+          [32m+[0m [0m[1m[0mvalue[0m[0m               = "Kansas"
+        }
+      [32m+[0m [0mtag {
+          [32m+[0m [0m[1m[0mkey[0m[0m                 = "environment_name"
+          [32m+[0m [0m[1m[0mpropagate_at_launch[0m[0m = true
+          [32m+[0m [0m[1m[0mvalue[0m[0m               = "Production"
+        }
+      [32m+[0m [0mtag {
+          [32m+[0m [0m[1m[0mkey[0m[0m                 = "os_name"
+          [32m+[0m [0m[1m[0mpropagate_at_launch[0m[0m = true
+          [32m+[0m [0m[1m[0mvalue[0m[0m               = "Amazon Linux 2"
+        }
+      [32m+[0m [0mtag {
+          [32m+[0m [0m[1m[0mkey[0m[0m                 = "os_type"
+          [32m+[0m [0m[1m[0mpropagate_at_launch[0m[0m = true
+          [32m+[0m [0m[1m[0mvalue[0m[0m               = "Linux"
+        }
+      [32m+[0m [0mtag {
+          [32m+[0m [0m[1m[0mkey[0m[0m                 = "project_name"
+          [32m+[0m [0m[1m[0mpropagate_at_launch[0m[0m = true
+          [32m+[0m [0m[1m[0mvalue[0m[0m               = "Symphony"
+        }
+      [32m+[0m [0mtag {
+          [32m+[0m [0m[1m[0mkey[0m[0m                 = "security_zone"
+          [32m+[0m [0m[1m[0mpropagate_at_launch[0m[0m = true
+          [32m+[0m [0m[1m[0mvalue[0m[0m               = "DMZ"
+        }
+      [32m+[0m [0mtag {
+          [32m+[0m [0m[1m[0mkey[0m[0m                 = "service_name"
+          [32m+[0m [0m[1m[0mpropagate_at_launch[0m[0m = true
+          [32m+[0m [0m[1m[0mvalue[0m[0m               = "EC2"
+        }
+      [32m+[0m [0mtag {
+          [32m+[0m [0m[1m[0mkey[0m[0m                 = "service_role"
+          [32m+[0m [0m[1m[0mpropagate_at_launch[0m[0m = true
+          [32m+[0m [0m[1m[0mvalue[0m[0m               = "MaintenancePage"
+        }
+    }
+
+[1m  # aws_autoscaling_policy.linuxautopolicy[0m will be created[0m[0m
+[0m  [32m+[0m[0m resource "aws_autoscaling_policy" "linuxautopolicy" {
+      [32m+[0m [0m[1m[0madjustment_type[0m[0m           = "ChangeInCapacity"
+      [32m+[0m [0m[1m[0marn[0m[0m                       = (known after apply)
+      [32m+[0m [0m[1m[0mautoscaling_group_name[0m[0m    = "Symphony_MaintenancePage_Linux_ASG"
+      [32m+[0m [0m[1m[0mestimated_instance_warmup[0m[0m = 90
+      [32m+[0m [0m[1m[0mid[0m[0m                        = (known after apply)
+      [32m+[0m [0m[1m[0mmetric_aggregation_type[0m[0m   = (known after apply)
+      [32m+[0m [0m[1m[0mname[0m[0m                      = "Symphony_MaintenancePage_Linux_ASGP"
+      [32m+[0m [0m[1m[0mpolicy_type[0m[0m               = "TargetTrackingScaling"
+
+      [32m+[0m [0mtarget_tracking_configuration {
+          [32m+[0m [0m[1m[0mdisable_scale_in[0m[0m = false
+          [32m+[0m [0m[1m[0mtarget_value[0m[0m     = 70
+
+          [32m+[0m [0mpredefined_metric_specification {
+              [32m+[0m [0m[1m[0mpredefined_metric_type[0m[0m = "ASGAverageCPUUtilization"
+            }
+        }
+    }
+
+[1m  # aws_launch_configuration.launchlinux[0m will be created[0m[0m
+[0m  [32m+[0m[0m resource "aws_launch_configuration" "launchlinux" {
+      [32m+[0m [0m[1m[0marn[0m[0m                         = (known after apply)
+      [32m+[0m [0m[1m[0massociate_public_ip_address[0m[0m = false
+      [32m+[0m [0m[1m[0mebs_optimized[0m[0m               = (known after apply)
+      [32m+[0m [0m[1m[0menable_monitoring[0m[0m           = true
+      [32m+[0m [0m[1m[0mid[0m[0m                          = (known after apply)
+      [32m+[0m [0m[1m[0mimage_id[0m[0m                    = "ami-0323c3dd2da7fb37d"
+      [32m+[0m [0m[1m[0minstance_type[0m[0m               = "t2.micro"
+      [32m+[0m [0m[1m[0mkey_name[0m[0m                    = "Symphony-MaintenancePage-Linux-Key"
+      [32m+[0m [0m[1m[0mname[0m[0m                        = "Symphony_MaintenancePage_Linux_LC"
+      [32m+[0m [0m[1m[0msecurity_groups[0m[0m             = (known after apply)
+      [32m+[0m [0m[1m[0muser_data[0m[0m                   = (known after apply)
+
+      [32m+[0m [0mebs_block_device {
+          [32m+[0m [0m[1m[0mdelete_on_termination[0m[0m = (known after apply)
+          [32m+[0m [0m[1m[0mdevice_name[0m[0m           = (known after apply)
+          [32m+[0m [0m[1m[0mencrypted[0m[0m             = (known after apply)
+          [32m+[0m [0m[1m[0miops[0m[0m                  = (known after apply)
+          [32m+[0m [0m[1m[0mno_device[0m[0m             = (known after apply)
+          [32m+[0m [0m[1m[0msnapshot_id[0m[0m           = (known after apply)
+          [32m+[0m [0m[1m[0mvolume_size[0m[0m           = (known after apply)
+          [32m+[0m [0m[1m[0mvolume_type[0m[0m           = (known after apply)
+        }
+
+      [32m+[0m [0mroot_block_device {
+          [32m+[0m [0m[1m[0mdelete_on_termination[0m[0m = (known after apply)
+          [32m+[0m [0m[1m[0mencrypted[0m[0m             = (known after apply)
+          [32m+[0m [0m[1m[0miops[0m[0m                  = (known after apply)
+          [32m+[0m [0m[1m[0mvolume_size[0m[0m           = (known after apply)
+          [32m+[0m [0m[1m[0mvolume_type[0m[0m           = (known after apply)
+        }
+    }
+
+[1m  # aws_s3_bucket.contentbucket[0m will be created[0m[0m
+[0m  [32m+[0m[0m resource "aws_s3_bucket" "contentbucket" {
+      [32m+[0m [0m[1m[0macceleration_status[0m[0m         = (known after apply)
+      [32m+[0m [0m[1m[0macl[0m[0m                         = "public-read"
+      [32m+[0m [0m[1m[0marn[0m[0m                         = (known after apply)
+      [32m+[0m [0m[1m[0mbucket[0m[0m                      = "symphony-kansas-maintenancepage"
+      [32m+[0m [0m[1m[0mbucket_domain_name[0m[0m          = (known after apply)
+      [32m+[0m [0m[1m[0mbucket_regional_domain_name[0m[0m = (known after apply)
+      [32m+[0m [0m[1m[0mforce_destroy[0m[0m               = true
+      [32m+[0m [0m[1m[0mhosted_zone_id[0m[0m              = (known after apply)
+      [32m+[0m [0m[1m[0mid[0m[0m                          = (known after apply)
+      [32m+[0m [0m[1m[0mpolicy[0m[0m                      = jsonencode(
+            {
+              [32m+[0m [0mStatement = [
+                  [32m+[0m [0m{
+                      [32m+[0m [0mAction    = "s3:GetObject"
+                      [32m+[0m [0mEffect    = "Allow"
+                      [32m+[0m [0mPrincipal = {
+                          [32m+[0m [0mAWS = "*"
+                        }
+                      [32m+[0m [0mResource  = "arn:aws:s3:::symphony-kansas-maintenancepage/*"
+                      [32m+[0m [0mSid       = "PublicReadGetObject"
+                    },
+                ]
+              [32m+[0m [0mVersion   = "2012-10-17"
+            }
+        )
+      [32m+[0m [0m[1m[0mregion[0m[0m                      = "us-east-1"
+      [32m+[0m [0m[1m[0mrequest_payer[0m[0m               = (known after apply)
+      [32m+[0m [0m[1m[0mtags[0m[0m                        = {
+          [32m+[0m [0m"app_version"      = "1.0"
+          [32m+[0m [0m"backup_frequency" = "Never"
+          [32m+[0m [0m"backup_vault"     = "-N/A-"
+          [32m+[0m [0m"billing_type"     = "Client"
+          [32m+[0m [0m"client_name"      = "Kansas"
+          [32m+[0m [0m"environment_name" = "Production"
+          [32m+[0m [0m"os_name"          = "Amazon Linux 2"
+          [32m+[0m [0m"os_type"          = "Linux"
+          [32m+[0m [0m"project_name"     = "Symphony"
+          [32m+[0m [0m"security_zone"    = "DMZ"
+          [32m+[0m [0m"service_name"     = "EC2"
+          [32m+[0m [0m"service_role"     = "MaintenancePage"
+        }
+      [32m+[0m [0m[1m[0mwebsite_domain[0m[0m              = (known after apply)
+      [32m+[0m [0m[1m[0mwebsite_endpoint[0m[0m            = (known after apply)
+
+      [32m+[0m [0mcors_rule {
+          [32m+[0m [0m[1m[0mallowed_headers[0m[0m = [
+              [32m+[0m [0m"*",
+            ]
+          [32m+[0m [0m[1m[0mallowed_methods[0m[0m = [
+              [32m+[0m [0m"HEAD",
+              [32m+[0m [0m"GET",
+              [32m+[0m [0m"PUT",
+              [32m+[0m [0m"POST",
+              [32m+[0m [0m"DELETE",
+            ]
+          [32m+[0m [0m[1m[0mallowed_origins[0m[0m = [
+              [32m+[0m [0m"*",
+            ]
+          [32m+[0m [0m[1m[0mexpose_headers[0m[0m  = [
+              [32m+[0m [0m"ETag",
+            ]
+          [32m+[0m [0m[1m[0mmax_age_seconds[0m[0m = 0
+        }
+
+      [32m+[0m [0mversioning {
+          [32m+[0m [0m[1m[0menabled[0m[0m    = (known after apply)
+          [32m+[0m [0m[1m[0mmfa_delete[0m[0m = (known after apply)
+        }
+
+      [32m+[0m [0mwebsite {
+          [32m+[0m [0m[1m[0mindex_document[0m[0m = "maintenance.html"
+        }
+    }
+
+[1m  # aws_s3_bucket_object.uploadfiles["css/default.css"][0m will be created[0m[0m
+[0m  [32m+[0m[0m resource "aws_s3_bucket_object" "uploadfiles" {
+      [32m+[0m [0m[1m[0macl[0m[0m                    = "private"
+      [32m+[0m [0m[1m[0mbucket[0m[0m                 = "symphony-kansas-maintenancepage"
+      [32m+[0m [0m[1m[0mcontent_type[0m[0m           = "text/html"
+      [32m+[0m [0m[1m[0metag[0m[0m                   = (known after apply)
+      [32m+[0m [0m[1m[0mforce_destroy[0m[0m          = false
+      [32m+[0m [0m[1m[0mid[0m[0m                     = (known after apply)
+      [32m+[0m [0m[1m[0mkey[0m[0m                    = "css/default.css"
+      [32m+[0m [0m[1m[0mserver_side_encryption[0m[0m = (known after apply)
+      [32m+[0m [0m[1m[0msource[0m[0m                 = "./files/css/default.css"
+      [32m+[0m [0m[1m[0mstorage_class[0m[0m          = (known after apply)
+      [32m+[0m [0m[1m[0mversion_id[0m[0m             = (known after apply)
+    }
+
+[1m  # aws_s3_bucket_object.uploadfiles["images/login-img.jpg"][0m will be created[0m[0m
+[0m  [32m+[0m[0m resource "aws_s3_bucket_object" "uploadfiles" {
+      [32m+[0m [0m[1m[0macl[0m[0m                    = "private"
+      [32m+[0m [0m[1m[0mbucket[0m[0m                 = "symphony-kansas-maintenancepage"
+      [32m+[0m [0m[1m[0mcontent_type[0m[0m           = "text/html"
+      [32m+[0m [0m[1m[0metag[0m[0m                   = (known after apply)
+      [32m+[0m [0m[1m[0mforce_destroy[0m[0m          = false
+      [32m+[0m [0m[1m[0mid[0m[0m                     = (known after apply)
+      [32m+[0m [0m[1m[0mkey[0m[0m                    = "images/login-img.jpg"
+      [32m+[0m [0m[1m[0mserver_side_encryption[0m[0m = (known after apply)
+      [32m+[0m [0m[1m[0msource[0m[0m                 = "./files/images/login-img.jpg"
+      [32m+[0m [0m[1m[0mstorage_class[0m[0m          = (known after apply)
+      [32m+[0m [0m[1m[0mversion_id[0m[0m             = (known after apply)
+    }
+
+[1m  # aws_s3_bucket_object.uploadfiles["images/logo.png"][0m will be created[0m[0m
+[0m  [32m+[0m[0m resource "aws_s3_bucket_object" "uploadfiles" {
+      [32m+[0m [0m[1m[0macl[0m[0m                    = "private"
+      [32m+[0m [0m[1m[0mbucket[0m[0m                 = "symphony-kansas-maintenancepage"
+      [32m+[0m [0m[1m[0mcontent_type[0m[0m           = "text/html"
+      [32m+[0m [0m[1m[0metag[0m[0m                   = (known after apply)
+      [32m+[0m [0m[1m[0mforce_destroy[0m[0m          = false
+      [32m+[0m [0m[1m[0mid[0m[0m                     = (known after apply)
+      [32m+[0m [0m[1m[0mkey[0m[0m                    = "images/logo.png"
+      [32m+[0m [0m[1m[0mserver_side_encryption[0m[0m = (known after apply)
+      [32m+[0m [0m[1m[0msource[0m[0m                 = "./files/images/logo.png"
+      [32m+[0m [0m[1m[0mstorage_class[0m[0m          = (known after apply)
+      [32m+[0m [0m[1m[0mversion_id[0m[0m             = (known after apply)
+    }
+
+[1m  # aws_s3_bucket_object.uploadfiles["images/screwdriverblack.png"][0m will be created[0m[0m
+[0m  [32m+[0m[0m resource "aws_s3_bucket_object" "uploadfiles" {
+      [32m+[0m [0m[1m[0macl[0m[0m                    = "private"
+      [32m+[0m [0m[1m[0mbucket[0m[0m                 = "symphony-kansas-maintenancepage"
+      [32m+[0m [0m[1m[0mcontent_type[0m[0m           = "text/html"
+      [32m+[0m [0m[1m[0metag[0m[0m                   = (known after apply)
+      [32m+[0m [0m[1m[0mforce_destroy[0m[0m          = false
+      [32m+[0m [0m[1m[0mid[0m[0m                     = (known after apply)
+      [32m+[0m [0m[1m[0mkey[0m[0m                    = "images/screwdriverblack.png"
+      [32m+[0m [0m[1m[0mserver_side_encryption[0m[0m = (known after apply)
+      [32m+[0m [0m[1m[0msource[0m[0m                 = "./files/images/screwdriverblack.png"
+      [32m+[0m [0m[1m[0mstorage_class[0m[0m          = (known after apply)
+      [32m+[0m [0m[1m[0mversion_id[0m[0m             = (known after apply)
+    }
+
+[1m  # aws_s3_bucket_object.uploadfiles["images/screwdriverblack128.png"][0m will be created[0m[0m
+[0m  [32m+[0m[0m resource "aws_s3_bucket_object" "uploadfiles" {
+      [32m+[0m [0m[1m[0macl[0m[0m                    = "private"
+      [32m+[0m [0m[1m[0mbucket[0m[0m                 = "symphony-kansas-maintenancepage"
+      [32m+[0m [0m[1m[0mcontent_type[0m[0m           = "text/html"
+      [32m+[0m [0m[1m[0metag[0m[0m                   = (known after apply)
+      [32m+[0m [0m[1m[0mforce_destroy[0m[0m          = false
+      [32m+[0m [0m[1m[0mid[0m[0m                     = (known after apply)
+      [32m+[0m [0m[1m[0mkey[0m[0m                    = "images/screwdriverblack128.png"
+      [32m+[0m [0m[1m[0mserver_side_encryption[0m[0m = (known after apply)
+      [32m+[0m [0m[1m[0msource[0m[0m                 = "./files/images/screwdriverblack128.png"
+      [32m+[0m [0m[1m[0mstorage_class[0m[0m          = (known after apply)
+      [32m+[0m [0m[1m[0mversion_id[0m[0m             = (known after apply)
+    }
+
+[1m  # aws_s3_bucket_object.uploadfiles["maintenance.html"][0m will be created[0m[0m
+[0m  [32m+[0m[0m resource "aws_s3_bucket_object" "uploadfiles" {
+      [32m+[0m [0m[1m[0macl[0m[0m                    = "private"
+      [32m+[0m [0m[1m[0mbucket[0m[0m                 = "symphony-kansas-maintenancepage"
+      [32m+[0m [0m[1m[0mcontent_type[0m[0m           = "text/html"
+      [32m+[0m [0m[1m[0metag[0m[0m                   = (known after apply)
+      [32m+[0m [0m[1m[0mforce_destroy[0m[0m          = false
+      [32m+[0m [0m[1m[0mid[0m[0m                     = (known after apply)
+      [32m+[0m [0m[1m[0mkey[0m[0m                    = "maintenance.html"
+      [32m+[0m [0m[1m[0mserver_side_encryption[0m[0m = (known after apply)
+      [32m+[0m [0m[1m[0msource[0m[0m                 = "./files/maintenance.html"
+      [32m+[0m [0m[1m[0mstorage_class[0m[0m          = (known after apply)
+      [32m+[0m [0m[1m[0mversion_id[0m[0m             = (known after apply)
+    }
+
+[1m  # aws_security_group.security_group[0m will be created[0m[0m
+[0m  [32m+[0m[0m resource "aws_security_group" "security_group" {
+      [32m+[0m [0m[1m[0marn[0m[0m                    = (known after apply)
+      [32m+[0m [0m[1m[0mdescription[0m[0m            = "Security Group for maintenance page setup"
+      [32m+[0m [0m[1m[0megress[0m[0m                 = [
+          [32m+[0m [0m{
+              [32m+[0m [0mcidr_blocks      = [
+                  [32m+[0m [0m"0.0.0.0/0",
+                ]
+              [32m+[0m [0mdescription      = ""
+              [32m+[0m [0mfrom_port        = 0
+              [32m+[0m [0mipv6_cidr_blocks = []
+              [32m+[0m [0mprefix_list_ids  = []
+              [32m+[0m [0mprotocol         = "-1"
+              [32m+[0m [0msecurity_groups  = []
+              [32m+[0m [0mself             = false
+              [32m+[0m [0mto_port          = 0
+            },
+        ]
+      [32m+[0m [0m[1m[0mid[0m[0m                     = (known after apply)
+      [32m+[0m [0m[1m[0mingress[0m[0m                = [
+          [32m+[0m [0m{
+              [32m+[0m [0mcidr_blocks      = [
+                  [32m+[0m [0m"0.0.0.0/0",
+                ]
+              [32m+[0m [0mdescription      = ""
+              [32m+[0m [0mfrom_port        = 0
+              [32m+[0m [0mipv6_cidr_blocks = []
+              [32m+[0m [0mprefix_list_ids  = []
+              [32m+[0m [0mprotocol         = "-1"
+              [32m+[0m [0msecurity_groups  = []
+              [32m+[0m [0mself             = false
+              [32m+[0m [0mto_port          = 0
+            },
+        ]
+      [32m+[0m [0m[1m[0mname[0m[0m                   = "Symphony_MaintenancePage_Linux-SG"
+      [32m+[0m [0m[1m[0mowner_id[0m[0m               = (known after apply)
+      [32m+[0m [0m[1m[0mrevoke_rules_on_delete[0m[0m = false
+      [32m+[0m [0m[1m[0mtags[0m[0m                   = {
+          [32m+[0m [0m"app_version"      = "1.0"
+          [32m+[0m [0m"backup_frequency" = "Never"
+          [32m+[0m [0m"backup_vault"     = "-N/A-"
+          [32m+[0m [0m"billing_type"     = "Client"
+          [32m+[0m [0m"client_name"      = "Kansas"
+          [32m+[0m [0m"environment_name" = "Production"
+          [32m+[0m [0m"os_name"          = "Amazon Linux 2"
+          [32m+[0m [0m"os_type"          = "Linux"
+          [32m+[0m [0m"project_name"     = "Symphony"
+          [32m+[0m [0m"security_zone"    = "DMZ"
+          [32m+[0m [0m"service_name"     = "EC2"
+          [32m+[0m [0m"service_role"     = "MaintenancePage"
+        }
+      [32m+[0m [0m[1m[0mvpc_id[0m[0m                 = "vpc-069d202f6c6abf29a"
+    }
+
+[0m[1mPlan:[0m 16 to add, 0 to change, 0 to destroy.[0m
+
+------------------------------------------------------------------------
+
+Note: You didn't specify an "-out" parameter to save this plan, so Terraform
+can't guarantee that exactly these actions will be performed if
+"terraform apply" is subsequently run.
+

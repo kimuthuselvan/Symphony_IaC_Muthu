@@ -1,0 +1,64 @@
+[
+  {
+    "name": "${container_name}",
+    "essential": true,
+    "image": "945116902499.dkr.ecr.us-east-1.amazonaws.com/sqlexecutor:5.18.1.0.7",
+    "portMappings": [],
+    "command": [
+      "c:\\sqlexecutor\\PCS.SmartOrders.SQLExecutorRunner.exe"
+    ],
+    "environment": [
+      {
+        "name": "AppName",
+        "value": "prd"
+      },
+      {
+
+        "name": "ASPNETCORE_ENVIRONMENT",
+        "value": "Production"
+      },
+      {
+        "name": "AWS_REGION",
+        "value": "us-east-1"
+      },
+      {
+        "name": "ClientName",
+        "value": "kansas"
+      },
+      {
+        "name": "Customer",
+        "value": "kansas"
+      },
+      {
+        "name": "SQLScriptsFolder",
+        "value": "c:\\changescripts"
+      }
+    ],
+    "placementConstraints": [
+      {
+        "type": "memberOf",
+        "expression": "attribute:ecs.os-type==windows"
+      }
+    ],
+    "requiresAttributes": [
+      {
+        "targetId": null,
+        "targetType": null,
+        "value": null,
+        "name": "com.amazonaws.ecs.capability.ecr-auth"
+      },
+      {
+        "targetId": null,
+        "targetType": null,
+        "value": null,
+        "name": "com.amazonaws.ecs.capability.task-iam-role"
+      },
+      {
+        "targetId": null,
+        "targetType": null,
+        "value": null,
+        "name": "ecs.capability.execution-role-ecr-pull"
+      }
+    ]
+  }
+]

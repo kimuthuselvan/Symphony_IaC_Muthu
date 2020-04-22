@@ -1,0 +1,150 @@
+[0m[1mRefreshing Terraform state in-memory prior to plan...[0m
+The refreshed state will be used to calculate this plan, but will not be
+persisted to local or remote state storage.
+[0m
+
+------------------------------------------------------------------------
+
+An execution plan has been generated and is shown below.
+Resource actions are indicated with the following symbols:
+  [32m+[0m create
+[0m
+Terraform will perform the following actions:
+
+[1m  # aws_elasticsearch_domain.symkanesprd[0m will be created[0m[0m
+[0m  [32m+[0m[0m resource "aws_elasticsearch_domain" "symkanesprd" {
+      [32m+[0m [0m[1m[0maccess_policies[0m[0m       = jsonencode(
+            {
+              [32m+[0m [0mStatement = [
+                  [32m+[0m [0m{
+                      [32m+[0m [0mAction    = "es:*"
+                      [32m+[0m [0mEffect    = "Allow"
+                      [32m+[0m [0mPrincipal = "*"
+                      [32m+[0m [0mResource  = "arn:aws:es:us-east-1:945116902499:domain/symkanesprd/*"
+                    },
+                ]
+              [32m+[0m [0mVersion   = "2012-10-17"
+            }
+        )
+      [32m+[0m [0m[1m[0madvanced_options[0m[0m      = {
+          [32m+[0m [0m"rest.action.multi.allow_explicit_index" = "true"
+        }
+      [32m+[0m [0m[1m[0marn[0m[0m                   = (known after apply)
+      [32m+[0m [0m[1m[0mdomain_id[0m[0m             = (known after apply)
+      [32m+[0m [0m[1m[0mdomain_name[0m[0m           = "symkanesprd"
+      [32m+[0m [0m[1m[0melasticsearch_version[0m[0m = "6.8"
+      [32m+[0m [0m[1m[0mendpoint[0m[0m              = (known after apply)
+      [32m+[0m [0m[1m[0mid[0m[0m                    = (known after apply)
+      [32m+[0m [0m[1m[0mkibana_endpoint[0m[0m       = (known after apply)
+      [32m+[0m [0m[1m[0mtags[0m[0m                  = {
+          [32m+[0m [0m"Client"      = "Kansas"
+          [32m+[0m [0m"Domain"      = "symkanesprd"
+          [32m+[0m [0m"Environment" = "Production"
+          [32m+[0m [0m"Project"     = "Symphony"
+          [32m+[0m [0m"Zone"        = "Trusted"
+        }
+
+      [32m+[0m [0mcluster_config {
+          [32m+[0m [0m[1m[0mdedicated_master_count[0m[0m   = 3
+          [32m+[0m [0m[1m[0mdedicated_master_enabled[0m[0m = true
+          [32m+[0m [0m[1m[0mdedicated_master_type[0m[0m    = "r5.large.elasticsearch"
+          [32m+[0m [0m[1m[0minstance_count[0m[0m           = 2
+          [32m+[0m [0m[1m[0minstance_type[0m[0m            = "r5.large.elasticsearch"
+          [32m+[0m [0m[1m[0mzone_awareness_enabled[0m[0m   = true
+
+          [32m+[0m [0mzone_awareness_config {
+              [32m+[0m [0m[1m[0mavailability_zone_count[0m[0m = 2
+            }
+        }
+
+      [32m+[0m [0mdomain_endpoint_options {
+          [32m+[0m [0m[1m[0menforce_https[0m[0m       = true
+          [32m+[0m [0m[1m[0mtls_security_policy[0m[0m = "Policy-Min-TLS-1-2-2019-07"
+        }
+
+      [32m+[0m [0mebs_options {
+          [32m+[0m [0m[1m[0mebs_enabled[0m[0m = true
+          [32m+[0m [0m[1m[0mvolume_size[0m[0m = 20
+          [32m+[0m [0m[1m[0mvolume_type[0m[0m = "gp2"
+        }
+
+      [32m+[0m [0mencrypt_at_rest {
+          [32m+[0m [0m[1m[0menabled[0m[0m    = true
+          [32m+[0m [0m[1m[0mkms_key_id[0m[0m = (known after apply)
+        }
+
+      [32m+[0m [0mnode_to_node_encryption {
+          [32m+[0m [0m[1m[0menabled[0m[0m = true
+        }
+
+      [32m+[0m [0msnapshot_options {
+          [32m+[0m [0m[1m[0mautomated_snapshot_start_hour[0m[0m = 0
+        }
+
+      [32m+[0m [0mvpc_options {
+          [32m+[0m [0m[1m[0mavailability_zones[0m[0m = (known after apply)
+          [32m+[0m [0m[1m[0msecurity_group_ids[0m[0m = (known after apply)
+          [32m+[0m [0m[1m[0msubnet_ids[0m[0m         = [
+              [32m+[0m [0m"subnet-01990fdba952e6896",
+              [32m+[0m [0m"subnet-0f4e8b039336531a1",
+            ]
+          [32m+[0m [0m[1m[0mvpc_id[0m[0m             = (known after apply)
+        }
+    }
+
+[1m  # aws_security_group.symkanesprd[0m will be created[0m[0m
+[0m  [32m+[0m[0m resource "aws_security_group" "symkanesprd" {
+      [32m+[0m [0m[1m[0marn[0m[0m                    = (known after apply)
+      [32m+[0m [0m[1m[0mdescription[0m[0m            = "Managed by Terraform"
+      [32m+[0m [0m[1m[0megress[0m[0m                 = [
+          [32m+[0m [0m{
+              [32m+[0m [0mcidr_blocks      = [
+                  [32m+[0m [0m"0.0.0.0/0",
+                ]
+              [32m+[0m [0mdescription      = ""
+              [32m+[0m [0mfrom_port        = 0
+              [32m+[0m [0mipv6_cidr_blocks = []
+              [32m+[0m [0mprefix_list_ids  = []
+              [32m+[0m [0mprotocol         = "-1"
+              [32m+[0m [0msecurity_groups  = []
+              [32m+[0m [0mself             = false
+              [32m+[0m [0mto_port          = 0
+            },
+        ]
+      [32m+[0m [0m[1m[0mid[0m[0m                     = (known after apply)
+      [32m+[0m [0m[1m[0mingress[0m[0m                = [
+          [32m+[0m [0m{
+              [32m+[0m [0mcidr_blocks      = [
+                  [32m+[0m [0m"0.0.0.0/0",
+                ]
+              [32m+[0m [0mdescription      = ""
+              [32m+[0m [0mfrom_port        = 0
+              [32m+[0m [0mipv6_cidr_blocks = []
+              [32m+[0m [0mprefix_list_ids  = []
+              [32m+[0m [0mprotocol         = "-1"
+              [32m+[0m [0msecurity_groups  = []
+              [32m+[0m [0mself             = false
+              [32m+[0m [0mto_port          = 0
+            },
+        ]
+      [32m+[0m [0m[1m[0mname[0m[0m                   = "Symphony_Kansas_ElasticSearch_Production_SG"
+      [32m+[0m [0m[1m[0mowner_id[0m[0m               = (known after apply)
+      [32m+[0m [0m[1m[0mrevoke_rules_on_delete[0m[0m = false
+      [32m+[0m [0m[1m[0mtags[0m[0m                   = {
+          [32m+[0m [0m"Client"      = "Kansas"
+          [32m+[0m [0m"Environment" = "Production"
+          [32m+[0m [0m"Name"        = "Symphony_Kansas_ElastiCache_Production_SG"
+          [32m+[0m [0m"Project"     = "Symphony"
+          [32m+[0m [0m"Zone"        = "Trusted"
+        }
+      [32m+[0m [0m[1m[0mvpc_id[0m[0m                 = "vpc-0f8dffb441db4a3b7"
+    }
+
+[0m[1mPlan:[0m 2 to add, 0 to change, 0 to destroy.[0m
+
+------------------------------------------------------------------------
+
+Note: You didn't specify an "-out" parameter to save this plan, so Terraform
+can't guarantee that exactly these actions will be performed if
+"terraform apply" is subsequently run.
+

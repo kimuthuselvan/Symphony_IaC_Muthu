@@ -1,0 +1,7 @@
+name = "webapp"
+searchpath = "/"
+successcode = 302
+listener_rule = "default"
+os_type = "windows"
+cpu = 1024
+memory = 2048

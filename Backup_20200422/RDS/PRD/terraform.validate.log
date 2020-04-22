@@ -1,0 +1,18 @@
+[33m
+[1m[33mWarning: [0m[0m[1mInterpolation-only expressions are deprecated[0m
+
+[0m  on rds-mssql.tf line 53, in resource "aws_db_instance" "kansas_prd_sqlserver":
+  53:   db_subnet_group_name      = [4m"${aws_db_subnet_group.kansas_prd_sqlserver.id}"[0m
+[0m
+Terraform 0.11 and earlier required all non-constant expressions to be
+provided via interpolation syntax, but this pattern is now deprecated. To
+silence this warning, remove the "${ sequence from the start and the }"
+sequence from the end of this expression, leaving just the inner expression.
+
+Template interpolation syntax is still used to construct strings from
+expressions when the template includes multiple interpolation sequences or a
+mixture of literal strings and interpolations. This deprecation applies only
+to templates that consist entirely of a single interpolation sequence.
+[0m[0m
+[32m[1mSuccess![0m The configuration is valid, but there were some validation warnings as shown above.
+[0m

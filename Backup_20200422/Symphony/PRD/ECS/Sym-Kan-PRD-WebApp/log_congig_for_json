@@ -1,0 +1,8 @@
+    "logConfiguration": {
+      "logDriver": "awslogs",
+        "options": {
+          "awslogs-group": "/${project_name}/${client_name}/${Ecs_name}",
+          "awslogs-region": "${myregion}",
+          "awslogs-stream-prefix": "ecs"
+        }
+    }

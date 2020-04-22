@@ -1,0 +1,10 @@
+variable "region_name" {}
+variable "vpc_name" {}
+variable "vpc_cidr_block" {}
+variable "subnets_name" {}
+variable "subnets_cidr_block" {}
+variable "azs" {}
+variable "project_name" {}
+variable "client_name" {}
+variable "organization_name" {}
+variable "aws_account" {}
