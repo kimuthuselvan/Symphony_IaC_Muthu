@@ -1,0 +1,26 @@
+[0m[1mdata.template_file.userdata: Refreshing state...[0m
+[0m[1mdata.aws_vpc.vpc_id: Refreshing state...[0m
+[0m[1mdata.aws_ami.amazon-linux-2: Refreshing state...[0m
+[0m[1mdata.aws_subnet.subnet_id: Refreshing state...[0m
+[0m[1maws_security_group.security_group: Creating...[0m[0m
+[0m[1maws_security_group.security_group: Creation complete after 2s [id=sg-00cf14c5341046883][0m[0m
+[0m[1maws_instance.syslog: Creating...[0m[0m
+[0m[1maws_instance.syslog: Still creating... [10s elapsed][0m[0m
+[0m[1maws_instance.syslog: Still creating... [20s elapsed][0m[0m
+[0m[1maws_instance.syslog: Still creating... [30s elapsed][0m[0m
+[0m[1maws_instance.syslog: Creation complete after 32s [id=i-00a6128abc94cb697][0m[0m
+[33m
+[1m[33mWarning: [0m[0m[1mQuoted references are deprecated[0m
+
+[0m  on aws_data.tf line 3, in data "aws_vpc" "vpc_id":
+   3:   provider = [4m"aws.eh_adv_aws_main"[0m
+[0m
+In this context, references are expected literally rather than in quotes.
+Terraform 0.11 and earlier required quotes, but quoted references are now
+deprecated and will be removed in a future version of Terraform. Remove the
+quotes surrounding this reference to silence this warning.
+
+(and 2 more similar warnings elsewhere)
+[0m[0m
+[0m[1m[32m
+Apply complete! Resources: 2 added, 0 changed, 0 destroyed.[0m
